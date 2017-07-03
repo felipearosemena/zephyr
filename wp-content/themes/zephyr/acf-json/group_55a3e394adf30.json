@@ -1,0 +1,197 @@
+{
+    "key": "group_55a3e394adf30",
+    "title": "Social Media Information",
+    "fields": [
+        {
+            "key": "field_57893e4a91613",
+            "label": "Open Graph",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_57893e1b91612",
+            "label": "Default Open Graph Image",
+            "name": "default_og_image",
+            "type": "image",
+            "instructions": "This is the image that will get used by default when sharing a post that doesn't have a featured image assigned to it.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_55a3e3fa381ef",
+            "label": "Social Accounts",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_55a3e399381ea",
+            "label": "Facebook",
+            "name": "global_facebook",
+            "type": "url",
+            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/"
+        },
+        {
+            "key": "field_55a3e3b3381eb",
+            "label": "Twitter Profile",
+            "name": "global_twitter_profile",
+            "type": "url",
+            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/"
+        },
+        {
+            "key": "field_55a3e3bf381ec",
+            "label": "Twitter Account",
+            "name": "global_twitter_account",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "@",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_55a3e3cf381ed",
+            "label": "Instagram",
+            "name": "global_instagram",
+            "type": "url",
+            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/"
+        },
+        {
+            "key": "field_55a3e3e5381ee",
+            "label": "LinkedIn",
+            "name": "global_linkedin",
+            "type": "url",
+            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/"
+        },
+        {
+            "key": "field_55aece2de6580",
+            "label": "Youtube Profile",
+            "name": "global_youtube",
+            "type": "url",
+            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/"
+        },
+        {
+            "key": "field_55aecf0ea5280",
+            "label": "Tumblr",
+            "name": "global_tumblr",
+            "type": "url",
+            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "http:\/\/"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-global-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1468612240
+}

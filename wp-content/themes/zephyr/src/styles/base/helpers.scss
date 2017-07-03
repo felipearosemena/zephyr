@@ -1,0 +1,105 @@
+/**
+ *
+ * Helpers
+ *
+ * basic helper classes
+ *
+ */
+
+.background-cover {
+  background-size: cover;
+  background-position: center;
+}
+
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+// Spacing
+
+
+.mb-2 {
+  margin-bottom: $bsu*2;
+}
+
+.mb-1 {
+  margin-bottom: $bsu;
+}
+
+.mb-05 {
+  margin-bottom: $bsu/2;
+}
+
+.mb-25 {
+  margin-bottom: $bsu/4;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+
+.mt-3 {
+  margin-top: $bsu*3;
+}
+
+.mt-2 {
+  margin-top: $bsu*2;
+}
+
+.mt-1 {
+  margin-top: $bsu;
+}
+
+.mt-05 {
+  margin-top: $bsu/2;
+}
+
+.mt-25 {
+  margin-top: $bsu/2;
+}
+
+// Text Alignment
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+// Display
+
+.inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// Flex helpers
+
+.flex {
+  display: flex;
+}

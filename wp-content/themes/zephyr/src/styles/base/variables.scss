@@ -1,0 +1,149 @@
+/**
+ *
+ * Variables
+ *
+ * Specify all project variables in a single globally accessible file
+ *
+ */
+
+
+/*----------  Colours  ----------*/
+
+$blue         : #00bff3;
+$green        : #5cb85c;
+$red          : #d9534f;
+$yellow       : #ec971f;
+
+$grey-lightest: #f5f5f5;
+$grey-lighter : #f0f0f0;
+$grey-light   : #ebebeb;
+$grey         : #cccccc;
+$grey-dark    : #555555;
+$grey-darker  : #363636;
+$grey-darkest : #212121;
+
+// Social Media Colours
+$fb-blue            : #3D5998;
+$fb-blue-hover      : #2c4372;
+$twitter-blue       : #00abec;
+$twitter-blue-hover : #0081b2;
+$insta-blue         : #517fa3;
+$insta-blue-hover   : #ed5f7a;
+
+
+// Assign them to the default variables
+$color-primary        : $blue;
+$color-secondary      : $grey-dark;
+$color-positive       : $green;
+$color-warning        : $yellow;
+$color-negative       : $red;
+
+// Body text color
+$body-color           : $grey-darker;
+
+
+/*----------  Typography  ----------*/
+
+// Font Stacks
+$helvetica: Helvetica Neue, Helvetica, Arial, sans-serif;
+
+$body-font-family    :  $helvetica;
+$heading-font-family :  $body-font-family;
+
+// Font Sizes & Corresponding line heights
+$base-fs : 16px;
+$base-lh : 24px;
+
+$h1-fs   : 40px;
+$h1-lh   : 50px;
+
+$h2-fs   : 30px;
+$h2-lh   : 40px;
+
+$h3-fs   : 24px;
+$h3-lh   : 32px;
+
+$h4-fs   : $base-fs;
+$h4-lh   : $base-lh;
+
+$h5-fs   : 14px;
+$h5-lh   : 18px;
+
+$h6-fs   : 12px;
+$h6-lh   : 18px;
+
+$small-fs : $h5-fs;
+$small-lh : $h5-lh;
+
+$tiny-fs : $h6-fs;
+$tiny-lh : $h6-lh;
+
+$form-label-fs : $small-fs;
+$form-label-lh : $small-lh;
+
+/*----------  Spacing  ----------*/
+
+// Base Spacing unit (most commonly used measuring unit in your project)
+$bsu : $base-lh;
+
+$base-border-radius  : 5px;
+
+$base-input-height   : $bsu*2.5;
+$base-input-padding  : $bsu/2;
+
+// Grid
+$grid-gutter         : $bsu;
+$grid-gutter-fluid   : 5%;
+
+// Mobile Menu Item Padding
+$mobile-item-padding: $bsu; 
+
+// Array of grids you want to support
+// Eg: (8, 12) will give you an 8 column grid and a 12 column grid
+// Then you can just use like so: .w-3-8 .w-md-7-12
+$grids               : (12); 
+
+// Container
+$container-pad       : $bsu;
+$container-xs        : 400px;
+$container-sm        : 600px;
+$container-md        : 800px;
+$container-lg        : 1000px;
+$container-xl        : 1200px;
+
+$container-fixed-md  : $container-md;
+$container-fixed-lg  : $container-lg;
+$container-fixed-xl  : $container-xl;
+
+/*----------  Breakpoints  ----------*/
+
+$bp-xs      : 480px ;
+$bp-sm      : 640px ;
+$bp-md      : 800px ;
+$bp-lg      : 1020px;
+$bp-xl      : 1200px;
+
+// Main breakpoint, usually the point where we change from 'mobile' to 'desktop'
+// (ie. change from collapsible menu to normal menu)
+$bp-main    : $bp-lg;
+$bp-tabs    : $bp-md;
+
+$bp-array  : '{"xs": "#{$bp-xs}", "sm": "#{$bp-sm}", "md": "#{$bp-md}", "lg": "#{$bp-lg}" ,"xl": "#{$bp-xl}", "tabs": "#{$bp-tabs}" }';
+
+
+/*----------  Animation  ----------*/
+
+$transition-time-fast      : .2s;
+$transition-time-default   : .45s ;
+$transition-time-slow      : .6s;
+$transition-time-extra-slow : 1.2s;
+$transition-timing-slow    : cubic-bezier(0.770, 0.000, 0.175, 1.000);
+$transition-timing-default : cubic-bezier(0.165, 0.840, 0.440, 1.000);
+$transition-timing-bounce  : cubic-bezier(0.175, 0.885, 0.32, 1.5);
+
+$transition-bounce         : $transition-time-default $transition-timing-bounce;
+$transition-bounce-slow    : $transition-time-slow $transition-timing-bounce;
+$transition-fast           : $transition-time-fast $transition-timing-default;
+$transition-default        : $transition-time-default $transition-timing-default;
+$transition-slow           : $transition-time-slow $transition-timing-slow;
+$transition-extra-slow     : $transition-time-extra-slow $transition-timing-slow;

@@ -1,0 +1,16 @@
+<div id="{{ wrapper_id }}" class="embed-wrapper js-video-player" data-video-service="{{ service }}" data-video-id="{{ id }}">
+
+  {% if image %}
+    <div class="embed-wrapper__cover" style="background-image: url({{ image }})"></div>
+  {% endif %}
+    
+  {% if wrapper_id %}
+    <div class="embed-wrapper__play">
+      <button class="btn-circle" data-video-play data-target="#{{ wrapper_id }}">
+        <i class="icon-play"></i>
+        <span class="spinner"></span>
+      </button>
+    </div>
+  {% endif %}
+
+</div>

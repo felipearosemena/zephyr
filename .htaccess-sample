@@ -1,0 +1,122 @@
+##############################################
+# Override PHP configurations for this folder.
+##############################################
+<IfModule mod_php5.c>
+php_value upload_max_filesize 40M
+php_value post_max_size 40M
+php_value memory_limit 1024M
+</IfModule>
+
+
+##############################################
+# Serve all Gzip Javascript and CSS with the
+# correct content type headers
+##############################################
+<IfModule mod_headers.c>
+<FilesMatch "\.js\.gz$">
+Header set Content-Type "application/javascript"
+Header set Content-Encoding "gzip"
+</FilesMatch>
+<FilesMatch "\.css\.gz$">
+Header set Content-Type "text/css"
+Header set Content-Encoding "gzip"
+</FilesMatch>
+</IfModule>
+
+
+
+#############################
+# Start apache rewrite engine
+#############################
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+
+######################
+# WordPress INDEX file
+######################
+# If we go to /index.php, do nothing
+# This is the first rule to make things faster.
+RewriteRule ^index\.php$ - [L]
+
+
+###################################
+# Force SSL - only for secure sites
+###################################
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+######################################
+# handle requests to files and folders
+######################################
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+
+######################
+# If gzipped CSS and JS files are available,
+# server those files instead of the original ones.
+######################
+<FilesMatch "\.js$">
+RewriteCond %{HTTP_USER_AGENT} !".*Safari.*"
+RewriteCond %{HTTP:Accept-Encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule (.*)\.js$ $1.js.gz [L]
+</FilesMatch>
+
+<FilesMatch "\.css$">
+RewriteCond %{HTTP_USER_AGENT} !".*Safari.*"
+RewriteCond %{HTTP:Accept-Encoding} gzip
+RewriteCond %{REQUEST_FILENAME}.gz -f
+RewriteRule (.*)\.css$ $1\.css.gz [L]
+</FilesMatch>
+
+
+######################
+# Add a trailing slash to /wp-admin
+######################
+# for single and subdomain multisite
+RewriteRule ^admin(.*)$ wp/wp-admin$1 [R=301,L]
+RewriteRule ^wp-admin(.*)$ wp/wp-admin$1 [R=301,L]
+RewriteRule ^wp-admin$ wp/wp-admin/ [R=301,L]
+
+# for sub-folder multisite installations
+# RewriteRule ^([_0-9a-zA-Z-]+/)?wp-admin$ $1wp-admin/ [R=301,L]
+
+
+###########################################
+# WordPress 'admin' and 'includes' requests
+# Using WP skeleton:
+# - WordPress in subdirectory 'wp'
+# - 'content' folder in root folder
+###########################################
+# for single and subdomain multisite
+# RewriteRule ^(wp-(admin|includes).*) wp/$1 [L]
+# RewriteRule ^(content.*) $1 [L]
+# RewriteRule ^(.*\.php)$ wp/$1 [L]
+
+# for sub-folder multisite installations
+# RewriteRule ^([_0-9a-zA-Z-]+/)?(wp-(admin|includes).*) wp/$2 [L]
+# RewriteRule ^([_0-9a-zA-Z-]+/)?(content.*) $2 [L]
+# RewriteRule ^([_0-9a-zA-Z-]+/)?(.*\.php)$ wp/$2 [L]
+
+
+######################
+# Any other requests needs to go to index.php
+######################
+RewriteRule . index.php [L]
+</IfModule>
+
+
+################################################
+# Block XMLRPC for security
+# Note:
+#    Some plugins require this to be enabled
+################################################
+<files xmlrpc.php>
+order allow,deny
+deny from all
+</files>

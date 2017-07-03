@@ -1,0 +1,9 @@
+{% if global_info.main_cta_link_type == 'external' %}
+    {% set link, target = global_info.main_cta_link_external, '_blank' %}
+{% else %}
+    {% set link, target = global_info.main_cta_link_internal, '_self' %}
+{% endif %}
+
+{% if link %}
+    <a href="{{ link }}" class="{{ className }} btn" target="{{ target }}">{{ global_info.main_cta_label }}</a>
+{% endif %}

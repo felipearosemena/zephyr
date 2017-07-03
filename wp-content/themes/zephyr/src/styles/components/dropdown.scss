@@ -1,0 +1,52 @@
+/**
+ *
+ * Dropdown
+ * 
+ * Pure CSS dropdown. Works on hover and/or click.
+ * For the dropdown to work on click, make sure the .dropdown 
+ * element is focusable. 
+ * Use tabindex to force any div to be focusable.
+ * 
+ * Usage:
+ * <div class="dropdown" tabindex="0">
+ *   
+ *   Click Me
+ *   
+ *   <div class="dropdown__menu">
+ *     Menu Content
+ *   </div>
+ * </div>
+ *
+ */
+
+.dropdown {
+  position: relative;
+  cursor:pointer;
+  outline: none !important;
+}
+
+.dropdown__menu {
+  @include list-plain;
+  cursor: default;
+  position: absolute;
+  z-index: 1;
+  transition: opacity $transition-fast, visibility $transition-fast;
+  opacity: 0;
+  visibility: hidden;
+  left:0;
+  top:100%;
+  min-width: 10rem;
+  
+  // Adds a slight delay to prevent dropdown
+  // from flashig when mousing over quickly
+  .dropdown:hover & {
+    transition-delay: 200ms;
+  }
+  
+  // Active state styles
+  .dropdown:hover &,
+  .dropdown:focus & {
+    opacity: 1;
+    visibility: visible;
+  }
+}

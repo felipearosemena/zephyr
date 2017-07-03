@@ -1,0 +1,116 @@
+/**
+ *
+ *  Tabs
+ * 
+ */
+
+.tabs {}
+
+.tabs--vertical {
+  @include mq-min($bp-tabs) {
+    display: flex;
+    height: 460px;
+  }
+}
+
+.tab-controls,
+.tab-items {
+  @include list-plain;
+}
+
+.tab-controls {
+  display: flex;
+  overflow: auto;
+
+  li {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: flex;
+
+    @include mq-max($bp-tabs) {
+      min-width: 40%;
+    }
+  }
+
+  .tabs--vertical & {
+    @include mq-min($bp-tabs) {
+      width: 30%;
+      max-width: 300px;
+      flex-direction: column;
+    }
+  }
+}
+
+.tab-toggle {
+  @extend %btn-base;
+  width: 100%;
+
+  @include mq-max($bp-sm) {
+    @include font-size($small-fs, $small-lh);
+  }
+
+  @include mq-max($bp-xs) {
+    padding-left: $bsu/4;
+    padding-right: $bsu/4;
+  }
+}
+
+.tab-toggle--desktop {
+  display: none;
+  
+  @include mq-min($bp-tabs) {
+    display: block;
+  }
+}
+
+.tab-toggle--mobile {
+  @include mq-min($bp-tabs) {
+    display: none;
+  }
+}
+
+.tab-items {
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: $grey-lighter;
+
+  .tabs--vertical & {
+    overflow: auto; // If it has too much content, allow it to scroll
+  }
+
+  .tabs--vertical & {
+    @include mq-min($bp-tabs) {
+      width: 70%;
+    }
+  }
+}
+
+.tab {
+  white-space: normal;
+  transform: none;
+  transition: max-height $transition-slow, opacity $transition-slow, visibility $transition-slow;
+  overflow: hidden;
+
+  &:not(.is-active) {
+    opacity: 0;
+    visibility: hidden;
+    // Important is required here to override the inline style set by JS
+    max-height: 0 !important;
+  }
+
+  @include mq-min($bp-tabs) {
+   transition: transform $transition-default, opacity $transition-slow, visibility $transition-slow;
+
+   &:not(.is-active) {
+      transform: translateY(-10%);
+   }
+  }
+}
+
+.tab__inner {
+  padding: $bsu;
+
+  @include mq-min($bp-sm) {
+    padding: $bsu*2;
+  }
+}

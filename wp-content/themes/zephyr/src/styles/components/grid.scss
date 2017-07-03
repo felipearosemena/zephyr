@@ -1,0 +1,135 @@
+/**
+ *
+ * Grid
+ *  
+ * Grid layout systems 
+ *
+ */
+
+
+/**
+ *
+ * Basic Grid
+ *
+ * Unless you are sure, avoid combining the grid and grid items with other classes.
+ * Use it to create your layout and nest your components inside.
+ *
+ * Usage:
+ *
+ * <div class="grid">
+ *   <div class="grid__item w-5"></div>
+ *   <div class="grid__item w-5"></div>
+ * </div>
+ *
+ */
+
+.grid, %grid {
+  @include clearfix;
+  margin-left: -$grid-gutter;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+.grid__item {
+  float: left;
+  padding-left: $grid-gutter;
+}
+
+// Gutterless grid
+.grid--full, %grid--full {
+  margin-left: 0;
+  > .grid__item {
+    padding-left: 0;
+  }
+}
+
+// Fluid gutter grid
+.grid--fluid, %grid--fluid {
+  @include clearfix;
+  @include fluid-grid($grid-gutter-fluid);
+  > .grid__item {
+    padding-left: $grid-gutter-fluid;
+  }
+}
+
+.grid--wide {
+  @include mq-min($bp-xl) {
+    margin-left: -$grid-gutter*2;
+
+    > .grid__item {
+      padding-left: $grid-gutter*2;
+    }
+  }
+}
+
+.grid--wide-lg {
+  @include mq-min($bp-xl) {
+    margin-left: -$grid-gutter*3;
+
+    > .grid__item {
+      padding-left: $grid-gutter*3;
+    }
+  }
+}
+
+.grid--rows {
+  margin-bottom: -$grid-gutter;
+
+  > .grid__item {
+    margin-bottom: $grid-gutter
+  }
+  
+  &.grid--wide {
+    @include mq-min($bp-xl) {
+      margin-bottom: -$grid-gutter*2;
+
+      > .grid__item {
+        margin-bottom: $grid-gutter*2;
+      }
+    }
+  }
+}
+
+
+/**
+ *
+ * Grid with inline-block grid items.
+ *
+ * Gives you auto-clearing rows, with vertically alignable grid items.
+ * Must clear whitespace between grid items
+ *
+ * Tip: Can use the 'spaceless' Twig tag to help you with this.
+ *
+ * Usage:
+ *
+ *   <div class="grid">
+ *     <div class="grid__item w-5"></div><!--
+ *        
+ *  --><div class="grid__item w-5"></div>
+ *   </div>
+ *
+ */
+.grid--block, %grid--block {
+  > .grid__item {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+/**
+ *
+ * Flexbox Grid
+ *
+ * Equal height grid, using flexbox.
+ *
+ * 
+ */
+.grid--flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  > .grid__item {
+    float:none; 
+  }
+}

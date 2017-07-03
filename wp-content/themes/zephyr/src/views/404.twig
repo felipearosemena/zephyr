@@ -1,0 +1,16 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+
+  <article class="section">
+
+    <div class="container container--sm text-center">
+      <h1>{{ __('Page not found', 'base-theme') }}</h1>
+
+      <p>{{ __('Sorry, the page you are looking for does not exist.', 'base-theme') }}</p>
+      <a href="{{ site.url }}" class="btn">{{ __('Return to home', 'base-theme') }}</a>
+    </div>
+
+  </article>
+
+{% endblock %}

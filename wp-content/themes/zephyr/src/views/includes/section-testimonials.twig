@@ -1,0 +1,31 @@
+{% if section.testimonials %}
+<section class="section section--testimonial-{{ section.layout }}">
+  <ul class="slider js-slider">
+    {% for id in section.testimonials %}
+      {% set item = TimberPost(id) %}
+      
+      <li>
+        <div class="container container--md">
+          <blockquote class="testimonial testimonial--{{ section.layout }}">
+              {% if section.layout == 'image' and item.thumbnail %}
+                <div class="testimonial__image">
+                  <div class="testimonial__image-inner">
+                    {{ macros.img(item.thumbnail, 'card') }}
+                  </div>
+                </div>
+              {% endif %}
+
+              <div class="testimonial__content">
+                {{ item.post_excerpt|wpautop }}
+
+                <cite>{{ item.post_title }}</cite> 
+              </div>
+
+          </blockquote>
+        </div>
+      </li>
+
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

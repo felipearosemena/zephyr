@@ -1,0 +1,15 @@
+{% if id and video_service and video_id  %}
+
+  <div id="{{ id }}" class="modal modal--video js-video-modal">
+    <div class="modal__inner" data-close-modal>
+
+      <div class="modal__body w-12-12">
+        <button class="modal__close-button" data-close-modal></button>
+        
+        <div class="embed-wrapper" data-video-player data-video-service="{{ video_service }}" data-video-id="{{ video_id }}"></div>
+      </div>
+
+    </div>   
+  </div>
+
+{% endif %}

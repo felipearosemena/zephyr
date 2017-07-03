@@ -1,0 +1,28 @@
+{% set link = card|link_vars %}
+{% set image_size = image_size|default('card') %}
+
+<div class="card {{ modifiers|join(' ') }}" {{ link ? 'data-card-click' }} tabindex="0">
+
+  {% if card.image %}
+    {% set image = TimberImage(card.image) %}
+    <div class="card__image" style="background-image: url({{ image.src(image_size) }})">
+      {{ macros.img(image, image_size , 'sr-only') }}
+    </div>
+  {% endif %}
+  
+  {% if card.content %}
+    <div class="card__body">
+      {% if card.title %}
+        <h3>{{ card.title }}</h3>
+      {% endif %}
+      
+      {{ card.content }}
+        
+      {% if link %}
+        <a href="{{ link.href }}" target="{{ link.target }}" data-card-link>{{ card.link_label }}</a>
+      {% endif %}  
+
+    </div>
+  {% endif %}
+  
+</div>

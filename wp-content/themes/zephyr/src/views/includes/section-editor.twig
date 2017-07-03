@@ -1,0 +1,19 @@
+<section class="section section--editor">
+  
+  <div class="container {{ section.layout == 'one' ? 'container--md text-center' }}">
+    
+    <div class="grid">
+      {% if section.title %}
+        <div class="grid__item w-12-12 {{ section.layout == 'two' ? 'w-lg-6-12' }}">
+          <h2 class="{{ section.layout == 'two' ? 'container--xs' }}">{{ section.title }}</h2>
+        </div>
+      {% endif %}
+      
+      <div class="grid__item w-12-12 {{ section.layout == 'two' ? 'w-lg-6-12' }}">
+        {{ section.content }}
+      </div>
+    </div>    
+
+  </div>
+  
+</section>

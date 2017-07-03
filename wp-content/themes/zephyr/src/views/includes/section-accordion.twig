@@ -1,0 +1,37 @@
+{% set section_index = loop.index %}
+
+{% if section.accordions %}
+  <section id="accordions-{{ section_index }}" class="section section--accordion">
+    
+    <div class="container container--md">
+      {% if section.title %}
+        <h2>{{ section.title }}</h2>
+      {% endif %}
+      
+      <ul class="accordion-group">
+
+        {% for item in section.accordions %}
+          
+          {% set id = 'accordion-item-' ~ section_index ~ '-' ~ loop.index %}
+
+          <li class="accordion">
+            <button class="accordion__toggle js-toggle-accordion" data-group="#accordions-{{ section_index }}" data-target="#{{ id }}" data-toggle="true">
+              {{ item.title }}
+            </button>
+
+            <div id="{{ id }}" class="accordion__body">
+
+              <div class="accordion__body-inner">
+                {{ item.content }}
+              </div>
+
+            </div>
+          </li>
+        {% endfor %}
+
+      </ul>
+
+    </div>
+    
+  </section>
+{% endif %}

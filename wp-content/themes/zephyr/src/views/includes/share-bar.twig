@@ -1,0 +1,11 @@
+<ul class="share-bar list-plain list-inline mt-1 mb-1 js-share-post">
+  <li>
+    <a href="{{ share_post.get_url('fb_share', post.id) }}" class="icon-facebook"></a>
+  </li>
+  <li>
+    <a href="{{ share_post.get_url('tweet', post.id) }}" class="icon-twitter"></a>
+  </li>
+  <li>
+    <a href="{{ share_post.get_url('linkedin_share', post.id) }}" class="icon-linkedin"></a>
+  </li>
+</ul>

@@ -1,0 +1,97 @@
+{% extends 'layouts/base.twig' %}
+
+{% block hero %}
+  {% include 'includes/hero-post-slider.twig' with {
+    posts: post.get_field('featured_posts')
+  } %}
+{% endblock %}
+
+{% block content %} 
+  
+  <section class="section js-listing-wrapper">
+    <div class="container container--md">
+
+      <header>
+        <h1>{{ post.title }}</h1>
+        
+        <div class="grid grid--rows grid--flex">
+          {% for tax in taxonomies %}
+            <div class="grid__item w-12-12 w-sm-6-12">
+              <div class="form-control select-wrapper">
+
+                <select class="js-listing-filter" name="{{ tax.query_key }}">
+                  <option value="">{{ __('All ' ~ tax.taxonomy.labels.name, 'base-theme') }}</option>
+                  {% for term in tax.terms %}
+                    <option value="{{ term.slug }}" {{ query_vars[tax.query_key] == term.slug ? 'selected' }}>{{ term.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          {% endfor %}
+
+          <div class="grid__item w-12-12 w-sm-6-12">
+            <form action="" class="js-listing-search">
+              <div class="form-combo">
+                <input type="text" name="search" value="{{ query_vars.search }}"/>
+                <button></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </header>
+    
+      <div class="js-listing">
+      
+        {% set no_results %}
+          <p class="mt-1 mb-1 js-no-results">
+            {{ __('Sorry, but your search returned no results. Try searching with different keywords.', 'base-theme') }}
+          </p>
+        {% endset %}
+
+        {% for post in posts %}
+        
+          <article class="post post--{{ post.post_type }} mt-1 mb-2 js-listing-item"
+            data-post-id="{{ post.ID }}" 
+            id="post-{{post.ID}}"> 
+
+            <header class="entry-header">
+            
+              {% for term in post.get_terms %}
+                <span class="label">{{ term.name }}</span>
+              {% endfor %}
+
+              <h2 class="entry-title">
+                <a href="{{ post.link }}">{{ post.title }}</a>
+              </h2>
+
+              <time>{{ post.display_date }}</time>
+
+            </header>
+
+            <figure class="featured-image">
+              {{ macros.img(post.thumbnail.ID, 'featured') }}
+            </figure>
+
+            <p class="entry-summary">
+              {{ post.post_excerpt }}
+            </p>  
+
+          </article><!-- .post --> 
+
+        {% else %}
+          {{ no_results }}
+        {% endfor %}
+      
+        <div style="display: none">
+          {{ no_results }}
+        </div>
+        
+      </div>
+  
+      {% include 'components/load-more.twig' %}
+
+    </div>
+  </section>
+
+{% endblock %}

@@ -1,0 +1,5 @@
+{% for section in post.get_field('blocks') %}
+  {% include 'includes/section-' ~ section.acf_fc_layout|replace({'_': '-'}) ~ '.twig' with {
+    section: section
+  } %}
+{% endfor %}

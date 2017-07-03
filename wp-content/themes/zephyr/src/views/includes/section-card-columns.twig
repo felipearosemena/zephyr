@@ -1,0 +1,48 @@
+{% if section.cards %}
+  <section class="section section--card-columns">
+    
+    {% if section.title %}
+      <div class="container container--sm">
+        <h2 class="text-center mb-2">{{ section.title }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="container">
+      
+      {% set len = section.cards|length %}
+    
+      <div class="grid grid--flex grid--rows {{ len < 4 ? 'grid--wide' }} ">
+
+        {% if section.card_layout == 'vertical' %}
+
+          {% if len > 1 %}
+            {% set w = 'w-sm-6-12' %}
+          {% endif %}
+          
+          {% if len == 3 %}
+            {% set w = w ~ ' w-lg-4-12' %}
+          {% elseif len == 4 %}
+            {% set w = w ~ ' w-xl-3-12' %}
+          {% endif %}
+
+        {% elseif section.card_layout == 'horizontal' %}
+          {% set w = 'w-lg-6-12' %}
+        {% endif %}
+        
+        {% for card in section.cards %}
+          <div class="grid__item flex w-12-12 {{ w }}">
+
+            {% include 'components/card.twig' with {
+              card: card,
+              image_size: len < 4 ? 'card_md' ,
+              modifiers: [ 'card--' ~ section.card_layout, 'card--' ~ len ~ '-col' ]
+            } %}
+
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+    
+  </section>
+{% endif %}

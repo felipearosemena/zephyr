@@ -1,0 +1,14 @@
+{% if content and id  %}
+
+  <div id="{{ id }}" class="modal js-modal">
+    <div class="modal__inner" data-close-modal>
+
+      <div class="modal__body w-12-12">
+        <button class="modal__close-button" data-close-modal></button>
+       
+        {{ content }}
+      </div>
+
+    </div>   
+  </div>
+{% endif %}

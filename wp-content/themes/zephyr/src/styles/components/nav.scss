@@ -1,0 +1,33 @@
+/**
+ *
+ * Nav
+ * 
+ * Horizontal list with padded items
+ *
+ * Usage:
+ * <ul class="nav">
+ *   <li>Nav Item</li>
+ *   <li>Nav Item</li>
+ *   <li>Nav Item</li>
+ * </ul>
+ *
+ */
+
+.nav {
+  display: inline-block;
+  padding-left:0;
+  margin-bottom: 0;
+  list-style: none;
+  
+  > li {
+    display: inline-block;
+  }
+}
+
+.nav--social {
+  margin-left: -$bsu/4;
+
+  a {
+    padding: $bsu/4;
+  }
+}

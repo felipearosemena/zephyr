@@ -1,0 +1,174 @@
+/**
+ *
+ * Mixins
+ *
+ */
+
+// Media Query Mixins
+// Use to create a breakpoint, either using predefined breakpoint variables or arbitrary values
+@mixin mq-min($bp-value) {
+  @media only screen and (min-width: $bp-value) {
+    @content;
+  }
+}
+
+@mixin mq-max($bp-value) {
+  @media only screen and (max-width: $bp-value - 1px) {
+    @content;
+  }
+}
+
+@mixin mq-between($min, $max) {
+  @media only screen and (min-width: $min) and (max-width: $max - 1px) {
+    @content;
+  }
+}
+
+@mixin font-size($font-size, $line-height) {
+  font-size: $font-size;
+  line-height: $line-height / $font-size;
+}
+
+// Mixin for .grid with percentage base gutters
+// Need a formula to calculate a more accurate offset for the grid element
+@mixin fluid-grid($gutter) {
+  margin-left: -(0.01202 * $gutter * $gutter / 1% + 0.98955 * $gutter + 0.01483%);
+}
+
+@mixin clearfix() {
+  zoom: 1;
+  &:before, &:after {
+    display: table;
+    content: "";
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin font-smoothing($value: on) {
+  @if $value == on {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+@mixin full-cover {
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+}
+
+// Adds even padding and trims white space below last child
+@mixin island($padding) {
+  @include clearfix;
+  padding: $padding;
+  
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin iconfont($line-height: 1) {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: $line-height;
+  transition: color $transition-default;
+
+  &:before, &:after {
+
+    display: inline-block;
+    // Makes all icons even width, 
+    //prevents layout shifting when toggling icons
+    width: 1em; 
+    vertical-align: middle;
+    font-family: 'icons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    text-align: center;
+  }
+}
+
+@mixin button-plain {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+
+  &:hover, &:focus, &:active {
+    background: transparent;
+  }
+}
+
+@mixin button-icon {
+  @include iconfont;
+  @include button-plain;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  font-size: 0;
+  padding: ($base-input-height - $base-fs)/2;
+  transition: color $transition-default;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &:before {
+    font-size: $base-fs;
+    height: $base-fs;
+  }
+}
+
+@mixin input-icon {
+
+  // Prevent the text from going behind the search icon
+  padding-right: $base-input-height; 
+}
+
+@function px-to-rem($px) {
+  @return $px/$base-fs * 1rem;
+}
+
+@mixin list-plain {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+@mixin slider-base {
+  overflow: auto;
+  white-space: nowrap;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+@mixin slide-base {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: normal;
+  width: 100%;
+}
+
+@mixin testimonial-quote {
+  font-family: 'helvetica neue', 'helvetica', arial, sans-serif;
+  font-size: 120px;
+  display: block;
+  line-height: 1;
+  height: .4em;
+  width: .4em;
+  margin-left: auto;
+  margin-right: auto;
+  color: $color-primary;
+}
+

@@ -1,0 +1,86 @@
+/**
+ *
+ * Media
+ *
+ * base media styles
+ *
+ */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe,
+video {
+  margin: 0 auto $bsu;
+}
+
+video  {
+  min-width: 40%;
+  height: auto;
+}
+
+iframe {}
+
+figure {
+  margin: auto;
+  display: block;
+}
+
+/**
+ *
+ * Suggested video wrapper markup
+ *
+ * <div class="embed-wrapper">
+ *   <video></video>
+ * </div><!-- .embed-wrapper -->
+ *
+ */
+
+.embed-wrapper {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  margin: $bsu*2 auto;
+  padding-bottom: 56.25%;
+  background: $grey-light;
+  overflow: hidden;
+
+  .modal & {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  iframe, video {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+}
+
+.embed-wrapper__cover,
+.embed-wrapper__play {
+  position: absolute;
+  z-index: 10;
+  transition: opacity $transition-default, visibility $transition-default;
+
+  .embed-wrapper.is-active & {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.embed-wrapper__cover {
+  @include full-cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.embed-wrapper__play {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

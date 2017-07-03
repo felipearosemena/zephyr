@@ -1,0 +1,70 @@
+/**
+ *
+ * Widths
+ *
+ * mixins that create the column grids, and mixins to calcuate for the grid widths
+ *
+ */
+
+[class*='push-'],
+[class*='pull-'] {
+  position: relative;
+}
+
+// Define breakpoints to be used in the media query
+$breakpoints: (
+  "xs" : $bp-xs, 
+  "sm" : $bp-sm, 
+  "md" : $bp-md, 
+  "lg" : $bp-lg, 
+  "xl" : $bp-xl
+);
+
+// a map-set function (not included with Sass)
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}
+
+@mixin class-values($prefix:"", $prop: width) {  
+  @each $columns in $grids {
+    @for $index from 1 through $columns {
+      #{$prefix}#{$index}-#{$columns} {
+        #{$prop}: $index/$columns * 100%;
+      }
+    }
+  }
+}
+
+@mixin create-column-classes($class: false) {
+  
+  // Check if we need to add the media query modifier to the class
+  @if $class {
+    // Add media query modifier to class
+    $class: '.w-' + $class + '-';
+  } @else {
+    // otherwise, prints nothing
+    $class: '.w-';
+  }
+  
+  // Column Width classes
+  @include class-values($class);
+
+  // Column Push Classes
+  @include class-values($class + 'push-', left);
+
+  // Column Pull Classes
+  @include class-values($class + 'pull-', right);
+}
+
+
+@include create-column-classes(); 
+
+// then we do the media query
+@each $class, $width in $breakpoints { 
+  @include mq-min(#{$width}) {
+    @include create-column-classes(#{$class}); 
+  }
+}
+
+

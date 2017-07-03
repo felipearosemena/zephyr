@@ -1,0 +1,37 @@
+/**
+ *
+ *  CTA Ticker
+ * 
+ */
+
+.cta-ticker {
+  @include slider-base;
+  background-color: $grey-light;
+}
+
+.cta-ticker__item {
+  @include slide-base;
+
+  .flickity-enabled & {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.cta-ticker__container {
+  padding: $bsu $bsu*1.5;
+
+  @include mq-min($bp-sm) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.cta-ticker__link {
+  text-decoration: underline;
+  white-space: nowrap;
+  
+  @include mq-min($bp-sm) {
+    padding-left: $bsu;
+  }
+}

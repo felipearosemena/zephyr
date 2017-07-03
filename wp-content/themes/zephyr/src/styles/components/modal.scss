@@ -1,0 +1,119 @@
+/**
+ *
+ * Modal
+ *
+ * <button data-toggle-modal="#modal">Toggle Modal</button>
+ *
+ * <div id="modal" class="modal js-modal">
+ *   <div class="modal__inner">
+ *     <div class="modal__body">
+ *        <button class="modal__close-button" data-close-modal></button>
+ *     
+ *        // Modal Content
+ * 
+ *     </div>
+ *   </div>
+ * </div>
+ */
+
+[data-toggle-modal] {
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  background: rgba(black, 0.6);
+  transition: opacity $transition-default, visibilty $transition-default, transform $transition-default;
+
+  &.is-transiting,
+  &.is-active {
+    height: auto;
+    overflow: auto;
+  }
+
+  &.is-active {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.modal__inner {
+  width:100%;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  -webkit-overflow-scrolling:touch;
+  -webkit-backface-visibility:hidden;
+  padding-top: $bsu*2;
+  padding-bottom: $bsu*2;
+  margin: auto;
+}
+
+.modal__body {
+  position: relative;
+  max-width: $container-md;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  padding: $bsu;
+
+  .modal--grey & {
+    background-color: $grey-lighter;
+  }
+
+
+  @include mq-min($bp-md) {
+    padding: $bsu*2;
+  }
+
+  .modal--video & {
+    padding: 0;
+    position: static;
+    max-width: $container-lg;
+  }
+}
+
+.modal__close-button {
+  @include button-plain;
+  @include iconfont;
+  @extend .icon-close;
+  padding: 0;
+  font-size: 24px;
+  line-height: 1;
+  display: inline-block;
+  position: absolute;
+  z-index: 10;
+  top: $bsu;
+  right: $bsu;
+  color: $color-primary;
+
+  &:hover,
+  &:focus {
+    color: $color-secondary;
+  }
+
+  .modal--video & {
+    color: white;
+
+    &:hover,
+    &:focus {
+      color: $color-secondary;
+    }
+  }
+}
+
+.modal-root.is-active body {
+  overflow: hidden;
+}

@@ -1,0 +1,35 @@
+/**
+ *
+ * Messages
+ *
+ * Styles for error and message boxes
+ *
+ */
+
+.message {
+  @include island($bsu);
+  border: 1px solid;
+}
+
+// Style for message boxes
+@mixin message-style($color) {
+  color: darken($color,10%);
+  background-color: lighten($color, 30%);
+  border-color: $color;
+}
+
+.message--status {
+  @include message-style($color-primary);
+}
+
+.message--positive {
+  @include message-style($color-positive);
+}
+
+.message--warning {
+  @include message-style($color-warning);
+}
+
+.message--error {
+  @include message-style($color-negative);
+}

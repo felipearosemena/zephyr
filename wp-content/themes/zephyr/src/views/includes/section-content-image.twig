@@ -1,0 +1,29 @@
+<section class="section section--content-image">
+  
+  <div class="container">
+    
+    <div class="card card--full" tabindex="0">
+      {% if section.image %}
+        {% set image = TimberImage(section.image) %}
+        <div class="card__image card__image--{{ section.image_position }}" style="background-image: url({{ image.src('card_md') }})">
+          {{ macros.img(image, 'card_md' , 'sr-only') }}
+        </div>
+      {% endif %}
+
+      <div class="card__body">
+
+        {% if section.subtitle %}
+          <small class="label">{{ section.subtitle }}</small>
+        {% endif %}
+
+        {% if section.title %}
+          <h2>{{ section.title }}</h2>
+        {% endif %}
+        
+        {{ section.content }}
+      </div>
+    </div>
+
+  </div>
+  
+</section>

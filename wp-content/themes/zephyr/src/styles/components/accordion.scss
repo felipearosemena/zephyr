@@ -1,0 +1,65 @@
+/**
+*
+* Accordion Styles
+*
+*/
+
+
+.accordion-group {
+  @include list-plain;
+  position: relative;
+  z-index: 1;
+}
+
+.accordion {
+  background-color: $grey-lighter;
+  margin-bottom: $bsu;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.accordion__toggle {
+  @include button-plain;
+  padding: $bsu $bsu*2 $bsu $bsu;
+  text-align: left;
+  width: 100%;
+  position: relative;
+
+  @include iconfont;
+  @extend  .icon-arrow-down;
+
+  &.is-active {
+    @extend  .icon-arrow-up;
+  }
+
+  &:before {
+    position: absolute;
+    top: 50%;
+    right: $bsu;
+    transform: translateY(-50%);
+  }
+
+  &:hover {
+    color: $color-primary;
+  }
+
+}
+
+.accordion__body {
+  transform: none;
+  transition: max-height $transition-slow, opacity $transition-slow, visibility $transition-slow;
+  overflow: hidden;
+
+  &:not(.is-active) {
+    opacity: 0;
+    visibility: hidden;
+    // Important is required here to override the inline style set by JS
+    max-height: 0 !important;
+  }
+}
+
+.accordion__body-inner {
+  @include island(0 $bsu $bsu);
+}

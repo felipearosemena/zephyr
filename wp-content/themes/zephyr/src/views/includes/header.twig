@@ -1,0 +1,30 @@
+<header id="site-header" class="site-header">
+  
+  <div class="container">
+    <div class="site-header__split">
+
+      <a href="{{ site.url }}" class="site-logo">
+        {{ (src_uri ~ '/images/logo.svg')|file_get_contents }}
+      </a>
+
+      {% include 'includes/header-nav.twig' %}
+      {% include 'includes/header-icons.twig' %}
+      
+      {% include 'components/global-cta.twig' with {
+        className: 'site-header__cta'
+      } %}
+
+      <button class="site-header__toggle btn-toggle" data-toggle-modal="#mobile-nav">
+        <span class="btn-toggle__bar"></span>
+        <span class="btn-toggle__bar"></span>
+        <span class="btn-toggle__bar"></span>  
+      </button>
+
+    </div>
+  </div>
+
+  {% include 'includes/header-search.twig' %}
+
+</header>
+
+{% include 'includes/mobile-nav.twig' %}

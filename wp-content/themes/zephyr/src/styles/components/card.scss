@@ -1,0 +1,126 @@
+/**
+ *
+ * Card
+ * 
+ */
+
+.card {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  max-width: $container-xs;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[data-card-click] {
+    cursor: pointer;
+  }
+}
+
+// Make cards align towards the center of the page on 
+// larger screens
+.card--vertical {
+  &.card--4-col,
+  &.card--2-col {
+
+    @include mq-min($bp-lg) {
+      .grid__item:nth-child(even) & {
+        margin-left: 0;
+      }
+
+      .grid__item:nth-child(odd) & {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.card--horizontal {
+  @include mq-min($bp-sm) {
+    flex-direction: row;
+    max-width: $container-md;
+  }
+}
+
+.card--full {
+  max-width: $container-sm;
+
+  @include mq-min($bp-lg) {
+    flex-direction: row;
+    max-width: none;
+  }
+}
+
+.card__image {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  position: relative;
+  z-index: 0;
+  transition: transform $transition-default;
+  
+  [data-card-click]:hover &,
+  [data-card-click]:focus & {
+    transform: scale(1.1);
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    padding-bottom: 75%;
+  }
+  
+  @include mq-min($bp-sm) {
+    .card--horizontal & {
+      width: 40%;
+    }
+
+  }
+
+  @include mq-min($bp-lg) {
+    .card--full & {
+      width: 40%;
+    }
+    
+    .card--full &.card__image--right {
+      order: 2;
+    }
+  }
+
+}
+
+.card__body {
+  padding: $bsu;
+  background-color: $grey-lightest;
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+
+  @include mq-min($bp-sm) {
+    .card--horizontal & {
+      width: 60%;
+    }
+  }
+
+  @include mq-min($bp-lg) {
+    .card--full & {
+      width: 60%;
+      padding: $bsu*2;
+    }
+  }
+
+}
+
+.card__label {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  background: $color-primary;
+  color: white;
+  padding: $bsu/2 $bsu;
+}

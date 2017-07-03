@@ -1,0 +1,25 @@
+{% if post.cta_ticker_items %}
+<nav class="cta-ticker js-slider" data-page-dots="false">
+  
+  {% spaceless %}
+  {% for item in post.get_field('cta_ticker_items') %}
+  <div class="cta-ticker__item">
+    <div class="cta-ticker__container container">
+
+      {% if item.title %}
+        <div class="cta-ticker__title">{{ item.title }}</div>
+      {% endif %}
+
+      {% set link = item|link_vars %}
+      
+      {% if link %}
+        <a href="{{ link.href }}" target="{{ link.target }}" class="cta-ticker__link">{{ item.link_label }}</a>
+      {% endif %}
+      
+    </div>
+  </div>
+  {% endfor %}
+  {% endspaceless %}
+
+</nav>
+{% endif %}

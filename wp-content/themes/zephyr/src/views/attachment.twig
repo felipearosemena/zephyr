@@ -1,0 +1,15 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+
+  <article>
+
+    <h1>{{ post.title }}</h1>
+
+    <figure>
+      <img src="{{ attachment.src }}" alt="{{ attachment.alt }}" alt="{{ attachment.title }}">
+    </figure>
+
+  </article>
+
+{% endblock %}

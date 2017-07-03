@@ -1,0 +1,33 @@
+{% set image_size = image_size|default('card') %}
+{% set term = post.get_terms|first_item %}
+
+<div class="card" data-card-click tabindex="0">
+
+  {% if post.thumbnail %}
+    
+    {% set image = TimberImage(post.thumbnail.ID) %}
+    
+    <div class="card__image" style="background-image: url({{ image.src(image_size) }})">
+      {{ macros.img(image, image_size , 'sr-only') }}
+    </div>
+  {% endif %}
+  
+
+  <div class="card__body">
+    
+    {% if term %}
+      <div class="card__label">
+        {{ term.name }}
+      </div>
+    {% endif %}
+    
+    <time>{{ post.display_date }}</time>
+    <h3>{{ post.title }}</h3>
+    
+    {{ post.post_excerpt|wpautop }}
+
+    <a href="{{ post.get_permalink }}" data-card-link>{{ link_label|default('Read More') }}</a>
+
+  </div>
+  
+</div>

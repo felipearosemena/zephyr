@@ -1,0 +1,121 @@
+/**
+ *
+ * Icons
+ *
+ * basic icon fonts
+ *
+ */
+
+
+@charset "UTF-8";
+
+@font-face {
+  font-family: "icons";
+  src:url("../../src/fonts/icons/icons.eot");
+  src:url("../../src/fonts/icons/icons.eot?#iefix") format("embedded-opentype"),
+    url("../../src/fonts/icons/icons.woff") format("woff"),
+    url("../../src/fonts/icons/icons.ttf") format("truetype"),
+    url("../../src/fonts/icons/icons.svg#icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"],
+[data-icon] {
+  @include iconfont;
+}
+
+button[class*="icon-"] {
+  @include button-plain;
+}
+
+.icon-search.is-active {
+  @extend .icon-close;
+}
+
+$icon-play: "\6a";
+$icon-play-circle: "\66";
+$icon-search: "\67";
+$icon-angle-left: "\62";
+$icon-angle-right: "\68";
+$icon-angle-up: "\6c";
+$icon-angle-down: "\6b";
+$icon-align-justify: "\6d";
+$icon-linkedin: "\69";
+$icon-facebook: "\65";
+$icon-instagram: "\61";
+$icon-youtube: "\63";
+$icon-twitter: "\64";
+$icon-check: "\f00c";
+$icon-close: "\f00d";
+$icon-envelope-outline: "\f003";
+$icon-envelope: "\f0e0";
+$icon-arrow-left: "\f060";
+$icon-arrow-right: "\f061";
+$icon-arrow-up: "\f062";
+$icon-arrow-down: "\f063";
+
+.icon-play:before {
+  content: $icon-play;
+}
+.icon-play-circle:before {
+  content: $icon-play-circle;
+}
+.icon-search:before {
+  content: $icon-search;
+}
+.icon-angle-left:before {
+  content: $icon-angle-left;
+}
+.icon-angle-right:before {
+  content: $icon-angle-right;
+}
+.icon-angle-up:before {
+  content: $icon-angle-up;
+}
+.icon-angle-down:before {
+  content: $icon-angle-down;
+}
+.icon-align-justify:before {
+  content: $icon-align-justify;
+}
+.icon-linkedin:before {
+  content: $icon-linkedin;
+}
+.icon-facebook:before {
+  content: $icon-facebook;
+}
+.icon-instagram:before {
+  content: $icon-instagram;
+}
+.icon-youtube:before {
+  content: $icon-youtube;
+}
+.icon-twitter:before {
+  content: $icon-twitter;
+}
+.icon-check:before {
+  content: $icon-check;
+}
+.icon-close:before {
+  content: $icon-close;
+}
+.icon-envelope-outline:before {
+  content: $icon-envelope-outline;
+}
+.icon-envelope:before {
+  content: $icon-envelope;
+}
+.icon-arrow-left:before {
+  content: $icon-arrow-left;
+}
+.icon-arrow-right:before {
+  content: $icon-arrow-right;
+}
+.icon-arrow-up:before {
+  content: $icon-arrow-up;
+}
+.icon-arrow-down:before {
+  content: $icon-arrow-down;
+}

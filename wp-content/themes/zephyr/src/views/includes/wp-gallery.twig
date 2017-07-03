@@ -1,0 +1,18 @@
+{% import 'macros.twig' as macros %}
+{% spaceless %}
+{% if images %}
+<ul class="js-slider slider">
+    {% for image in images %}
+      <li>
+        
+        {{ macros.img(image, 'hero_md') }}
+      
+        {% if image.caption %}
+          <p class="wp-caption-text">{{ image.caption }}</p>
+        {% endif %}
+      
+      </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endspaceless %}

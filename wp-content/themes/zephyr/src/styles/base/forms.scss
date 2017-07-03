@@ -1,0 +1,149 @@
+/**
+ *
+ * Forms
+ *
+ * basic form styles
+ *
+ */
+
+form {
+  position: relative;
+}
+
+label {
+  @include font-size($form-label-fs, $form-label-lh);
+  display: block;
+  font-weight: bold;
+  margin-bottom: $bsu/2;
+  cursor: pointer;
+}
+
+input, button {
+  line-height: $base-lh;
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: none;
+  outline: none;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="color"],
+input[type="password"],
+select,
+textarea {
+  height: $base-input-height;
+  width: 100%;
+  border: 1px solid $grey-light;
+  padding: $base-input-padding;
+  border-radius: 0;
+  transition: border-color $transition-default;
+
+  &:focus {
+    border-color: $body-color;
+    outline: none;
+  }
+}
+
+// Custom Styled Checkboxes & Radios
+
+input[type="checkbox"],
+input[type="radio"] {
+  @extend .sr-only;
+
+  + label {
+    position: relative;
+    padding-left: $bsu*1.5;
+    line-height: $bsu;
+    display: inline-block;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      box-sizing: border-box;
+      width: $bsu;
+      height: $bsu;
+    }
+
+    &:after {
+      border: 1px solid $body-color;
+    }
+  }
+}
+
+input[type="checkbox"] {
+
+  + label {
+    @include font-size($base-fs, $base-lh);
+
+    &:before {
+      color: $color-primary;
+      font-family: 'icons';
+      text-align: center;
+    }
+  }
+
+  &:checked + label:before {
+    @extend .icon-check;
+  }
+}
+
+input[type="radio"] {
+  + label {
+    &:after,
+    &:before {
+      border-radius: 50%;
+    }
+
+    &:before {
+      transform: scale(0.5)
+    }
+  }
+
+  &:checked ~ label:before {
+    background: $color-primary;
+  }
+}
+
+textarea,
+select[multiple] {
+  height: auto;
+}
+
+select[multiple] {
+  padding: 0;
+
+  option {
+    padding: $base-input-padding;
+  }
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+select {
+  background: transparent;
+  cursor: pointer;
+
+  + label {
+    font-size: 0;
+  }
+}
+
+.form-combo {
+  position: relative;
+
+  input {
+    @include input-icon;
+  }
+
+  button {
+    @include button-icon;
+  }
+}

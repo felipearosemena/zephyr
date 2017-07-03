@@ -1,0 +1,62 @@
+/**
+ *
+ * SVG Wrap
+ * 
+ */
+
+.svg-wrap {
+  max-width: $container-sm;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.svg-wrap--horizontal {
+  text-align: left;
+
+  @include mq-min($bp-sm) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.svg-wrap--card {
+  background-color: $grey-lighter;
+  padding: $bsu;
+
+  @include mq-min($bp-md) {
+    padding: $bsu*2;
+  }
+}
+
+.svg-wrap__image {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $bsu;
+  
+  .svg-wrap--horizontal & {
+    @include mq-min($bp-sm) {
+      margin-right: $bsu;
+      margin-bottom: 0;
+    }
+
+    @include mq-min($bp-lg) {
+      margin-right: $bsu*2;
+    }
+  }
+}
+
+.svg-wrap__image--circle {
+  background-color: $grey-lighter;
+  border-radius: 10rem;
+  box-sizing: content-box;
+  padding: 60px; 
+}
+
+.svg-wrap__body {
+  align-self: flex-start;
+}

@@ -1,0 +1,42 @@
+{% if post.hero_title %}
+<section id="hero" class="hero">
+  
+  <div class="hero__body">
+
+    <div class="container">
+      
+      <div class="container--md">
+        <h1 class="hero__title">{{ post.hero_title }}</h1>
+        
+        {% if post.hero_content %}
+          <p>{{ post.hero_content }}</p>
+        {% endif %}
+
+        {% if post.hero_link %}
+          <a href="{{ post.get_field('hero_link') }}" class="btn">{{ post.hero_link_label|default('Learn More') }}</a>
+        {% endif %}
+      </div>
+
+    </div>
+      
+  </div>
+
+  {% if post.hero_add_video %}
+    <video class="hero__video" autoplay loop>
+      <source src="{{ post.get_field('hero_video_webm').url }}" type="video/webm">
+      <source src="{{ post.get_field('hero_video_mp4').url }}" type="video/mp4">
+    </video>
+  {% endif %}
+  
+  {# 
+    The Background Image Element should stay after the video element, 
+    that way we can use CSS to hide the background image, preventing it being loaded, when the video is visible.
+   #}
+  {% if post.hero_background %}
+    <div id="hero-bg" class="hero__bg">
+      {{ macros.hero_bg('hero-bg', post.hero_background) }}
+    </div>
+  {% endif %}
+
+</section>
+{% endif %}

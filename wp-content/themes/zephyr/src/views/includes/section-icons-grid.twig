@@ -1,0 +1,62 @@
+{% if section.items %}
+  <section class="section section--icons-grid">
+    
+    {% if section.title %}
+      <div class="container container--sm">
+        <h2 class="text-center mb-2">{{ section.title }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="container container--flush">
+      
+      {% set len = section.items|length %}
+      {% set w = len % 2 == 0 ? 'w-lg-6-12' : 'w-lg-4-12' %}
+
+      <div class="grid grid--flex grid--rows grid--wide js-mobile-slider">
+
+        {% for item in section.items %}
+            
+          {% set link = item|link_vars %}
+          {% set wrap_class = 'svg-wrap ' ~ (len % 2 == 0 ? 'svg-wrap--horizontal ') %}
+          {% set image_class = 'svg-wrap__image' %}
+          
+          {% if section.style == 'default' %}
+            {% set image_class = image_class ~ ' svg-wrap__image--circle' %}
+          {% elseif section.style == 'card' %}
+            {% set wrap_class = wrap_class ~ ' svg-wrap--card' %}
+          {% endif %}
+          
+          <div class="grid__item flex w-12-12 {{ w }}">
+            
+            <div class="{{ wrap_class }}">
+              
+              <div class="svg-wrap__image-wrap">
+                <div class="{{ image_class }}">
+                  {{ macros.img(item.icon, null) }}
+                </div>
+              </div>
+
+              <div class="svg-wrap__body">
+                {% if item.title %}
+                  <h3>{{ item.title }}</h3>
+                {% endif %}
+
+                {% if item.content and section.style == 'default' %}
+                  {{ item.content }}
+                {% endif %}
+                
+                {% if link %}
+                  <a href="{{ link.href }}" target="{{ link.target }}">{{ item.link_label }}</a>
+                {% endif %}
+              </div>
+
+            </div>
+
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+    
+  </section>
+{% endif %}

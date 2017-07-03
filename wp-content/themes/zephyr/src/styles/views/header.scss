@@ -1,0 +1,159 @@
+/**
+ *
+ * Header
+ *
+ * Main site header styles
+ *
+ */
+
+.site-header {
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+  background-color: $grey-darker;
+}
+
+// Header container
+.site-header__split {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Main Logo
+.site-logo {
+  display: inline-block;
+  vertical-align: middle;
+  padding: $bsu/2 0;
+
+  svg {
+    display: block;
+    width: px-to-rem(160px);
+    height: px-to-rem(60px);
+
+    @include mq-max($bp-main) {
+      width: px-to-rem(100px);
+      height: px-to-rem(37.5px);
+    }
+  }
+}
+
+// Mobile Toggle
+.site-header__toggle { 
+  display: none; 
+  margin-left:$bsu/2;
+
+  @include mq-max($bp-main) {
+    display: inline-block;
+  } 
+}
+
+
+// Navigation Sections
+.site-nav,
+.site-header__icons,
+.site-header__cta,
+.site-search {
+  display: none;
+
+  @include mq-min($bp-main) {
+    display: inline-block;
+  }
+
+} 
+
+.site-nav__menu,
+.site-header__icons {
+  @extend .nav;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  > li {
+    vertical-align: middle;
+  }
+  
+  a, button {
+    color: white;
+    display: block;
+
+    &:before {
+      content: 'felipow';
+    }
+
+  }
+  
+}
+
+.site-nav__menu {
+  a {
+    // Tall padding, so that dropdown menu is flush with bottom of nav
+    padding: $bsu*1.5 $bsu; 
+  }
+
+  a:hover,
+  .current_page_item > a,
+  .current_page_ancestor > a {
+    color: $color-primary;
+  }
+}
+
+.site-nav__sub-menu {
+  background-color: $grey-dark;
+
+  a {
+    padding: $bsu/2 $bsu;
+  }
+  
+  // Make the first an last items have a little extra padding,
+  // for a more even visual look
+  li:first-child a {
+    padding-top: $bsu;
+  }
+
+  li:last-child a {
+    padding-bottom: $bsu;
+  }
+}
+
+.site-header__icons {
+  a, button {
+    padding: $bsu;
+    line-height: 1;
+    vertical-align: middle;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+// Site Search Bar (Hidden by default)
+.site-search {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  top: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.site-search__inner {
+  pointer-events: all;
+  transition: transform $transition-default;
+  text-align: right;
+
+  .site-search:not(.is-active) & {
+    transform: translate3d(0, -100%, 0);
+  }
+
+}
+
+// Double up the selector to increase specificty,
+// overriding input[type=text]
+.site-search__input.site-search__input {
+  @include input-icon;
+}
+
+.site-search__button {
+  @include button-icon;
+}

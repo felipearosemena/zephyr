@@ -1,0 +1,73 @@
+{% if section.tabs %}
+
+{% set section_index = loop.index %}
+
+<section id="tabs-{{ section_index }}" class="section section--tabs">
+    
+  <div class="container">
+    
+    {% if section.title %}
+      <h2 class="mb-2 text-center">{{ section.title }}</h2>
+    {% endif %}
+    
+    <div class="tabs tabs--{{ section.layout }}">
+      <ul class="tab-controls">
+        {% for tab in section.tabs %}
+          <li>
+            <button 
+              class="tab-toggle tab-toggle--desktop {{ loop.index == 1 ? 'is-active' }} js-toggle-tab" 
+              data-target="#tab-{{ section_index }}-{{ loop.index }}"
+              data-group="#tabs-{{ section_index }}">
+              {{ tab.label }}
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <ul class="tab-items">
+        {% for tab in section.tabs %}
+          <button 
+            class="tab-toggle tab-toggle--mobile {{ loop.index == 1 ? 'is-active' }} js-toggle-tab" 
+            data-target="#tab-{{ section_index }}-{{ loop.index }}"
+            data-toggle="true">
+            {{ tab.label }}
+          </button>
+
+          <li id="tab-{{ section_index }}-{{ loop.index }}" class="tab {{ loop.index == 1 ? 'is-active' }}">
+            
+            <div class="tab__inner">
+              <div class="grid grid--wide grid--rows">
+                <div class="grid__item w-12-12 {{ tab.image ? 'w-md-6-12' }}">
+
+                  <div class="container container--md container--flush">
+                    {% if tab.subtitle %}
+                      <small class="label">{{ tab.subtitle }}</small>
+                    {% endif %}
+
+                    {% if tab.title %}
+                      <h3>{{ tab.title }}</h3>
+                    {% endif %}
+
+                    {{ tab.content }}
+                  </div>
+
+                </div>
+
+                {% if tab.image %}
+                  <div class="grid__item w-12-12 {{ section.layout == 'horizontal' ? 'w-md-5-12 w-md-push-1-12' : 'w-md-6-12' }}">
+                    {{ macros.img(tab.image, 'card_md') }}
+                  </div>
+                {% endif %}
+                
+              </div>
+            </div>
+
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    
+  </div>
+
+</section>
+{% endif %}

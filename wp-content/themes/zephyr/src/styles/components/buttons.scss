@@ -1,0 +1,197 @@
+/**
+ *
+ * Buttons
+ *
+ * Global button styling
+ *
+ */
+
+// Common button styles
+%btn-base {
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center;
+  font-family: $body-font-family;
+  font-size: 1em;
+  line-height: $base-lh;
+  font-weight: normal; // Important for <button> element
+  padding: $bsu/2 $bsu;
+  cursor: pointer;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  transition: color $transition-fast, background $transition-fast;
+  color: white;
+  background-color: $color-primary;
+  -webkit-tap-highlight-color: transparent;
+  
+  &:hover,
+  &.is-active {
+    color: white;
+    background-color: darken($color-primary, 10%);
+  } 
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
+  @extend %btn-base;
+
+  @include mq-max($bp-xs) {
+    width: 100%;
+  }
+}
+
+.btn--secondary {
+  background-color: $color-secondary;
+  &:hover {
+    background-color: darken($color-secondary, 10%);
+  }
+}
+
+.btn--positive {
+  background-color: $color-positive;
+  &:hover {
+    background-color: darken($color-positive, 10%);
+  }
+}
+
+.btn--negative {
+  background-color: $color-negative;
+  &:hover {
+    background-color: darken($color-negative, 10%);
+  }
+}
+
+.btn[disabled] {
+  background-color: $grey-light;
+  color: $grey;
+  cursor: default;
+  box-shadow: none;
+  transition: all $transition-slow;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate3d(-20%, 0, 0);
+
+}
+
+.btn--load {
+
+  &:before {
+    display: block;
+    content: attr(data-label-enabled);
+  }
+  
+  &[disabled],
+  &.is-loading {
+    &:before {
+      content: attr(data-label-loading);
+    }
+  }
+}
+
+.btn-circle {
+  @extend %btn-base;
+  width: $bsu*3;
+  height: $bsu*3;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 3em;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  i {
+    display: block;
+    position: relative;
+    // Hack to position the icon, our current iconset is not perfectly aligned
+    left: .05em;
+    top: -.0125em;
+  }
+  
+  .spinner {
+    display: none;
+  }
+
+  .is-loading & {
+    i {
+      display: none;
+    }
+
+    .spinner {
+      display: block;
+    }
+  }
+}
+
+/**
+ *
+ * Toggle Button
+ * Works best on a button element
+ *
+ * <button class="btn-toggle">
+ *   <span class="btn-toggle__bar"></span>
+ *   <span class="btn-toggle__bar"></span>
+ *   <span class="btn-toggle__bar"></span>
+ *   <span class="sr-only">Toggle navigation</span>
+ * </button>
+ *
+ */
+
+$icon-bar-thickness: 2px;
+$icon-bar-spacing: 6px;
+$button-toggle-width: px-to-rem(32px);
+
+.btn-toggle {
+  @extend %btn-base;
+  position: relative;
+  background: transparent !important;
+  min-width: 0;
+  padding: 0;
+  width: $button-toggle-width;
+  height: $button-toggle-width;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  overflow: hidden;
+}
+
+.btn-toggle__bar {
+  display: block; 
+  position: absolute;
+  border-top: $icon-bar-thickness solid white;
+  transition: all $transition-default;
+  top:50%;
+  width: 100%;
+
+  &:nth-of-type(1) {
+    transform: translateY(calc(-50% - #{$icon-bar-spacing + $icon-bar-thickness}));
+  }
+
+  &:nth-of-type(2) {
+    transform: translateY(-50%);
+  }
+
+  &:nth-of-type(3) {
+    transform: translateY(calc(-50% + #{$icon-bar-spacing + $icon-bar-thickness}));
+  }
+
+  .btn-toggle.is-active & {
+
+    &:nth-of-type(1) {
+      transform: rotate(45deg);
+    }
+
+    &:nth-of-type(2) {
+      transform: translate3d(-100%, -50%, 0);
+      opacity: 0;
+    }
+
+    &:nth-of-type(3) {
+      transform: rotate(-45deg);
+    }
+  }
+}

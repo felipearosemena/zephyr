@@ -1,0 +1,67 @@
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="grid">
+      <div class="grid__item w-12-12 w-md-4-12">
+        {% if footer_menu %}
+          
+          <h5>{{ footer_menu.title }}</h5>
+          <ul id="site-footer-menu" class="site-footer__menu">
+            {% for item in footer_menu.get_items %}
+              <li class="{{ item.classes|join(' ') }}">
+
+                <a href="{{ item.get_link }}" target="{{ item.is_external ? '_blank' }}">
+                  {{ item.title }} 
+                </a>
+
+                {% if item.children %}
+                <span class="site-footer__toggle js-toggle" 
+                  data-target="#site-footer-sub-menu-{{ loop.index }}" 
+                  data-group="#site-footer-menu" 
+                  data-toggle="true">
+                </span>
+
+                <ul id="site-footer-sub-menu-{{ loop.index }}" class="site-footer__sub-menu">
+                  {% for child in item.get_children %}
+                  <li>
+                    <a href="{{ child.get_link }}" target="{{ child.is_external ? '_blank' }}">
+                      {{ child.title }}
+                    </a>
+                  </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <div class="grid__item pull-right w-12-12 w-md-4-12 w-xl-2-12">
+        <h5>{{ site.title }}</h5>
+        {{ global_info.global_address|wpautop }}
+        {{ global_info.global_phone_number|wpautop }}
+
+        <p><a href="mailto:{{ global_info.global_email }}">{{ global_info.global_email }}</a></p>
+
+        {% include 'components/social-nav.twig' %}
+
+      </div>
+    </div>
+    
+
+  </div>
+
+</footer>
+
+<footer class="site-sub-footer">
+  <div class="container">
+    <div class="grid">
+      <div class="grid__item w-12-12 w-md-8-12">
+        &copy; {{ site.title }}. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>

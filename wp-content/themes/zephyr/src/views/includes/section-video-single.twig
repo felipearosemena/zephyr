@@ -1,0 +1,27 @@
+
+{% set section_index = loop.index %}
+
+{% if section.video %}
+  <section class="section section--video">
+    
+    <div class="container container--md">
+      
+      <h2 class="text-center">{{ section.title }}</h2>
+
+      {{ section.content }}
+    
+      {% set video = TimberPost(section.video) %}
+
+      {% include 'components/video-player.twig' with {
+        wrapper_id: 'video-single-' ~ section_index,
+        service: video.video_service,
+        id: video.video_id,
+        image: video.thumbnail.src('hero_md')
+      } %}
+
+      {{ section.content_after }}
+
+    </div>
+    
+  </section>
+{% endif %}

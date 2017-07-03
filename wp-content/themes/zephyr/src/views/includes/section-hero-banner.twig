@@ -1,0 +1,31 @@
+{% if section.title or section.content %}
+<section id="hero-banner-{{ loop.index }}" class="hero">
+  
+  <div class="hero__body">
+
+    <div class="container container--md text-center">
+      
+      <h1 class="hero__title">{{ section.title }}</h1>
+      
+      {% if section.content %}
+        <p>{{ section.content }}</p>
+      {% endif %}
+      
+      {% set link = section|link_vars %}
+
+      {% if link %}
+        <a href="{{ link.href }}" target="{{ link.target }}" class="btn">{{ section.link_label|default('Learn More') }}</a>
+      {% endif %}
+
+    </div>
+      
+  </div>
+
+  {% if section.background %}
+    <div id="hero-banner-bg-{{ loop.index }}" class="hero__bg">
+      {{ macros.hero_bg('hero-banner-bg-' ~ loop.index, section.background) }}
+    </div>
+  {% endif %}
+
+</section>
+{% endif %}

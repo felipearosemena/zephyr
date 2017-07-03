@@ -1,0 +1,51 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %} 
+  
+  <section class="section js-listing-wrapper">
+    <div class="container container--md">  
+      <h1>{{ title }}</h1>
+      
+      {% if posts %}
+        <div class="js-listing">
+          {% for post in posts %}
+
+            <article class="post post--{{post.post_type}} js-listing-item" data-post-id={{ post.ID }} id="post-{{post.ID}}">
+
+              <header class="entry-header ">
+                <h2 class="entry-title">
+                  <a href="{{post.link}}">{{ post.title }}</a>
+                </h2>
+                <time>{{ post.date }}</time>
+              </header>
+
+              <p class="entry-summary">
+                {{ post.post_excerpt }}
+              </p>
+
+            </article>
+          
+          {% endfor %} 
+        </div>
+
+        {% include 'components/load-more.twig' %}
+
+      {% else %}
+
+          <article>
+            <p>{{ __('Sorry, but your search returned no results. Try searching with different keywords.', 'base-theme') }}</p>
+
+            {% include 'components/search-form.twig' with {
+              namespace: 'site-search'
+            } %}
+      
+          </article>
+
+      {% endif %}
+      
+
+
+    </div>
+  </section>
+
+{% endblock %}

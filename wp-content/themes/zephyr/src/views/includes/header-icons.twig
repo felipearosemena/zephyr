@@ -1,0 +1,13 @@
+<ul class="site-header__icons">
+  {% spaceless %}
+  {% if global_info.global_facebook %}
+    <li><a href="{{ global_info.global_facebook }}" class="icon-facebook" target="_blank"></a></li>
+  {% endif %}
+  
+  {% if global_info.global_twitter_profile %}
+    <li><a href="{{ global_info.global_twitter_profile }}" class="icon-twitter" target="_blank"></a></li>
+  {% endif %}
+  
+  <li><button class="icon-search js-toggle-search" data-target="#site-search" data-toggle="true"></button></li>
+  {% endspaceless %}
+</ul>

@@ -1,0 +1,12 @@
+{% set namespace = namespace ? namespace : 'search-form' %}
+
+<div class="{{ namespace }}__container">
+  <form class="{{ namespace }}__form" action="/" role="search" method="get" >
+
+      <label class="sr-only" for="s">{{ __('Search', 'base-theme') }}</label>
+      <input class="{{ namespace }}__input" type="text" value="{{ query|capitalize }}" name="s" id="s" placeholder="{{ __('Search', 'base-theme') }}..." />
+      <button class="{{ namespace }}__button" type="submit">
+        {{ __('Search', 'base-theme') }}
+      </button>
+  </form>
+</div>

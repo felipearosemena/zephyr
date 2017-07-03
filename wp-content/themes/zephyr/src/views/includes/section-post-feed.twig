@@ -1,0 +1,23 @@
+{% if posts %}
+<section class="section section--post-feed bg-grey">
+  <div class="container">
+    {% if title %}
+      <h3>{{ title }}</h3>
+    {% endif %}
+
+    {% spaceless %}
+    <div class="grid grid--flex grid--rows">
+      {% for post in posts %}
+        <div class="grid__item w-12-12 w-md-4-12 flex">
+          {% include 'components/post-card.twig' with {
+            post: post
+          } %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endspaceless %}
+  </div>
+
+</section>
+
+{% endif %}

@@ -1,0 +1,17 @@
+/**
+ *
+ * Section
+ *
+ * Common page section styling 
+ * 
+ */
+
+.section {
+  margin-top: $bsu*2;
+  margin-bottom: $bsu*2;
+
+  @include mq-min($bp-md) {
+    margin-top: $bsu*4;
+    margin-bottom: $bsu*4;
+  }
+}

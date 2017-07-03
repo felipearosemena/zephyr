@@ -1,0 +1,25 @@
+{
+    "key": "group_59301d2b90f30",
+    "title": "Hide Editor",
+    "fields": [],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates\/home.php"
+            }
+        ]
+    ],
+    "menu_order": -100,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1496325444
+}

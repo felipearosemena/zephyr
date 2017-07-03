@@ -1,0 +1,33 @@
+{% if posts %}
+<section id="hero" class="hero-slider slider slider--inverse js-slider">
+  
+  {% spaceless %}
+  {% for post in posts %}
+
+    {% set post = TimberPost(post) %}
+
+    <div class="hero">
+      
+      <div class="hero__body">
+
+        <div class="container">
+          
+          <div class="container--md">
+            
+            <h2 class="hero__title">{{ post.post_title }}</h2>
+            
+            {{ post.post_excerpt|wpautop }}
+
+            <a href="{{ post.get_permalink }}" class="btn">Read More</a>
+          </div>
+
+        </div>
+          
+      </div>
+
+    </div>
+  {% endfor %}
+  {% endspaceless %}
+
+</section>
+{% endif %}

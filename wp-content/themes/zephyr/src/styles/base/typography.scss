@@ -1,0 +1,317 @@
+/**
+ *
+ * Typography
+ *
+ *  Base typographic styles
+ *
+ */
+
+* {
+  box-sizing:border-box;
+}
+
+head {
+  font-family: $bp-array;
+}
+
+html {
+  font-family: $body-font-family;
+  font-size: $base-fs;
+  font-weight: normal;
+  line-height: $base-lh / $base-fs;
+  color: $body-color;
+  text-rendering: optimizeLegibility;
+  @include font-smoothing;
+}
+
+*::selection {
+  background: $color-primary;
+  color: white;
+}
+
+[data-target] {
+  cursor: pointer;
+}
+
+
+/*----------  Links  ----------*/
+
+a {
+  text-decoration: none;
+  color:$color-primary; 
+  transition: color $transition-fast, background $transition-fast;
+
+  &:hover {
+    color: darken($color-primary, 10%)
+  }
+
+  //remove the dotted outline on firefox
+  &:focus, &:active {
+    outline: none;
+  } 
+}
+
+a, i {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/*----------  Headings  ----------*/
+
+
+%heading-style {
+  font-family: $heading-font-family;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: $bsu;
+
+  a, a:visited {
+    text-decoration: none;
+  }
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  @extend %heading-style;
+}
+
+@mixin h1 {
+  @include font-size($h1-fs, $h1-lh);
+} 
+
+h1, .h1 {
+  @include h1;
+}
+
+@mixin h2 {
+  @include font-size($h2-fs, $h2-lh);
+} 
+
+h2, .h2 {
+  @include h2;
+}
+
+@mixin h3 {
+  @include font-size($h3-fs, $h3-lh);  
+} 
+
+h3, .h3 {
+  @include h3;
+}
+
+@mixin h4 {
+  @include font-size($h4-fs, $h4-fs); 
+} 
+
+h4, .h4 {
+  @include h4;
+}
+
+h5, .h5 {
+  @include font-size($h5-fs, $h5-lh);
+}
+
+
+// Reset Block typographical elements
+p, ul, ol, blockquote,
+pre, dl, table  {
+  margin-top: 0;
+  margin-bottom: $bsu;
+}
+
+
+/*----------  Paragraphs & Inline Elements  ----------*/
+
+p,
+%p {
+}
+
+p + p {
+  .btn:first-child {
+    margin-top: $bsu/2;
+  }
+}
+
+small, .small-text {
+  @include font-size($small-fs, $small-lh);
+  letter-spacing: 0.01em;
+}
+
+q {
+  font-style: italic;
+} 
+
+// The `.lead` class is used to make the introductory text
+// (usually a paragraph) of a document slightly larger.
+.lead, %lead {
+  @include font-size($h3-fs, $h3-lh);
+}
+
+.label {
+  color: $color-primary;
+  display: inline-block;
+  margin-bottom: $bsu/4;
+}
+
+time {
+  display: block;
+  margin-bottom: $bsu;
+}
+
+/*----------  Lists  ----------*/
+.list-editor {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: $bsu;
+
+  ul, ol {
+    margin-top: $bsu/2;
+  }
+
+  li {
+    margin-bottom: $bsu/2;
+    padding-left: 1em;
+  }
+
+  li ul {
+    margin-top: $bsu/2
+  }
+
+  li:before {
+    content: "• ";
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+}
+
+ol.list-editor {
+  counter-reset: item;
+
+  li:before {
+    font-weight: bold;
+    content: counter(item) ". ";
+    counter-increment: item;
+  }
+}
+
+.list-plain, dl {
+  @include list-plain;
+}
+
+.list-inline {
+  li {
+    display: inline-block;
+  }
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0;
+}
+
+
+/*----------  Tables  ----------*/
+
+// Wrap table elements with this class to allow horizontal scroll on mobile
+.table-wrapper {
+  max-width: 100%;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border: 1px solid $grey;
+  border-collapse: initial;
+}
+
+th { 
+  text-align: left;
+  a,
+  a.active {
+    color: #fff;
+  }
+}
+
+td {
+  border-bottom: 1px solid $grey;
+  tr:last-child & {
+    border-bottom: none;
+  }
+} 
+
+caption {
+  @extend .h4;
+}
+
+
+/*----------  Blockquotes  ----------*/
+
+blockquote {
+  @include font-size($h3-fs, $h3-lh);
+  padding: 0 5%;
+  font-style: italic;
+  margin: $bsu auto;
+
+  cite {
+    margin: 0;
+    font-style: normal;
+  }
+}
+
+/*----------  Horizontal Rules  ----------*/
+
+hr {
+  border:none;
+  border-top:1px solid $grey-light;
+  margin: $bsu*2 0;
+}
+
+
+/*----------  Code Formatting  ----------*/
+
+pre {
+  padding: $bsu;
+  border-radius: $base-border-radius;
+  border: 1px solid $grey;
+}
+
+pre, code {
+  font-family: 'courier new', monospace;
+  overflow: auto;
+}
+
+/*----------- WP Editor elements -------------*/
+
+
+.aligncenter,
+.alignright,
+.alignleft {
+  display: block;
+  margin: auto;
+}
+
+.alignright {
+   
+  @include mq-min($bp-sm) {
+    float: right;
+    padding: $bsu;
+    padding-right: 0;
+  }
+}
+
+.alignleft {
+  
+  @include mq-min($bp-sm) {
+    float: left;
+    padding: $bsu;
+    padding-left: 0;
+  }
+}
