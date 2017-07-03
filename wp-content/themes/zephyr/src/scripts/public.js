@@ -8,7 +8,6 @@ import router from './modules/router'
 import EventBus from './modules/EventBus'
 import { initModal, initVideoModal } from './modules/modal'
 import createVideoIframe from './modules/video'
-import { ajaxSubmitGforms } from './modules/form'
 import toggleTarget from './modules/toggleTarget'
 import sharePost from './modules/sharePost'
 import { keyDownEscape, windowResized } from './modules/globalEvents'
@@ -278,13 +277,6 @@ collection('.js-video-modal').map(modalEl => initVideoModal(modalEl, '[data-vide
 
 collection('.js-video-player').map(videoEl => createVideoIframe(videoEl))
 
-/**
- *
- * Handler for ajax submitted gravity forms
- * 
- */
-
-ajaxSubmitGforms('.gform_wrapper form')
 
 /**
  *
