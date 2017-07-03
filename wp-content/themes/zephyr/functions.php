@@ -10,8 +10,8 @@ if ( file_exists( dirname( __FILE__ ) . '/lib/vendor/autoload.php' ) ) {
 /**
  * Set default constants
  */
-if ( !defined( 'BW_DEV' ) ) {
-  define( 'BW_DEV', false );
+if ( !defined( 'WP_DEBUG' ) ) {
+  define( 'WP_DEBUG', false );
 }
 
 /**

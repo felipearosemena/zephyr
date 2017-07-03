@@ -23,7 +23,7 @@ class Setup
     add_filter( 'acf_the_content', array(&$this, 'filter_wysiwig_content'));
 
     // hide admin bar in front end
-    if ( !is_admin() && BW_DEV ) {
+    if ( !is_admin() && WP_DEBUG ) {
       add_filter( 'show_admin_bar', '__return_false' );
     }
   } /* __construct() */
