@@ -9,35 +9,7 @@ class CustomPostTypes
 {
 
   // Place post types here. Singular and plural will be used to auto generate labels. Labels and args will overwrite defaults.
-  protected $posttypes = [
-    'team' => [
-      'singular' => 'Team Member',
-      'labels'   => [],
-      'args'     => [
-        'menu_icon' => 'dashicons-admin-users',
-      ],
-    ],
-
-    'testimonial' => [
-      'singular' => 'Testimonial',
-      'args'     => [
-        'menu_icon' => 'dashicons-format-quote',
-        'has_archive' => false,
-        'publicly_queryable' => false,
-        'exclude_from_search' => true,
-        'supports' => ['title', 'excerpt', 'thumbnail']
-      ],
-    ],
-
-    'video' => [
-      'singular' => 'Video',
-      'args'     => [
-        'menu_icon' => 'dashicons-format-video',
-        'has_archive' => false,
-        'supports' => [ 'title', 'excerpt', 'thumbnail' ],
-      ],
-    ],
-  ];
+  protected $posttypes = [];
 
   // Default arguments to use for register_post_type
   protected $default_args = [

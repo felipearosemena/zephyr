@@ -6,15 +6,7 @@ class CustomTaxonomies
 {
 
   // Place taxonomies here. Singular and plural will be used to auto generate labels. Labels and args will overwrite defaults.
-  protected $taxonomies = [
-    'department' => [
-      'object_type' => ['team'],
-      'singular' => 'Department',
-      'labels'   => [
-      ],
-      'args'     => [],
-    ],
-  ];
+  protected $taxonomies = [];
 
   // Default arguments to use for register_taxonomy
   protected $default_args = [
