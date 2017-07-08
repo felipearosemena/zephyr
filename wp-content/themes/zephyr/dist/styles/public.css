@@ -377,6 +377,21 @@ td,
 th {
   padding: 0; }
 
+@font-face {
+  font-family: 'gt-walsheim';
+  src: url("../../src/fonts/gt-walsheim-regular.woff2") format("woff2"), url("../../src/fonts/gt-walsheim-regular.woff") format("woff");
+  font-weight: 400; }
+
+@font-face {
+  font-family: 'gt-walsheim';
+  src: url("../../src/fonts/gt-walsheim-medium.woff2") format("woff2"), url("../../src/fonts/gt-walsheim-medium.woff") format("woff");
+  font-weight: 500; }
+
+@font-face {
+  font-family: 'gt-walsheim';
+  src: url("../../src/fonts/gt-walsheim-bold.woff2") format("woff2"), url("../../src/fonts/gt-walsheim-bold.woff") format("woff");
+  font-weight: 700; }
+
 /**
  *
  * Typography
@@ -393,7 +408,7 @@ head {
   font-family: '{"xs": "480px", "sm": "640px", "md": "800px", "lg": "1020px" ,"xl": "1200px", "tabs": "800px" }'; }
 
 html {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: normal;
   line-height: 1.5;
@@ -401,6 +416,10 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+  @media only screen and (min-width: 800px) {
+    html {
+      font-size: 18px;
+      line-height: 1.5; } }
 
 *::-moz-selection {
   background: #00bff3;
@@ -434,7 +453,7 @@ h3, .h3,
 h4, .h4, caption,
 h5, .h5,
 h6, .h6 {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 24px; }
@@ -452,19 +471,31 @@ h6, .h6 {
     text-decoration: none; }
 
 h1, .h1 {
-  font-size: 40px;
-  line-height: 1.25; }
+  font-size: 50px;
+  line-height: 1.2; }
+  @media only screen and (min-width: 800px) {
+    h1, .h1 {
+      font-size: 70px;
+      line-height: 1; } }
 
 h2, .h2 {
-  font-size: 30px;
-  line-height: 1.33333; }
+  font-size: 40px;
+  line-height: 1.25; }
+  @media only screen and (min-width: 800px) {
+    h2, .h2 {
+      font-size: 50px;
+      line-height: 1.2; } }
 
 h3, .h3 {
   font-size: 24px;
   line-height: 1.33333; }
+  @media only screen and (min-width: 800px) {
+    h3, .h3 {
+      font-size: 30px;
+      line-height: 1.33333; } }
 
 h4, .h4, caption {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1; }
 
 h5, .h5 {
@@ -1031,7 +1062,7 @@ figure {
   vertical-align: middle;
   text-decoration: none;
   text-align: center;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1em;
   line-height: 24px;
   font-weight: normal;
@@ -1569,8 +1600,8 @@ figure {
     margin-bottom: 0; }
 
 .hero__title {
-  font-size: 40px;
-  line-height: 1.25; }
+  font-size: 50px;
+  line-height: 1.2; }
 
 .hero__bg {
   left: 0;
@@ -2045,7 +2076,7 @@ figure {
  * 
  */
 .testimonial {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   font-style: normal;
   margin: 0;
@@ -2302,25 +2333,19 @@ figure {
   .site-nav__menu a, .site-nav__menu button,
   .site-header__icons a,
   .site-header__icons button {
-    color: white;
     display: block; }
 
 .site-nav__menu a {
   padding: 36px 24px; }
 
-.site-nav__menu a:hover,
-.site-nav__menu .current_page_item > a,
-.site-nav__menu .current_page_ancestor > a {
-  color: #00bff3; }
+.site-nav__sub-menu a {
+  padding: 12px 24px; }
 
-.site-nav__sub-menu {
-  background-color: #555555; }
-  .site-nav__sub-menu a {
-    padding: 12px 24px; }
-  .site-nav__sub-menu li:first-child a {
-    padding-top: 24px; }
-  .site-nav__sub-menu li:last-child a {
-    padding-bottom: 24px; }
+.site-nav__sub-menu li:first-child a {
+  padding-top: 24px; }
+
+.site-nav__sub-menu li:last-child a {
+  padding-bottom: 24px; }
 
 .site-header__icons a, .site-header__icons button {
   padding: 24px;
@@ -2848,7 +2873,7 @@ figure {
           align-items: center; }
 
 .woocommerce-table {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   border-top: 1px solid #363636;
   border-bottom: none;

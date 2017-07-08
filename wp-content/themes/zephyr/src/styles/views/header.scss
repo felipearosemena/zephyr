@@ -73,7 +73,6 @@
   }
   
   a, button {
-    color: white;
     display: block;
   }
   
@@ -87,13 +86,10 @@
 
   a:hover,
   .current_page_item > a,
-  .current_page_ancestor > a {
-    color: $color-primary;
-  }
+  .current_page_ancestor > a {}
 }
 
 .site-nav__sub-menu {
-  background-color: $grey-dark;
 
   a {
     padding: $bsu/2 $bsu;

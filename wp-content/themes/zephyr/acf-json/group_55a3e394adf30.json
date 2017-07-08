@@ -128,11 +128,11 @@
             "placeholder": "http:\/\/"
         },
         {
-            "key": "field_55a3e3e5381ee",
-            "label": "LinkedIn",
-            "name": "global_linkedin",
+            "key": "field_596088dbb0ecd",
+            "label": "Pinterest",
+            "name": "global_pinterest",
             "type": "url",
-            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -141,28 +141,12 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "http:\/\/"
+            "placeholder": ""
         },
         {
             "key": "field_55aece2de6580",
             "label": "Youtube Profile",
             "name": "global_youtube",
-            "type": "url",
-            "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "http:\/\/"
-        },
-        {
-            "key": "field_55aecf0ea5280",
-            "label": "Tumblr",
-            "name": "global_tumblr",
             "type": "url",
             "instructions": "Please don't forget to include http:\/\/ or https:\/\/",
             "required": 0,
@@ -193,5 +177,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1468612240
+    "modified": 1499498730
 }
