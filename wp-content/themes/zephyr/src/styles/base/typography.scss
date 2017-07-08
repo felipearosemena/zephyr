@@ -22,6 +22,10 @@ html {
   color: $body-color;
   text-rendering: optimizeLegibility;
   @include font-smoothing;
+
+  @include mq-min($bp-md) {
+    @include font-size($base-fs-lg, $base-lh-lg)
+  }
 }
 
 *::selection {
@@ -81,6 +85,10 @@ h6, .h6 {
 
 @mixin h1 {
   @include font-size($h1-fs, $h1-lh);
+
+  @include mq-min($bp-md) {
+    @include font-size($h1-fs-lg, $h1-lh-lg)
+  }
 } 
 
 h1, .h1 {
@@ -89,6 +97,10 @@ h1, .h1 {
 
 @mixin h2 {
   @include font-size($h2-fs, $h2-lh);
+
+  @include mq-min($bp-md) {
+    @include font-size($h2-fs-lg, $h2-lh-lg)
+  }
 } 
 
 h2, .h2 {
@@ -96,7 +108,11 @@ h2, .h2 {
 }
 
 @mixin h3 {
-  @include font-size($h3-fs, $h3-lh);  
+  @include font-size($h3-fs, $h3-lh); 
+
+  @include mq-min($bp-md) {
+    @include font-size($h3-fs-lg, $h3-lh-lg)
+  } 
 } 
 
 h3, .h3 {

@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'gt-walsheim';
+  src: url( $fonts-path + 'gt-walsheim-regular.woff2') format('woff2'),
+       url( $fonts-path + 'gt-walsheim-regular.woff') format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'gt-walsheim';
+  src: url( $fonts-path + 'gt-walsheim-medium.woff2') format('woff2'),
+       url( $fonts-path + 'gt-walsheim-medium.woff') format('woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'gt-walsheim';
+  src: url( $fonts-path + 'gt-walsheim-bold.woff2') format('woff2'),
+       url( $fonts-path + 'gt-walsheim-bold.woff') format('woff');
+  font-weight: 700;
+}

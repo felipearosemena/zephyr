@@ -45,26 +45,40 @@ $body-color           : $grey-darker;
 /*----------  Typography  ----------*/
 
 // Font Stacks
+$fonts-path : '../../src/fonts/';
 $helvetica: Helvetica Neue, Helvetica, Arial, sans-serif;
+$gt-walsheim: 'gt-walsheim', Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
 
-$body-font-family    :  $helvetica;
-$heading-font-family :  $body-font-family;
+$body-font-family    :  $gt-walsheim;
+$heading-font-family :  $gt-walsheim;
 
 // Font Sizes & Corresponding line heights
 $base-fs : 16px;
 $base-lh : 24px;
 
-$h1-fs   : 40px;
-$h1-lh   : 50px;
+$base-fs-lg : 18px;
+$base-lh-lg : 27px;
 
-$h2-fs   : 30px;
-$h2-lh   : 40px;
+$h1-fs   : 50px;
+$h1-lh   : 60px;
+
+$h1-fs-lg : 70px;
+$h1-lh-lg : 70px;
+
+$h2-fs   : 40px;
+$h2-lh   : 50px;
+
+$h2-fs-lg : 50px;
+$h2-lh-lg : 60px;
 
 $h3-fs   : 24px;
 $h3-lh   : 32px;
 
-$h4-fs   : $base-fs;
-$h4-lh   : $base-lh;
+$h3-fs-lg : 30px;
+$h3-lh-lg : 40px;
+
+$h4-fs   : $base-fs-lg;
+$h4-lh   : $base-lh-lg;
 
 $h5-fs   : 14px;
 $h5-lh   : 18px;
