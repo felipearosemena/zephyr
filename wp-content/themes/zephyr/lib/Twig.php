@@ -39,6 +39,7 @@ class Twig extends TimberSite
    */
   public function add_to_context( $context )
   {
+
     $context['site']           = $this;
     $context['src_uri']        = get_stylesheet_directory_uri() . '/src/';
     $context['wp_title_right'] = wp_title( '|', false, 'right' );
@@ -46,6 +47,7 @@ class Twig extends TimberSite
     $context['main_menu']     = new TimberMenu( 'main-nav' );
     $context['util_menu']     = new TimberMenu( 'util-nav' );
     $context['footer_menu']   = new TimberMenu( 'footer-nav' );
+    $context['cart_url']      = wc()->cart->get_cart_url();
 
     if ( function_exists( 'get_fields' ) ) {
       $context['global_info']    = get_fields( 'options' );
