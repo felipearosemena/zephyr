@@ -44,7 +44,8 @@ class Twig extends TimberSite
     $context['wp_title_right'] = wp_title( '|', false, 'right' );
 
     $context['main_menu']     = new TimberMenu( 'main-nav' );
-    $context['footer_menu']    = new TimberMenu( 'footer-nav' );
+    $context['util_menu']     = new TimberMenu( 'util-nav' );
+    $context['footer_menu']   = new TimberMenu( 'footer-nav' );
 
     if ( function_exists( 'get_fields' ) ) {
       $context['global_info']    = get_fields( 'options' );
