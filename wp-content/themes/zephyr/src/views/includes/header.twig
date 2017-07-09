@@ -1,24 +1,21 @@
+
 <header id="site-header" class="site-header">
   
-  <div class="container">
+  <div class="container container--full">
     <div class="site-header__split">
+    
+      <div class="site-header__left">
+        {% include 'components/site-nav-toggle.twig' with { namespace: 'site-header' } %}
+      </div>
 
       <a href="{{ site.url }}" class="site-logo">
-        {{ (src_uri ~ '/images/logo.svg')|file_get_contents }}
+        {{ (src_uri ~ '/images/zephyr-logo-full.svg')|file_get_contents }}
       </a>
-
-      {% include 'includes/header-nav.twig' %}
-      {% include 'includes/header-icons.twig' %}
       
-      {% include 'components/global-cta.twig' with {
-        className: 'site-header__cta'
-      } %}
-
-      <button class="site-header__toggle btn-toggle" data-toggle-modal="#mobile-nav">
-        <span class="btn-toggle__bar"></span>
-        <span class="btn-toggle__bar"></span>
-        <span class="btn-toggle__bar"></span>  
-      </button>
+      <div class="site-header__right">
+        {% include 'includes/header-icons.twig' %}
+        {% include 'components/cart-link.twig' with { namespace: 'site-header' } %}
+      </div>
 
     </div>
   </div>
@@ -27,4 +24,5 @@
 
 </header>
 
-{% include 'includes/mobile-nav.twig' %}
+{% include 'components/site-nav-toggle.twig' with { namespace: 'overlay', label: ' ', classname: ' ' } %}
+{% include 'includes/site-nav.twig' %}

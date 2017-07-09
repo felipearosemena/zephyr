@@ -32,7 +32,7 @@
   opacity: 0;
   visibility: hidden;
   background: rgba(black, 0.6);
-  transition: opacity $transition-default, visibilty $transition-default, transform $transition-default;
+  transition: opacity $transition-slow, visibilty $transition-slow, transform $transition-slow;
 
   &.is-transiting,
   &.is-active {

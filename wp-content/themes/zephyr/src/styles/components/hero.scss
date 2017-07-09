@@ -18,16 +18,14 @@
  */
 
 .hero {
-  background-color: $grey-darker;
   position: relative;
   z-index: 0;
-  min-height: 80vh;
   padding-top: $bsu*4; 
   padding-bottom: $bsu*4;
   display: flex;
   align-items: center;
-  color: white;
   overflow: hidden;
+  text-align: center;
 
   .hero-slider & {
     width: 100%;
@@ -38,14 +36,6 @@
     display: none;
   }
 
-  // The overlay
-  &:before {
-    @include full-cover;
-    position: absolute;
-    z-index: 200;
-    content: '';
-    background-color: rgba(black, .2);
-  }
 }
 
 .hero__body {
@@ -60,8 +50,16 @@
   }
 }
 
-.hero__title {
-  @include font-size($h1-fs, $h1-lh);
+.hero__title {}
+
+
+// The overlay
+.hero__overlay {
+  @include full-cover;
+  position: absolute;
+  z-index: 200;
+  content: '';
+  background-color: rgba(black, .2);
 }
 
 // Allow for full size background image by default

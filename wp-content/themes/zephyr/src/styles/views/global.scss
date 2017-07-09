@@ -5,6 +5,7 @@
  */
 
 .page-wrap {
+  @include site-nav-active-content;
   padding-top: $bsu*2.5;
 
   @include mq-min($bp-main) {
@@ -14,4 +15,27 @@
 
 .featured-image {
   margin: $bsu auto;
+}
+
+.overlay__toggle {
+  @include full-cover;
+  border: none;
+  padding: 0;
+  position: fixed;
+  z-index: 300;
+  background-color: rgba($body-color, 0.5);
+  transition: opacity $transition-default, visibility $transition-default;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  
+  .no-csstransforms & {
+    display: none;
+  }
+
+  body.is-nav-active & {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+  }
 }

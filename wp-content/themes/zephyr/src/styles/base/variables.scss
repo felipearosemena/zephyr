@@ -59,26 +59,29 @@ $base-lh : 24px;
 $base-fs-lg : 18px;
 $base-lh-lg : 27px;
 
-$h1-fs   : 50px;
+$h1-fs   : 54px;
 $h1-lh   : 60px;
 
-$h1-fs-lg : 70px;
+$h1-fs-lg : 72px;
 $h1-lh-lg : 70px;
 
-$h2-fs   : 40px;
+$h2-fs   : 45px;
 $h2-lh   : 50px;
 
-$h2-fs-lg : 50px;
+$h2-fs-lg : 54px;
 $h2-lh-lg : 60px;
 
 $h3-fs   : 24px;
 $h3-lh   : 32px;
 
-$h3-fs-lg : 30px;
-$h3-lh-lg : 40px;
+$h3-fs-lg : 36px;
+$h3-lh-lg : 50px;
 
-$h4-fs   : $base-fs-lg;
-$h4-lh   : $base-lh-lg;
+$h4-fs   : 27px;
+$h4-lh   : 40px;
+
+$lead-fs : 21px;
+$lead-lh : 30px;
 
 $h5-fs   : 14px;
 $h5-lh   : 18px;
@@ -98,7 +101,7 @@ $form-label-lh : $small-lh;
 /*----------  Spacing  ----------*/
 
 // Base Spacing unit (most commonly used measuring unit in your project)
-$bsu : $base-lh;
+$bsu : 20px;
 
 $base-border-radius  : 5px;
 
@@ -122,12 +125,23 @@ $container-pad       : $bsu;
 $container-xs        : 400px;
 $container-sm        : 600px;
 $container-md        : 800px;
-$container-lg        : 1000px;
-$container-xl        : 1200px;
+$container-lg        : 1280px;
+$container-xl        : 1440px;
 
 $container-fixed-md  : $container-md;
 $container-fixed-lg  : $container-lg;
 $container-fixed-xl  : $container-xl;
+
+$logo-ratio    : 0.6;
+$logo-width    : 60px;
+$logo-width-lg : 100px;
+
+$base-button-height: $bsu*3;
+$btn-lh: $base-lh;
+
+$golden-ratio : 1.61803398875;
+
+$site-nav-width : (100 - 100/$golden-ratio) * 1vw; 
 
 /*----------  Breakpoints  ----------*/
 
@@ -159,5 +173,5 @@ $transition-bounce         : $transition-time-default $transition-timing-bounce;
 $transition-bounce-slow    : $transition-time-slow $transition-timing-bounce;
 $transition-fast           : $transition-time-fast $transition-timing-default;
 $transition-default        : $transition-time-default $transition-timing-default;
-$transition-slow           : $transition-time-slow $transition-timing-slow;
+$transition-slow           : $transition-time-slow $transition-timing-default;
 $transition-extra-slow     : $transition-time-extra-slow $transition-timing-slow;

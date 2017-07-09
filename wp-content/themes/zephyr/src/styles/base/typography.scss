@@ -42,11 +42,10 @@ html {
 
 a {
   text-decoration: none;
-  color:$color-primary; 
-  transition: color $transition-fast, background $transition-fast;
+  color: $body-color;
 
-  &:hover {
-    color: darken($color-primary, 10%)
+  &:not(.btn) {
+    @include link-default;
   }
 
   //remove the dotted outline on firefox
@@ -65,7 +64,7 @@ a, i {
 
 %heading-style {
   font-family: $heading-font-family;
-  font-weight: bold;
+  font-weight: 500;
   margin-top: 0;
   margin-bottom: $bsu;
 
@@ -164,7 +163,7 @@ q {
 // The `.lead` class is used to make the introductory text
 // (usually a paragraph) of a document slightly larger.
 .lead, %lead {
-  @include font-size($h3-fs, $h3-lh);
+  @include font-size($lead-fs, $lead-lh);
 }
 
 .label {
@@ -176,6 +175,26 @@ q {
 time {
   display: block;
   margin-bottom: $bsu;
+}
+
+.cart-link {
+  vertical-align: middle;
+  line-height: $base-fs;
+
+  span {
+    display: inline-block;
+    font-weight: bold;
+    font-size: $small-fs;
+    height: $bsu;
+    text-align: center;
+
+    &:before {
+      content: attr(data-cart-totals);
+      display: inline-block;
+      vertical-align: top;
+      line-height: $bsu - 4px;
+    }
+  }
 }
 
 /*----------  Lists  ----------*/

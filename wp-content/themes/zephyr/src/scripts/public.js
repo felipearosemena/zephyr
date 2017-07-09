@@ -11,7 +11,7 @@ import createVideoIframe from './modules/video'
 import toggleTarget from './modules/toggleTarget'
 import sharePost from './modules/sharePost'
 import { keyDownEscape, windowResized } from './modules/globalEvents'
-import { collection, getBpObj } from './modules/utils'
+import { collection, getBpObj, toggleClass } from './modules/utils'
 import createLoader from './modules/ajaxLoader'
 
 // Stub the console, if it doesn't exist
@@ -200,18 +200,15 @@ EventBus.subscribe(windowResized, e => {
 
 /**
  *
- * Mobile Navigation
+ * Main Navigation
  * 
  */
 
-const mobileNav = initModal(document.querySelector('#mobile-nav'))
+const siteNav = initModal(document.querySelector('#site-nav'))
+const bodyToggle = toggleClass(document.body, 'is-nav-active')
 
-// Close mobile nav if resizing above main breakpoint
-EventBus.subscribe(windowResized, () => {
-  if(window.innerWidth > breakpoints.lg && mobileNav.isOpen) {
-    mobileNav.close()
-  }
-})
+siteNav.subscribe('open', () => bodyToggle(true))
+siteNav.subscribe('close', () => bodyToggle(false))
 
 /**
  *

@@ -7,10 +7,11 @@
  */
 
 .site-header {
+  @include site-nav-active-content;
   position: fixed;
   z-index: 200;
   width: 100%;
-  background-color: $grey-darker;
+  background: white;
 }
 
 // Header container
@@ -20,39 +21,47 @@
   align-items: center;
 }
 
+.site-header__left,
+.site-header__right {
+  width: calc(50% - #{ $logo-width/2});
+
+  @include mq-min($bp-md) {
+    width: calc(50% - #{ $logo-width-lg/2});
+  }
+}
+
+.site-header__right {
+  text-align: right;
+}
+
 // Main Logo
 .site-logo {
   display: inline-block;
   vertical-align: middle;
   padding: $bsu/2 0;
 
+  @include remove-underline;
+
   svg {
     display: block;
-    width: px-to-rem(160px);
-    height: px-to-rem(60px);
+    @include logo-size($logo-width);
 
-    @include mq-max($bp-main) {
-      width: px-to-rem(100px);
-      height: px-to-rem(37.5px);
+    @include mq-min($bp-md) {
+      @include logo-size($logo-width-lg);
     }
   }
 }
 
-// Mobile Toggle
+// Nav Toggle
 .site-header__toggle { 
-  display: none; 
-  margin-left:$bsu/2;
-
-  @include mq-max($bp-main) {
-    display: inline-block;
-  } 
+  display: inline-block;
 }
+
+.site-header__cart {}
 
 
 // Navigation Sections
-.site-nav,
 .site-header__icons,
-.site-header__cta,
 .site-search {
   display: none;
 
@@ -62,60 +71,22 @@
 
 } 
 
-.site-nav__menu,
 .site-header__icons {
   @extend .nav;
+  line-height: $small-fs;
   vertical-align: middle;
   white-space: nowrap;
+  margin-right: $bsu;
 
   > li {
-    vertical-align: middle;
+    vertical-align: top;
   }
   
   a, button {
     display: block;
+    font-size: $small-fs;
   }
   
-}
-
-.site-nav__menu {
-  a {
-    // Tall padding, so that dropdown menu is flush with bottom of nav
-    padding: $bsu*1.5 $bsu; 
-  }
-
-  a:hover,
-  .current_page_item > a,
-  .current_page_ancestor > a {}
-}
-
-.site-nav__sub-menu {
-
-  a {
-    padding: $bsu/2 $bsu;
-  }
-  
-  // Make the first an last items have a little extra padding,
-  // for a more even visual look
-  li:first-child a {
-    padding-top: $bsu;
-  }
-
-  li:last-child a {
-    padding-bottom: $bsu;
-  }
-}
-
-.site-header__icons {
-  a, button {
-    padding: $bsu;
-    line-height: 1;
-    vertical-align: middle;
-
-    &:hover {
-      color: $color-primary;
-    }
-  }
 }
 
 // Site Search Bar (Hidden by default)

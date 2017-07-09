@@ -1,0 +1,95 @@
+/**
+ *
+ *  Site Nav
+ * 
+ */
+
+.site-nav {
+  background-color: white;
+  z-index: 400;
+  height: auto;
+  width: $site-nav-width;
+  transform: translate3d(-$site-nav-width, 0, 0);
+  visibility: visible;
+  opacity: 1;
+  overflow: visible;
+
+}
+
+.site-nav__inner {
+  display: block;
+  padding-top: $base-lh-lg;
+}
+
+.site-nav__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-nav__toggle {
+
+  i {
+    display: block;
+  }
+}
+
+
+// Main CTA
+.site-nav__cta {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+// Main Menu
+.site-nav__menu,
+.site-nav__util,
+.site-nav__icons {
+  @include list-plain;
+}
+
+.site-nav__menu,
+.site-nav__util {
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  a:hover,
+  .current_page_item > a,
+  .current_page_ancestor > a {
+    @include hover-underline-active;
+  }
+}
+
+
+.site-nav__menu {
+  a {
+    font-size: $h3-fs-lg;
+    line-height: $h3-lh-lg;
+    font-weight: bold;
+  }
+}
+
+.site-nav__util {
+  a {
+    font-size: $h4-fs;
+    line-height: $h3-lh-lg;
+  }
+}
+
+// Social icons
+.site-nav__icons {
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    // color: white;
+    display: block;
+    padding: $bsu;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}

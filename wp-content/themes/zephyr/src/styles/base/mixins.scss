@@ -83,7 +83,7 @@
 
   &:before, &:after {
 
-    display: inline-block;
+    display: block;
     // Makes all icons even width, 
     //prevents layout shifting when toggling icons
     width: 1em; 
@@ -94,15 +94,14 @@
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
-    line-height: 1;
     text-align: center;
   }
 }
 
-@mixin button-plain {
+@mixin button-plain($padding: 0) {
   border: none;
   background-color: transparent;
-  padding: 0;
+  padding: $padding;
 
   &:hover, &:focus, &:active {
     background: transparent;
@@ -172,3 +171,111 @@
   color: $color-primary;
 }
 
+@mixin logo-size($width) {
+  width: $width;
+  height: $width * $logo-ratio;
+}
+
+
+@mixin hover-underline-active($color: false) {
+  &:after {
+    transform: scaleX(1);
+    transform-origin: 0 50%;
+
+    @if $color {
+      border-color: $color;
+    }
+  }
+}
+
+@mixin hover-underline-offset($padding-x: 0px) {
+  &:after {
+    width: calc(100% - #{$padding-x * 2});
+    // The extra pixel is to prevent subpixel rendering sneaking in
+    transform: scaleX(0);
+  }
+}
+
+@mixin hover-underline($padding-x: 0px, $bottom: false) {
+  position: relative;
+  display: inline-block;
+  vertical-align: baseline;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-top: 2px solid currentColor;
+    margin-top: 0;
+    transition: transform $transition-default;
+    transform-origin: 100% 50%;
+
+    @if ($bottom == true) {
+      bottom: 0;
+    }
+  }
+
+  @include hover-underline-offset($padding-x);
+
+}
+
+@mixin remove-underline {
+  &:after {
+    display: none;
+  }
+}
+
+@mixin link-default {
+  @include hover-underline;
+  color: $body-color;
+  font-weight: 500;
+  transition: color $transition-default, background $transition-default; 
+
+  &:hover {
+    @include hover-underline-active;
+  }
+}
+
+@mixin site-nav-active-content {
+  transition: transform $transition-default;
+
+  body.is-nav-active & {
+    transform: translate3d($site-nav-width, 0, 0);
+  }
+}
+
+@mixin path-animation($transition: $transition-default, $active-class: '.section.is-in', $delay-offset: 0) {
+
+  path {
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: 50%;
+    transition: all $transition-default;
+  }
+  
+  #{$active-class} & path {
+    opacity: 1;
+    transform: scale(1);
+    transition: all $transition;
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        transition-delay: ($i * 100 + $delay-offset) + ms;
+      }
+    }
+  }
+
+}
+
+@mixin image-loaded($transition: opacity $transition-slow) {
+  transition: $transition;
+
+  &:not(.is-loaded) {
+    opacity: 0;
+  }
+}
+
+
+@mixin button-padding($height: $base-button-height, $lh: $btn-lh) {
+  padding: ($height - $lh)/2 $bsu*1.5;
+}

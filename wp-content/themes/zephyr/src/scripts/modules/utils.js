@@ -7,6 +7,9 @@
  *
  */
 
+import EventBus from './EventBus'
+import { windowScrolled } from './globalEvents'
+
 /**
  *
  * @returns {boolean}
@@ -23,13 +26,21 @@ export function inArray(item, array) {
  *
  * @param {string} tagname - Element tagname ('iframe', 'div')
  * @param {object} attributes - Object of attributes to be assigned to the object.
+ * @param {String/False} namespace Optional namespace, used to create SVG and SVG inner elements
  * @returns {HTMLElement} The DOM element
  *
  */
 
 
-export function createElement(tagname, attributes = {}) {
-  let el = document.createElement(tagname)
+export function createElement(tagname, attributes = {}, namespace = false) {
+
+  let el
+
+  if(namespace) {
+    el = document.createElementNS(namespace, tagname)
+  } else {
+    el = document.createElement(tagname)
+  }
 
   if(el.setAttribute) {
     for (var k in  attributes) {
@@ -72,7 +83,7 @@ export function selectorMatches(el, selector) {
  * 
  */
 
-function closest(el, selector) {
+export function closest(el, selector) {
 
   while (el) {
     if (selectorMatches(el, selector)) {
@@ -116,6 +127,17 @@ export function delegate(selector, handler) {
 }
 
 /**
+ * 
+ * Map over an object
+ * 
+ */
+export function mapObject(object, callback = (key, val) => val) {
+  return Object.keys(object).map(function (key) {
+    return callback(key, object[key]);
+  })
+}
+
+/**
  *   Returns a function, that, as long as it continues to be invoked, will not
  *   be triggered. The function will be called after it stops being called for
  *   N milliseconds. If `immediate` is passed, trigger the function on the
@@ -149,22 +171,26 @@ export function debounce(func, wait, immediate) {
  *
  */
 
+let transitionEndEventName = false
+
 export function whichTransitionEnd() {
 
-  let transEndEventNames = {
-    WebkitTransition : 'webkitTransitionEnd',
-    MozTransition    : 'transitionend',
-    OTransition      : 'oTransitionEnd otransitionend',
-    transition       : 'transitionend'
-  }
+  if(!transitionEndEventName) {
+    let transEndEventNames = {
+      WebkitTransition : 'webkitTransitionEnd',
+      MozTransition    : 'transitionend',
+      OTransition      : 'oTransitionEnd otransitionend',
+      transition       : 'transitionend'
+    }
 
-  for (let name in transEndEventNames) {
-    if (document.body.style[name] !== undefined) {
-      return transEndEventNames[name]
+    for (let name in transEndEventNames) {
+      if (document.body.style[name] !== undefined) {
+        transitionEndEventName = transEndEventNames[name]
+      }
     }
   }
 
-  return false
+  return transitionEndEventName
 }
 
 /**
@@ -204,7 +230,7 @@ export function extractURLParameters(str) {
       .split('&')
       .map(n => {
         const par = n.split('=')
-        obj[par[0]] = par[1]
+        obj[par[0]] = decodeURIComponent(par[1])
       })
   }
 
@@ -253,7 +279,7 @@ let scrollPos = window.pageYOffset
 export function scrollY() {
 
   if(!attachedScrollY) {
-    window.addEventListener('scroll', e => {
+    EventBus.subscribe(windowScrolled, e => {
       scrollPos = window.pageYOffset
     })
 
@@ -261,6 +287,28 @@ export function scrollY() {
   }
 
   return scrollPos
+}
+
+
+/**
+ * Track mouse/touchmove x,y position
+ * @return {Object} x, y position object
+ */
+
+export function mouseTracker() {
+
+  const position = { x: 0, y: 0 }
+
+  const updatePosition = e => {
+    position.x = e.pageX
+    position.y = e.pageY
+  }
+
+  window.addEventListener('mousemove', updatePosition)
+  window.addEventListener('touchmove' , updatePosition)
+  
+  return position
+
 }
 
 
@@ -281,7 +329,7 @@ export function collection(selectorOrNodeList) {
 
   let nodeList
 
-  if (selectorOrNodeList instanceof NodeList) {
+  if (selectorOrNodeList instanceof NodeList || selectorOrNodeList instanceof HTMLCollection) {
     nodeList = selectorOrNodeList
   } else if(typeof selectorOrNodeList == 'string') {
     nodeList = document.querySelectorAll(selectorOrNodeList)
@@ -343,4 +391,223 @@ export function getBpObj() {
   } catch(e) {}
 
   return bpObj
+}
+
+/**
+ * 
+ * Recursive curry function
+ *
+ * Usage:
+ * 
+ * function add(a, b) {
+ *   return a + b;
+ * }
+ * 
+ * curry(add, 1, 2); // 3
+ * curry(add)(1)(2); // 3
+ * curry(add)(1, 2); // 3
+ * curry(add, 1)(2);
+ * 
+ * @param  {Function}  fn   Function to be curried
+ * @param  {...[Any]} args X number of arguments the function can receive
+ * @return {Function}  The function will keep returning a function until all parameters have been passed
+ * 
+ */
+export function curry(fn, ...args) {
+
+  if (args.length === fn.length) {
+    return fn(...args);
+  }
+
+  return curry.bind(this, fn, ...args);
+
+}
+
+/**
+ * 
+ * Curried function to toggle an element's class name.
+ *
+ * Usage:
+ *
+ * const toggle = toggleClass(el, 'is-active', someBooleanCondition) // Applies the class immediately
+ * 
+ * const toggle  = toggleClass(el) // Just set the element to operate on
+ * toggle('is-active')(true)  // Runs once the third argument has been passed
+ * toggle('is-hidden')(false) // Runs once the third argument has been passed
+ *
+ * const toggle2 = toggleClass(el, 'is-active') // Curry element & class
+ * const toggle3 = toggle2(someBooleanCondition) // The third argument has been pass, class gets applied & returns
+ * toggle function that can receive new conditions for toggling
+ *
+ * setTimeout(function() {
+ *   toggle3(newBooleanCondition) // Toggle the class again, based on a different boolean
+ * }, 500)
+ * 
+ * @param  {HTMLElement/DOMTokenList}   source    Either an element or an element.classList. Both cases end up operating on the classList.
+ * @param  {String}   className Classname srting to toggle
+ * @param  {Boolean} condition Condition to evaluate the toggling of the class (if true class is added, if false removed). Defaults to adding
+ * 
+ * @return {Function} Will return a function expecting the next parameter until all paramters have been added. The 
+ * class will only be toggled when the last paramter is provided.
+ *
+ * @return {Function} Toggle function that will keep toggling the class on/off based on the condition passed to it
+ * 
+ */
+
+export const toggleClass = curry(function toggleClass(source, className, condition) {
+
+  const classList = source instanceof HTMLElement ? 
+    source.classList : 
+    source instanceof DOMTokenList ?
+      source : false
+
+  if(!classList) {
+    console.warn('The first paramter passed to `toggleClass` must be either an HTMLElement or a DOMDOMTokenList instance')
+    return () => {} // Noop function
+  }
+
+  if(typeof className !== 'string') {
+    console.warn('The first paramter passed to `toggleClass` must be a className string')
+  }
+
+  const toggle = bool => {
+    classList[!!bool ? 'add' : 'remove'](className)
+  }
+
+  // Apply the className once when all parameters have been set 
+  toggle(condition)
+
+  // Return toggle fuction to keep toggling the className afterwards based on new conditions passed
+  return conditionAfter => toggle(conditionAfter)
+
+})
+
+
+/**
+ * 
+ * Add event listener, run only once, then detach the listener
+ * 
+ * @param {HTMLElement} el  Element to attach the event
+ * @param {String}   event Name of the event ('scroll', 'click', etc)
+ * @param {Function} cb    Callback to run
+ *
+ * @return {null}
+ */
+
+export function addEventOnce(el, event = '', cb = () => {}) {
+
+  if(!el) {
+    return
+  }
+
+  const handler = e => {
+    el.removeEventListener(event, handler)
+    cb(e)
+  }
+
+  el.addEventListener(event, handler)
+
+}
+
+/**
+ * Vanilla JS element offset function (ala jQuery flavor)
+ * 
+ * @param  {HTMLElement} el Element to get offset from
+ * @return {Object}   Object containing the top & left offset values
+ */
+export function offset(el) {
+
+  const rect = el.getBoundingClientRect()
+  const { body } = document
+
+  return {
+    top: rect.top + body.scrollTop,
+    left: rect.left + body.scrollLeft
+  }
+
+}
+
+/**
+ * 
+ * Remove HTML markup from string
+ * 
+ * @param  {String} str String to format
+ * @return {String} Formatted string
+ * 
+ */
+export function stripTags(str = '') {
+  return str.replace(/<(?:.|\n)*?>/gm, '');
+}
+
+/**
+ * 
+ * Truncate a string by X characters. If the truncation happens in the middle of a word, the whole word is ommitted.
+ * 
+ * @param  {String}  str   String to truncate
+ * @param  {Number}  count    Number of characters to accept
+ * @param  {Boolean} ellipsis Whether or not to add ellipsis at the end of the string
+ * 
+ * @return {String} Truncated/Formatted string. If the string is shorter than the count, return the original string.
+ * 
+ */
+export function truncateWords(str = '', characters = 10, ellipsis = true) {
+
+  const strippedStr = stripTags(str)
+  const words = strippedStr.split(' ')
+
+  if(strippedStr.length <= characters) {
+    return strippedStr
+  }
+
+  let count = 0
+
+  return words
+    .filter(word => {
+      count += word.length
+
+      return count <= characters
+    })
+    .join(' ') + (ellipsis ? '...' : '')
+}
+
+
+/** 
+*
+* Convert array to object
+*
+* @param {array} array - Array to be converted
+* @param {function} fn - Function to apply to each item in array, whatever is 
+*  returned will become the key for object item 
+*
+* @returns {object} The converted object
+*
+*/
+
+export function arrayToObj(array, fn) {
+
+  const obj = {}
+  const len = array.length
+
+  for (let i = 0; i < len; i++) {
+    const curVal = array[i]
+    const key = fn(curVal, i, array)
+    obj[key] = curVal
+  }
+
+  return obj
+}
+
+
+/**
+ * Get a WP Rest meta_query formatted object
+ * 
+ * @param  {String} key Key for the query
+ * @param  {String} value Value for the query
+ * @return {[type]} Formatted meta_query object
+ */
+export function getMetaQuery(key = '', value = '') {
+  const query = {}
+  query[`meta_query[0][key]`] = key
+  query[`meta_query[0][value]`] = value
+  return query
 }

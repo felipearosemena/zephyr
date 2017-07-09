@@ -6,7 +6,7 @@
  *
  */
 
-import EventBus from './EventBus';
+import EventBus, { eventBusFactory } from './EventBus';
 import createVideoIframe from './video';
 import { whichTransitionEnd, selectorMatches, collection } from './utils';
 
@@ -35,7 +35,7 @@ const modalProto = {
     els.map(el => el.classList.add(ACTIVE_CLASS, TRANS_CLASS))
 
     this.isOpen = true;
-    EventBus.publish('modal:open', this)
+    this.publish('open', this)
   },
 
   /**
@@ -57,7 +57,7 @@ const modalProto = {
     }
 
     this.isOpen = false;
-    EventBus.publish('modal:close', this)
+    this.publish('close', this)
   },
 
   /**
@@ -101,7 +101,7 @@ export function initModal(modalEl, config = {}) {
   const closeEls = collection(modalEl.querySelectorAll('[data-close-modal]'))
 
   // Create the modal instance object
-  const instance = Object.create(modalProto)
+  const instance = Object.create(Object.assign({}, modalProto, eventBusFactory()))
 
   Object.assign(instance, {
     modalEl: modalEl,
@@ -150,16 +150,12 @@ export function initModal(modalEl, config = {}) {
   });
 
   // Subscribe this modal to it's open/close events
-  EventBus.subscribe('modal:open', openedInstance => {
-    if(instance == openedInstance) {
-      options.onOpen(instance)
-    }
+  instance.subscribe('open', openedInstance => {
+    options.onOpen(instance)
   })
 
-  EventBus.subscribe('modal:close', openedInstance => {
-    if(instance == openedInstance) {
-      options.onClose(instance)
-    }
+  instance.subscribe('close', openedInstance => {
+    options.onClose(instance)
   })
 
   // Move the element to the end of the document (prevent any z-index issues)

@@ -21,33 +21,27 @@
  *
  */ 
 
-.container,
-.container-fixed {
+.container {
   padding-left: $container-pad;
   padding-right: $container-pad;
   margin-left: auto;
   margin-right: auto;
-}
 
-.container {
-  max-width: $container-xl;
-  box-sizing: content-box; // Prevents the container's padding 
-                           // to be substracted from it's width
-}
-
-// Fixed Container
-// Not a variation of .container, but rather an independent component
-.container-fixed {
-  max-width: $container-md;
-  box-sizing:border-box;
-  
   @include mq-min($bp-lg) {
-    max-width: $container-fixed-lg;
+    padding-left: $container-pad*2;
+    padding-right: $container-pad*2;
   }
 
   @include mq-min($bp-xl) {
-    max-width: $container-fixed-xl;
+    padding-left: $container-pad*3;
+    padding-right: $container-pad*3;
   }
+}
+
+.container {
+  max-width: $container-lg;
+  box-sizing: content-box; // Prevents the container's padding 
+                           // to be substracted from it's width
 }
 
 // Full width container
@@ -69,6 +63,10 @@
 
 .container--lg {
   max-width: $container-lg;
+}
+
+.container--xl {
+  max-width: $container-xl;
 }
 
 // Flush Container (no padding on sides)

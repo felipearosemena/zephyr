@@ -4,6 +4,8 @@
  *
  * basic icon fonts
  *
+ * Using icomoon to manage the icon font
+ *
  */
 
 
@@ -11,11 +13,11 @@
 
 @font-face {
   font-family: "icons";
-  src:url("../../src/fonts/icons/icons.eot");
-  src:url("../../src/fonts/icons/icons.eot?#iefix") format("embedded-opentype"),
-    url("../../src/fonts/icons/icons.woff") format("woff"),
-    url("../../src/fonts/icons/icons.ttf") format("truetype"),
-    url("../../src/fonts/icons/icons.svg#icons") format("svg");
+  src:url("../../src/fonts/icons/icomoon.eot");
+  src:url("../../src/fonts/icons/icomoon.eot?#iefix") format("embedded-opentype"),
+    url("../../src/fonts/icons/icomoon.woff") format("woff"),
+    url("../../src/fonts/icons/icomoon.ttf") format("truetype"),
+    url("../../src/fonts/icons/icomoon.svg#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -34,88 +36,103 @@ button[class*="icon-"] {
   @extend .icon-close;
 }
 
-$icon-play: "\6a";
-$icon-play-circle: "\66";
-$icon-search: "\67";
-$icon-angle-left: "\62";
-$icon-angle-right: "\68";
-$icon-angle-up: "\6c";
-$icon-angle-down: "\6b";
-$icon-align-justify: "\6d";
-$icon-linkedin: "\69";
-$icon-facebook: "\65";
-$icon-instagram: "\61";
-$icon-youtube: "\63";
-$icon-twitter: "\64";
-$icon-check: "\f00c";
-$icon-close: "\f00d";
-$icon-envelope-outline: "\f003";
-$icon-envelope: "\f0e0";
-$icon-arrow-left: "\f060";
-$icon-arrow-right: "\f061";
-$icon-arrow-up: "\f062";
-$icon-arrow-down: "\f063";
-
 .icon-play:before {
-  content: $icon-play;
-}
-.icon-play-circle:before {
-  content: $icon-play-circle;
-}
-.icon-search:before {
-  content: $icon-search;
-}
-.icon-angle-left:before {
-  content: $icon-angle-left;
-}
-.icon-angle-right:before {
-  content: $icon-angle-right;
-}
-.icon-angle-up:before {
-  content: $icon-angle-up;
-}
-.icon-angle-down:before {
-  content: $icon-angle-down;
-}
-.icon-align-justify:before {
-  content: $icon-align-justify;
-}
-.icon-linkedin:before {
-  content: $icon-linkedin;
+  content: "\6a";
 }
 .icon-facebook:before {
-  content: $icon-facebook;
+  content: "\61";
 }
 .icon-instagram:before {
-  content: $icon-instagram;
-}
-.icon-youtube:before {
-  content: $icon-youtube;
+  content: "\62";
 }
 .icon-twitter:before {
-  content: $icon-twitter;
+  content: "\63";
 }
-.icon-check:before {
-  content: $icon-check;
+.icon-linkedin:before {
+  content: "\64";
+}
+.icon-vimeo:before {
+  content: "\65";
+}
+.icon-gplus:before {
+  content: "\66";
+}
+.icon-flickr:before {
+  content: "\67";
+}
+.icon-youtube:before {
+  content: "\68";
+}
+.icon-caret-up:before {
+  content: "\6d";
+}
+.icon-caret-down:before {
+  content: "\6e";
+}
+.icon-caret-left:before {
+  content: "\6f";
+}
+
+$icon-caret-right: "\70";
+
+.icon-caret-right:before {
+  content: $icon-caret-right;
+}
+
+.icon-chevron-up:before {
+  content: "\71";
+}
+.icon-chevron-down:before {
+  content: "\72";
+}
+.icon-chevron-left:before {
+  content: "\73";
+}
+.icon-chevron-right:before {
+  content: "\74";
 }
 .icon-close:before {
-  content: $icon-close;
+  content: "\75";
 }
-.icon-envelope-outline:before {
-  content: $icon-envelope-outline;
+
+$icon-minus: "\76";
+
+.icon-minus:before {
+  content: $icon-minus;
 }
-.icon-envelope:before {
-  content: $icon-envelope;
+
+$icon-plus: "\77";
+
+.icon-plus:before {
+  content: $icon-plus;
 }
-.icon-arrow-left:before {
-  content: $icon-arrow-left;
-}
-.icon-arrow-right:before {
-  content: $icon-arrow-right;
-}
+
 .icon-arrow-up:before {
-  content: $icon-arrow-up;
+  content: "\79";
 }
 .icon-arrow-down:before {
-  content: $icon-arrow-down;
+  content: "\7a";
+}
+.icon-arrow-left:before {
+  content: "\41";
+}
+.icon-arrow-right:before {
+  content: "\42";
+}
+.icon-search:before {
+  content: "\49";
+}
+.icon-envelope:before {
+  content: "\4c";
+}
+.icon-check:before {
+  content: "\4d";
+}
+.icon-location-pin:before {
+  content: "\4f";
+  font-size: 1.33em;
+}
+
+.icon-pinterest:before {
+  content: "\e900";
 }

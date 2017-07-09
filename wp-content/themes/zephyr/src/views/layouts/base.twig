@@ -3,7 +3,7 @@
 {% include 'includes/head.twig' %}
 
   <body class="{{ body_class }}">
-
+    
     {% include 'includes/header.twig' %}
 
     <div class="page-wrap">
@@ -19,10 +19,10 @@
       {% block bottom %}
       {% endblock %}
 
-    </div>
+      {% include 'includes/newsletter-bar.twig' %}
+      {% include 'includes/footer.twig' %}
 
-    {% include 'includes/newsletter-bar.twig' %}
-    {% include 'includes/footer.twig' %}
+    </div>
 
     {{ function('wp_footer') }}
 
