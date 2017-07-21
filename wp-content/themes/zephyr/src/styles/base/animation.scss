@@ -11,13 +11,13 @@
 [data-animate-transform-right] {
   transition: transform $transition-time-slow $transition-timing-default, opacity $transition-time-default $transition-timing-slow;
 
-  .section:not(.is-in) &,
+  .anim-trigger:not(.is-in) &,
   .site-nav:not(.is-active) & {
     opacity: 0;
     transition: transform $transition-time-slow $transition-timing-default, opacity $transition-time-fast $transition-timing-slow;
   }
 
-  .section:not(.is-in) & {
+  .anim-trigger:not(.is-in) & {
     transition-delay: 0s;
   }
 
@@ -27,20 +27,20 @@
 }
 
 [data-animate-transform-left] {
-  .section:not(.is-in) &,
+  .anim-trigger:not(.is-in) &,
   .site-nav:not(.is-active) & {
     transform: translate3d(-50%, 0, 0);
   }
 }
 
 [data-animate-transform-right] {
-  .section:not(.is-in) & {
+  .anim-trigger:not(.is-in) & {
     transform: translate3d(50%, 0, 0);
   }
 }
 
 [data-animate-transform] {
-  .section:not(.is-in) &,
+  .anim-trigger:not(.is-in) &,
   .site-nav:not(.is-active) & {
     transform: translate3d(0, $bsu*5, 0);
   }

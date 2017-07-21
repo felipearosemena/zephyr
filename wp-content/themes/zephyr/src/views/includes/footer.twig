@@ -45,8 +45,10 @@
         {{ global_info.global_phone_number|wpautop }}
 
         <p><a href="mailto:{{ global_info.global_email }}">{{ global_info.global_email }}</a></p>
-
-        {% include 'components/social-nav.twig' %}
+        
+        <ul>
+          {% include 'components/social-nav.twig' %}
+        </ul>
 
       </div>
     </div>

@@ -72,6 +72,38 @@
   }
 }
 
+.grid--shapes {
+
+  .grid__item {
+    margin-bottom: $bsu*4;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .grid__item:nth-child(2) {
+    margin-top: $bsu*12;
+  }
+
+  .grid__item:nth-child(2n) {
+    float: right;
+  }
+
+  .grid__item:last-child {
+    &:nth-child(2n) {
+      .container {
+        margin-left: 0;
+      }
+    }
+    &:nth-child(2n+1) {
+      .container {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
 .grid--rows {
   margin-bottom: -$grid-gutter;
 

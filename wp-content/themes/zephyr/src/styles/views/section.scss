@@ -14,4 +14,20 @@
     margin-top: $bsu*4;
     margin-bottom: $bsu*4;
   }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section:first-child {
+  margin-bottom: $bsu*4;
+
+  .hero + .page-content & {
+    margin-top: 0;
+  }
+
+  @include mq-min($bp-md) {
+    margin-bottom: $bsu*6;
+  }
 }

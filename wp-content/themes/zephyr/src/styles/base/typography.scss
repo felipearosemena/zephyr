@@ -44,7 +44,7 @@ a {
   text-decoration: none;
   color: $body-color;
 
-  &:not(.btn) {
+  &:not(.btn):not(.remove-underline) {
     @include link-default;
   }
 
@@ -135,7 +135,7 @@ h5, .h5 {
 p, ul, ol, blockquote,
 pre, dl, table  {
   margin-top: 0;
-  margin-bottom: $bsu;
+  margin-bottom: $bsu*2.5 - $base-lh;
 }
 
 
@@ -149,6 +149,11 @@ p + p {
   .btn:first-child {
     margin-top: $bsu/2;
   }
+}
+
+strong {
+  display: inline-block;
+  font-weight: 500;
 }
 
 small, .small-text {

@@ -2,6 +2,7 @@ import './modules/polyfills'
 import './modules/modernizrTests'
 
 import Flickity from 'flickity'
+import Cookies from 'js-cookie'
 import smoothScroll from 'smooth-scroll'
 
 import router from './modules/router'
@@ -11,7 +12,7 @@ import createVideoIframe from './modules/video'
 import toggleTarget from './modules/toggleTarget'
 import sharePost from './modules/sharePost'
 import { keyDownEscape, windowResized } from './modules/globalEvents'
-import { collection, getBpObj, toggleClass } from './modules/utils'
+import { collection, getBpObj, toggleClass, debounce, whichTransitionEnd } from './modules/utils'
 import createLoader from './modules/ajaxLoader'
 
 // Stub the console, if it doesn't exist
@@ -77,6 +78,16 @@ function postLoader() {
 /*----------  Scripts to Fire on Every Page  ----------*/
 
 const breakpoints = getBpObj()
+
+/**
+ *
+ * Update the cart total
+ * 
+ */
+
+// const cartTotals = Cookies.get('woocommerce_items_in_cart') 
+
+// collection('[data-cart-totals]').map(el => el.dataset.cartTotals = cartTotals || 0)
 
 /**
  * 
@@ -282,6 +293,77 @@ collection('.js-video-player').map(videoEl => createVideoIframe(videoEl))
  */
 
 sharePost('.js-share-post')
+
+/**
+ *
+ * Shape Terms
+ * 
+ */
+
+function randomFromArray(arr) {
+  return arr[Math.floor(Math.random()*arr.length)]
+}
+
+function animateShrapnel(shrapnel, container, shape, svg) {
+
+  const directionOptions = [-1, 1]
+  const direction = [randomFromArray(directionOptions), randomFromArray(directionOptions)]
+  const { offsetWidth, offsetHeight } = container
+  const box  = shape.getBBox()
+  const rect = svg.getBoundingClientRect()
+  const position  = [ 'width', 'height' ].map((coord, i) => {
+    return box[coord] * rect[coord] / svg[coord].baseVal.value * 0.5 * direction[i]
+  })
+
+  shrapnel.map(s => {
+    s.style.transform = `translate3d(${ position[0] }px, ${ position[1]}px, 0)`
+  })
+
+}
+
+function resetShrapnel(shrapnel) {
+  shrapnel.map(s => {
+    s.style.transform = `translate3d(0px, 0px, 0)`
+  })
+}
+
+collection('.js-shape-term').map(el => {
+
+  let promise = new Promise(resolve => resolve())
+  let direction = false
+
+  const { href }  = el
+  const shapeSVG = el.querySelector('[data-shape-icon] svg')
+  const shape = shapeSVG.querySelector('path, circle, polygon, ellipse, rect')
+  const shrapnelContainer = el.querySelector('[data-shrapnel]')
+  const shrapnelEls = []
+
+  const toggle = bool => {
+    toggleClass(el, 'is-hovered', bool)
+
+    if(bool) {
+      animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
+    } else {
+      resetShrapnel(shrapnelEls)
+    }
+  }
+
+  let shrapnelCount = 4
+
+  if(shape) {
+ 
+    // while(shrapnelCount--) {
+    //   shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
+    // }
+
+    shape.addEventListener('mouseover' , () => toggle(true))
+    shape.addEventListener('mouseleave', () => toggle(false))
+    shape.addEventListener('click', () => window.location = href)
+    el.addEventListener('click', e => e.preventDefault())
+
+  }
+
+})
 
 /*----------  Route Specific  ----------*/
 

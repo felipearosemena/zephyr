@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"min-",
+				"min-height"
+			],
+			[
+				"direction",
+				"directionOptions"
+			],
+			[
+				"with",
+				"width"
+			],
+			[
+				"preven",
+				"preventDefault"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"transition-tim",
+				"transition-time-slow"
+			],
+			[
+				"padi",
+				"padding-top"
+			],
+			[
+				"transition",
+				"transition"
+			],
+			[
+				"transitino",
+				"transition"
+			],
+			[
+				"tran",
+				"transition-default"
+			],
+			[
 				"cont",
 				"container-pad"
 			],
@@ -116,10 +156,6 @@
 				"transition-default"
 			],
 			[
-				"tran",
-				"transition"
-			],
-			[
 				"json_",
 				"json_decode"
 			],
@@ -194,10 +230,6 @@
 			[
 				"active",
 				"active-class"
-			],
-			[
-				"transition",
-				"transition-default"
 			],
 			[
 				"gender",
@@ -408,10 +440,6 @@
 				"base-lh"
 			],
 			[
-				"transitino",
-				"transition-delay"
-			],
-			[
 				"tool",
 				"tooltip-wrapper"
 			],
@@ -486,39 +514,143 @@
 			[
 				"sampling",
 				"sampling_date"
-			],
-			[
-				"has_ac",
-				"has_active_sample"
-			],
-			[
-				"__",
-				"__FILE__"
-			],
-			[
-				"require",
-				"required_key"
-			],
-			[
-				"_",
-				"_FILES"
-			],
-			[
-				"resutls",
-				"results_to_import"
-			],
-			[
-				"bacte",
-				"bacteria_id"
-			],
-			[
-				"sample_posti",
-				"sample_post_ids"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "wp-content/themes/zephyr/src/styles/views/global.scss",
+			"settings":
+			{
+				"buffer_size": 652,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/page.php",
+			"settings":
+			{
+				"buffer_size": 228,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/index.php",
+			"settings":
+			{
+				"buffer_size": 592,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/header.php",
+			"settings":
+			{
+				"buffer_size": 276,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/views/page-plugin.twig",
+			"settings":
+			{
+				"buffer_size": 139,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/woocommerce.php",
+			"settings":
+			{
+				"buffer_size": 858,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/views/templates/shop.twig",
+			"settings":
+			{
+				"buffer_size": 667,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/lib/Twig.php",
+			"settings":
+			{
+				"buffer_size": 4632,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/styles/views/section.scss",
+			"settings":
+			{
+				"buffer_size": 412,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/views/components/tease-product.twig",
+			"settings":
+			{
+				"buffer_size": 1041,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/functions.php",
+			"settings":
+			{
+				"buffer_size": 640,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/scripts/public.js",
+			"settings":
+			{
+				"buffer_size": 7961,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/views/components/cart-link.twig",
+			"settings":
+			{
+				"buffer_size": 130,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/views/index.twig",
+			"settings":
+			{
+				"buffer_size": 2775,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "wp-content/themes/zephyr/src/views/page.twig",
+			"settings":
+			{
+				"buffer_size": 498,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -653,10 +785,117 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/Felipe/Sites/zephyr"
+		"/Users/Felipe/Sites/zephyr",
+		"/Users/Felipe/Sites/zephyr/wp-content",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes"
 	],
 	"file_history":
 	[
+		"/Users/Felipe/Documents/BW/Dev Hiring Docs/front-end-hire-criteria.md",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Twig.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/single-product.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/product-cat-list.scss",
+		"/Users/Felipe/Projects/zephyr/id/Round.svg",
+		"/Users/Felipe/Projects/zephyr/id/Pear.svg",
+		"/Users/Felipe/Projects/zephyr/id/Oval.svg",
+		"/Users/Felipe/Projects/zephyr/id/Emerald.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/uploads/2017/07/Cushion.svg",
+		"/Users/Felipe/Projects/zephyr/id/Cushion.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/typography.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/uploads/2017/07/Pear.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/public.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/newsletter-form.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/newsletter-bar.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/section.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/variables.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/shape-term.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/shape-term.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/animation.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/sidebar.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/grid.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/product-cat-list.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/hero.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/section-hero-banner.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/templates/home.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/templates/home.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/hero.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/header.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/buttons.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/footer.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/social-nav.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/footer.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/site-nav.twig",
+		"/Users/Felipe/Sites/zephyr/to-do.md",
+		"/Users/Felipe/Desktop/Pear.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/public.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/uploads/2017/07/Emerald.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/uploads/2017/07/Oval.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/uploads/2017/07/Round.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/icons.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/site-nav.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/header.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/site-nav-toggle.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/cart-link.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/global.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/mixins.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/modal.scss",
+		"/Users/Felipe/Sites/tides/wp-content/themes/tides/src/icomoon/style.css",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/pageTransitions.js",
+		"/Users/Felipe/Projects/zephyr/code/adamapp.js",
+		"/Users/Felipe/Projects/zephyr/id/ZephyrLogoFull.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/container.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/modal.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/advanced-custom-fields-pro/acf.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/nav.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/forms.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/images/zephyr-icon.svg",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/layouts/base.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/header-icons.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/utils.js",
+		"/Users/Felipe/Sites/tides/wp-content/themes/tides/src/styles/base/mixins.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/fonts.scss",
+		"/Users/Felipe/Sites/zephyr-shopify/src/styles/settings/fonts.scss.liquid",
+		"/Users/Felipe/Sites/zephyr/README.md",
+		"/Users/Felipe/Sites/zephyr-shopify/src/styles/global/typography.scss",
+		"/Users/Felipe/Sites/zephyr-shopify/src/styles/settings/variables.scss.liquid",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/CustomTaxonomies.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/CustomPostTypes.php",
+		"/Users/Felipe/Sites/zephyr/wp-config.php",
+		"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib/Enqueue.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/functions.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Enqueue.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Setup.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/woocommerce.scss",
+		"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles/views/cart.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/dist/styles/public.css",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/gravity-forms.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/dist/scripts/public.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/form.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Video.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Utils.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/GravityForms.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Search.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Social.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/TinyMCE.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Media.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/404.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/attachment.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/index.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/page.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/search.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/single.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/templates/team.php",
+		"/Users/Felipe/Sites/zephyr/package.json",
+		"/Users/Felipe/Sites/zephyr/composer.json",
+		"/Users/Felipe/Sites/zephyr/gulpfile.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/style.css",
+		"/Users/Felipe/Sites/zephyr-shopify/todo.md",
 		"/Users/Felipe/Sites/zephyr/src/styles/tools/mixins.scss",
 		"/Users/Felipe/Sites/zephyr/src/styles/global/typography.scss",
 		"/Users/Felipe/Sites/zephyr/src/styles/settings/fonts.scss.liquid",
@@ -685,116 +924,27 @@
 		"/Users/Felipe/Documents/personal/quotes & invoicing/editableinvoice/index.html",
 		"/Users/Felipe/Projects/BW/Tides/cms-plan.mdown",
 		"/Users/Felipe/Documents/personal/quotes & invoicing/editableinvoice/js/example.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/utils.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/header.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/scripts.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/layout/header.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/base/typography.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/base/media.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/layout/global.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/components/share-nav.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/templates/template-about.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/single.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/single.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/intro.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/single-gallery.twig",
-		"/Users/Felipe/Sites/ledmachq/todo.md",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/single-project.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/loadMore.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/index.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/templates/template-galleries.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/components/grid.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/masthead-post.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/masthead.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/components/hero.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/layout/gallery.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/gallery-listing.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/abstractions/helpers.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/index.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/post-listing.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/components/post-card.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/subnav.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/homeowners.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/scrollDown.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/abstractions/mixins.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/heroSliderFactory.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/homeowners-content.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/templates/template-homeowners.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/gallery-popup.hbs",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/js-components/popups.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/about.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/careers.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/share-nav.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/sharePost.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/styles.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/lib/util.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/base/icons.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/gallery.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/gallery-item.hbs",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/popups.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/gallery.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/layout/timeline.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/timeline.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/single-gallery.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/projectListing.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/splash.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/lib/scripts.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/infobox.hbs",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/lib/thumbs.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/galleries.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/newsfeed.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/post-card.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/macros.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/components/buttons.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/alternating-content.twig",
-		"/Users/Felipe/Sites/base/wp-content/themes/base-theme/src/scripts/public.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/content-image-sections.twig",
-		"/Users/Felipe/Sites/base/wp-content/themes/base-theme/src/styles/views/global.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/leadership.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/layout/leadership.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/js-components/slider.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/node_modules/magnific-popup/dist/magnific-popup.css",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/intro-project.twig",
-		"/Users/Felipe/Sites/modern-web-apps-with-angular-2/projector/templates/project.component.html",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/components/container.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/intro-after.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/img/logo-bg.svg",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/variables/variables.scss",
-		"/Users/Felipe/Sites/rpa/wp-content/themes/rpa/src/scripts/public.js",
-		"/Users/Felipe/Sites/rpa/wp-config-sample.php",
-		"/Users/Felipe/Sites/base/gulpfile.js",
-		"/Users/Felipe/Sites/rpa/package.json",
-		"/Users/Felipe/Sites/rpa/wp-config.php",
-		"/Users/Felipe/Sites/rpa/wp-content/themes/rpa/dist/scripts/public.js",
-		"/Users/Felipe/Sites/rpa/gulpfile.js",
-		"/Users/Felipe/Sites/base/package.json",
-		"/Users/Felipe/Sites/rpa/wp-content/themes/rpa/src/styles/base/helpers.scss",
-		"/Users/Felipe/Sites/base/wp-content/themes/base-theme/src/styles/base/variables.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/leadership.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/careers.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/timeline.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/layouts/layout-page.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/views/includes/full-slider.twig",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/layout/full-slider.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/single-project.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/dist/css/styles.css",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/functions.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/base/lists.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/lib/twig-filters.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/lib/shortcodes.php",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/abstractions/island.scss",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/scss/layout/project-single.scss",
-		"/Users/Felipe/Sites/httpd-vhosts.conf"
+		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/utils.js"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 234.0,
 		"where_history":
 		[
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts",
+			"/Users/Felipe/Sites/tides/wp-content/themes/tides/src/styles",
+			"/Users/Felipe/Sites/zephyr-shopify/src/styles",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src",
+			"/Users/Felipe/Sites/zephyr",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src",
+			"/Users/Felipe/Sites/zephyr/wp-content",
+			"/Users/Felipe/Sites/zephyr/wp-content/plugins",
+			"/Users/Felipe/Sites/zephyr/wp-content",
 			"/Users/Felipe/Sites/zephyr/src/styles",
 			"/Users/Felipe/Sites/zephyr/src",
 			"/Users/Felipe/Sites/zephyr",
@@ -912,17 +1062,7 @@
 			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
 			"/Users/Felipe/Sites/ubiodiscovery/wp-content/plugins",
 			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app/components",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/acf-json",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app",
-			"/Users/Felipe/Sites/ubiodiscovery/node_modules/react-router",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/plugins/woocommerce",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes"
+			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib"
 		]
 	},
 	"find_state":
@@ -930,6 +1070,89 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"487",
+			"FG_Don",
+			"get-thi",
+			"\"",
+			"view c",
+			"pin",
+			"whi",
+			"whi\n",
+			"whi",
+			"color",
+			"cur",
+			"p {",
+			"ban",
+			"shapeS",
+			"hover",
+			"under",
+			".section",
+			"id=",
+			"icon",
+			"pin",
+			"min",
+			"transition-de",
+			"data-",
+			"transition",
+			"ajax",
+			"hover-underlin",
+			"sub",
+			"h1-",
+			"onClo",
+			"subscribe('",
+			"modal:open",
+			"logo",
+			"__lin",
+			"under",
+			"unde",
+			"underlin",
+			"btn-",
+			"mobil",
+			"logo",
+			"container-pad",
+			"site-header__t",
+			"cta",
+			"util",
+			"site-nav__me",
+			"site-nav",
+			"mobile",
+			"mobile-sear",
+			"mobile",
+			"mobile-nav",
+			"mobile",
+			"mobile-nav",
+			"colo",
+			"grid-large",
+			"briteweb",
+			"BW_DEV",
+			"DEBUG",
+			"BW_DEV",
+			"form-con",
+			"bp-table",
+			"bp-ta",
+			"font-s",
+			"wp_enqueue_scripts__dashboardScriptsAndStyles",
+			"felipow",
+			"ajax",
+			"even",
+			"gravity",
+			"get_currentuserinfo",
+			"critical",
+			"briteweb",
+			"Ynah",
+			"vivash",
+			"Andrew Vivash",
+			"ale@briteweb.com",
+			"andrew@briteweb.com",
+			"briteweb",
+			"briteweb/package",
+			"briteweb",
+			"ynah@briteweb.com",
+			"tanner@briteweb.com",
+			"felipe@briteweb.com",
+			"zephyrw",
+			"briteweb/base-project",
+			"briteweb",
 			"transform",
 			"body-font",
 			"font-stack-body",
@@ -974,90 +1197,7 @@
 			"fli",
 			"heroSlide",
 			"ScrollDown",
-			"Scrol",
-			"Scrolled",
-			"timeline",
-			"subnav",
-			"is-at-top",
-			"site-nav__",
-			"is-at-",
-			"underline-m",
-			"site-nav_",
-			"ShareP",
-			"envelo",
-			"../fonts/icomoon/icomoon.eot?7nbo2h",
-			"icon-facebook",
-			"face",
-			"active",
-			"createItem",
-			"popup",
-			"template",
-			"elements",
-			"initPopups",
-			"sliders",
-			"js-popup",
-			"popup",
-			"splash",
-			"createItem",
-			"itemTempla",
-			"hbs",
-			"ProjectLi",
-			"localiz",
-			"localis",
-			"h3",
-			"inline",
-			"flex",
-			"justify-cont",
-			"disable",
-			"ImagesLoad",
-			"item",
-			"new Flic",
-			"lickity",
-			"parallax",
-			"leadership",
-			"parallax",
-			"mfp-close",
-			"mfp-content",
-			"border-ra",
-			"popups",
-			"bordered",
-			"back",
-			"resize",
-			"resiz",
-			"getBp",
-			"match",
-			"groupCells",
-			"Flick",
-			"li ",
-			"li",
-			"data-flick",
-			"Flick",
-			"data-slick",
-			"arrow",
-			"chevron",
-			"list-style",
-			"slider",
-			".text-",
-			"cf",
-			"margin-left",
-			"content-",
-			"grid-3",
-			"is-at-top",
-			"\n    body:not(.template-about) & {",
-			"is-at-",
-			"\n            ",
-			"flick",
-			"slider",
-			"add_short",
-			"clearfix",
-			"cf",
-			"ul ",
-			".img-wrap",
-			"rows",
-			"box-shadow",
-			" }}",
-			"grid--block",
-			"editor-s"
+			"Scrol"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1065,6 +1205,17 @@
 		"regex": false,
 		"replace_history":
 		[
+			".anim-trigger",
+			"site-nav",
+			"bp-md",
+			"mq-min",
+			"WP_DEBUG",
+			"bp-md",
+			"Felipe Arosemena",
+			"felipearosemena@gmail.com",
+			"zephyr",
+			"felipearosemena@gmail.com",
+			"zephyr",
 			"post",
 			"careers",
 			"toggleSpinner",
@@ -1181,18 +1332,7 @@
 			"#}",
 			"{#",
 			"5%",
-			"container-sm-max",
-			"text-",
-			"float-",
-			"text-",
-			"base.twig",
-			"./assets/scss",
-			"./assets/css",
-			"./assets/js",
-			"assets_uri",
-			"/assets/cs",
-			"/assets/js",
-			"assets/css"
+			"container-sm-max"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -1203,8 +1343,447 @@
 	"groups":
 	[
 		{
+			"selected": 11,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "wp-content/themes/zephyr/src/styles/views/global.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								218,
+								218
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "wp-content/themes/zephyr/page.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 228,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								215,
+								215
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "wp-content/themes/zephyr/index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 592,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								552,
+								552
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "wp-content/themes/zephyr/header.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 276,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								275,
+								224
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "wp-content/themes/zephyr/src/views/page-plugin.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 139,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								83,
+								83
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "wp-content/themes/zephyr/woocommerce.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 858,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								221,
+								258
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "wp-content/themes/zephyr/src/views/templates/shop.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 667,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								538,
+								565
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "wp-content/themes/zephyr/lib/Twig.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4632,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1346,
+								1346
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 332.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "wp-content/themes/zephyr/src/styles/views/section.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								347,
+								347
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "wp-content/themes/zephyr/src/views/components/tease-product.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1041,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								577,
+								577
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "wp-content/themes/zephyr/functions.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 640,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								596,
+								596
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "wp-content/themes/zephyr/src/scripts/public.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7961,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2150,
+								2150
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 648.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "wp-content/themes/zephyr/src/views/components/cart-link.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 130,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								113,
+								113
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "wp-content/themes/zephyr/src/views/index.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2775,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								2775
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "wp-content/themes/zephyr/src/views/page.twig",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 498,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1247,7 +1826,7 @@
 	"project": "zephyr.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 114.0
 	},
 	"save_all_on_build": true,
 	"select_file":

@@ -1,0 +1,99 @@
+.shape-term {
+  display: block;
+  max-width: 480px;
+  margin: auto;
+  position: relative;
+
+  &:not(.is-hovered) {
+    cursor: default;
+  }
+}
+
+.shape-term__shrapnel {
+  @include full-cover;
+  display: block;
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+
+  svg {
+    position: absolute;
+    width: $bsu;
+    height: $bsu;
+    top: 50%;
+    left: 50%;
+    margin-left: -$bsu/2;
+    margin-top: -$bsu/2;
+    transition: transform $transition-slow;
+
+    path, ellipse, circle, polygon, rect {
+      fill: $body-color;
+    }
+  }
+}
+
+.shape-term__icon {
+  position: relative;
+  z-index: 0;
+  transition: transform $transition-bounce;
+
+  .shape-term.is-hovered & {
+    transform: scale(1.05)
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+}
+
+.shape-term__content {
+  @include full-cover;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+}
+
+
+.shape-term__title {
+  margin-bottom: $bsu*1.25;
+  pointer-events: none;
+  transition: all $transition-default;
+
+  .shape-term--odd:not(.is-hovered) & {
+    transform: translate3d($bsu*6, -$bsu, 0);
+  }
+
+  .shape-term--even:not(.is-hovered) & {
+    transform: translate3d(-$bsu*6, -$bsu, 0);
+  }
+}
+
+.shape-term__img {
+  max-width: 200px;
+  margin-bottom: $bsu;
+  transition: transform $transition-default;
+
+  .shape-term.is-hovered & {
+    transform: scale(0.9);
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.shape-term__label {
+  transition: all $transition-default;
+
+  .shape-term:not(.is-hovered) & {
+    opacity: 0;
+    transform: translate3d(0, $bsu*2, 0);
+  }
+}

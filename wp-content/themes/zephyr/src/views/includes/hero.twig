@@ -3,12 +3,12 @@
   
   <div class="hero__body">
 
-    <div class="container container--md">
+    <div class="container container--lg">
       
       <h1 class="hero__title mb-2">{{ post.hero_title }}</h1>
       
       {% if post.hero_content %}
-        <p class="lead mb-2">{{ post.hero_content }}</p>
+        <div class="mb-2">{{ post.get_field('hero_content') }}</div>
       {% endif %}
 
       {% if post.hero_link %}

@@ -26,3 +26,10 @@ new BW\Setup();
 new BW\Social();
 new BW\Twig();
 new BW\TinyMCE();
+
+function timber_set_product( $post ) {
+  global $product;
+  if ( is_woocommerce() ) {
+    $product = wc_get_product($post->ID);
+  }
+}

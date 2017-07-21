@@ -1,0 +1,21 @@
+<a href="{{ shop_url }}?{{ term.taxonomy }}={{ term.slug }}" class="shape-term shape-term--{{ loop.index % 2 == 0 ? 'even' : 'odd' }} remove-underline js-shape-term">
+  
+  <span class="shape-term__shrapnel" data-shrapnel></span>
+
+  <div class="shape-term__icon" data-shape-icon>
+    {{ term.shape_image.url|file_get_contents|default('<svg width=200 height=200 viewbox="0 0 200 200"><rect x=25 y=25 width=150 height=150 fill=#f9f9f9 stroke-width=0 /></svg>') }}
+  </div>
+  
+  <div class="shape-term__content">
+    <h2 class="shape-term__title">{{ term.name }}</h2>
+
+    <div class="shape-term__img" data-img>
+      {{ macros.img( term.meta('thumbnail_id') ) }}
+    </div>
+    
+    <div class="shape-term__label">
+      <b>{{ label|default('view') }}</b>
+    </div>
+  </div>
+
+</a>

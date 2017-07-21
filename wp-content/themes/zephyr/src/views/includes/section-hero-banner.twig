@@ -1,21 +1,27 @@
 {% if section.title or section.content %}
-<section id="hero-banner-{{ loop.index }}" class="hero">
+<section id="hero-banner-{{ loop.index }}" class="hero hero--banner">
   
+  <div class="hero__overlay"></div>
+
   <div class="hero__body">
 
-    <div class="container container--md text-center">
+    <div class="container container--xl text-right">
       
-      <h1 class="hero__title">{{ section.title }}</h1>
-      
-      {% if section.content %}
-        <p>{{ section.content }}</p>
-      {% endif %}
-      
-      {% set link = section|link_vars %}
+      <div class="container--md pull-right">
+        
+        <h2 class="h1 hero__title mb-2">{{ section.title }}</h2>
+        
+        {% if section.content %}
+          <p class="lead mb-2">{{ section.content|striptags }}</p>
+        {% endif %}
+        
+        {% set link = section|link_vars %}
 
-      {% if link %}
-        <a href="{{ link.href }}" target="{{ link.target }}" class="btn">{{ section.link_label|default('Learn More') }}</a>
-      {% endif %}
+        {% if link %}
+          <a href="{{ link.href }}" target="{{ link.target }}" class="btn btn--white">{{ section.link_label|default('Learn More') }}</a>
+        {% endif %}
+
+      </div>
 
     </div>
       

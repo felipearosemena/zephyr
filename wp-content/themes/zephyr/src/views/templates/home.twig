@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-
-  {% include 'includes/cta-ticker.twig' %}
+  
+  {% include 'includes/product-cat-list.twig' with { terms: terms } %}
   {% include 'includes/flexible-blocks.twig' %}
 
 {% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'layouts/base.twig' %}
+
+{% block content %}
+
+  <section class="section">
+    <div class="container">
+
+      {% do action('woocommerce_before_main_content') %}
+
+      <div class="before-shop-loop">
+        {% do action( 'woocommerce_before_shop_loop') %}
+      </div>
+      
+      <div class="grid">
+        {% for post in products %}
+          <div class="grid__item w-12-12 w-md-6-12 w-lg-4-12">
+            {% include 'components/tease-product.twig' %}
+          </div>
+        {% endfor %}
+      </div>
+
+      {% do action('woocommerce_after_shop_loop') %}
+      {% do action('woocommerce_after_main_content') %}
+    </div>
+  </section>
+
+{% endblock  %}

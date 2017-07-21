@@ -1,0 +1,25 @@
+<section class="section section--product-cat-list">
+  <div class="container">
+
+    <div class="grid grid--shapes">
+      {% for term in terms %}
+        <div class="grid__item w-12-12 w-md-6-12 anim-trigger">
+          {% include 'components/shape-term.twig' with { 
+            term: term,
+            label: 'view cut'
+          } %}
+        </div>
+      {% endfor %}
+      <div class="grid__item w-12-12 w-md-6-12">
+        
+        <div class="container container--flush container--xs">
+          <h3>Tellus Tristique?</h3>
+          <p>Donec sed odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+          <a href="{{ shop_url }}" class="btn mb-2">View All Products</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</section>

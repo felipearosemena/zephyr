@@ -6,10 +6,10 @@
 
 .page-wrap {
   @include site-nav-active-content;
-  padding-top: $bsu*2.5;
+  padding-top: $bsu*3.5;
 
   @include mq-min($bp-main) {
-    padding-top: $bsu*4;
+    padding-top: $bsu*5;
   }
 }
 
