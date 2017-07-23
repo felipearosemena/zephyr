@@ -115,7 +115,10 @@ export function initModal(modalEl, config = {}) {
 
   // Listen for toggle button clicks
   toggleEls.map(el => {
+    console.log(el)
     el.addEventListener('click', e => {
+
+      console.log('click')
       e.preventDefault();
       instance.toggle()
     })

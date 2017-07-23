@@ -19,11 +19,7 @@
 
             {% for item in main_menu.get_items %}
               <li class="{{ item.classes|join(' ') }}" data-animate-transform-left={{ loop.index + 1 }}>
-
-                <a href="{{ item.get_link }}" target="{{ item.is_external ? '_blank' }}">
-                  {{ item.title }} 
-                </a>
-
+                <router-link to="{{ item.get_path }}">{{ item.title }}</router-link>
               </li>
             {% endfor %}
 
@@ -34,11 +30,7 @@
 
             {% for item in util_menu.get_items %}
               <li class="{{ item.classes|join(' ') }}" data-animate-transform-left={{ loop.index + 1 }}>
-
-                <a href="{{ item.get_link }}" target="{{ item.is_external ? '_blank' }}">
-                  {{ item.title }} 
-                </a>
-
+                <router-link to="{{ item.get_path }}">{{ item.title }}</router-link>
               </li>
             {% endfor %}
 

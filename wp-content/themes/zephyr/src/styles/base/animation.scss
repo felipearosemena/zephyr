@@ -5,75 +5,37 @@
  */
 
 
-[data-animate],
-[data-animate-transform],
-[data-animate-transform-left],
-[data-animate-transform-right] {
-  transition: transform $transition-time-slow $transition-timing-default, opacity $transition-time-default $transition-timing-slow;
-
-  .anim-trigger:not(.is-in) &,
-  .site-nav:not(.is-active) & {
-    opacity: 0;
-    transition: transform $transition-time-slow $transition-timing-default, opacity $transition-time-fast $transition-timing-slow;
-  }
-
-  .anim-trigger:not(.is-in) & {
-    transition-delay: 0s;
-  }
-
-  .site-nav:not(.is-active) & {
-    transition-delay: $transition-time-slow;
-  }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity $transition-time-default $transition-timing-slow;
 }
 
-[data-animate-transform-left] {
-  .anim-trigger:not(.is-in) &,
-  .site-nav:not(.is-active) & {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-[data-animate-transform-right] {
-  .anim-trigger:not(.is-in) & {
-    transform: translate3d(50%, 0, 0);
-  }
-}
-
-[data-animate-transform] {
-  .anim-trigger:not(.is-in) &,
-  .site-nav:not(.is-active) & {
-    transform: translate3d(0, $bsu*5, 0);
-  }
+.fade-enter, .fade-leave-to {
+  opacity: 0
 }
 
 // Animation delay
 
-@for $i from 0 through 20 {
+// @for $i from 0 through 20 {
 
-  .anim-delay-#{$i} {
-    animation-delay: #{$i * 0.1}s; 
-  }
+//   .anim-delay-#{$i} {
+//     animation-delay: #{$i * 0.1}s; 
+//   }
 
-  .trans-delay-#{$i},
-  [data-animate="#{$i}"],
-  [data-animate-transform="#{$i}"],
-  [data-animate-transform-left="#{$i}"],
-  [data-animate-transform-right="#{$i}"] {
-    transition-delay: #{$i * 0.1}s; 
-  }
-}
+//   .trans-delay-#{$i} {
+//     transition-delay: #{$i * 0.1}s; 
+//   }
+// }
 
-.svg-animate {
-  @include path-animation($transition-extra-slow);
-}
+// .svg-animate {
+//   @include path-animation($transition-extra-slow);
+// }
 
-.no-transition,
-.no-transition *,
-.no-transition *:after,
-.no-transition *:before {
-  transition: none !important;
-}
-
+// .no-transition,
+// .no-transition *,
+// .no-transition *:after,
+// .no-transition *:before {
+//   transition: none !important;
+// }
 
 .image-loaded {
   @include image-loaded;

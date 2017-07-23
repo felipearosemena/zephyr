@@ -7,8 +7,6 @@ if (!class_exists('Timber')){
 
 $context = Timber::get_context();
 
-d(wc()->cart->get_cart_contents_count());
-
 if (is_singular('product')) {
 
   $context['post']    = Timber::get_post();

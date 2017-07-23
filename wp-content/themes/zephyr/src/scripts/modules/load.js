@@ -67,7 +67,7 @@ export function loadScriptOnce(src) {
  *  
  */
 
-export function loadOnce(url) {
+export function loadOnce(url, type) {
 
   // Check if we've already requested this script
   if(url in requestedURLs) {
@@ -88,5 +88,65 @@ export function loadOnce(url) {
 
   // Return the promise
   return requestedURLs[url];
+
+}
+
+/**
+ * Check for the api response to see if errors were found.
+ * If so, throws an error otherwise returns the original response
+ * 
+ * @param  {Object} response WP Rest API response
+ * @return {Promise/Object} A catcheable promise error or the original response
+ */
+function handleError(response) {
+
+  if (!response.ok) {
+    return response
+      .json()
+      .then(err => {
+        throw new Error(err.code + ': ' + err.message)
+      })
+  } else {
+    return response
+  }
+
+}
+
+/**
+ * 
+ * Perform a fetch request to the WP Rest API. Set's the correct headers 
+ * in order to validate the request.
+ * 
+ * 
+ * @param  {String} endpoint The url to be requested
+ * @param  {String} method   Request method to use ('get' or 'post')
+ * @param  {Object} body     Request body, to be used in 'post' request when sending FormData
+ * @return {Promise}         Promise containing the request response
+ *  
+ */
+
+export function apiFetch(endpoint, method = 'get', body = {}) {
+
+  const headers = {
+    'X-WP-Nonce': Global.nonce
+  }
+
+  if(!(body instanceof FormData)) {
+    headers['Content-Type'] = 'application/json'
+  }
+
+  const key = endpoint + method + JSON.stringify(body)
+
+  return fetch(Global.api + endpoint, {
+    credentials: 'same-origin',
+    method: method,
+    body: body instanceof FormData ? 
+      body : 
+      (method == 'post') ? 
+        JSON.stringify(body) : 
+        null,
+    headers: new Headers(headers)
+  })
+  .then(handleError)
 
 }

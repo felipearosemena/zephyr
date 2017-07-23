@@ -1,4 +1,4 @@
-<section class="newsletter-bar">
+<section class="newsletter-bar" v-if="!sharedState.transiting" v-bind:key="sections.newsletter">
   <div class="container container--sm text-center">
     <h3 class="h2 mb-2">Stay up to date with the freshest news!</h3>
     {% include 'components/newsletter-form.twig' %}

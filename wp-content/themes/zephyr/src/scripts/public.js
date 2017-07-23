@@ -1,93 +1,46 @@
 import './modules/polyfills'
 import './modules/modernizrTests'
 
-import Flickity from 'flickity'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+
 import Cookies from 'js-cookie'
 import smoothScroll from 'smooth-scroll'
 
+import AppFactory    from 'app'
+import HeaderFactory from 'app/header'
+import NavFactory    from 'app/nav'
+
 import router from './modules/router'
 import EventBus from './modules/EventBus'
-import { initModal, initVideoModal } from './modules/modal'
-import createVideoIframe from './modules/video'
-import toggleTarget from './modules/toggleTarget'
-import sharePost from './modules/sharePost'
-import { keyDownEscape, windowResized } from './modules/globalEvents'
 import { collection, getBpObj, toggleClass, debounce, whichTransitionEnd } from './modules/utils'
-import createLoader from './modules/ajaxLoader'
+import { keyDownEscape, windowResized } from './modules/globalEvents'
+
+import sharePost from './modules/sharePost'
+import toggleTarget from './modules/toggleTarget'
+import { initModal, initVideoModal } from './modules/modal'
+
+// import createVideoIframe from './modules/video'
+// import createLoader from './modules/ajaxLoader'
 
 // Stub the console, if it doesn't exist
 window.console = window.console || { log() {} } 
 
-/*----------  Common Function Definitions  ----------*/
-
-
-/**
- * 
- * Ajax Post Loader
- * 
- */
-
-function postLoader() {
-
-  const wrapper = document.querySelector('.js-listing-wrapper')
-  const listing = wrapper.querySelector('.js-listing')
-
-  const loader = createLoader('.js-listing-item', {
-    loadButton: wrapper.querySelector('.js-load-more')
-  })
-
-  const searchForm = wrapper.querySelector('.js-listing-search')
-  const filters = collection(wrapper.querySelectorAll('.js-listing-filter'))
-  const noResults = wrapper.querySelector('.js-no-results')
-
-  loader.subscribe('ajax-loader:no-results', () => {
-    listing.innerHTML = ''
-    listing.appendChild(noResults)
-  })
-  
-  loader.subscribe('ajax-loader:loaded', (items, page) => {
-
-    if(page == 1) {
-      listing.innerHTML = ''
-    }
-
-    items.map(item => listing.appendChild(item))
-
-  })
-
-  // Helper method to set the query
-  const setQuery = el => loader.setQuery(el.name, el.value)
-
-  // DOM event listeners
-
-  if (searchForm) {
-    searchForm.addEventListener('submit', e => {
-      e.preventDefault()
-      setQuery(e.target.querySelector('input'))
-    })
-  }
-
-  if(filters.length) {
-    filters.map(filter => {
-      filter.addEventListener('change', e => setQuery(e.target))
-    })
-  }
-
-}
-
-/*----------  Scripts to Fire on Every Page  ----------*/
-
-const breakpoints = getBpObj()
+Vue.use(VueRouter)
+Vue.use(VueResource)
 
 /**
  *
- * Update the cart total
+ * Initialize App
  * 
  */
 
-// const cartTotals = Cookies.get('woocommerce_items_in_cart') 
+const app    = AppFactory(document.querySelector('.page-wrap'))
+const header = HeaderFactory(document.querySelector('.site-header'))
+const nav    = NavFactory(document.querySelector('#site-nav'))
 
-// collection('[data-cart-totals]').map(el => el.dataset.cartTotals = cartTotals || 0)
+const breakpoints = getBpObj()
 
 /**
  * 
@@ -208,19 +161,6 @@ EventBus.subscribe(windowResized, e => {
   }
 })
 
-
-/**
- *
- * Main Navigation
- * 
- */
-
-const siteNav = initModal(document.querySelector('#site-nav'))
-const bodyToggle = toggleClass(document.body, 'is-nav-active')
-
-siteNav.subscribe('open', () => bodyToggle(true))
-siteNav.subscribe('close', () => bodyToggle(false))
-
 /**
  *
  *  Sliders
@@ -327,64 +267,44 @@ function resetShrapnel(shrapnel) {
   })
 }
 
-collection('.js-shape-term').map(el => {
+// collection('.js-shape-term').map(el => {
 
-  let promise = new Promise(resolve => resolve())
-  let direction = false
+//   let promise = new Promise(resolve => resolve())
+//   let direction = false
 
-  const { href }  = el
-  const shapeSVG = el.querySelector('[data-shape-icon] svg')
-  const shape = shapeSVG.querySelector('path, circle, polygon, ellipse, rect')
-  const shrapnelContainer = el.querySelector('[data-shrapnel]')
-  const shrapnelEls = []
+//   const { href }  = el
+//   const shapeSVG = el.querySelector('[data-shape-icon] svg')
+//   const shape = shapeSVG.querySelector('path, circle, polygon, ellipse, rect')
+//   const shrapnelContainer = el.querySelector('[data-shrapnel]')
+//   const shrapnelEls = []
 
-  const toggle = bool => {
-    toggleClass(el, 'is-hovered', bool)
+//   const toggle = bool => {
+//     toggleClass(el, 'is-hovered', bool)
 
-    if(bool) {
-      animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
-    } else {
-      resetShrapnel(shrapnelEls)
-    }
-  }
+//     if(bool) {
+//       animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
+//     } else {
+//       resetShrapnel(shrapnelEls)
+//     }
+//   }
 
-  let shrapnelCount = 4
+//   let shrapnelCount = 4
 
-  if(shape) {
+//   if(shape) {
  
-    // while(shrapnelCount--) {
-    //   shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
-    // }
+//     // while(shrapnelCount--) {
+//     //   shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
+//     // }
 
-    shape.addEventListener('mouseover' , () => toggle(true))
-    shape.addEventListener('mouseleave', () => toggle(false))
-    shape.addEventListener('click', () => window.location = href)
-    el.addEventListener('click', e => e.preventDefault())
+//     shape.addEventListener('mouseover' , () => toggle(true))
+//     shape.addEventListener('mouseleave', () => toggle(false))
+//     shape.addEventListener('click', () => window.location = href)
+//     el.addEventListener('click', e => e.preventDefault())
 
-  }
+//   }
 
-})
+// })
 
-/*----------  Route Specific  ----------*/
-
-router({
-  home() {
-    
-  },
-
-  blog() {
-    postLoader()
-  },
-
-  team() {
-    postLoader()
-  },
-
-  search() {
-    postLoader()
-  }
-})
 
 // Fire initial custom events
-
 EventBus.publish(windowResized)

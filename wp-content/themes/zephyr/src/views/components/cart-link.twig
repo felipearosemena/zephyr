@@ -1,4 +1,3 @@
-<a href="{{ cart_url }}" class="{{ namespace }}__cart cart-link">
-  cart
-  <span data-cart-totals="{{ cart_totals }}"></span>
-</a>
+<router-link to='/cart' class="{{ namespace }}__cart cart-link">
+  <span v-html="cart.total">0</span>
+</router-link>
