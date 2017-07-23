@@ -18,6 +18,8 @@ var path = require( 'path' );
 var criticalcss = require("criticalcss");
 var fs = require('fs');
 var tmpDir = require('os').tmpdir();
+var aliasify = require('aliasify')
+var stringify = require('stringify')
 
 var bundler;
 
@@ -40,7 +42,20 @@ function getBundler(src, presets) {
       packageCache: {}, // required for watchify
       fullPaths: process.env.NODE_ENV != 'production' // required to be true only for watchify
     }))
+    .transform(stringify, {
+      appliesTo: [ '.html' ]
+    })
     .transform(babelify, { presets: presets })
+    .transform(aliasify, {
+      aliases: {
+        'app': themePath + '/src/scripts/app',
+        'modules': themePath + '/src/scripts/modules',
+        'templates': themePath + '/src/scripts/templates',
+        'vue' : 'vue/dist/vue.common',
+        'vue-router' : 'vue-router/dist/vue-router.common',
+        'vue-resource' : 'vue-resource/dist/vue-resource.common'
+      }
+    })
   }
 
   return bundler;
