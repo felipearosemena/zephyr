@@ -1,4 +1,5 @@
-import { apiFetch } from 'modules/load'
+import CartService from 'app/cart.service'
+import ProductService from 'app/product.service'
 
 const store = {
 
@@ -9,17 +10,11 @@ const store = {
     cachedResponses: {},
     transiting: false,
     initialized: true,
-    cart: {
-      total: 0,
-      items: []
-    }
+    cart: CartService.cart,
+    products: ProductService.products,
+    product : {}
   },
 
-  getCart() {
-    apiFetch(Global.api_namespace + '/cart')
-      .then(res => res.json())
-      .then(res => console.log(res))
-  },
 
   setState(k, v) {
 
@@ -29,6 +24,20 @@ const store = {
 
     this.state[k] = v
 
+  },
+
+  setProduct(slug) {
+    ProductService
+      .loadProducts({ slug: slug })
+      .then(products => {
+
+        if(products.length) {
+          this.setState('product', products[0])
+        }
+
+
+
+      })
   },
 
   cacheResponse(k, html) {
@@ -46,19 +55,8 @@ const store = {
 
     this.setState('pageContent', doc.querySelector('.page-content').innerHTML)
 
-  },
+  }
 
-  init() {
-
-    if(this.initialized) {
-      return
-    }
-
-    this.getCart()
-
-    this.initialized = true
-
-  },
 }
 
 export default store

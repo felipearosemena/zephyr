@@ -19,7 +19,7 @@ class Enqueue
     add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_scripts__enqueueScripts' ) );
     add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_styles__enqueueStyles' ) );
 
-    add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_scripts__woocommerce_script_cleaner' ), 99 );
+    add_action( 'wp_enqueue_scripts', array( &$this, 'wp_enqueue_scripts__woocommerce_script_cleaner' ), 10000 );
 
   } /* __construct() */
 
@@ -31,6 +31,8 @@ class Enqueue
     // Remove the generator tag
     remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
 
+    global $wp_scripts;
+
     wp_dequeue_style( 'woocommerce-general');
     wp_dequeue_style( 'woocommerce-layout' );
     wp_dequeue_style( 'woocommerce_frontend_styles' );
@@ -39,29 +41,29 @@ class Enqueue
     wp_dequeue_style( 'woocommerce_chosen_styles' );
     wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
 
-    wp_dequeue_script( 'wc-add-payment-method' );
-    wp_dequeue_script( 'wc-lost-password' );
-    wp_dequeue_script( 'wc_price_slider' );
-    wp_dequeue_script( 'wc-single-product' );
-    wp_dequeue_script( 'wc-add-to-cart' );
-    wp_dequeue_script( 'wc-cart-fragments' );
-    wp_dequeue_script( 'wc-credit-card-form' );
-    wp_dequeue_script( 'wc-add-to-cart-variation' );
-    wp_dequeue_script( 'wc-single-product' );
-    wp_dequeue_script( 'wc-cart' );
-    wp_dequeue_script( 'wc-chosen' );
-    wp_dequeue_script( 'prettyPhoto' );
-    wp_dequeue_script( 'prettyPhoto-init' );
-    wp_dequeue_script( 'jquery' );
-    wp_dequeue_script( 'jquery-blockui' );
-    wp_dequeue_script( 'jquery-placeholder' );
-    wp_dequeue_script( 'jquery-payment' );
-    wp_dequeue_script( 'fancybox' );
-    wp_dequeue_script( 'jqueryui' );
-    wp_dequeue_script( 'wc-checkout' );
-    wp_dequeue_script( 'woocommerce' );
-    wp_dequeue_script( 'woocommerce_stripe' );
-    wp_dequeue_script( 'woocommerce_stripe_apple_pay' );
+    wp_deregister_script( 'wc-add-payment-method' );
+    wp_deregister_script( 'wc-lost-password' );
+    wp_deregister_script( 'wc_price_slider' );
+    wp_deregister_script( 'wc-single-product' );
+    wp_deregister_script( 'wc-add-to-cart' );
+    wp_deregister_script( 'wc-cart-fragments' );
+    wp_deregister_script( 'wc-credit-card-form' );
+    wp_deregister_script( 'wc-add-to-cart-variation' );
+    wp_deregister_script( 'wc-single-product' );
+    wp_deregister_script( 'wc-cart' );
+    wp_deregister_script( 'wc-chosen' );
+    wp_deregister_script( 'prettyPhoto' );
+    wp_deregister_script( 'prettyPhoto-init' );
+    wp_deregister_script( 'jquery' );
+    wp_deregister_script( 'jquery-blockui' );
+    wp_deregister_script( 'jquery-placeholder' );
+    wp_deregister_script( 'jquery-payment' );
+    wp_deregister_script( 'fancybox' );
+    wp_deregister_script( 'jqueryui' );
+    wp_deregister_script( 'wc-checkout' );
+    wp_deregister_script( 'woocommerce' );
+    wp_deregister_script( 'woocommerce_stripe' );
+    wp_deregister_script( 'woocommerce_stripe_apple_pay' );
 
     if(is_page_template('templates/dashboard.php')) {
     };

@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"produ",
+				"product"
+			],
+			[
+				"transfor",
+				"transform"
+			],
+			[
+				"trans",
+				"transiting"
+			],
+			[
+				"theme",
+				"themePath"
+			],
+			[
+				"page",
+				"pageContent"
+			],
+			[
 				"min-",
 				"min-height"
 			],
@@ -126,10 +146,6 @@
 			[
 				"margin",
 				"margin-bottom"
-			],
-			[
-				"trans",
-				"transition-default"
 			],
 			[
 				"transf",
@@ -498,159 +514,11 @@
 			[
 				"compo",
 				"componentWillReceiveProps\t Life Cycle"
-			],
-			[
-				"color",
-				"color-primary"
-			],
-			[
-				"get_smp",
-				"get_sample_status_options"
-			],
-			[
-				"toggle",
-				"toggleDatePicker"
-			],
-			[
-				"sampling",
-				"sampling_date"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "wp-content/themes/zephyr/src/styles/views/global.scss",
-			"settings":
-			{
-				"buffer_size": 652,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/page.php",
-			"settings":
-			{
-				"buffer_size": 228,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/index.php",
-			"settings":
-			{
-				"buffer_size": 592,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/header.php",
-			"settings":
-			{
-				"buffer_size": 276,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/views/page-plugin.twig",
-			"settings":
-			{
-				"buffer_size": 139,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/woocommerce.php",
-			"settings":
-			{
-				"buffer_size": 858,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/views/templates/shop.twig",
-			"settings":
-			{
-				"buffer_size": 667,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/lib/Twig.php",
-			"settings":
-			{
-				"buffer_size": 4632,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/styles/views/section.scss",
-			"settings":
-			{
-				"buffer_size": 412,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/views/components/tease-product.twig",
-			"settings":
-			{
-				"buffer_size": 1041,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/functions.php",
-			"settings":
-			{
-				"buffer_size": 640,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/scripts/public.js",
-			"settings":
-			{
-				"buffer_size": 7961,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/views/components/cart-link.twig",
-			"settings":
-			{
-				"buffer_size": 130,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/views/index.twig",
-			"settings":
-			{
-				"buffer_size": 2775,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "wp-content/themes/zephyr/src/views/page.twig",
-			"settings":
-			{
-				"buffer_size": 498,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -785,21 +653,92 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/Felipe/Sites/zephyr",
-		"/Users/Felipe/Sites/zephyr/wp-content",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/templates/single-product/add-to-cart",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes"
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/cart",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/loop",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/single-product",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/single-product/add-to-cart"
 	],
 	"file_history":
 	[
-		"/Users/Felipe/Documents/BW/Dev Hiring Docs/front-end-hire-criteria.md",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Twig.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/REST.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/public.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/functions.php",
+		"/Users/Felipe/Sites/modern-web-apps-with-angular-2/projector/app/auth.service.ts",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/single-product/add-to-cart/variable.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/single-product/add-to-cart/simple.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/grouped.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/variation-add-to-cart-button.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Enqueue.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/tease-product.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/loop/add-to-cart.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/load.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/app/cart.component.html",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/utils.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/product.service.js",
+		"/Users/Felipe/Sites/base/to-do.md",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/store.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/layouts/base.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/newsletter-bar.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/default.component.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/cart.service.js",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/single-product.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/footer.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/cart-item.component.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/cart.component.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/cart-link.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/header.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/variable.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/templates/single-product/add-to-cart/simple.php",
+		"/Users/Felipe/Sites/tides/wp-content/themes/tides/lib/REST.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce/cart/cart.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/templates/loop/add-to-cart.php",
+		"/Users/Felipe/Sites/zephyr/package.json",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/includes/wc-template-functions.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/includes/wc-template-hooks.php",
+		"/Users/Felipe/Sites/zephyr/gulpfile.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/templates/cart.component.html",
+		"/Users/Felipe/Sites/zephyr/node_modules/rx/dist/rx.core.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/animation.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/single.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/routes.js",
+		"/Users/Felipe/Sites/zephyr/wp-config.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/includes/abstracts/abstract-wc-rest-crud-controller.php",
+		"/Users/Felipe/Sites/zephyr/wp-includes/rest-api/class-wp-rest-server.php",
+		"/Users/Felipe/Sites/tides/wp-content/themes/tides/functions.php",
+		"/Users/Felipe/Sites/ubiodiscovery/wp-content/mu-plugins/rest-api/lib/endpoints/class-wp-rest-posts-controller.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/global.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/page.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/nav.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/header.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/templates/home.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/index.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/templates/shop.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/modal.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/site-nav.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/hero.twig",
+		"/Users/Felipe/Sites/zephyr/node_modules/vue/dist/vue.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/router.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/app/directive.visible",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/page-wrap.js",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/macros.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/index.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/woocommerce.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/page-plugin.twig",
+		"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce/templates/cart/cart.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/header.php",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/section.scss",
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/page.twig",
+		"/Users/Felipe/Documents/BW/Dev Hiring Docs/front-end-hire-criteria.md",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/product-cat-list.scss",
 		"/Users/Felipe/Projects/zephyr/id/Round.svg",
 		"/Users/Felipe/Projects/zephyr/id/Pear.svg",
@@ -809,28 +748,20 @@
 		"/Users/Felipe/Projects/zephyr/id/Cushion.svg",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/typography.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/uploads/2017/07/Pear.svg",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/public.js",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/newsletter-form.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/newsletter-bar.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/section.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/variables.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/shape-term.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/shape-term.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/animation.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/sidebar.php",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/grid.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/product-cat-list.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/hero.twig",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/section-hero-banner.twig",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/templates/home.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/templates/home.twig",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/hero.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/header.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/buttons.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/footer.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/social-nav.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/footer.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/site-nav.twig",
 		"/Users/Felipe/Sites/zephyr/to-do.md",
 		"/Users/Felipe/Desktop/Pear.svg",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/public.scss",
@@ -839,10 +770,7 @@
 		"/Users/Felipe/Sites/zephyr/wp-content/uploads/2017/07/Round.svg",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/icons.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/site-nav.scss",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/header.twig",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/site-nav-toggle.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/components/cart-link.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/global.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/mixins.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/modal.scss",
 		"/Users/Felipe/Sites/tides/wp-content/themes/tides/src/icomoon/style.css",
@@ -850,14 +778,11 @@
 		"/Users/Felipe/Projects/zephyr/code/adamapp.js",
 		"/Users/Felipe/Projects/zephyr/id/ZephyrLogoFull.svg",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/container.scss",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/modal.js",
 		"/Users/Felipe/Sites/zephyr/wp-content/plugins/advanced-custom-fields-pro/acf.php",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/nav.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/forms.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/images/zephyr-icon.svg",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/layouts/base.twig",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views/includes/header-icons.twig",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/utils.js",
 		"/Users/Felipe/Sites/tides/wp-content/themes/tides/src/styles/base/mixins.scss",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/base/fonts.scss",
 		"/Users/Felipe/Sites/zephyr-shopify/src/styles/settings/fonts.scss.liquid",
@@ -866,65 +791,11 @@
 		"/Users/Felipe/Sites/zephyr-shopify/src/styles/settings/variables.scss.liquid",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/CustomTaxonomies.php",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/CustomPostTypes.php",
-		"/Users/Felipe/Sites/zephyr/wp-config.php",
 		"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib/Enqueue.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/functions.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Enqueue.php",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Setup.php",
 		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/views/woocommerce.scss",
 		"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles/views/cart.scss",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/dist/styles/public.css",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/styles/components/gravity-forms.scss",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/dist/scripts/public.js",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts/modules/form.js",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Video.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Utils.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/GravityForms.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Search.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Social.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/TinyMCE.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/lib/Media.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/404.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/attachment.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/index.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/page.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/search.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/single.php",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/templates/team.php",
-		"/Users/Felipe/Sites/zephyr/package.json",
-		"/Users/Felipe/Sites/zephyr/composer.json",
-		"/Users/Felipe/Sites/zephyr/gulpfile.js",
-		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/style.css",
-		"/Users/Felipe/Sites/zephyr-shopify/todo.md",
-		"/Users/Felipe/Sites/zephyr/src/styles/tools/mixins.scss",
-		"/Users/Felipe/Sites/zephyr/src/styles/global/typography.scss",
-		"/Users/Felipe/Sites/zephyr/src/styles/settings/fonts.scss.liquid",
-		"/Users/Felipe/Sites/zephyr/src/styles/theme.scss",
-		"/Users/Felipe/Sites/zephyr/src/styles/global/container.scss",
-		"/Users/Felipe/Sites/zephyr/src/sections/header.liquid",
-		"/Users/Felipe/Sites/zephyr/src/layout/theme.liquid",
-		"/Users/Felipe/Sites/zephyr/src/styles/settings/variables.scss.liquid",
-		"/Users/Felipe/Sites/zephyr/src/styles/modules/site-header.scss",
-		"/Users/Felipe/Sites/nelp/content/themes/rmw/src/styles/base/fonts.scss",
-		"/Users/Felipe/Sites/zephyr/src/config/settings_data.json",
-		"/Users/Felipe/Sites/zephyr/config.yml",
-		"/Users/Felipe/Sites/zephyr/dist/config/settings_data.json",
-		"/Users/Felipe/Sites/zephyr/src/config/settings_schema.json",
-		"/Users/Felipe/Sites/zephyr/assets/colors.scss.liquid",
-		"/Users/Felipe/Sites/zephyr/assets/colors-ajax-cart.js.liquid",
-		"/Users/Felipe/Sites/zephyr/snippets/footer-javascript.liquid",
-		"/Users/Felipe/Sites/zephyr/assets/colors.js.liquid",
-		"/Users/Felipe/Sites/zephyr/layout/password.liquid",
-		"/Users/Felipe/Sites/zephyr/todo.md",
-		"/Users/Felipe/Projects/zephyr/shopify site/id/Cushion.svg",
-		"/Users/Felipe/Projects/zephyr/Site Plan",
-		"/Users/Felipe/Sites/zephyr/snippets/ajax-cart-template.liquid",
-		"/Users/Felipe/.ssh/id_rsa.pub",
-		"/Users/Felipe/Projects/BW/Tides/design-handoff-pete.mdown",
-		"/Users/Felipe/Documents/personal/quotes & invoicing/editableinvoice/index.html",
-		"/Users/Felipe/Projects/BW/Tides/cms-plan.mdown",
-		"/Users/Felipe/Documents/personal/quotes & invoicing/editableinvoice/js/example.js",
-		"/Users/Felipe/Sites/ledmachq/drive/themes/ledmachq/assets/src/js/modules/utils.js"
+		"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/dist/styles/public.css"
 	],
 	"find":
 	{
@@ -935,6 +806,28 @@
 		"height": 234.0,
 		"where_history":
 		[
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts",
+			"/Users/Felipe/Sites/zephyr",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
+			"/Users/Felipe/Sites/zephyr/wp-content/plugins/woocommerce",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts",
+			"/Users/Felipe/Sites/zephyr",
+			"/Users/Felipe/Sites/zephyr/wp-includes",
+			"/Users/Felipe/Sites/zephyr/wp-content/plugins",
+			"/Users/Felipe/Sites/tides/wp-content/themes/tides",
+			"/Users/Felipe/Sites/zephyr/wp-content",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts",
+			"/Users/Felipe/Sites/zephyr/node_modules/vue",
+			"/Users/Felipe/Sites/zephyr/node_modules/vue/dist",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts",
+			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr",
 			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/views",
 			"/Users/Felipe/Sites/zephyr/wp-content/themes/zephyr/src/scripts",
 			"/Users/Felipe/Sites/tides/wp-content/themes/tides/src/styles",
@@ -1040,29 +933,7 @@
 			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
 			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
 			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/views",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app",
-			"/Users/Felipe/Sites/kipp/wp-content/themes/kipp/src/views",
-			"/Users/Felipe/Sites/kipp/wp-content/themes/kipp/src",
-			"/Users/Felipe/Sites/kipp/wp-content/themes",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles/app",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/styles",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/plugins",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck",
-			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/lib"
+			"/Users/Felipe/Sites/ubiodiscovery/wp-content/themes/starterdeck/src/app"
 		]
 	},
 	"find_state":
@@ -1070,6 +941,105 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"sharedState",
+			"setState",
+			"Defaul",
+			"getCart",
+			"CartService",
+			"app",
+			"setCurrentVi",
+			"createSectionComp",
+			"arrayToOb",
+			"WC_REST_Posts_Controller",
+			"WP_REST_Posts_Controller",
+			"use WP_REST_Posts_Controller",
+			"\nuse WP_REST_Posts_Controller",
+			"\nuse WP_REST_Posts_Controller;",
+			"nam",
+			"fre",
+			"items",
+			"store",
+			"total",
+			"addTo",
+			"total",
+			"addT",
+			"vue-rx",
+			"rx",
+			"cart",
+			"getU",
+			"eventToObservable",
+			"filter__set_global_product",
+			"woocommerce_after_shop_loop_item",
+			"rx",
+			"Observabl",
+			"isTr",
+			"transiti",
+			"cach",
+			"http",
+			"getCar",
+			"getCart",
+			"Smooth",
+			"smoothScro",
+			"init",
+			"criti",
+			"_Post",
+			"WP_REST_Controller",
+			"_Controller",
+			"WP_REST_Server",
+			"WP_REST_Posts_Controller",
+			"store",
+			"timber_set_product",
+			"local",
+			"nonce",
+			"cartTotal",
+			"Cart",
+			"Default",
+			"default",
+			"initModa",
+			"currentView",
+			"template",
+			"setCu",
+			"components",
+			"default",
+			"setC",
+			"setCurrent",
+			"createSub",
+			"currentView",
+			"arrayTo",
+			"routeComponents",
+			"currentVi",
+			"data",
+			"currentView",
+			"click",
+			"routes",
+			"page-content",
+			"outer",
+			"sharedS",
+			"innerh",
+			"defaul",
+			"use",
+			"partial",
+			"partia",
+			"v-html",
+			"share",
+			"sharedState",
+			"setPage",
+			"before",
+			"site-nav",
+			"siteNav",
+			"site-he",
+			"header",
+			"router",
+			"setState",
+			"loa",
+			"mouseover",
+			"hover",
+			"res",
+			"inner",
+			"style",
+			"App",
+			"get_cart_contents_count",
+			"collection",
 			"487",
 			"FG_Don",
 			"get-thi",
@@ -1098,106 +1068,7 @@
 			"hover-underlin",
 			"sub",
 			"h1-",
-			"onClo",
-			"subscribe('",
-			"modal:open",
-			"logo",
-			"__lin",
-			"under",
-			"unde",
-			"underlin",
-			"btn-",
-			"mobil",
-			"logo",
-			"container-pad",
-			"site-header__t",
-			"cta",
-			"util",
-			"site-nav__me",
-			"site-nav",
-			"mobile",
-			"mobile-sear",
-			"mobile",
-			"mobile-nav",
-			"mobile",
-			"mobile-nav",
-			"colo",
-			"grid-large",
-			"briteweb",
-			"BW_DEV",
-			"DEBUG",
-			"BW_DEV",
-			"form-con",
-			"bp-table",
-			"bp-ta",
-			"font-s",
-			"wp_enqueue_scripts__dashboardScriptsAndStyles",
-			"felipow",
-			"ajax",
-			"even",
-			"gravity",
-			"get_currentuserinfo",
-			"critical",
-			"briteweb",
-			"Ynah",
-			"vivash",
-			"Andrew Vivash",
-			"ale@briteweb.com",
-			"andrew@briteweb.com",
-			"briteweb",
-			"briteweb/package",
-			"briteweb",
-			"ynah@briteweb.com",
-			"tanner@briteweb.com",
-			"felipe@briteweb.com",
-			"zephyrw",
-			"briteweb/base-project",
-			"briteweb",
-			"transform",
-			"body-font",
-			"font-stack-body",
-			"font-stack-",
-			"asset_",
-			"fon",
-			"add-to-cart",
-			"add-to-card",
-			"on('click",
-			"data-action=add-",
-			"click",
-			"addToCart",
-			"selectors.addToCart",
-			"addToCart-product-template",
-			"sections =",
-			"register(",
-			"constructors",
-			"underscore",
-			"gradi",
-			"bloc",
-			"align",
-			"template-about",
-			"click",
-			"setActive",
-			"click",
-			"setActive",
-			"offset",
-			"__bod",
-			"__bg",
-			"is-selec",
-			"preload",
-			"galler",
-			"scrollDo",
-			"sha",
-			"SubNav",
-			"mfp-content",
-			"heroSli",
-			"cells",
-			"hero__heading",
-			"))",
-			"currentI",
-			"fli",
-			"heroSlide",
-			"ScrollDown",
-			"Scrol"
+			"onClo"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1343,447 +1214,8 @@
 	"groups":
 	[
 		{
-			"selected": 11,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "wp-content/themes/zephyr/src/styles/views/global.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 652,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								218,
-								218
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "wp-content/themes/zephyr/page.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 228,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								215,
-								215
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "wp-content/themes/zephyr/index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 592,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								552,
-								552
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "wp-content/themes/zephyr/header.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 276,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								275,
-								224
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "wp-content/themes/zephyr/src/views/page-plugin.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 139,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								83,
-								83
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "wp-content/themes/zephyr/woocommerce.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 858,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								221,
-								258
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "wp-content/themes/zephyr/src/views/templates/shop.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 667,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								538,
-								565
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "wp-content/themes/zephyr/lib/Twig.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4632,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1346,
-								1346
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 332.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "wp-content/themes/zephyr/src/styles/views/section.scss",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 412,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								347,
-								347
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "wp-content/themes/zephyr/src/views/components/tease-product.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1041,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								577,
-								577
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "wp-content/themes/zephyr/functions.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 640,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								596,
-								596
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "wp-content/themes/zephyr/src/scripts/public.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7961,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2150,
-								2150
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 648.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "wp-content/themes/zephyr/src/views/components/cart-link.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 130,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								113,
-								113
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "wp-content/themes/zephyr/src/views/index.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2775,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								2775
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "wp-content/themes/zephyr/src/views/page.twig",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 498,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Twig/Syntaxes/HTML (Twig).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1818,6 +1250,14 @@
 		]
 	},
 	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 108.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -1826,7 +1266,7 @@
 	"project": "zephyr.sublime-project",
 	"replace":
 	{
-		"height": 114.0
+		"height": 46.0
 	},
 	"save_all_on_build": true,
 	"select_file":

@@ -6,7 +6,7 @@
 
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity $transition-time-default $transition-timing-slow;
+  transition: opacity $transition-time-fast linear;
 }
 
 .fade-enter, .fade-leave-to {

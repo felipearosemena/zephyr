@@ -74,10 +74,21 @@ class Twig extends TimberSite
     $twig->addFilter('file_get_contents', new Twig_Filter_Function(array(&$this, 'filter__file_get_contents' )));
     $twig->addFilter('link_vars', new Twig_Filter_Function(array(&$this, 'filter__link_vars' )));
     $twig->addFilter('first_item', new Twig_Filter_Function(array(&$this, 'filter__first_item' )));
+    $twig->addFilter('set_global_product', new Twig_Filter_Function(array(&$this, 'filter__set_global_product' )));
+
 
     return $twig;
 
   } /* get_twig() */
+
+  function filter__set_global_product( $post ) {
+
+    global $product;
+
+    if ( is_woocommerce() ) {
+      $product = wc_get_product($post->ID);
+    }
+  }
 
   /**
    * Limits the character output of a string, adding elipsis if the result was trimmed.

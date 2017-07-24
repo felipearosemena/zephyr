@@ -6,7 +6,7 @@ import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
 import Cookies from 'js-cookie'
-import smoothScroll from 'smooth-scroll'
+import SmoothScroll from 'smooth-scroll'
 
 import AppFactory    from 'app'
 import HeaderFactory from 'app/header'
@@ -62,6 +62,8 @@ collection('[data-card-click]').map(card => {
  * Smooth scroll for links within the same page
  * 
  */
+
+const smoothScroll = new SmoothScroll()
 
 EventBus.subscribe(windowResized, e => {
   smoothScroll.init({

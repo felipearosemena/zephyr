@@ -7,7 +7,8 @@ use WP_Error;
 use WP_Query;
 use Timber;
 use TimberImage;
-use WP_REST_Controller;
+use WP_REST_Posts_Controller;
+use WC_REST_Products_Controller;
 use WP_REST_Response;
 
 
@@ -97,30 +98,37 @@ class REST {
   public function get_cart($params)
   {
 
+    $product_ids = [];
 
-    $args = array(
-      'posts__in' => [],
-      'posts_per_page' => -1
-    );
+    $cart = wc()->cart;
+    $cart->count = $cart->get_cart_contents_count();
 
-    if(isset($params['page'])) {
-      $args['paged'] = $params['page'];
+    foreach($cart->get_cart() as $item) {
+
+      $id = $item['product_id'];
+
+      if(!isset($products[$id])) {
+        $product_ids[] = $id;
+      }
     }
 
-    $posts = [];
-    $query = new WP_Query($args);
-    $controller = new WP_REST_Controller();
-    return $posts;
+    $products = [];
+    $query = new WP_Query(array(
+      'post_type' => 'product',
+      'posts_per_page' => -1,
+      'post__in' => $product_ids
+    ));
+
+    $controller = new WC_REST_Products_Controller();
 
     foreach ( $query->get_posts() as $post ) {
        $data    = $controller->prepare_item_for_response( $post, $params );
-       $posts[] = $controller->prepare_response_for_collection( $data );
+       $products[] = $controller->prepare_response_for_collection( $data );
     }
 
-    $response = new WP_REST_Response($posts, 200);
+    $cart->products = $products;
 
-    $response->header('X-WP-Total', $query->found_posts);
-    $response->header('X-WP-TotalPages', $query->max_num_pages);
+    $response = new WP_REST_Response($cart, 200);
 
     return $response;
 

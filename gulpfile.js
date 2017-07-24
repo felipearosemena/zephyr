@@ -15,7 +15,6 @@ var clean = require('gulp-clean');
 
 var request = require('request');
 var path = require( 'path' );
-var criticalcss = require("criticalcss");
 var fs = require('fs');
 var tmpDir = require('os').tmpdir();
 var aliasify = require('aliasify')
@@ -50,7 +49,7 @@ function getBundler(src, presets) {
       aliases: {
         'app': themePath + '/src/scripts/app',
         'modules': themePath + '/src/scripts/modules',
-        'templates': themePath + '/src/scripts/templates',
+        'templates': themePath + '/src/views/app',
         'vue' : 'vue/dist/vue.common',
         'vue-router' : 'vue-router/dist/vue-router.common',
         'vue-resource' : 'vue-resource/dist/vue-resource.common'
@@ -141,45 +140,6 @@ gulp.task('styles', function(){
     themePath + '/dist/styles/'
   );
 });
-
-gulp.task('critical', function() {
-
-  var cssUrl = siteUrl + themePath.replace('.', '') + '/dist/styles/public.css';
-  var cssPath = path.join( tmpDir, 'inline.css' );
-
-  request(cssUrl).pipe(fs.createWriteStream(cssPath)).on('close', function() {
-    criticalcss.getRules(cssPath, function(err, output) {
-      if (err) {
-        throw new Error(err);
-      } else {
-        criticalcss.findCritical(siteUrl, { 
-          rules: JSON.parse(output),
-          ignoreConsole: true,
-          width: 1920,
-          height: 1080
-        }, function(err, output) {
-          if (err) {
-            throw new Error(err);
-          } else {
-
-            var src = themePath + '/dist/styles/inline.css'
-            var outputDir = themePath + '/dist/styles/'
-
-            fs.writeFileSync(src, output)
-            gulp.src(src)
-              .pipe(rename({suffix: '.min'}))
-              .pipe(minifycss({
-                relativeTo: outputDir,
-                processImport: true
-              }))
-              .pipe(gulp.dest(outputDir))
-          }
-        });
-      }
-    });
-  });
-
-})
 
 gulp.task('build', function() {
 

@@ -398,8 +398,8 @@ th {
  * 
  */
 .fade-enter-active, .fade-leave-active {
-  -webkit-transition: opacity 0.45s cubic-bezier(0.77, 0, 0.175, 1);
-  transition: opacity 0.45s cubic-bezier(0.77, 0, 0.175, 1); }
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear; }
 
 .fade-enter, .fade-leave-to {
   opacity: 0; }

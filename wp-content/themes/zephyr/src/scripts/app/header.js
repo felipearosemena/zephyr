@@ -8,7 +8,9 @@ export default function HeaderFactory(el) {
   const header = new Vue({
     el: el,
     router: router,
-    data: store.state
+    data: {
+      cart: store.state.cart
+    }
   })
 
   return header

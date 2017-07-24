@@ -22,6 +22,9 @@ class App {
 
     self::$instance = $this;
 
+    // add_action('wp_head', function() {
+    //   d(wc()->cart->get_cart());
+    // });
 
       /**
        * Instantiate app classes

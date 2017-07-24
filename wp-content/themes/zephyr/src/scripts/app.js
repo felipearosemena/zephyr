@@ -4,26 +4,26 @@ import VueResource from 'vue-resource'
 
 import router from 'app/router'
 import store from 'app/store'
+import Default from 'app/default.component'
 import Cart from 'app/cart.component'
+import CartService from 'app/cart.service'
+import ProductService from 'app/product.service'
+
 
 import { arrayToObj } from 'modules/utils'
-
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
-store.init()
-
-// const Default = { template: '<h1 class="mt-2 mb-2">Default</h1>' }
-const Default = { template: '<span></span>' }
-
 const options = {
 
   data:  {
-    sharedState: store.state,
+    state: store.state,
     routeComponents: {},
     currentView: 'default',
-    sections: arrayToObj(['hero', 'content', 'bottom', 'newsletter', 'footer'], s => s)
+    sections: arrayToObj(['hero', 'content', 'bottom', 'newsletter', 'footer'], s => s),
+    CartService: CartService,
+    cacheExclude: [ '/cart' ]
   },
 
   methods: {
@@ -72,22 +72,50 @@ export default function AppFactory(el) {
   setCurrentView(app, el.innerHTML)
 
   router.addRoutes([
-    { path: '*', components: { 
+    {
+      path: '/product/:slug',
+      beforeEnter: (to, from, next) => {
+
+        const { slug } = to.params
+
+        store.setProduct(slug)
+
+        next()
+      }
+    },
+    { 
+      path: '*', 
+      components: { 
         default: Default,
         cart: Cart
-      } 
+      }
     }
   ])
+
 
   router
     .beforeEach((to, from, next) => {
 
       next()
 
+      const finalize = html => {
+
+        setCurrentView(app, html)
+        store.cacheResponse(to.path, html)
+
+        setTimeout(() => {
+          store.setState('transiting', false)
+        }, 0)
+
+      }
+
       store.setState('transiting', true)
 
-      app.$http
-        .get(to.path, {
+      if(store.isCached(to.path) && app.cacheExclude.indexOf(to.path) == -1) {
+        finalize(store.state.cachedResponses[to.path])
+      } else {
+
+        app.$http.get(to.path, {
           before: request => {
 
             if (app.previousRequest) {
@@ -99,13 +127,10 @@ export default function AppFactory(el) {
 
           }
         })
-        .then(res => {
-
-          setCurrentView(app, res.body)
-          store.setState('transiting', false)
-
-        })
+        .then(res => finalize(res.body))
         .catch(err => console.log(err))
+
+      }
 
     })
 
