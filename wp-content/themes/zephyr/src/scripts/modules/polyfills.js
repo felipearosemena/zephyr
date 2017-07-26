@@ -21,9 +21,6 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
-// Patch Buggy Viewport units on IOS devices
-vuBuggyfill.init()
-
 /**
  *
  * Dataset Polyfill
