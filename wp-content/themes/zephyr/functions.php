@@ -29,17 +29,17 @@ class App {
       /**
        * Instantiate app classes
        */
-      new BW\CustomPostTypes();
-      new BW\CustomTaxonomies();
-      new BW\Enqueue();
-      new BW\Media();
-      new BW\Search();
-      new BW\Setup();
-      new BW\Social();
-      new BW\Twig();
-      new BW\TinyMCE();
+      new Z\CustomPostTypes();
+      new Z\CustomTaxonomies();
+      new Z\Enqueue();
+      new Z\Media();
+      new Z\Search();
+      new Z\Setup();
+      new Z\Social();
+      new Z\Twig();
+      new Z\TinyMCE();
 
-      $this->rest = new BW\REST();
+      $this->rest = new Z\REST();
 
   }
 

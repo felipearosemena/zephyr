@@ -20,7 +20,7 @@
  *
  */
 
-namespace BW;
+namespace Z;
 
 class SharePost 
 {

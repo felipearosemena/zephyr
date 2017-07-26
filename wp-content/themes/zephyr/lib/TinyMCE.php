@@ -1,6 +1,6 @@
 <?php
 
-namespace BW;
+namespace Z;
 
 /**
  *

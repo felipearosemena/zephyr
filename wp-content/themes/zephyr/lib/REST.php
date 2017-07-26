@@ -1,6 +1,6 @@
 <?php
 
-namespace BW;
+namespace Z;
 
 use WP_REST_Server;
 use WP_Error;
@@ -27,10 +27,10 @@ class REST {
     add_filter( 'wp_enqueue_scripts', array( &$this, 'localizeScripts' ) );
     add_filter( 'rest_project_query', array( &$this, 'posts_allow_custom_request_params' ), 99, 2 );
 
-    // if on dev mode, please make sure to add `define( 'BW_DEV', true );` to the wp-config
+    // if on dev mode, please make sure to add `define( 'Z_DEV', true );` to the wp-config
     // file in order to test the rest API in the browser
     // otherwise, the rest api can be tested through the terminal
-    if ( !defined( 'BW_DEV' ) || !BW_DEV ) {
+    if ( !defined( 'Z_DEV' ) || !Z_DEV ) {
       add_filter( 'rest_authentication_errors', array( &$this, 'validate_nonce' ));
     }
 
@@ -60,7 +60,7 @@ class REST {
   {
 
     // if(!isset($_SERVER['HTTP_X_WP_NONCE']) || !wp_verify_nonce($_SERVER['HTTP_X_WP_NONCE'], $this->nonce_key)) {
-    //   return new WP_Error( 'bw_invalid_nonce', 'Invalid nonce', array( 'status' => 400 ));
+    //   return new WP_Error( 'Z_invalid_nonce', 'Invalid nonce', array( 'status' => 400 ));
     // }
 
     return null;

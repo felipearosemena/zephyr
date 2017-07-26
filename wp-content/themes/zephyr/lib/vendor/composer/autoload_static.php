@@ -26,7 +26,7 @@ class ComposerStaticInitf1c04955a065fb8a4e2e5aad0299d675
         ),
         'B' => 
         array (
-            'BW\\' => 3,
+            'Z\\' => 3,
         ),
     );
 
@@ -47,7 +47,7 @@ class ComposerStaticInitf1c04955a065fb8a4e2e5aad0299d675
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
-        'BW\\' => 
+        'Z\\' => 
         array (
             0 => __DIR__ . '/../../../../../..' . '/wp-content/themes/zephyr/lib',
         ),
