@@ -7,8 +7,6 @@
  */
 
 
-import 'input-placeholder-polyfill'; // Required for older IE
-import vuBuggyfill from 'viewport-units-buggyfill' // Required for IOS devices
 import Promise from 'promise-polyfill'; // Required for IE
 import 'whatwg-fetch' // Required for IE & Safari
 import objectAssign from 'object-assign' // Required for IE
