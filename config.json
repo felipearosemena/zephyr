@@ -1,0 +1,18 @@
+{
+  "siteUrl" : "zephyr.dev",
+  "themePath": "./wp-content/themes/zephyr",
+  "paths" : {
+    "src" : {
+      "scripts" : "/src/scripts/",
+      "styles"  : "/src/styles/"
+    },
+    "dist": {
+      "scripts" : "/dist/scripts/",
+      "styles"  : "/dist/styles/"
+    }
+  },
+  "commonScriptName": "common",
+  "scripts" : [
+    { "name": "public", "namespace": false }
+  ]
+}
