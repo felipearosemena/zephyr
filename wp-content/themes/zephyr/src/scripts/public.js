@@ -5,7 +5,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 
-import Cookies from 'js-cookie'
 import SmoothScroll from 'smooth-scroll'
 
 import AppFactory    from 'app'
