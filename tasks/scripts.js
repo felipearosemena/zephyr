@@ -20,6 +20,7 @@ const babelify = require('babelify')
 const browserify = require('browserify')
 const aliasify = require('aliasify')
 const watchify = require('watchify')
+const stringify = require('stringify')
 const source = require('vinyl-source-stream')
 const buffer = require('vinyl-buffer')
 const merge = require('utils-merge')
@@ -38,10 +39,15 @@ function getBundler(src, options) {
     packageCache: {}, // required for watchify
     fullPaths: process.env.NODE_ENV != 'production' // required to be true only for watchify
   }))
+  .transform(stringify, {
+    appliesTo: [ '.html' ]
+  })
   .transform(babelify, { presets: presets })
   .transform(aliasify, {
     aliases: {
       'modules': themePath + '/src/scripts/modules',
+      'app': themePath + '/src/scripts/app',
+      'templates': themePath + '/src/views/app',
     }
   })
 
