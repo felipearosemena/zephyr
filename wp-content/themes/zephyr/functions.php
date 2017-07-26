@@ -22,24 +22,20 @@ class App {
 
     self::$instance = $this;
 
-    // add_action('wp_head', function() {
-    //   d(wc()->cart->get_cart());
-    // });
+    /**
+     * Instantiate app classes
+     */
+    new Z\CustomPostTypes();
+    new Z\CustomTaxonomies();
+    new Z\Enqueue();
+    new Z\Media();
+    new Z\Search();
+    new Z\Setup();
+    new Z\Social();
+    new Z\Twig();
+    new Z\TinyMCE();
 
-      /**
-       * Instantiate app classes
-       */
-      new Z\CustomPostTypes();
-      new Z\CustomTaxonomies();
-      new Z\Enqueue();
-      new Z\Media();
-      new Z\Search();
-      new Z\Setup();
-      new Z\Social();
-      new Z\Twig();
-      new Z\TinyMCE();
-
-      $this->rest = new Z\REST();
+    $this->rest = new Z\REST();
 
   }
 
