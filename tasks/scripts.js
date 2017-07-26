@@ -48,6 +48,9 @@ function getBundler(src, options) {
       'modules': themePath + '/src/scripts/modules',
       'app': themePath + '/src/scripts/app',
       'templates': themePath + '/src/views/app',
+      'vue' : 'vue/dist/vue.common',
+      'vue-router' : 'vue-router/dist/vue-router.common',
+      'vue-resource' : 'vue-resource/dist/vue-resource.common'
     }
   })
 
