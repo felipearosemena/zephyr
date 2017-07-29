@@ -8,10 +8,12 @@
 
 global $wp_query;
 
+use Z\Utils;
+
 $context = Timber::get_context();
-$context['posts'] = Timber::get_posts(BW\Utils::getListingQueryArgs());
+$context['posts'] = Timber::get_posts(Utils::getListingQueryArgs());
 $context['post']  = new TimberPost(get_option('page_for_posts', true));
-$context['taxonomies'] = BW\Utils::getListingTaxonomies(array(
+$context['taxonomies'] = Utils::getListingTaxonomies(array(
   'category' => 'category_name'
 ));
 
