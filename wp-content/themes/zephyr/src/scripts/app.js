@@ -48,7 +48,7 @@ const methods = {
     store.setState({ transiting: true })
 
     if(store.isCached(to.path) && this.cacheExclude.indexOf(to.path) == -1) {
-      this.finalizeRouteTransition(store.state.cachedResponses[to.path])
+      this.finalizeRouteTransition(to, store.state.cachedResponses[to.path])
     } else {
 
       this.$http.get(to.path, {
@@ -63,7 +63,9 @@ const methods = {
 
         }
       })
-      .then(res => this.finalizeRouteTransition(to, res.body))
+      .then(res => {
+        this.finalizeRouteTransition(to, res.body)
+      })
       .catch(err => console.log(err))
 
     }
@@ -130,6 +132,7 @@ const options = {
     currentView: 'default',
     sections: arrayToObj(['hero', 'content', 'bottom', 'newsletter', 'footer'], s => s),
     CartService: CartService,
+    ProductService: ProductService,
     cacheExclude: [ '/cart' ]
   },
 
@@ -139,6 +142,10 @@ const options = {
     this.setupRoutes()
     this.setCurrentView(this.$el.innerHTML)
     this.bindGlobalEvents()
+
+    this.CartService.subscribe('cart-fetched', cart => {
+      this.ProductService.addProducts(cart.products)
+    })
   },
 
   components: {

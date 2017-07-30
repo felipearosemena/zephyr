@@ -201,7 +201,7 @@
   display: inline-block;
   vertical-align: baseline;
 
-  &:after {
+  &[href]:after {
     content: '';
     display: block;
     position: absolute;
@@ -231,7 +231,8 @@
   font-weight: 500;
   transition: color $transition-default, background $transition-default; 
 
-  &:hover {
+  &:hover,
+  &:focus {
     @include hover-underline-active;
   }
 }

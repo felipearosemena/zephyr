@@ -183,8 +183,8 @@ time {
 }
 
 .cart-link {
-  vertical-align: middle;
-  line-height: $base-fs;
+  @include link-default;
+  vertical-align: top;
 
   span {
     display: inline-block;

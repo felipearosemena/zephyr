@@ -15,26 +15,26 @@ const CartService = new Vue({
 
   methods: Object.assign({
 
+    handleCartResponse(res) {
+
+      res.json().then(cart => {
+
+        this.publish('cart-fetched', cart)
+        this.cart.contents = cart.cart_contents
+        this.cart.count    = cart.count
+
+      })
+
+    },
+
     addToCart(id) {
-
-      fetch(`?add-to-cart=${ id }`, { credentials: 'same-origin' })
-        .then(res => res.text())
-        .then(res => {
-          this.getCart()
-        })
-
+      apiFetch(Global.api_namespace + '/cart/add/' + id)
+        .then(res => this.handleCartResponse(res))
     },
 
     getCart() {
       apiFetch(Global.api_namespace + '/cart')
-        .then(res => res.json())
-        .then(cart => {
-
-          this.publish('cart-fetched', cart)
-          this.cart.contents = cart.cart_contents
-          this.cart.count    = cart.count
-
-        })
+        .then(res => this.handleCartResponse(res))
     }
   }, eventBusFactory())
 

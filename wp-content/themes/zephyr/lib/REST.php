@@ -27,11 +27,13 @@ class REST {
     add_filter( 'wp_enqueue_scripts', array( &$this, 'localizeScripts' ) );
     add_filter( 'rest_project_query', array( &$this, 'posts_allow_custom_request_params' ), 99, 2 );
 
+
+
     // if on dev mode, please make sure to add `define( 'Z_DEV', true );` to the wp-config
     // file in order to test the rest API in the browser
     // otherwise, the rest api can be tested through the terminal
     if ( !defined( 'Z_DEV' ) || !Z_DEV ) {
-      add_filter( 'rest_authentication_errors', array( &$this, 'validate_nonce' ));
+      // add_filter( 'rest_authentication_errors', array( &$this, 'validate_nonce' ));
     }
 
 
@@ -59,9 +61,9 @@ class REST {
   public function validate_nonce()
   {
 
-    // if(!isset($_SERVER['HTTP_X_WP_NONCE']) || !wp_verify_nonce($_SERVER['HTTP_X_WP_NONCE'], $this->nonce_key)) {
-    //   return new WP_Error( 'Z_invalid_nonce', 'Invalid nonce', array( 'status' => 400 ));
-    // }
+    if(!isset($_SERVER['HTTP_X_WP_NONCE']) || !wp_verify_nonce($_SERVER['HTTP_X_WP_NONCE'], $this->nonce_key)) {
+      return new WP_Error( 'Z_invalid_nonce', 'Invalid nonce', array( 'status' => 400 ));
+    }
 
     return null;
   }
@@ -80,6 +82,23 @@ class REST {
 
   public function register_routes() {
 
+    register_rest_route( $this->api_namespace(), '/cart/add/(?P<id>\d+)', array(
+      'methods' => WP_REST_Server::READABLE,
+      'callback' => array( &$this, 'add_to_cart' ),
+      'args' => array(
+        'id' => array(
+          'validate_callback' => function($param, $request, $key) {
+            return is_numeric($param);
+          }
+        )
+      )
+    ));
+
+    register_rest_route( $this->api_namespace(), '/cart', array(
+      'methods' => WP_REST_Server::READABLE,
+      'callback' => array( &$this, 'get_cart' )
+    ));
+
     register_rest_route( $this->api_namespace(), '/cart', array(
       'methods' => WP_REST_Server::READABLE,
       'callback' => array( &$this, 'get_cart' )
@@ -92,6 +111,12 @@ class REST {
     // register_rest_field('project', 'terms', [
     //     'get_callback' => array( &$this, 'get_project_terms' )
     // ]);
+  }
+
+  public function add_to_cart($params)
+  {
+    wc()->cart->add_to_cart($params['id']);
+    return $this->get_cart($params);
   }
 
   public function get_cart($params)
@@ -130,6 +155,7 @@ class REST {
     }
 
     $cart->products = $products;
+    $cart->nonce = wp_create_nonce( $this->nonce_key );
     $response = new WP_REST_Response($cart, 200);
 
     return $response;

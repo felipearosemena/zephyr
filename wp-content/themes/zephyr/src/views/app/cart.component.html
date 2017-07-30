@@ -1,14 +1,29 @@
 <div class="cart-view" v-bind:class="{ 'is-active' : isActive }">
 
-  <div class="cart-count">
-    {{ cart.count }}
+  <div class="container">
+    <div class="text-right">
+      <div class="cart-view__count cart-link">
+        cart
+        <span v-html="cart.count"></span>
+      </div>
+    </div>
+
+    <ul class="cart-items" v-if="cart.count">
+      <li v-for="item in cart.contents" v-if="products[item.product_id]" class="cart-item">
+       {{ products[item.product_id].name }}
+      </li>
+    </ul>
+    <div v-else>
+      <p class="lead mb-05">You cart is empty</p>
+
+      <router-link to="/shop">
+        <span v-on:click="toggleCart">
+          Go to shop
+        </span>
+      </router-link>
+    </div>
+
+    <div class="cart-view__close" v-on:click="toggleCart"></div>
   </div>
 
-  <ul class="cart-items">
-    <li v-for="item in cart.contents" v-if="products[item.product_id]" class="cart-item">
-     {{ products[item.product_id].name }}
-    </li>
-  </ul>
-  
-  <div class="cart-view__close" v-on:click="toggleCart"></div>
 </div>

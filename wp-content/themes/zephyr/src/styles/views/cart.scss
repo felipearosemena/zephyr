@@ -7,6 +7,11 @@
   background-color: white;
   height: 100%;
   display: none;
+  padding: $bsu*2 0;
+
+  @include mq-min($bp-lg) {
+    padding: 36.5px 0;
+  }
 
   &.is-active {
     display: block;

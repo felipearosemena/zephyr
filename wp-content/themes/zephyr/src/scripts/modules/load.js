@@ -125,11 +125,7 @@ function handleError(response) {
  *  
  */
 
-export function apiFetch(endpoint, method = 'get', body = {}) {
-
-  const headers = {
-    'X-WP-Nonce': Global.nonce
-  }
+export function apiFetch(endpoint, method = 'get', body = {}, headers = {}) {
 
   if(!(body instanceof FormData)) {
     headers['Content-Type'] = 'application/json'
