@@ -1,9 +1,14 @@
-<div>
-  {{ count }}
+<div class="cart-view" v-bind:class="{ 'is-active' : isActive }">
 
-  <ul>
-    <li v-for="item in contents">
+  <div class="cart-count">
+    {{ cart.count }}
+  </div>
+
+  <ul class="cart-items">
+    <li v-for="item in cart.contents" v-if="products[item.product_id]" class="cart-item">
      {{ products[item.product_id].name }}
     </li>
   </ul>
+  
+  <div class="cart-view__close" v-on:click="toggleCart"></div>
 </div>

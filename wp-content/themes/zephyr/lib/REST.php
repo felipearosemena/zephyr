@@ -72,7 +72,6 @@ class REST {
         'meta_key'     => $request['meta_key'],
         'meta_value'   => $request['meta_value'],
         'meta_query'   => $request['meta_query'],
-        // 'project_type' => $request['project_type'],
       );
 
       return $args;
@@ -111,23 +110,26 @@ class REST {
         $product_ids[] = $id;
       }
     }
-
     $products = [];
-    $query = new WP_Query(array(
-      'post_type' => 'product',
-      'posts_per_page' => -1,
-      'post__in' => $product_ids
-    ));
 
-    $controller = new WC_REST_Products_Controller();
+    if($cart->count > 0) {
 
-    foreach ( $query->get_posts() as $post ) {
-       $data    = $controller->prepare_item_for_response( $post, $params );
-       $products[] = $controller->prepare_response_for_collection( $data );
+      $query = new WP_Query(array(
+        'post_type' => 'product',
+        'posts_per_page' => -1,
+        'post__in' => $product_ids
+      ));
+
+      $controller = new WC_REST_Products_Controller();
+
+      foreach ( $query->get_posts() as $post ) {
+         $data    = $controller->prepare_item_for_response( $post, $params );
+         $products[] = $controller->prepare_response_for_collection( $data );
+      }
+      
     }
 
     $cart->products = $products;
-
     $response = new WP_REST_Response($cart, 200);
 
     return $response;

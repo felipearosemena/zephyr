@@ -23,7 +23,7 @@
   padding: 0;
   position: fixed;
   z-index: 300;
-  background-color: rgba($body-color, 0.5);
+  background-color: $overlay-bg;
   transition: opacity $transition-default, visibility $transition-default;
   opacity: 0;
   visibility: hidden;

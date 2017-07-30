@@ -1,3 +1,6 @@
-<router-link to='/cart' class="{{ namespace }}__cart cart-link">
+<a 
+  href="{{ cart_url }}"
+  v-on:click.prevent="toggleCart"
+  class="{{ namespace }}__cart cart-link">
   <span v-html="cart.count"></span>
-</router-link>
+</a>

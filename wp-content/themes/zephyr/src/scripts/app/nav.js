@@ -6,13 +6,15 @@ import store from 'app/store'
 import { toggleClass } from 'modules/utils'
 import { initModal } from 'modules/modal'
 
-
 export default function NavFactory(el) {
 
   const nav = new Vue({
     el: el,
     router: router,
-    data: store.state
+    data: store.state,
+    methods: {
+      toggleCart: bool => store.toggleCart(bool)
+    }
   })
 
   const modal = initModal(document.querySelector('#site-nav'))

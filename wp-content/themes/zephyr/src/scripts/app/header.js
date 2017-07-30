@@ -10,6 +10,10 @@ export default function HeaderFactory(el) {
     router: router,
     data: {
       cart: store.state.cart
+    },
+
+    methods: {
+      toggleCart: () => store.toggleCart()
     }
   })
 

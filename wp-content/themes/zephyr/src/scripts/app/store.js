@@ -1,5 +1,8 @@
+import Vue from 'vue'
 import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
+
+const merge = Vue.config.optionMergeStrategies.computed
 
 const store = {
 
@@ -10,33 +13,23 @@ const store = {
     cachedResponses: {},
     transiting: false,
     initialized: true,
+    cartActive: false,
     cart: CartService.cart,
     products: ProductService.products,
     product : {}
   },
 
-
-  setState(k, v) {
-
-    if(this.state[k] == v) {
-      return
-    }
-
-    this.state[k] = v
-
+  setState(newOpts) {
+    Object.assign(this.state, newOpts)
   },
 
   setProduct(slug) {
     ProductService
       .loadProducts({ slug: slug })
       .then(products => {
-
         if(products.length) {
-          this.setState('product', products[0])
+          this.setState({ product: products[0] })
         }
-
-
-
       })
   },
 
@@ -53,10 +46,20 @@ const store = {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html')
 
-    this.setState('pageContent', doc.querySelector('.page-content').innerHTML)
+    this.setState({ pageContent : doc.querySelector('.page-content').innerHTML })
 
+  },
+
+  toggleCart(bool) {
+
+    const { cartActive } = this.state
+    const active = (bool !== null && bool !== undefined) ? bool : !cartActive
+
+    this.setState({ cartActive: active })
   }
 
 }
+
+window.store = store
 
 export default store

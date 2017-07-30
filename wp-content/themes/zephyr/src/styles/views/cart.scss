@@ -1,0 +1,25 @@
+.cart-view {
+  position: fixed;
+  z-index: 300;
+  top: 0;
+  right: 0;
+  width: $container-xs;
+  background-color: white;
+  height: 100%;
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+.cart-view__close {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  right: 100%;
+  z-index: 290;
+  background-color: $overlay-bg;
+  cursor: pointer;
+}

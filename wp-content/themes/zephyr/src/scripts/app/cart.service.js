@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import { eventBusFactory } from 'modules/eventBus'
+
 import { apiFetch } from 'modules/load'
 import { mapObject, arrayToObj } from 'modules/utils'
 
@@ -11,7 +13,7 @@ const CartService = new Vue({
     }
   },
 
-  methods: {
+  methods: Object.assign({
 
     addToCart(id) {
 
@@ -28,13 +30,13 @@ const CartService = new Vue({
         .then(res => res.json())
         .then(cart => {
 
-          this.cart.products = arrayToObj(cart.products, p => p.id)
+          this.publish('cart-fetched', cart)
           this.cart.contents = cart.cart_contents
           this.cart.count    = cart.count
 
         })
     }
-  }
+  }, eventBusFactory())
 
 })
 

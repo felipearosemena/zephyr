@@ -8,17 +8,17 @@
 
     <div class="page-wrap">
 
-      <router-view name="cart"></router-view>
+      <cart :cart="state.cart" :products="state.products" :is-active="state.cartActive"></cart>
 
       <transition-group name="fade">
         
         <div v-bind:key="sections.content" v-if="!state.transiting">
-            <component v-bind:is='currentView'>
-              <main class="page-content">
-                {% block content %}
-                {% endblock %}
-              </main><!--.page-content-->
-            </component>
+          <component v-bind:is='currentView'>
+            <main class="page-content">
+              {% block content %}
+              {% endblock %}
+            </main><!--.page-content-->
+          </component>
         </div>
 
         <aside class="page-bottom" v-if="!state.transiting" v-bind:key="sections.bottom">

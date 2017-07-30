@@ -9,11 +9,118 @@ import Cart from 'app/cart.component'
 import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
 
-
 import { arrayToObj } from 'modules/utils'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+
+const methods = {
+  setupRoutes() {
+
+    router.addRoutes([
+      {
+        path: '/product/:slug',
+        beforeEnter: (to, from, next) => {
+
+          const { slug } = to.params
+
+          store.setProduct(slug)
+
+          next()
+        }
+      },
+      { 
+        path: '*', 
+        components: { default: Default }
+      }
+    ])
+
+    router.beforeEach((to, from, next) => {
+      this.routerBeforeEach(to, from, next)
+    })
+
+  },
+
+  routerBeforeEach(to, from, next) {
+
+    next()
+
+    store.setState({ transiting: true })
+
+    if(store.isCached(to.path) && this.cacheExclude.indexOf(to.path) == -1) {
+      this.finalizeRouteTransition(store.state.cachedResponses[to.path])
+    } else {
+
+      this.$http.get(to.path, {
+        before: request => {
+
+          if (this.previousRequest) {
+            this.previousRequest.abort()
+          }
+
+          // set previous request on Vue instance
+          this.previousRequest = request
+
+        }
+      })
+      .then(res => this.finalizeRouteTransition(to, res.body))
+      .catch(err => console.log(err))
+
+    }
+  },
+
+  finalizeRouteTransition(to, html) {
+
+    this.setCurrentView(html)
+    store.cacheResponse(to.path, html)
+
+    setTimeout(() => {
+      store.setState({ transiting: false })
+    }, 0)
+
+  },
+
+  setCurrentView(html) {
+    this.createSectionComponent('page-content', '.page-content', html)
+    this.currentView = this.getRouteComponentId('page-content')
+  },
+
+  getRouteComponentId(namespace) {
+    return `${namespace + this.$route.path.replace(/\//g, '-')}`.replace(/-+$/g, '')
+  },
+
+  setCurrent(namespace) {
+    this.currenView = this.getRouteComponentId(namespace)
+  },
+
+  createSectionComponent(namespace, selector, html) {
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html')
+    const id = this.getRouteComponentId(namespace)
+
+    Vue.component(id, {
+      data() {
+        return options.data
+      },
+      template: doc.querySelector(selector).outerHTML 
+    })
+
+  },
+
+  bindGlobalEvents() {
+    window.addEventListener('keydown', e => {
+      switch(e.keyCode) {
+        case 27: {
+          store.toggleCart(false)
+          break;
+        }
+      }
+
+    })
+  }
+
+}
 
 const options = {
 
@@ -26,40 +133,18 @@ const options = {
     cacheExclude: [ '/cart' ]
   },
 
-  methods: {
+  methods: methods,
 
-    getRouteComponentId(namespace) {
-      return `${namespace + this.$route.path.replace(/\//g, '-')}`.replace(/-+$/g, '')
-    },
-
-    setCurrent(namespace) {
-      this.currenView = this.getRouteComponentId(namespace)
-    },
-
-    createSectionComponent(namespace, selector, html) {
-
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html')
-      const id = this.getRouteComponentId(namespace)
-
-      Vue.component(id, {
-        data() {
-          return options.data
-        },
-        template: doc.querySelector(selector).outerHTML 
-      })
-
-    }
+  beforeMount() {
+    this.setupRoutes()
+    this.setCurrentView(this.$el.innerHTML)
+    this.bindGlobalEvents()
   },
 
   components: {
-    default: Default
+    default: Default,
+    cart: Cart
   }
-}
-
-const setCurrentView = (app, html) => {
-  app.createSectionComponent('page-content', '.page-content', html)
-  app.currentView = app.getRouteComponentId('page-content')
 }
 
 export default function AppFactory(el) {
@@ -68,71 +153,6 @@ export default function AppFactory(el) {
     el: el,
     router: router
   }))
-
-  setCurrentView(app, el.innerHTML)
-
-  router.addRoutes([
-    {
-      path: '/product/:slug',
-      beforeEnter: (to, from, next) => {
-
-        const { slug } = to.params
-
-        store.setProduct(slug)
-
-        next()
-      }
-    },
-    { 
-      path: '*', 
-      components: { 
-        default: Default,
-        cart: Cart
-      }
-    }
-  ])
-
-
-  router
-    .beforeEach((to, from, next) => {
-
-      next()
-
-      const finalize = html => {
-
-        setCurrentView(app, html)
-        store.cacheResponse(to.path, html)
-
-        setTimeout(() => {
-          store.setState('transiting', false)
-        }, 0)
-
-      }
-
-      store.setState('transiting', true)
-
-      if(store.isCached(to.path) && app.cacheExclude.indexOf(to.path) == -1) {
-        finalize(store.state.cachedResponses[to.path])
-      } else {
-
-        app.$http.get(to.path, {
-          before: request => {
-
-            if (app.previousRequest) {
-              app.previousRequest.abort()
-            }
-
-            // set previous request on Vue instance
-            app.previousRequest = request
-
-          }
-        })
-        .then(res => finalize(res.body))
-        .catch(err => console.log(err))
-
-      }
-
-    })
 
   return app
 
