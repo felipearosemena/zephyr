@@ -10,6 +10,7 @@ use TimberImage;
 use WP_REST_Posts_Controller;
 use WC_REST_Products_Controller;
 use WP_REST_Response;
+use WC_Product_Variable;
 
 
 class REST {
@@ -33,7 +34,7 @@ class REST {
     // file in order to test the rest API in the browser
     // otherwise, the rest api can be tested through the terminal
     if ( !defined( 'Z_DEV' ) || !Z_DEV ) {
-      // add_filter( 'rest_authentication_errors', array( &$this, 'validate_nonce' ));
+      add_filter( 'rest_authentication_errors', array( &$this, 'validate_nonce' ));
     }
 
 
@@ -108,9 +109,9 @@ class REST {
 
   public function register_fields()
   {
-    // register_rest_field('project', 'terms', [
-    //     'get_callback' => array( &$this, 'get_project_terms' )
-    // ]);
+    register_rest_field('product', 'variations', [
+      'get_callback' => array( &$this, 'get_product_variations' )
+    ]);
   }
 
   public function add_to_cart($params)
@@ -162,9 +163,10 @@ class REST {
 
   }
 
-  public function get_project_terms($object)
+  public function get_product_variations($object)
   {
-    return wp_get_post_terms($object['id'], 'project_type');
+    $product = new WC_Product_Variable( $object['id'] );
+    return $product->get_variation_attributes();
   }
 
 }

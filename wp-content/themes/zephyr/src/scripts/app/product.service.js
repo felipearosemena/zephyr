@@ -19,11 +19,11 @@ const ProductService = {
 
   loadProducts(params = {}) {
 
-    return apiFetch(`wc/v2/products?${ serializeObject(params) }`)
+    return apiFetch(`wp/v2/product?${ serializeObject(params) }`)
       .then(res => res.json())
       .then(products => {
         this.addProducts(products)
-        return  products
+        return products
       })
   }
 

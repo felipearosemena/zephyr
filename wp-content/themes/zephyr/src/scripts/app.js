@@ -8,11 +8,13 @@ import Default from 'app/default.component'
 import Cart from 'app/cart.component'
 import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
+import SingleProductForm from 'app/single-product-form.component'
 
 import { arrayToObj } from 'modules/utils'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.component('single-product-form', SingleProductForm)
 
 const methods = {
   setupRoutes() {
@@ -20,16 +22,13 @@ const methods = {
     router.addRoutes([
       {
         path: '/product/:slug',
-        beforeEnter: (to, from, next) => {
-
+        beforeEnter(to, from, next) {
           const { slug } = to.params
-
           store.setProduct(slug)
-
-          next()
+            .then(next)
         }
-      },
-      { 
+      }
+      ,{ 
         path: '*', 
         components: { default: Default }
       }
@@ -105,7 +104,7 @@ const methods = {
       data() {
         return options.data
       },
-      template: doc.querySelector(selector).outerHTML 
+      template: doc.querySelector(selector).outerHTML
     })
 
   },
@@ -133,7 +132,7 @@ const options = {
     sections: arrayToObj(['hero', 'content', 'bottom', 'newsletter', 'footer'], s => s),
     CartService: CartService,
     ProductService: ProductService,
-    cacheExclude: [ '/cart' ]
+    cacheExclude: [ '/cart', '/checkout' ]
   },
 
   methods: methods,
@@ -145,6 +144,10 @@ const options = {
 
     this.CartService.subscribe('cart-fetched', cart => {
       this.ProductService.addProducts(cart.products)
+    })
+
+    this.CartService.subscribe('cart-added', cart => {
+      store.setState({ cartActive: true })
     })
   },
 

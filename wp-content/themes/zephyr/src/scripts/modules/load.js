@@ -24,10 +24,10 @@ const requestedURLs = {};
  *  
  */
 
-export function loadScriptOnce(src) {
+export function loadScriptOnce(src, fromCache = true) {
 
   // Check if we've already requested this script
-  if(src in requestedURLs) {
+  if(src in requestedURLs && fromCache) {
 
     // If so, return this script's promise
     return requestedURLs[src]
@@ -36,12 +36,13 @@ export function loadScriptOnce(src) {
   let s = document.createElement('script');
 
   s.type = 'text/javascript';
-  s.async = true;
+  s.async = false;
   s.src = src;
   
   let promise = new Promise((resolve, reject) => {
     // Resolve the promise when the script has loaded.
     s.addEventListener('load', function (e) {
+      console.log('loaded', src)
       resolve(e);
     }, false);
   })
@@ -125,7 +126,11 @@ function handleError(response) {
  *  
  */
 
-export function apiFetch(endpoint, method = 'get', body = {}, headers = {}) {
+export function apiFetch(endpoint, method = 'get', body = {}) {
+
+  const headers = {
+    'X-WP-Nonce': Global.nonce
+  }
 
   if(!(body instanceof FormData)) {
     headers['Content-Type'] = 'application/json'

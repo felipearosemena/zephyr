@@ -51,7 +51,7 @@ textarea {
 
 input[type="checkbox"],
 input[type="radio"] {
-  @extend .sr-only;
+  // @extend .sr-only;
 
   + label {
     position: relative;

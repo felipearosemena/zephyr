@@ -2,26 +2,31 @@
 
 {% block content %}
 
-  {% do action('woocommerce_before_single_product') %}
+  <section class="section">
+    <div class="container container--md">
 
-  <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}" data-product-id="{{ post.id }}">
-    
-    <h3 class="label" v-html="state.product.name"></h3>
+      {% do action('woocommerce_before_single_product') %}
 
-    <div class="entry-images">
-      <img src="{{ post.thumbnail.src('shop_single') }}" />
+      <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}" data-product-id="{{ post.id }}">
+        
+        <h3 class="label" v-html="state.product.name"></h3>
+
+        <div class="entry-images">
+          <img src="{{ post.thumbnail.src('shop_single') }}" />
+        </div>
+
+        <div class="summary entry-summary">
+          {% do action('woocommerce_single_product_summary') %}
+        </div>
+
+        {# {% do action('woocommerce_after_single_product_summary') %} #}
+
+        <meta itemprop="url" content="{{ post.link }}" />
+
+      </article>
+
+      {# {% do action('woocommerce_after_single_product') %} #}
     </div>
-
-    <div class="summary entry-summary">
-      {% do action('woocommerce_single_product_summary') %}
-    </div>
-
-    {# {% do action('woocommerce_after_single_product_summary') %} #}
-
-    <meta itemprop="url" content="{{ post.link }}" />
-
-  </article>
-
-  {# {% do action('woocommerce_after_single_product') %} #}
+  </section>
 
 {% endblock  %}

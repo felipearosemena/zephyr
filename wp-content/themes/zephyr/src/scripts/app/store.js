@@ -16,7 +16,7 @@ const store = {
     cartActive: false,
     cart: CartService.cart,
     products: ProductService.products,
-    product : {}
+    product : {},
   },
 
   setState(newOpts) {
@@ -24,12 +24,16 @@ const store = {
   },
 
   setProduct(slug) {
-    ProductService
+    return ProductService
       .loadProducts({ slug: slug })
       .then(products => {
+
         if(products.length) {
-          this.setState({ product: products[0] })
+          this.setState({ product: Object.assign(products[0], {
+            canAddToCart: false
+          }) })
         }
+
       })
   },
 

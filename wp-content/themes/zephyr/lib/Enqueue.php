@@ -41,29 +41,34 @@ class Enqueue
     wp_dequeue_style( 'woocommerce_chosen_styles' );
     wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
 
-    wp_deregister_script( 'wc-add-payment-method' );
-    wp_deregister_script( 'wc-lost-password' );
-    wp_deregister_script( 'wc_price_slider' );
-    wp_deregister_script( 'wc-single-product' );
-    wp_deregister_script( 'wc-add-to-cart' );
-    wp_deregister_script( 'wc-cart-fragments' );
-    wp_deregister_script( 'wc-credit-card-form' );
-    wp_deregister_script( 'wc-add-to-cart-variation' );
-    wp_deregister_script( 'wc-single-product' );
-    wp_deregister_script( 'wc-cart' );
-    wp_deregister_script( 'wc-chosen' );
-    wp_deregister_script( 'prettyPhoto' );
-    wp_deregister_script( 'prettyPhoto-init' );
-    wp_deregister_script( 'jquery' );
-    wp_deregister_script( 'jquery-blockui' );
-    wp_deregister_script( 'jquery-placeholder' );
-    wp_deregister_script( 'jquery-payment' );
-    wp_deregister_script( 'fancybox' );
-    wp_deregister_script( 'jqueryui' );
-    wp_deregister_script( 'wc-checkout' );
-    wp_deregister_script( 'woocommerce' );
-    wp_deregister_script( 'woocommerce_stripe' );
-    wp_deregister_script( 'woocommerce_stripe_apple_pay' );
+    if(!is_checkout()) {
+      wp_deregister_script( 'wc-add-payment-method' );
+      wp_deregister_script( 'wc-lost-password' );
+      wp_deregister_script( 'wc_price_slider' );
+      wp_deregister_script( 'wc-single-product' );
+      wp_deregister_script( 'wc-add-to-cart' );
+      wp_deregister_script( 'wc-cart-fragments' );
+      wp_deregister_script( 'wc-credit-card-form' );
+      wp_deregister_script( 'wc-add-to-cart-variation' );
+      wp_deregister_script( 'wc-single-product' );
+      wp_deregister_script( 'wc-cart' );
+      wp_deregister_script( 'wc-chosen' );
+      wp_deregister_script( 'prettyPhoto' );
+      wp_deregister_script( 'prettyPhoto-init' );
+      wp_deregister_script( 'jquery' );
+      wp_deregister_script( 'jquery-blockui' );
+      wp_deregister_script( 'jquery-placeholder' );
+      wp_deregister_script( 'jquery-payment' );
+      wp_deregister_script( 'fancybox' );
+      wp_deregister_script( 'jqueryui' );
+      wp_deregister_script( 'wc-checkout' );
+      wp_deregister_script( 'woocommerce' );
+      wp_deregister_script( 'woocommerce_stripe' );
+      wp_deregister_script( 'woocommerce_stripe_apple_pay' );
+      wp_deregister_script( 'woocommerce_stripe_apple_pay_single' );
+    }
+
+    
 
     if(is_page_template('templates/dashboard.php')) {
     };
