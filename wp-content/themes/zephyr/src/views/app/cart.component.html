@@ -16,11 +16,11 @@
     <div v-else>
       <p class="lead mb-05">You cart is empty</p>
 
-      <router-link to="/shop">
+      <a to="/shop">
         <span v-on:click="toggleCart">
           Go to shop
         </span>
-      </router-link>
+      </a>
     </div>
 
     <div class="cart-view__close" v-on:click="toggleCart"></div>

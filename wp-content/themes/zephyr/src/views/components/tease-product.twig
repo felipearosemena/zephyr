@@ -19,7 +19,7 @@
     <div class="media-content">
       {% do action('woocommerce_before_shop_loop_item_title') %}
       <h3 class="entry-title">
-        <router-link to="{{ post.get_path }}">{{ post.title }}</router-link>
+        <a href="{{ post.get_path }}">{{ post.title }}</a>
       </h3>
       {% do action( 'woocommerce_after_shop_loop_item_title' ) %}
       {% do action( 'woocommerce_after_shop_loop_item' ) %}
