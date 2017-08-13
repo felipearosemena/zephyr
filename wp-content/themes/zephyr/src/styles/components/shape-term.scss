@@ -4,7 +4,7 @@
   margin: auto;
   position: relative;
 
-  &:not(.is-hovered) {
+  &:not(:hover):not(:focus) {
     cursor: default;
   }
 }
@@ -37,7 +37,8 @@
   z-index: 0;
   transition: transform $transition-bounce;
 
-  .shape-term.is-hovered & {
+  .shape-term:hover &,
+  .shapre-term:focus & {
     transform: scale(1.05)
   }
 
@@ -66,11 +67,11 @@
   pointer-events: none;
   transition: all $transition-default;
 
-  .shape-term--odd:not(.is-hovered) & {
+  .shape-term--odd:not(:hover):not(:focus) & {
     transform: translate3d($bsu*6, -$bsu, 0);
   }
 
-  .shape-term--even:not(.is-hovered) & {
+  .shape-term--even:not(:hover):not(:focus) & {
     transform: translate3d(-$bsu*6, -$bsu, 0);
   }
 }
@@ -80,7 +81,8 @@
   margin-bottom: $bsu;
   transition: transform $transition-default;
 
-  .shape-term.is-hovered & {
+  .shape-term:hover &,
+  .shape-term:focus & {
     transform: scale(0.9);
   }
 
@@ -92,7 +94,7 @@
 .shape-term__label {
   transition: all $transition-default;
 
-  .shape-term:not(.is-hovered) & {
+  .shape-term:not(:hover):not(:focus) & {
     opacity: 0;
     transform: translate3d(0, $bsu*2, 0);
   }
