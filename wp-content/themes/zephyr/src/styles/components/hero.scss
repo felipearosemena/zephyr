@@ -5,7 +5,7 @@
  * Large full width mastheads or sections
  *
  * Usage:
- * 
+ *
  * <section class="hero">
  *   <div class="hero__body">
  *     <div class="container">
@@ -20,7 +20,7 @@
 .hero {
   position: relative;
   z-index: 0;
-  padding-top: $bsu*6; 
+  padding-top: $bsu*6;
   padding-bottom: $bsu*4;
   display: flex;
   align-items: center;
@@ -39,18 +39,14 @@
 }
 
 .hero--banner {
-  min-height: 80vh;
-  color: white;
+  min-height: 0;
+  background-color: $grey-lightest;
+  padding: 0;
 
   p {
     max-width: $container-sm;
-    margin-right: 0;
-    margin-left: auto;
   }
 
-  a {
-    color: white;
-  }
 }
 
 .hero__body {
@@ -58,7 +54,14 @@
   z-index: 300;
   width: 100%;
 
-  // Remove margin bottom of last child 
+  @include mq-min($bp-md) {
+    .hero--banner & {
+      width: 56.25%;
+      margin-left: 0;
+    }
+  }
+
+  // Remove margin bottom of last child
   // to make for even vertical centering
   > *:last-child, > * > *:last-child {
     margin-bottom: 0;
@@ -80,7 +83,8 @@
     width: 12.5%;
     left: auto;
     right: 0;
-    box-shadow: 0 0 50vw 25vw rgba(0, 0, 0,0.4)
+    box-shadow: 0 0 50vw 25vw rgba(0, 0, 0,0.4);
+    display: none;
   }
 }
 
@@ -90,7 +94,7 @@
   @extend .background-cover;
 }
 
-// Add this element parallel to the .hero__body 
+// Add this element parallel to the .hero__body
 // to separate the background from the content of the .hero
 .hero__bg {
   @include full-cover;
@@ -100,6 +104,21 @@
   .no-touchevents .hero__video ~ & {
     background-image: none !important;
     display: none;
+  }
+
+  @include mq-min($bp-md) {
+    .hero--banner & {
+      position: relative;
+      width: 43.75%;
+      right: 0;
+      left: auto;
+
+      &:after {
+        content: '';
+        display: block;
+        padding-bottom: 100%;
+      }
+    }
   }
 }
 
@@ -113,7 +132,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   @media screen and (max-aspect-ratio: 6/3) {
     max-width: 125%;
   }

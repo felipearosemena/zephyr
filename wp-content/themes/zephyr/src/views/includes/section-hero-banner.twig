@@ -5,11 +5,11 @@
 
   <div class="hero__body">
 
-    <div class="container container--xl text-right">
+    <div class="container container--xl text-left">
 
-      <div class="container--md pull-right">
+      <div class="container container--flush container--sm">
 
-        <h2 class="h1 hero__title mb-2">{{ section.title }}</h2>
+        <h2 class="hero__title mb-2">{{ section.title }}</h2>
 
         {% if section.content %}
           <p class="lead mb-2">{{ section.content|striptags }}</p>
@@ -18,7 +18,7 @@
         {% set link = section|link_vars %}
 
         {% if link %}
-          <a href="{{ link.href }}" target="{{ link.target }}" class="btn btn--white">{{ section.link_label|default('Learn More') }}</a>
+          <a href="{{ link.href }}" target="{{ link.target }}" class="btn">{{ section.link_label|default('Learn More') }}</a>
         {% endif %}
 
       </div>
@@ -30,7 +30,7 @@
 
   {% if section.background %}
     {% set image = TimberImage(section.background) %}
-    <div class="hero__bg" style="background-image: url({{ image.src('hero_full') }})">
+    <div class="hero__bg" style="background-image: url({{ image.src('hero_sq') }})">
     </div>
   {% endif %}
 
