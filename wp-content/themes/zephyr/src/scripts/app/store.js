@@ -60,6 +60,7 @@ const store = {
     const { cartActive } = this.state
     const active = (bool !== null && bool !== undefined) ? bool : !cartActive
 
+    document.body.classList[active ? 'add' : 'remove']('is-cart-active')
     this.setState({ cartActive: active })
   }
 
