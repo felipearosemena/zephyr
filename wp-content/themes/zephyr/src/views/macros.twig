@@ -2,48 +2,20 @@
 
   {% set image = TimberImage(id) %}
   {% set src = image.src(size) %}
-  
+
   {% if src %}
 
     {% set width = image.sizes[size].width|default(image.width) %}
     {% set height = image.sizes[size].height|default(image.height) %}
-    
-    <img 
+
+    <img
       {{ imgClass  ? 'class="' ~ imgClass ~ '"' }}
       width="{{ width }}"
       height="{{ height }}"
-      src="{{ src }}" 
+      src="{{ src }}"
       alt="{{ image.alt }}"
       title="{{ image.title }}" >
 
   {% endif %}
-
-{% endmacro %}
-
-{% macro hero_bg(id, image_id) %}
-
-  {% set image = TimberImage(image_id) %}
-
-  {# {% if image.id %}
-    <style>
-
-      #{{ id }} {
-        background-image: url({{ image.src('hero_sm') }});
-      }
-
-      @media screen and (min-width: {{ image.sizes.hero_sm.width }}px ) {
-        #{{ id }} {
-          background-image: url({{ image.src('hero_md') }});
-        }
-      }
-
-      @media screen and (min-width: {{ image.sizes.hero_md.width }}px ) {
-        #{{ id }} {
-          background-image: url({{ image.src('hero_full') }});
-        }
-      }
-
-    </style>
-  {% endif %} #}
 
 {% endmacro %}
