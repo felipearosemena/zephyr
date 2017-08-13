@@ -20,8 +20,6 @@ import sharePost from './modules/sharePost'
 import toggleTarget from './modules/toggleTarget'
 import { initModal, initVideoModal } from './modules/modal'
 
-// import createVideoIframe from './modules/video'
-// import createLoader from './modules/ajaxLoader'
 
 // Stub the console, if it doesn't exist
 window.console = window.console || { log() {} }
