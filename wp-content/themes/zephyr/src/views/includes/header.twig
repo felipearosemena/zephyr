@@ -1,9 +1,9 @@
 
 <header id="site-header" class="site-header">
-  
+
   <div class="container container--full">
     <div class="site-header__split">
-    
+
       <div class="site-header__left">
         {% include 'components/site-nav-toggle.twig' with { namespace: 'site-header' } %}
       </div>
@@ -11,7 +11,7 @@
       <a href="{{ site.url }}" class="site-logo">
         {{ (src_uri ~ '/images/zephyr-logo-full.svg')|file_get_contents }}
       </a>
-      
+
       <div class="site-header__right">
         {% include 'includes/header-icons.twig' %}
         {% include 'components/cart-link.twig' with { namespace: 'site-header' } %}
