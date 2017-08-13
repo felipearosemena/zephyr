@@ -35,18 +35,19 @@ class Media
     /**
      * Make sure to use semantic image size names
      * eg: 'hero', 'feature' as opposed to `500x400`, `400x300`
-     * 
-     * This allows to change the image size declaration, without needing to change 
+     *
+     * This allows to change the image size declaration, without needing to change
      * the name in each template where the size used
      *
      * If the name contains 2 words in it, use '_' instead of '-' allows to reference the size using
      * dot notation in twig templates. eg: sizes.hero_full, instead of sizes['hero-full']
-     * 
+     *
      */
-  
+
     add_image_size('hero_full', 1920);
     add_image_size('hero_md', 1280);
     add_image_size('hero_sm', 640);
+    add_image_size('hero_sq', 960, 960);
     add_image_size('card', 320, 320, true);
     add_image_size('card_md', 460, 420, true);
     add_image_size('featured', 960, 540, true);
@@ -90,7 +91,7 @@ class Media
    * @package Media.php
    * @since 1.0
    */
-  
+
   public function embed_oembed_html__updateEmbeddedMarkup($cache, $url, $attr)
   {
 
