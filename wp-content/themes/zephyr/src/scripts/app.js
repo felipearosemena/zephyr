@@ -10,7 +10,6 @@ import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
 import SingleProductForm from 'app/single-product-form.component'
 
-import { arrayToObj } from 'modules/utils'
 import { arrayToObj, delegate } from 'modules/utils'
 
 Vue.use(VueRouter)
@@ -29,8 +28,8 @@ const methods = {
             .then(next)
         }
       }
-      ,{ 
-        path: '*', 
+      ,{
+        path: '*',
         components: { default: Default }
       }
     ])
