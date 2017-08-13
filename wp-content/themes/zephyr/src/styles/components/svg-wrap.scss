@@ -1,7 +1,7 @@
 /**
  *
  * SVG Wrap
- * 
+ *
  */
 
 .svg-wrap {
@@ -31,13 +31,13 @@
 }
 
 .svg-wrap__image {
-  width: 120px;
-  height: 120px;
+  width: px-to-rem(120px);
+  height: px-to-rem(120px);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto $bsu;
-  
+
   .svg-wrap--horizontal & {
     @include mq-min($bp-sm) {
       margin-right: $bsu;
@@ -54,7 +54,7 @@
   background-color: $grey-lighter;
   border-radius: 10rem;
   box-sizing: content-box;
-  padding: 60px; 
+  padding: px-to-rem(60px);
 }
 
 .svg-wrap__body {

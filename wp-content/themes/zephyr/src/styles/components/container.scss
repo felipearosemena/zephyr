@@ -1,7 +1,7 @@
 /**
- * 
+ *
  *   Container
- * 
+ *
  *   Sets max width for the page and centers the content.
  *   Wrap around grid to create a centered layout.
  *
@@ -19,7 +19,7 @@
  *   |           | |                       | |            |
  *   |                                                    |
  *
- */ 
+ */
 
 .container {
   padding-left: $container-pad;
@@ -39,8 +39,8 @@
 }
 
 .container {
-  max-width: $container-lg;
-  box-sizing: content-box; // Prevents the container's padding 
+  max-width: px-to-rem($container-lg);
+  box-sizing: content-box; // Prevents the container's padding
                            // to be substracted from it's width
 }
 
@@ -50,23 +50,23 @@
 }
 
 .container--xs {
-  max-width: $container-xs;
+  max-width: px-to-rem($container-xs);
 }
 
 .container--sm {
-  max-width: $container-sm;
+  max-width: px-to-rem($container-sm);
 }
 
 .container--md {
-  max-width: $container-md;
+  max-width: px-to-rem($container-md);
 }
 
 .container--lg {
-  max-width: $container-lg;
+  max-width: px-to-rem($container-lg);
 }
 
 .container--xl {
-  max-width: $container-xl;
+  max-width: px-to-rem($container-xl);
 }
 
 // Flush Container (no padding on sides)

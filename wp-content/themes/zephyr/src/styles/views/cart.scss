@@ -10,7 +10,7 @@
   transition: transform $transition-default;
 
   @include mq-min($bp-lg) {
-    padding: 36.5px 0;
+    padding: $bsu*2 0;
   }
 
   .is-cart-active & {

@@ -8,9 +8,9 @@
  *   <div class="modal__inner">
  *     <div class="modal__body">
  *        <button class="modal__close-button" data-close-modal></button>
- *     
+ *
  *        // Modal Content
- * 
+ *
  *     </div>
  *   </div>
  * </div>
@@ -90,7 +90,7 @@
   @include iconfont;
   @extend .icon-close;
   padding: 0;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1;
   display: inline-block;
   position: absolute;

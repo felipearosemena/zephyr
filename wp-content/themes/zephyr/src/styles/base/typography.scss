@@ -26,6 +26,10 @@ html {
   @include mq-min($bp-md) {
     @include font-size($base-fs-lg, $base-lh-lg)
   }
+
+  @include mq-min($bp-xxl) {
+    @include font-size($base-fs-xxl, $base-lh-xxl)
+  }
 }
 
 *::selection {
@@ -51,7 +55,7 @@ a {
   //remove the dotted outline on firefox
   &:focus, &:active {
     outline: none;
-  } 
+  }
 }
 
 a, i {
@@ -88,7 +92,7 @@ h6, .h6 {
   @include mq-min($bp-md) {
     @include font-size($h1-fs-lg, $h1-lh-lg)
   }
-} 
+}
 
 h1, .h1 {
   @include h1;
@@ -100,27 +104,27 @@ h1, .h1 {
   @include mq-min($bp-md) {
     @include font-size($h2-fs-lg, $h2-lh-lg)
   }
-} 
+}
 
 h2, .h2 {
   @include h2;
 }
 
 @mixin h3 {
-  @include font-size($h3-fs, $h3-lh); 
+  @include font-size($h3-fs, $h3-lh);
 
   @include mq-min($bp-md) {
     @include font-size($h3-fs-lg, $h3-lh-lg)
-  } 
-} 
+  }
+}
 
 h3, .h3 {
   @include h3;
 }
 
 @mixin h4 {
-  @include font-size($h4-fs, $h4-fs); 
-} 
+  @include font-size($h4-fs, $h4-fs);
+}
 
 h4, .h4 {
   @include h4;
@@ -135,7 +139,7 @@ h5, .h5 {
 p, ul, ol, blockquote,
 pre, dl, table  {
   margin-top: 0;
-  margin-bottom: $bsu*2.5 - $base-lh;
+  margin-bottom: $bsu*1.5;
 }
 
 
@@ -163,7 +167,7 @@ small, .small-text {
 
 q {
   font-style: italic;
-} 
+}
 
 // The `.lead` class is used to make the introductory text
 // (usually a paragraph) of a document slightly larger.
@@ -187,18 +191,10 @@ time {
   vertical-align: top;
 
   span {
+    @include font-size($small-fs, 20px);
     display: inline-block;
     font-weight: bold;
-    font-size: $small-fs;
-    height: $bsu;
     text-align: center;
-
-    &:before {
-      content: attr(data-cart-totals);
-      display: inline-block;
-      vertical-align: top;
-      line-height: $bsu - 4px;
-    }
   }
 }
 
@@ -272,7 +268,7 @@ table {
   border-collapse: initial;
 }
 
-th { 
+th {
   text-align: left;
   a,
   a.active {
@@ -285,7 +281,7 @@ td {
   tr:last-child & {
     border-bottom: none;
   }
-} 
+}
 
 caption {
   @extend .h4;
@@ -310,7 +306,7 @@ blockquote {
 
 hr {
   border:none;
-  border-top:1px solid $grey-light;
+  border-top: 1px solid $grey-light;
   margin: $bsu*2 0;
 }
 
@@ -339,7 +335,7 @@ pre, code {
 }
 
 .alignright {
-   
+
   @include mq-min($bp-sm) {
     float: right;
     padding: $bsu;
@@ -348,7 +344,7 @@ pre, code {
 }
 
 .alignleft {
-  
+
   @include mq-min($bp-sm) {
     float: left;
     padding: $bsu;

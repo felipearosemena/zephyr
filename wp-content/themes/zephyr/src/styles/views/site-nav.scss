@@ -1,7 +1,7 @@
 /**
  *
  *  Site Nav
- * 
+ *
  */
 
 .site-nav {
@@ -18,7 +18,7 @@
 
 .site-nav__inner {
   display: block;
-  padding-top: $base-lh-lg;
+  padding-top: px-to-rem($base-lh-lg);
 }
 
 .site-nav__top {
@@ -65,16 +65,14 @@
 
 .site-nav__menu {
   a {
-    font-size: $h3-fs-lg;
-    line-height: $h3-lh-lg;
+    @include font-size($h3-fs-lg, $h3-lh-lg)
     font-weight: bold;
   }
 }
 
 .site-nav__util {
   a {
-    font-size: $h4-fs;
-    line-height: $h3-lh-lg;
+    @include font-size($h4-fs, $h3-lh-lg)
   }
 }
 
@@ -87,7 +85,7 @@
     // color: white;
     display: block;
     padding: $bsu;
-    
+
     &:hover {
       color: $color-primary;
     }

@@ -54,7 +54,7 @@
 }
 
 // Nav Toggle
-.site-header__toggle { 
+.site-header__toggle {
   display: inline-block;
 }
 
@@ -70,11 +70,11 @@
     display: inline-block;
   }
 
-} 
+}
 
 .site-header__icons {
   @extend .nav;
-  line-height: $small-fs;
+  line-height: px-to-rem($small-fs);
   vertical-align: middle;
   white-space: nowrap;
   margin-right: $bsu;
@@ -82,12 +82,12 @@
   > li {
     vertical-align: top;
   }
-  
+
   a, button {
     display: block;
-    font-size: $small-fs;
+    font-size: px-to-rem($small-fs);
   }
-  
+
 }
 
 // Site Search Bar (Hidden by default)

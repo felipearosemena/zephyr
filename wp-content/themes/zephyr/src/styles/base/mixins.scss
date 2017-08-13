@@ -25,7 +25,7 @@
 }
 
 @mixin font-size($font-size, $line-height) {
-  font-size: $font-size;
+  font-size: $font-size / $base-fs * 1rem;
   line-height: $line-height / $font-size;
 }
 
@@ -69,7 +69,7 @@
 @mixin island($padding) {
   @include clearfix;
   padding: $padding;
-  
+
   > :last-child {
     margin-bottom: 0;
   }
@@ -84,9 +84,9 @@
   &:before, &:after {
 
     display: block;
-    // Makes all icons even width, 
+    // Makes all icons even width,
     //prevents layout shifting when toggling icons
-    width: 1em; 
+    width: 1em;
     vertical-align: middle;
     font-family: 'icons' !important;
     speak: none;
@@ -116,7 +116,7 @@
   right: 0;
   top: 0;
   font-size: 0;
-  padding: ($base-input-height - $base-fs)/2;
+  padding: ($base-input-height - px-to-rem($base-fs))/2;
   transition: color $transition-default;
 
   &:hover {
@@ -124,15 +124,15 @@
   }
 
   &:before {
-    font-size: $base-fs;
-    height: $base-fs;
+    font-size: px-to-rem($base-fs);
+    height: px-to-rem($base-fs);
   }
 }
 
 @mixin input-icon {
 
   // Prevent the text from going behind the search icon
-  padding-right: $base-input-height; 
+  padding-right: $base-input-height;
 }
 
 @function px-to-rem($px) {
@@ -229,7 +229,7 @@
   @include hover-underline;
   color: $body-color;
   font-weight: 500;
-  transition: color $transition-default, background $transition-default; 
+  transition: color $transition-default, background $transition-default;
 
   &:hover,
   &:focus {
@@ -253,7 +253,7 @@
     transform-origin: 50%;
     transition: all $transition-default;
   }
-  
+
   #{$active-class} & path {
     opacity: 1;
     transform: scale(1);
@@ -277,6 +277,6 @@
 }
 
 
-@mixin button-padding($height: $base-button-height, $lh: $btn-lh) {
+@mixin button-padding($height: $base-button-height, $lh: px-to-rem($btn-lh)) {
   padding: ($height - $lh)/2 $bsu*1.5;
 }

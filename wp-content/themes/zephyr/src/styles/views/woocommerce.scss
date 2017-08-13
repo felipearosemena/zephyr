@@ -127,7 +127,7 @@ input, select, textarea {
   border-bottom: none;
   border-left: none;
   border-right: none;
-  
+
   ul {
     @include list-plain;
 
@@ -159,7 +159,7 @@ input, select, textarea {
     border: none;
     padding: $bsu/2 0;
     vertical-align: middle;
-  
+
     @include mq-min($bp-md) {
       &:last-child {
         text-align: right;
