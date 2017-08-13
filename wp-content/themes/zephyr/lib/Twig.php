@@ -49,6 +49,7 @@ class Twig extends TimberSite
     $context['footer_menu']   = new TimberMenu( 'footer-nav' );
     $context['cart_url']      = wc()->cart->get_cart_url();
     $context['shop_url']      = get_permalink( wc_get_page_id( 'shop' ) );
+    $context['shop_path']     = '/' . get_page_uri( wc_get_page_id( 'shop' ) );
     $context['cart_totals']   = wc()->cart->get_cart_contents_count();
 
     if ( function_exists( 'get_fields' ) ) {
@@ -67,7 +68,7 @@ class Twig extends TimberSite
    */
 
   public function get_twig__addFilters($twig)
-  { 
+  {
 
     $twig->addFilter('char_limit', new Twig_Filter_Function(array(&$this, 'filter_charLimit' )));
     $twig->addFilter('debug', new Twig_Filter_Function(array(&$this, 'filter_kintDebug' )));
@@ -120,7 +121,7 @@ class Twig extends TimberSite
   /**
    *
    * Twig filter for php `file_get_contents` function
-   * 
+   *
    * @author Felipe Arosemena <felipearosemena@gmail.com>
    *
    */
@@ -142,7 +143,7 @@ class Twig extends TimberSite
    * @return array Link object with the correct link and target
    * @return string array['href'] Link object href
    * @return string array['target'] Target for the link
-   * 
+   *
    * @author Felipe Arosemena <felipearosemena@gmail.com>
    *
    */
@@ -175,7 +176,7 @@ class Twig extends TimberSite
    * @param array $arr Array to get the item from
    *
    * @return (item/null) The first item in the array, or null if array it empty
-   * 
+   *
    * @author Felipe Arosemena <felipearosemena@gmail.com>
    *
    */
