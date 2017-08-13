@@ -1,9 +1,39 @@
 /**
  *
  * Animation
- * 
+ *
  */
 
+ [data-animate],
+ [data-animate-transform],
+ [data-animate-transform-left],
+ [data-animate-transform-right] {
+   transition: transform $transition-time-slow $transition-timing-default, opacity $transition-time-default $transition-timing-slow;
+
+   .animation-group:not(.is-in) & {
+     opacity: 0;
+     transition-delay: 0s;
+     transition: transform $transition-time-slow $transition-timing-default, opacity $transition-time-fast $transition-timing-slow;
+   }
+ }
+
+ [data-animate-transform-left] {
+   .animation-group:not(.is-in) & {
+     transform: translate3d(-50%, 0, 0);
+   }
+ }
+
+ [data-animate-transform-right] {
+   .animation-group:not(.is-in) & {
+     transform: translate3d(50%, 0, 0);
+   }
+ }
+
+ [data-animate-transform] {
+   .animation-group:not(.is-in) & {
+     transform: translate3d(0, $bsu*5, 0);
+   }
+ }
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity $transition-time-fast linear;
@@ -15,27 +45,31 @@
 
 // Animation delay
 
-// @for $i from 0 through 20 {
+@for $i from 0 through 12 {
 
-//   .anim-delay-#{$i} {
-//     animation-delay: #{$i * 0.1}s; 
-//   }
+  .anim-delay-#{$i} {
+    animation-delay: #{$i * 0.1}s;
+  }
 
-//   .trans-delay-#{$i} {
-//     transition-delay: #{$i * 0.1}s; 
-//   }
-// }
+  .trans-delay-#{$i},
+  [data-animate="#{$i}"],
+  [data-animate-transform="#{$i}"],
+  [data-animate-transform-left="#{$i}"],
+  [data-animate-transform-right="#{$i}"] {
+    transition-delay: #{$i * 0.1}s;
+  }
+}
 
-// .svg-animate {
-//   @include path-animation($transition-extra-slow);
-// }
+.svg-animate {
+  @include path-animation($transition-extra-slow);
+}
 
-// .no-transition,
-// .no-transition *,
-// .no-transition *:after,
-// .no-transition *:before {
-//   transition: none !important;
-// }
+.no-transition,
+.no-transition *,
+.no-transition *:after,
+.no-transition *:before {
+  transition: none !important;
+}
 
 .image-loaded {
   @include image-loaded;
