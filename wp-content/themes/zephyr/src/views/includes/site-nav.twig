@@ -1,9 +1,10 @@
-<nav id="site-nav" class="modal site-nav">
+<nav id="site-nav" class="modal site-nav animation-group" v-bind:class="{ 'is-in': navOpen, 'is-active': navOpen }">
+
 
   <div class="modal__inner site-nav__inner">
 
     <div class="container container--md">
-      
+
       <div class="site-nav__top mb-2" data-animate-transform>
         <div class="w-6-12">
           {% include 'components/site-nav-toggle.twig' with { namespace: 'site-nav', label: '<i class="icon-close"></i>' } %}
@@ -12,17 +13,15 @@
           {% include 'components/cart-link.twig' with { namespace: 'site-nav' } %}
         </div>
       </div>
-      
+
       <div class="grid grid--full">
         <div class="grid__item w-12-12 w-md-6-12">
           <ul class="site-nav__menu mb-2">
-
             {% for item in main_menu.get_items %}
-              <li class="{{ item.classes|join(' ') }}" data-animate-transform-left={{ loop.index + 1 }}>
-                <router-link to="{{ item.get_path }}">{{ item.title }}</router-link>
-              </li>
+            <li class="{{ item.classes|join(' ') }}" data-animate-transform-left={{ loop.index + 1 }}>
+              <router-link to="{{ item.get_path }}">{{ item.title }}</router-link>
+            </li>
             {% endfor %}
-
           </ul>
         </div>
         <div class="grid__item w-12-12 w-md-6-12">
