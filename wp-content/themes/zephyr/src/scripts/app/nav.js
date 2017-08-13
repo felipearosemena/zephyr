@@ -12,19 +12,27 @@ export default function NavFactory(el) {
     el: el,
     router: router,
     data: store.state,
+    mounted() {
+      this.toggle = toggleClass(document.body, 'is-nav-active')
+      this.modal = initModal(document.querySelector('#site-nav'))
+      this.modal.subscribe('open', () => this.onOpen())
+      this.modal.subscribe('close', () => this.onClose())
+    },
     methods: {
-      toggleCart: bool => store.toggleCart(bool)
+      toggleCart: bool => store.toggleCart(bool),
+      onOpen() {
+        this.toggle(true)
+        store.setState({ navOpen: true })
+      },
+      onClose() {
+        this.toggle(false)
+        store.setState({ navOpen: false })
+      },
     }
   })
 
-  const modal = initModal(document.querySelector('#site-nav'))
-  const toggle = toggleClass(document.body, 'is-nav-active')
-  
-  modal.subscribe('open', () => toggle(true))
-  modal.subscribe('close', () => toggle(false))
-
   router.beforeEach((to, from, next) => {
-    modal.close()
+    nav.modal.close()
     next()
   })
 
