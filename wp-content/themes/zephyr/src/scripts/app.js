@@ -90,8 +90,8 @@ const methods = {
   },
 
   setCurrentView(html) {
-    this.createSectionComponent('page-content', '.page-content', html)
-    this.currentView = this.getRouteComponentId('page-content')
+    this.createSectionComponent('page-view', '.page-view-wrap', html)
+    this.currentView = this.getRouteComponentId('page-view')
   },
 
   getRouteComponentId(namespace) {
