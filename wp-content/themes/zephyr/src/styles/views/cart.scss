@@ -30,7 +30,7 @@
   cursor: pointer;
   visibility: hidden;
   opacity: 0;
-  transition: opacity $transition-default;
+  transition: opacity $transition-default, visibility $transition-default;
 
   .is-cart-active & {
     opacity: 1;
