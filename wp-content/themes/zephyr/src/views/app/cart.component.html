@@ -1,4 +1,4 @@
-<div class="cart-view" v-bind:class="{ 'is-active' : isActive }">
+<div id="cart-view" class="cart-view" v-bind:class="{ 'is-active' : isActive }">
 
   <div class="container">
     <div class="text-right">
@@ -16,7 +16,7 @@
     <div v-else>
       <p class="lead mb-05">You cart is empty</p>
 
-      <a to="/shop">
+      <a href="/shop">
         <span v-on:click="toggleCart">
           Go to shop
         </span>
