@@ -15,10 +15,8 @@
           <p class="lead mb-2">{{ section.content|striptags }}</p>
         {% endif %}
 
-        {% set link = section|link_vars %}
-
-        {% if link %}
-          <a href="{{ link.href }}" target="{{ link.target }}" class="btn">{{ section.link_label|default('Learn More') }}</a>
+        {% if section.link %}
+          <a href="{{section.link }}" class="btn">{{ section.link_label|default('Learn More') }}</a>
         {% endif %}
 
       </div>
