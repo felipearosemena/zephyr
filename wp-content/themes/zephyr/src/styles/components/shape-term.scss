@@ -63,9 +63,10 @@
 
 
 .shape-term__title {
-  margin-bottom: $bsu*1.25;
+  margin-bottom: 0;
   pointer-events: none;
   transition: all $transition-default;
+  line-height: $h2-lh;
 
   .shape-term--odd:not(:hover):not(:focus) & {
     transform: translate3d($bsu*6, -$bsu, 0);
@@ -78,7 +79,7 @@
 
 .shape-term__img {
   max-width: 200px;
-  margin-bottom: $bsu;
+  margin-bottom: 0;
   transition: transform $transition-default;
 
   .shape-term:hover &,
@@ -93,6 +94,7 @@
 
 .shape-term__label {
   transition: all $transition-default;
+  line-height: $h2-lh;
 
   .shape-term:not(:hover):not(:focus) & {
     opacity: 0;
