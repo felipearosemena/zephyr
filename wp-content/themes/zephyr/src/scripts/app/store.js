@@ -14,6 +14,7 @@ const store = {
     transiting: false,
     initialized: true,
     cartActive: false,
+    navOpen: false,
     cart: CartService.cart,
     products: ProductService.products,
     product : {},
