@@ -24,7 +24,7 @@ import { initModal, initVideoModal } from './modules/modal'
 // import createLoader from './modules/ajaxLoader'
 
 // Stub the console, if it doesn't exist
-window.console = window.console || { log() {} } 
+window.console = window.console || { log() {} }
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -32,7 +32,7 @@ Vue.use(VueResource)
 /**
  *
  * Initialize App
- * 
+ *
  */
 
 const app    = AppFactory(document.querySelector('.page-wrap'))
@@ -42,10 +42,10 @@ const nav    = NavFactory(document.querySelector('#site-nav'))
 const breakpoints = getBpObj()
 
 /**
- * 
+ *
  * Listen for card elements click, and trigger click on the links inside,
  * making the whole card clickable
- * 
+ *
  */
 
 collection('[data-card-click]').map(card => {
@@ -59,7 +59,7 @@ collection('[data-card-click]').map(card => {
 /**
  *
  * Smooth scroll for links within the same page
- * 
+ *
  */
 
 const smoothScroll = new SmoothScroll()
@@ -74,7 +74,7 @@ EventBus.subscribe(windowResized, e => {
 /**
  *
  * Search Bar Toggle
- * 
+ *
  */
 
 const siteSearch = document.querySelector('#site-search')
@@ -92,7 +92,7 @@ EventBus.subscribe(keyDownEscape, () => {
 /**
  *
  *  Generic Toggle
- * 
+ *
  */
 
 toggleTarget('.js-toggle')
@@ -101,24 +101,24 @@ toggleTarget('.js-toggle')
 /**
  *
  * Tabs Toggles
- * 
+ *
  */
 
-const tabsToggles = toggleTarget('.js-toggle-tab') 
+const tabsToggles = toggleTarget('.js-toggle-tab')
 
 /**
  *
  * Accordion Toggles
- * 
+ *
  */
 
-const accordionToggles = toggleTarget('.js-toggle-accordion') 
+const accordionToggles = toggleTarget('.js-toggle-accordion')
 
 /**
- * 
- * Set CSS `max-height` for the tabs & accordions, to allow animating the opening/closing 
+ *
+ * Set CSS `max-height` for the tabs & accordions, to allow animating the opening/closing
  * via CSS transitions.
- * 
+ *
  */
 
 const setTogglesMaxHeight = (toggles) => {
@@ -164,81 +164,8 @@ EventBus.subscribe(windowResized, e => {
 
 /**
  *
- *  Sliders
- * 
- */
-
-collection('.js-slider')
-  .filter(el => el.children.length > 1)
-  .map(el => new Flickity(el, {
-    pageDots: el.dataset.pageDots == 'false' ? false : true
-  }))
-
-/**
- *
- * Mobile Slider instantiation.
- *
- * If the window is below a certain width (in this case our 'lg' CSS breakpoint), initialize the slider
- * otherwise, destroy it.
- * 
- */
-EventBus.subscribe(windowResized, () => {
-
-  const sliders = collection('.js-mobile-slider')
-
-  if(window.innerWidth <= breakpoints.lg) {
-    sliders
-      .filter(el => !Flickity.data(el))
-      .map(el => new Flickity(el, {
-        pageDots: true,
-        prevNextButtons: false
-      }))
-  } else {
-    sliders
-      .map(el => Flickity.data(el))
-      .filter(flickity => flickity)
-      .map(flickity => flickity.destroy())
-  }
-
-})
-
-/**
- *
- * Modals
- * 
- */
-
-collection('.js-modal').map(modalEl => initModal(modalEl))
-
-/**
- *
- * Video Modals
- * 
- */
-
-collection('.js-video-modal').map(modalEl => initVideoModal(modalEl, '[data-video-player]'))
-
-/**
- *
- * Video Players
- * 
- */
-
-collection('.js-video-player').map(videoEl => createVideoIframe(videoEl))
-
-
-/**
- *
- * Share Post
- * 
- */
-
-sharePost('.js-share-post')
-
-/**
- *
  * Shape Terms
- * 
+ *
  */
 
 function randomFromArray(arr) {
@@ -269,41 +196,41 @@ function resetShrapnel(shrapnel) {
 }
 
 // collection('.js-shape-term').map(el => {
-
+//
 //   let promise = new Promise(resolve => resolve())
 //   let direction = false
-
+//
 //   const { href }  = el
 //   const shapeSVG = el.querySelector('[data-shape-icon] svg')
 //   const shape = shapeSVG.querySelector('path, circle, polygon, ellipse, rect')
 //   const shrapnelContainer = el.querySelector('[data-shrapnel]')
 //   const shrapnelEls = []
-
+//
 //   const toggle = bool => {
 //     toggleClass(el, 'is-hovered', bool)
-
+//
 //     if(bool) {
 //       animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
 //     } else {
 //       resetShrapnel(shrapnelEls)
 //     }
 //   }
-
+//
 //   let shrapnelCount = 4
-
+//
 //   if(shape) {
- 
+//
 //     // while(shrapnelCount--) {
 //     //   shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
 //     // }
-
+//
 //     shape.addEventListener('mouseover' , () => toggle(true))
 //     shape.addEventListener('mouseleave', () => toggle(false))
 //     shape.addEventListener('click', () => window.location = href)
 //     el.addEventListener('click', e => e.preventDefault())
-
+//
 //   }
-
+//
 // })
 
 
