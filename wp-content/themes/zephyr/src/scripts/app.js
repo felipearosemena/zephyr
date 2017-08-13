@@ -11,6 +11,7 @@ import ProductService from 'app/product.service'
 import SingleProductForm from 'app/single-product-form.component'
 
 import { arrayToObj } from 'modules/utils'
+import { arrayToObj, delegate } from 'modules/utils'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -37,6 +38,13 @@ const methods = {
     router.beforeEach((to, from, next) => {
       this.routerBeforeEach(to, from, next)
     })
+
+    document.addEventListener('click', delegate('a[href]', function(e) {
+      e.preventDefault()
+      if(this.href.indexOf(window.location.host) > -1){
+        router.push(this.getAttribute('href'))
+      }
+    }))
 
   },
 
