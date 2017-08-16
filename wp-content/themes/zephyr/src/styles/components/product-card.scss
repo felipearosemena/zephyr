@@ -1,0 +1,36 @@
+.product-card {
+  position: relative;
+  display: block;
+}
+
+.product-card__image {
+  position: relative;
+  z-index: 0;
+
+  img {
+    display: block;
+    transition: transform $transition-default;
+  }
+}
+
+.product-card__content {
+  position: absolute;
+  width: 100%;
+  padding: $bsu*.75 $bsu;
+  top: 0;
+
+  .product-card--bottom & {
+    top: auto;
+    bottom: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.product-card__price {
+  display: block;
+  line-height: $bsu;
+}
