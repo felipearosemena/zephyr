@@ -6,34 +6,44 @@
 
     {% include 'includes/header.twig' %}
 
-    <div class="page-wrap">
+    <div class="page-wrap" v-bind:class="{
+      'is-cart-active': state.cartActive,
+      'is-nav-active': state.navOpen,
+    }">
+
+      <div
+        class="page-wrap__overlay"
+        v-bind:class="{ 'is-active' : state.overlayActive }"
+        v-on:click="closeOverlay"></div>
 
       <cart :cart="state.cart" :products="state.products" :is-active="state.cartActive"></cart>
 
-      <transition-group name="fade">
+      <div class="page-wrap__inner">
+        <transition-group name="fade">
 
-        <div v-bind:key="sections.content" v-if="!state.transiting">
-          <component v-bind:is='currentView'>
-            <div class="page-view-wrap">
-              {% block hero %}{% endblock %}
+          <div v-bind:key="sections.content" v-if="!state.transiting">
+            <component v-bind:is='currentView'>
+              <div class="page-view-wrap">
+                {% block hero %}{% endblock %}
 
-              <main class="page-content">
-                {% block content %}
-                {% endblock %}
-              </main><!--.page-content-->
+                <main class="page-content">
+                  {% block content %}
+                  {% endblock %}
+                </main><!--.page-content-->
 
-              <aside class="page-bottom" v-if="!state.transiting" v-bind:key="sections.bottom">
-                {% block bottom %}
-                {% endblock %}
-              </aside>
-            </div>
-          </component>
-        </div>
+                <aside class="page-bottom" v-if="!state.transiting" v-bind:key="sections.bottom">
+                  {% block bottom %}
+                  {% endblock %}
+                </aside>
+              </div>
+            </component>
+          </div>
 
-        {% include 'includes/newsletter-bar.twig' %}
-        {% include 'includes/footer.twig' %}
+          {% include 'includes/newsletter-bar.twig' %}
+          {% include 'includes/footer.twig' %}
 
-      </transition-group>
+        </transition-group>
+      </div>
 
     </div>
 
