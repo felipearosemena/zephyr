@@ -16,7 +16,7 @@
         {% endif %}
 
         {% if section.link %}
-          <a href="{{section.link }}" class="btn">{{ section.link_label|default('Learn More') }}</a>
+          <a href="{{section.link }}" class="btn btn--secondary">{{ section.link_label|default('Learn More') }}</a>
         {% endif %}
 
       </div>
@@ -28,7 +28,7 @@
 
   {% if section.background %}
     {% set image = TimberImage(section.background) %}
-    <div class="hero__bg" style="background-image: url({{ image.src('hero_sq') }})">
+    <div class="hero__bg" style="background-image: url({{ image.src('sq_large') }})">
     </div>
   {% endif %}
 
