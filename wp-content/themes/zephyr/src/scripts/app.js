@@ -111,6 +111,7 @@ const methods = {
       data() {
         return options.data
       },
+      methods: methods,
       template: doc.querySelector(selector).outerHTML
     })
 
