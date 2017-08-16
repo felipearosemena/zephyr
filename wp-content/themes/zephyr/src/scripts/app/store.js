@@ -15,6 +15,8 @@ const store = {
     initialized: true,
     cartActive: false,
     navOpen: false,
+    overlayActive: false,
+    filtersActive: false,
     cart: CartService.cart,
     products: ProductService.products,
     product : {},
@@ -55,13 +57,32 @@ const store = {
 
   },
 
+  toggleFlyout(propK, bool) {
+    const prop = this.state[propK]
+    const active = (bool !== null && bool !== undefined) ? bool : !prop
+    const newState = { overlayActive: active }
+    newState[propK] = active
+    this.setState(newState)
+  },
+
   toggleCart(bool) {
+    this.toggleFlyout('cartActive', bool)
+  },
 
-    const { cartActive } = this.state
-    const active = (bool !== null && bool !== undefined) ? bool : !cartActive
+  toggleNav(bool) {
+    this.toggleFlyout('navOpen', bool)
+  },
 
-    document.body.classList[active ? 'add' : 'remove']('is-cart-active')
-    this.setState({ cartActive: active })
+  toggleShopFilters(bool) {
+    this.toggleFlyout('filtersActive', bool)
+  },
+
+  closeFlyouts() {
+    this.setState({
+      navOpen: false,
+      overlayActive: false,
+      filtersActive: false
+    })
   }
 
 }
