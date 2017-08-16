@@ -47,7 +47,7 @@ class Media
     add_image_size('hero_full', 1920);
     add_image_size('hero_md', 1280);
     add_image_size('hero_sm', 640);
-    add_image_size('hero_sq', 960, 960);
+    add_image_size('sq_large', 960, 960, true);
     add_image_size('card', 320, 320, true);
     add_image_size('card_md', 460, 420, true);
     add_image_size('featured', 960, 540, true);
