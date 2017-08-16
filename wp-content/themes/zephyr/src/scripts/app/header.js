@@ -13,7 +13,8 @@ export default function HeaderFactory(el) {
     },
 
     methods: {
-      toggleCart: () => store.toggleCart()
+      toggleCart: () => store.toggleCart(),
+      toggleNav: () => store.toggleNav()
     }
   })
 
