@@ -39,10 +39,14 @@
 }
 
 .container {
-  width: 80%;
+  width: 90%;
   max-width: px-to-rem($container-lg);
   box-sizing: content-box; // Prevents the container's padding
                            // to be substracted from it's width
+
+  @include mq-min($bp-lg) {
+    width: 70%;
+  }
 }
 
 // Full width container
