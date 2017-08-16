@@ -1,0 +1,78 @@
+.filters-toggle-container {
+  position: fixed;
+  z-index: 100;
+  bottom: $bsu;
+  padding-left: $container-pad/2;
+  padding-right: $container-pad/2;
+  width: 100%;
+
+  @include mq-min($bp-sm) {
+    left: $bsu;
+    width: auto;
+  }
+
+  @include mq-between($bp-sm, $bp-xl) {
+    left: 5%;
+    transform: rotate(-90deg);
+    transform-origin: 0 50%;
+  }
+}
+
+.filters-toggle {
+}
+
+.filter-shape {
+  position: relative;
+  display: block;
+  width: $bsu*2;
+  height: $bsu*2;
+  line-height: $bsu*2;
+  font-size: 2.5rem;
+
+  &:before {
+    content: attr(data-title);
+    font-size: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate3d(-50%, $bsu/2, 0);
+    opacity: 0;
+    visibility: hidden;
+    transition: all $transition-bounce;
+    color: $body-color;
+  }
+
+  label:hover &:before,
+  input:focus:not(:focus) + label &:before {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  input:not(:checked) + label & g {
+    fill: none;
+    stroke: $body-color;
+    stroke-width: 5;
+  }
+}
+
+.filters {
+  position: fixed;
+  z-index: 300;
+  bottom: 0;
+  left: 0;
+  padding: $bsu*2 $bsu;
+  background: white;
+  width: 100%;
+  transform: translate3d(0, 100%, 0);
+  transition: all $transition-default;
+
+  &.is-active {
+    transform: translate3d(0, 0, 0);
+  }
+}
