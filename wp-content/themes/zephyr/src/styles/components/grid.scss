@@ -38,6 +38,10 @@
 .grid__item--masonry:not(:first-child) {
   margin-top: $grid-gutter-fluid;
 
+  &:nth-child(2) {
+    margin-top: $grid-gutter-fluid*3;
+  }
+
   &:nth-child(2n) {
     float: right;
   }
