@@ -117,6 +117,14 @@ const methods = {
 
   },
 
+  closeOverlay() {
+    store.closeFlyouts()
+  },
+
+  toggleFilters() {
+    store.toggleShopFilters()
+  },
+
   bindGlobalEvents() {
     window.addEventListener('keydown', e => {
       switch(e.keyCode) {
