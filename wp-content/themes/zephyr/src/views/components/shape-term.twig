@@ -3,7 +3,11 @@
   <span class="shape-term__shrapnel" data-shrapnel></span>
 
   <div class="shape-term__icon" data-shape-icon>
-    {{ term.shape_image.url|file_get_contents|default('<svg width=200 height=200 viewbox="0 0 200 200"><rect x=25 y=25 width=150 height=150 fill=#f9f9f9 stroke-width=0 /></svg>') }}
+    {% if term.shape_image.url and not term.shape_skip_home %}
+      {{ term.shape_image.url|file_get_contents }}
+    {% else %}
+      <svg width=200 height=200 viewbox="0 0 200 200"><rect x=25 y=25 width=150 height=150 fill=#f9f9f9 stroke-width=0 /></svg>
+    {% endif %}
   </div>
 
   <div class="shape-term__content">

@@ -47,6 +47,7 @@ html {
 a {
   text-decoration: none;
   color: $body-color;
+  font-weight: 500;
 
   &:not(.btn):not(.remove-underline) {
     @include link-default;
@@ -186,8 +187,16 @@ time {
   margin-bottom: $bsu;
 }
 
-.cart-link {
+button.cart-link {  
+  @include button-plain;
+}
+
+a.cart-link[href],
+button.cart-link {
   @include link-default;
+}
+
+.cart-link {
   vertical-align: top;
 
   span {

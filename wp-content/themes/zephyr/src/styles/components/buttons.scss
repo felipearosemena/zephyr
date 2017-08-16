@@ -9,25 +9,35 @@
 // Common button styles
 %btn-base {
   @include button-padding;
+  @include font-size($small-fs, $base-lh);
   display: inline-block;
   vertical-align: middle;
   text-decoration: none;
   text-align: center;
   font-family: $body-font-family;
-  @include font-size($lead-fs, $base-lh);
   min-width: px-to-rem(200px);
-  font-weight: normal; // Important for <button> element
+  font-weight: bold; // Important for <button> element
   cursor: pointer;
   margin: 0;
   border: none;
   border-radius: 0;
   transition: color $transition-fast, background $transition-fast;
-  color: $body-color;
-  background-color: transparent;
+  color: $color-primary;
+  background-color: white;
   -webkit-tap-highlight-color: transparent;
-
+  letter-spacing: .025em;
   position: relative;
   z-index: 0;
+  text-transform: uppercase;
+
+  i {
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+  @include mq-min($bp-sm) {
+    @include font-size($base-fs, $base-lh);
+  }
 
   &:after,
   &:before {
@@ -39,14 +49,14 @@
   }
 
   &:before {
-    box-shadow: inset 0 0 0 2px $body-color;
+    box-shadow: inset 0 0 0 3px $color-primary;
   }
 
   &:after {
     @include full-cover;
     transform: scaleX(0);
     transform-origin: 100% 50%;
-    background-color: $body-color;
+    background-color: $color-primary;
   }
 
   &:hover {
@@ -67,6 +77,28 @@
   &:active,
   &:focus {
     outline: none;
+  }
+}
+
+.btn--secondary {
+  color: $color-secondary;
+
+  &:before {
+    box-shadow: inset 0 0 0 3px $color-secondary;
+  }
+
+  &:after {
+    background-color: $color-secondary;
+  }
+
+}
+
+.btn--sm {
+  @include button-padding($bsu*2, $bsu, $bsu/2);
+  min-width: px-to-rem(80px);
+
+  @include mq-min($bp-sm) {
+    min-width: px-to-rem(120px);
   }
 }
 
@@ -96,13 +128,6 @@
 
   @include mq-max($bp-xs) {
     width: 100%;
-  }
-}
-
-.btn--secondary {
-  background-color: $color-secondary;
-  &:hover {
-    background-color: darken($color-secondary, 10%);
   }
 }
 

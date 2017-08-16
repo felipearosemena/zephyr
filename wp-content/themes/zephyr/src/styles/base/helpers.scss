@@ -77,6 +77,22 @@
   margin-top: $bsu/2;
 }
 
+.mr-1 {
+  margin-right: $bsu;
+}
+
+.mr-05 {
+  margin-right: $bsu/2;
+}
+
+.color-primary {
+  color: $color-primary
+}
+
+.color-secondary {
+  color: $color-secondary
+}
+
 // Text Alignment
 
 .text-left {
@@ -102,4 +118,10 @@
 
 .flex {
   display: flex;
+}
+
+.order-2--xl {
+  @include mq-min($bp-xl) {
+    order: 2
+  }
 }

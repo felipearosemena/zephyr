@@ -9,7 +9,8 @@
 
 /*----------  Colours  ----------*/
 
-$blue         : #00bff3;
+$pink         : lighten(#ED9FA8, 2.5%);
+$blue         : darken(#B4E0E9, 10%);
 $green        : #5cb85c;
 $red          : #d9534f;
 $yellow       : #ec971f;
@@ -32,8 +33,8 @@ $insta-blue-hover   : #ed5f7a;
 
 
 // Assign them to the default variables
-$color-primary        : $blue;
-$color-secondary      : $grey-dark;
+$color-primary        : $pink;
+$color-secondary      : $blue;
 $color-positive       : $green;
 $color-warning        : $yellow;
 $color-negative       : $red;
@@ -100,8 +101,8 @@ $small-lh : $h5-lh;
 $tiny-fs : $h6-fs;
 $tiny-lh : $h6-lh;
 
-$form-label-fs : $small-fs;
-$form-label-lh : $small-lh;
+$form-label-fs : $lead-fs;
+$form-label-lh : $lead-lh;
 
 /*----------  Spacing  ----------*/
 
@@ -115,7 +116,7 @@ $base-input-padding  : $bsu/2;
 
 // Grid
 $grid-gutter         : $bsu;
-$grid-gutter-fluid   : 5%;
+$grid-gutter-fluid   : 7.5%;
 
 // Mobile Menu Item Padding
 $mobile-item-padding: $bsu;
@@ -130,7 +131,7 @@ $container-pad       : $bsu;
 $container-xs        : 400px;
 $container-sm        : 600px;
 $container-md        : 800px;
-$container-lg        : 1180px;
+$container-lg        : 960px;
 $container-xl        : 1440px;
 
 $container-fixed-md  : $container-md;
@@ -154,7 +155,7 @@ $bp-xs      : 480px ;
 $bp-sm      : 640px ;
 $bp-md      : 800px ;
 $bp-lg      : 1020px;
-$bp-xl      : 1200px;
+$bp-xl      : 1280px;
 $bp-xxl     : 1600px;
 
 // Main breakpoint, usually the point where we change from 'mobile' to 'desktop'

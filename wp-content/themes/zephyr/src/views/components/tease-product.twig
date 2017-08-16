@@ -1,30 +1,21 @@
 <article {{ fn('post_class', ['entry'] ) }}>
 
-   {{ post|set_global_product }}
+  {{ post|set_global_product }}
 
-  <div class="media">
+  <a href="{{ post.get_path }}" class="product-card product-card--{{ post.shop_item_alignment }}">
 
-    {% if showthumb %}
-      <div class="media-figure {% if not post.thumbnail %}placeholder{% endif %}">
-        <a href="{{ post.link }}">
-          {% if post.thumbnail %}
-            <img src="{{ post.thumbnail.src|resize(post_thumb_size[0], post_thumb_size[1]) }}" />
-          {% else %}
-            <span class="thumb-placeholder"><i class="icon-camera"></i></span>
-          {% endif %}
-        </a>
-      </div>
-    {% endif %}
-
-    <div class="media-content">
-      {% do action('woocommerce_before_shop_loop_item_title') %}
-      <h3 class="entry-title">
-        <a href="{{ post.get_path }}">{{ post.title }}</a>
-      </h3>
-      {% do action( 'woocommerce_after_shop_loop_item_title' ) %}
-      {% do action( 'woocommerce_after_shop_loop_item' ) %}
+    <div class="product-card__image">
+      {{ macros.img(post.thumbnail, 'sq_large') }}
     </div>
 
-  </div>
+    <div class="product-card__content">
+      <h3 class="entry-title mb-0">
+        {{ post.title }}
+      </h3>
+
+      <span class="product-card__price">[product_price]</span>
+    </div>
+
+  </a>
 
 </article>

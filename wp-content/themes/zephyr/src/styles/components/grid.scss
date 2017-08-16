@@ -1,8 +1,8 @@
 /**
  *
  * Grid
- *  
- * Grid layout systems 
+ *
+ * Grid layout systems
  *
  */
 
@@ -35,6 +35,14 @@
   padding-left: $grid-gutter;
 }
 
+.grid__item--masonry:not(:first-child) {
+  margin-top: $grid-gutter-fluid;
+
+  &:nth-child(2n) {
+    float: right;
+  }
+}
+
 // Gutterless grid
 .grid--full, %grid--full {
   margin-left: 0;
@@ -43,6 +51,14 @@
   }
 }
 
+// Gutterless grid
+.grid--tight {
+  margin-left: -$bsu/2;
+
+  > .grid__item {
+    padding-left: $bsu/2;
+  }
+}
 // Fluid gutter grid
 .grid--fluid, %grid--fluid {
   @include clearfix;
@@ -110,7 +126,7 @@
   > .grid__item {
     margin-bottom: $grid-gutter
   }
-  
+
   &.grid--wide {
     @include mq-min($bp-xl) {
       margin-bottom: -$grid-gutter*2;
@@ -136,7 +152,7 @@
  *
  *   <div class="grid">
  *     <div class="grid__item w-5"></div><!--
- *        
+ *
  *  --><div class="grid__item w-5"></div>
  *   </div>
  *
@@ -155,13 +171,13 @@
  *
  * Equal height grid, using flexbox.
  *
- * 
+ *
  */
 .grid--flex {
   display: flex;
   flex-wrap: wrap;
 
   > .grid__item {
-    float:none; 
+    float:none;
   }
 }

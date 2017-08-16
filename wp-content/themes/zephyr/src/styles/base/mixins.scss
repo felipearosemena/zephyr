@@ -75,10 +75,9 @@
   }
 }
 
-@mixin iconfont($line-height: 1) {
+@mixin iconfont() {
   display: inline-block;
   vertical-align: middle;
-  line-height: $line-height;
   transition: color $transition-default;
 
   &:before, &:after {
@@ -201,7 +200,7 @@
   display: inline-block;
   vertical-align: baseline;
 
-  &[href]:after {
+  &:after {
     content: '';
     display: block;
     position: absolute;
@@ -227,21 +226,11 @@
 
 @mixin link-default {
   @include hover-underline;
-  color: $body-color;
-  font-weight: 500;
   transition: color $transition-default, background $transition-default;
 
   &:hover,
   &:focus {
     @include hover-underline-active;
-  }
-}
-
-@mixin site-nav-active-content {
-  transition: transform $transition-default;
-
-  body.is-nav-active & {
-    transform: translate3d($site-nav-width, 0, 0);
   }
 }
 
@@ -277,6 +266,6 @@
 }
 
 
-@mixin button-padding($height: $base-button-height, $lh: px-to-rem($btn-lh)) {
-  padding: ($height - $lh)/2 $bsu*1.5;
+@mixin button-padding($height: $base-button-height, $lh: px-to-rem($btn-lh), $padding-x: $bsu*1.5) {
+  padding: ($height - $lh)/2 $padding-x;
 }

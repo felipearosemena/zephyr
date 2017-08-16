@@ -39,6 +39,7 @@
 }
 
 .container {
+  width: 80%;
   max-width: px-to-rem($container-lg);
   box-sizing: content-box; // Prevents the container's padding
                            // to be substracted from it's width
@@ -47,6 +48,7 @@
 // Full width container
 .container--full {
   max-width: none;
+  width: auto;
 }
 
 .container--xs {

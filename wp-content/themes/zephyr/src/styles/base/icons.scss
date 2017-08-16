@@ -76,6 +76,7 @@ button[class*="icon-"] {
 $icon-caret-right: "\70";
 
 .icon-caret-right:before {
+  width: .66em;
   content: $icon-caret-right;
 }
 

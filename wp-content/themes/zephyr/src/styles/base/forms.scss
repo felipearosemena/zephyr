@@ -51,7 +51,7 @@ textarea {
 
 input[type="checkbox"],
 input[type="radio"] {
-  // @extend .sr-only;
+  @extend .sr-only;
 
   + label {
     position: relative;
@@ -132,6 +132,55 @@ select {
 
   + label {
     font-size: 0;
+  }
+}
+
+.checkbox-shape,
+.checkbox-plain {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: $bsu/2;
+
+  input + label {
+    padding-left: 0;
+    font-weight: normal;
+
+    &:before {
+      display: none;
+    }
+
+    &:after {
+      height: 0;
+      border-bottom: 0;
+    }
+
+  }
+
+  input:checked + label {
+    color: $color-primary;
+  }
+
+}
+
+.checkbox-shape {
+  label {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
+
+.checkbox-plain {
+  margin-top: $bsu*.75;
+
+  input + label {
+    @include hover-underline;
+
+    &:hover,
+    &:focus {
+      @include hover-underline-active;
+    }
   }
 }
 

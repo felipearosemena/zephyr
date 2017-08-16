@@ -1,7 +1,6 @@
-<a
-  href="{{ cart_path }}"
+<button
   v-on:click.prevent="toggleCart"
   class="{{ namespace }}__cart cart-link">
   cart
   <span v-html="cart.count"></span>
-</a>
+</button>

@@ -1,11 +1,12 @@
 /**
  *
  * Footer
- * 
+ *
  */
 
 .site-footer,
 .site-sub-footer {
+  display: none;
 }
 
 .site-footer {
@@ -54,7 +55,7 @@
 
   a {
     padding-left: $bsu;
-  } 
+  }
 
   &.is-active {
     border-top: 1px solid rgba(white, 0.1);

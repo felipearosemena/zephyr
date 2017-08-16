@@ -3,7 +3,7 @@
   z-index: 300;
   top: 0;
   left: 100%;
-  width: $container-xs;
+  width: px-to-rem($container-xs);
   background-color: white;
   height: 100%;
   padding: $bsu*2 0;

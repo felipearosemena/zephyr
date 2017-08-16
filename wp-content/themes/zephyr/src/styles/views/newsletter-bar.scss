@@ -1,11 +1,11 @@
 /**
  *
  * Newsletter Bar
- * 
+ *
  */
 
 .newsletter-bar {
-
+  display: none;
   background-color: $grey-lighter;
   padding-top: $bsu*2;
   padding-bottom: $bsu*2;
@@ -23,7 +23,7 @@
       flex-direction: row;
     }
   }
-  
+
   .gform_heading,
   .validation_error {
     width: 100%;
@@ -60,7 +60,7 @@
     @include mq-min($bp-sm) {
       flex-direction: row;
     }
-  }  
+  }
 
   label {
     @extend .sr-only;
