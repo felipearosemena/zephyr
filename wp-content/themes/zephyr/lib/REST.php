@@ -28,7 +28,7 @@ class REST {
     add_filter( 'wp_enqueue_scripts', array( &$this, 'localizeScripts' ) );
     add_filter( 'rest_project_query', array( &$this, 'posts_allow_custom_request_params' ), 99, 2 );
 
-
+    add_filter( 'rest_product_collection_params', array( &$this, 'add_rest_orderby_params' ), 10, 1 );
 
     // if on dev mode, please make sure to add `define( 'Z_DEV', true );` to the wp-config
     // file in order to test the rest API in the browser
@@ -67,6 +67,13 @@ class REST {
     }
 
     return null;
+  }
+
+  public function add_rest_orderby_params( $params )
+  {
+    $params['orderby']['enum'][] = 'menu_order';
+
+    return $params;
   }
 
   public function posts_allow_custom_request_params( $args, $request ) {
