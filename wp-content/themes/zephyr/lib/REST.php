@@ -152,7 +152,7 @@ class REST {
          $data    = $controller->prepare_item_for_response( $post, $params );
          $products[] = $controller->prepare_response_for_collection( $data );
       }
-      
+
     }
 
     $cart->products = $products;
