@@ -19,6 +19,9 @@ const ProductService = {
 
   loadProducts(params = {}) {
 
+    params.orderby = 'menu_order'
+    params.order = 'asc'
+
     return apiFetch(`wp/v2/product?${ serializeObject(params) }`)
       .then(res => res.json())
       .then(products => {
