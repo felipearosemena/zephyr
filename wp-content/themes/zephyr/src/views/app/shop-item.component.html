@@ -1,0 +1,18 @@
+<article v-bind:id="'shop-item-' + product.slug ">
+  <a v-bind:href="product.path" class="product-card" v-bind:class="[ 'product-card--' + product.fields.shop_item_alignment ]">
+
+    <div class="product-card__image">
+      <thumbnail :image="product.thumbnail" size="sq_large" />
+    </div>
+
+    <div class="product-card__content">
+      <h3 class="entry-title mb-0">
+        {{ product.title.rendered }}
+      </h3>
+
+      <span class="product-card__price" v-html="product.price"></span>
+    </div>
+
+  </a>
+
+</article>
