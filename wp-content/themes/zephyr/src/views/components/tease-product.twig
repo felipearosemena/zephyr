@@ -1,6 +1,6 @@
 <article {{ fn('post_class', ['entry'] ) }}>
 
-  {{ post|set_global_product }}
+  {% set product = post|set_global_product %}
 
   <a href="{{ post.get_path }}" class="product-card product-card--{{ post.shop_item_alignment }}">
 
@@ -13,7 +13,7 @@
         {{ post.title }}
       </h3>
 
-      <span class="product-card__price">[product_price]</span>
+      <span class="product-card__price">{{ product.get_price_html }}</span>
     </div>
 
   </a>
