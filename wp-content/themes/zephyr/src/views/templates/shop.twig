@@ -8,14 +8,8 @@
 
     <div class="container">
 
-
-      <div class="grid grid--fluid grid--masonry">
-        {% for post in products %}
-        <div class="grid__item grid__item--masonry w-12-12 w-md-6-12">
-          {% include 'components/tease-product.twig' %}
-        </div>
-        {% endfor %}
-      </div>
+      <shop-grid :products="state.products">
+      </shop-grid>
 
       {% do action('woocommerce_after_shop_loop') %}
       {% do action('woocommerce_after_main_content') %}
