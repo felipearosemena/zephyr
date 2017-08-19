@@ -27,6 +27,13 @@ const methods = {
           store.setProduct(slug)
             .then(next)
         }
+      },
+      {
+        path: '/shop',
+        beforeEnter(to, from, next) {
+          store.getAllProducts()
+            .then(next)
+        }
       }
       ,{
         path: '*',
