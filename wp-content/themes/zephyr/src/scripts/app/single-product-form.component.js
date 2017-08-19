@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import store from 'app/store'
 
 const SingleProductForm = {
@@ -24,5 +25,7 @@ const SingleProductForm = {
     }
   }
 }
+
+Vue.component('single-product-form', SingleProductForm)
 
 export default SingleProductForm
