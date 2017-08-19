@@ -90,6 +90,8 @@ class Twig extends TimberSite
     if ( is_woocommerce() ) {
       $product = wc_get_product($post->ID);
     }
+
+    return $product;
   }
 
   /**
