@@ -119,6 +119,22 @@ class REST {
     register_rest_field('product', 'variations', [
       'get_callback' => array( &$this, 'get_product_variations' )
     ]);
+
+    register_rest_field('product', 'fields', [
+      'get_callback' => array( &$this, 'get_product_fields' )
+    ]);
+
+    register_rest_field('product', 'path', [
+      'get_callback' => array( &$this, 'get_product_path' )
+    ]);
+
+    register_rest_field('product', 'thumbnail', [
+      'get_callback' => array( &$this, 'get_product_thumbnail' )
+    ]);
+
+    register_rest_field('product', 'price', [
+      'get_callback' => array( &$this, 'get_product_price' )
+    ]);
   }
 
   public function add_to_cart($params)
@@ -174,6 +190,42 @@ class REST {
   {
     $product = new WC_Product_Variable( $object['id'] );
     return $product->get_variation_attributes();
+  }
+
+  public function get_product_fields($object)
+  {
+    return get_fields($object['id']);
+  }
+
+  public function get_product_path($object)
+  {
+    return str_replace( home_url(), '', get_permalink($object['id']) );
+  }
+
+  public function get_product_price($object)
+  {
+    $product = wc_get_product($object['id']);
+    return $product->get_price_html();
+  }
+
+  public function get_product_thumbnail($object)
+  {
+
+    $image = new TimberImage($object['featured_media']);
+    $sizes = $image->sizes;
+
+    foreach ($sizes as $size => &$value) {
+      $value['src'] = $image->src($size);
+    }
+
+    return array(
+      'id'    => $image->ID,
+      'title' => $image->title(),
+      'alt'   => $image->alt(),
+      'src'   => $image->src(),
+      'sizes' => $sizes
+    );
+
   }
 
 }
