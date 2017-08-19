@@ -8,13 +8,13 @@ import Default from 'app/default.component'
 import Cart from 'app/cart.component'
 import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
-import SingleProductForm from 'app/single-product-form.component'
+import 'app/shop.component'
+import 'app/single-product-form.component'
 
 import { arrayToObj, delegate } from 'modules/utils'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
-Vue.component('single-product-form', SingleProductForm)
 
 const methods = {
   setupRoutes() {
