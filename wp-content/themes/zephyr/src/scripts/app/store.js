@@ -40,6 +40,18 @@ const store = {
       })
   },
 
+  getAllProducts() {
+    return ProductService
+      .loadProducts({ per_page: 99 })
+      .then(products => {
+
+        if(products.length) {
+          this.setState({ products: products })
+        }
+
+      })
+  },
+
   cacheResponse(k, html) {
     this.state.cachedResponses[k] = html
   },
