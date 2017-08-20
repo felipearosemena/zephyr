@@ -10,8 +10,8 @@
  *   { "name": "map",    "namespace": "map" }
  * ]
  *
- * this will generate the following tasks: `scripts`, `scripts:map` 
- * 
+ * this will generate the following tasks: `scripts`, `scripts:map`
+ *
  */
 
 const { scripts, themePath, paths } = require('../config.json')
@@ -30,10 +30,11 @@ function getBundler(src, options) {
 
   const args = merge(watchify.args, { debug: true })
   const presets = ['es2015']
+  const vueSuffix = process.env.NODE_ENV == 'production' ? 'min' : 'common'
 
   const bundler = watchify(browserify({
     entries: src,
-    basedir: __dirname, 
+    basedir: __dirname,
     debug: process.env.NODE_ENV != 'production',
     cache: {}, // required for watchify
     packageCache: {}, // required for watchify
@@ -48,9 +49,9 @@ function getBundler(src, options) {
       'modules': themePath + '/src/scripts/modules',
       'app': themePath + '/src/scripts/app',
       'templates': themePath + '/src/views/app',
-      'vue' : 'vue/dist/vue.common',
-      'vue-router' : 'vue-router/dist/vue-router.common',
-      'vue-resource' : 'vue-resource/dist/vue-resource.common'
+      'vue' : 'vue/dist/vue.' + vueSuffix,
+      'vue-router' : 'vue-router/dist/vue-router.' + vueSuffix,
+      'vue-resource' : 'vue-resource/dist/vue-resource.' + vueSuffix
     }
   })
 
