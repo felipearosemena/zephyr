@@ -68,7 +68,7 @@ class Enqueue
       wp_deregister_script( 'woocommerce_stripe_apple_pay_single' );
     }
 
-    
+
 
     if(is_page_template('templates/dashboard.php')) {
     };
@@ -92,7 +92,7 @@ class Enqueue
 
   } /* wp_enqueue_scripts__enqueueScripts() */
 
- 
+
   /**
    * Enqueue public CSS
    *
@@ -116,7 +116,7 @@ class Enqueue
    *
    * @return null
    */
-  
+
   public function init__addEditorStyle()
   {
 
