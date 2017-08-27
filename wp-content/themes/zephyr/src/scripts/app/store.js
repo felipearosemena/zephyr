@@ -19,7 +19,10 @@ const store = {
     filtersActive: false,
     cart: CartService.cart,
     products: ProductService.products,
+    allProductsLoaded: false,
     product : {},
+    filters: {},
+    query: {}
   },
 
   setState(newOpts) {
@@ -41,12 +44,20 @@ const store = {
   },
 
   getAllProducts() {
+
+    if(this.state.allProductsLoaded) {
+      return new Promise(r => r())
+    }
+
     return ProductService
       .loadProducts({ per_page: 99 })
       .then(products => {
 
         if(products.length) {
-          this.setState({ products: products })
+          this.setState({
+            products: products,
+            allProductsLoaded: true
+          })
         }
 
       })
@@ -94,6 +105,18 @@ const store = {
       navOpen: false,
       overlayActive: false,
       filtersActive: false
+    })
+  },
+
+  clearFilters() {
+    this.state.filters = {}
+  },
+
+  setQuery(query) {
+    this.toggleShopFilters(false)
+
+    this.setState({
+      query: query
     })
   }
 
