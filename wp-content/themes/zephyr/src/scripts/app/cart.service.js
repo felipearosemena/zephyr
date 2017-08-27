@@ -43,6 +43,4 @@ const CartService = new Vue({
 
 })
 
-CartService.getCart() 
-
 export default CartService

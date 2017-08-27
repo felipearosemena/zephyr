@@ -174,6 +174,8 @@ const options = {
     this.CartService.subscribe('cart-added', cart => {
       store.setState({ cartActive: true })
     })
+
+    this.CartService.getCart()
   },
 
   components: {
