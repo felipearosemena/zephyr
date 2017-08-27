@@ -134,8 +134,6 @@ const methods = {
     store.closeFlyouts()
   },
 
-  toggleFilters() {
-    store.toggleShopFilters()
   setQuery() {
 
     const query = {}
