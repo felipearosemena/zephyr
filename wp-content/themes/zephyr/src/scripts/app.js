@@ -132,6 +132,16 @@ const methods = {
 
   toggleFilters() {
     store.toggleShopFilters()
+  setQuery() {
+
+    const query = {}
+
+    mapObject(this.$route.query, (k, v) => {
+      query[k] = v.split(',')
+    })
+
+    this.store.setQuery(query)
+
   },
 
   bindGlobalEvents() {
