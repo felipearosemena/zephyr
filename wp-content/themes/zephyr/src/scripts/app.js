@@ -181,6 +181,17 @@ const options = {
     this.CartService.getCart()
   },
 
+  watch: {
+    '$route': function(newRoute, oldRoute) {
+
+      const isShop = newRoute.path.indexOf('shop') > -1
+
+      if(isShop) {
+        this.setQuery()
+      }
+    }
+  },
+
   components: {
     default: Default,
     cart: Cart
