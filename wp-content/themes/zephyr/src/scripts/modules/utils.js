@@ -76,11 +76,11 @@ export function selectorMatches(el, selector) {
  *
  * Return the first matched element by provided selector, traversing from current element to document.
  *
- * @param {HTMLElement} el - Element to find closest element to 
+ * @param {HTMLElement} el - Element to find closest element to
  * @param {string} selector - Selector to use for matching
  *
  * @return {HTMLElement|null} - The matching closest element or null
- * 
+ *
  */
 
 export function closest(el, selector) {
@@ -102,7 +102,7 @@ export function closest(el, selector) {
  *  Usage:
  *
  *  element.addEventListener('click', delegate(selector, e => {
- *  
+ *
  *    // your callback
  *
  *  }))
@@ -111,7 +111,7 @@ export function closest(el, selector) {
  *  @param {function} handler - Event handler function
  *
  *  @returns {undefined}
- * 
+ *
  */
 
 export function delegate(selector, handler) {
@@ -127,9 +127,9 @@ export function delegate(selector, handler) {
 }
 
 /**
- * 
+ *
  * Map over an object
- * 
+ *
  */
 export function mapObject(object, callback = (key, val) => val) {
   return Object.keys(object).map(function (key) {
@@ -165,8 +165,8 @@ export function debounce(func, wait, immediate) {
 /**
  *
  * Detect if browser supports transitionend event.
- * 
- * @returns {string|false} The prefixed (or unprefixed) supported event name 
+ *
+ * @returns {string|false} The prefixed (or unprefixed) supported event name
  *                         or false if it doesn't support any.
  *
  */
@@ -242,7 +242,7 @@ export function extractURLParameters(str) {
  * User agent matching for IOS or Android devices
  *
  * @returns {boolean} If the UA matches for IOS or Android
- * 
+ *
  */
 
 export function isIOSorAndroid() {
@@ -254,7 +254,7 @@ export function isIOSorAndroid() {
  * User agent matching for mobile devices
  *
  * @returns {boolean} If the UA matches for a mobile device
- * 
+ *
  */
 
 export function isMobile() {
@@ -264,13 +264,13 @@ export function isMobile() {
 
 /**
  *
- * Get the value for the scrollY window position. 
+ * Get the value for the scrollY window position.
  *
  * Note: Getting window.pageYOffset or window.scrollY causes layout reflow.
  * By caching the value we minimize this.
- * 
+ *
  * @returns {int} Current Y scroll distance
- * 
+ *
  */
 
 let attachedScrollY = false
@@ -306,7 +306,7 @@ export function mouseTracker() {
 
   window.addEventListener('mousemove', updatePosition)
   window.addEventListener('touchmove' , updatePosition)
-  
+
   return position
 
 }
@@ -316,11 +316,11 @@ export function mouseTracker() {
  *
  * Collection
  *
- * Interface for querySelectorAll, returning an array of elements, instead of a nodeList 
+ * Interface for querySelectorAll, returning an array of elements, instead of a nodeList
  *
  * @param {string|NodeList} selectorOrNodeList - Either a selector string or a nodeList
  * @return {array} Array of DOM elements
- * 
+ *
  */
 
 export function collection(selectorOrNodeList) {
@@ -350,13 +350,13 @@ export function collection(selectorOrNodeList) {
 *
 * Get Breakpoints Object
 *
-* This is a custom technique to gain access to our SCSS defined media query breakpoints 
+* This is a custom technique to gain access to our SCSS defined media query breakpoints
 * in JS.
 *
 * To get the technique working you need the following:
 *
 * 1. Define a `$bp-array` variable in your SCSS, with the following format:
-*    
+*
 *   $bp-array  : '{"xs": "#{$bp-xs}" }';
 *
 * 2. To make it the value accessible from JS, we attach that property as
@@ -365,8 +365,8 @@ export function collection(selectorOrNodeList) {
 *  head {
 *   font-family: $bp-array;
 *  }
-* 
-* 
+*
+*
 * This function will take care of querying and parsing that value, returning an object
 * with the media query values that you define on your SCSS
 *
@@ -379,10 +379,10 @@ export function getBpObj() {
   let bpObj = {}
   // Remove all unwanted character to make it possible to parse this as JSON
   const bpJSON = style.replace(/^['"]+|\s+|\\|(;\s?})+|['"]$/g,"")
- 
+
   try {
     bpObj = JSON.parse(bpJSON)
-    
+
     for(let k in bpObj) {
       if(bpObj.hasOwnProperty(k)) {
         bpObj[k] = parseInt(bpObj[k])
@@ -394,24 +394,24 @@ export function getBpObj() {
 }
 
 /**
- * 
+ *
  * Recursive curry function
  *
  * Usage:
- * 
+ *
  * function add(a, b) {
  *   return a + b;
  * }
- * 
+ *
  * curry(add, 1, 2); // 3
  * curry(add)(1)(2); // 3
  * curry(add)(1, 2); // 3
  * curry(add, 1)(2);
- * 
+ *
  * @param  {Function}  fn   Function to be curried
  * @param  {...[Any]} args X number of arguments the function can receive
  * @return {Function}  The function will keep returning a function until all parameters have been passed
- * 
+ *
  */
 export function curry(fn, ...args) {
 
@@ -424,13 +424,13 @@ export function curry(fn, ...args) {
 }
 
 /**
- * 
+ *
  * Curried function to toggle an element's class name.
  *
  * Usage:
  *
  * const toggle = toggleClass(el, 'is-active', someBooleanCondition) // Applies the class immediately
- * 
+ *
  * const toggle  = toggleClass(el) // Just set the element to operate on
  * toggle('is-active')(true)  // Runs once the third argument has been passed
  * toggle('is-hidden')(false) // Runs once the third argument has been passed
@@ -442,22 +442,22 @@ export function curry(fn, ...args) {
  * setTimeout(function() {
  *   toggle3(newBooleanCondition) // Toggle the class again, based on a different boolean
  * }, 500)
- * 
+ *
  * @param  {HTMLElement/DOMTokenList}   source    Either an element or an element.classList. Both cases end up operating on the classList.
  * @param  {String}   className Classname srting to toggle
  * @param  {Boolean} condition Condition to evaluate the toggling of the class (if true class is added, if false removed). Defaults to adding
- * 
- * @return {Function} Will return a function expecting the next parameter until all paramters have been added. The 
+ *
+ * @return {Function} Will return a function expecting the next parameter until all paramters have been added. The
  * class will only be toggled when the last paramter is provided.
  *
  * @return {Function} Toggle function that will keep toggling the class on/off based on the condition passed to it
- * 
+ *
  */
 
 export const toggleClass = curry(function toggleClass(source, className, condition) {
 
-  const classList = source instanceof HTMLElement ? 
-    source.classList : 
+  const classList = source instanceof HTMLElement ?
+    source.classList :
     source instanceof DOMTokenList ?
       source : false
 
@@ -474,7 +474,7 @@ export const toggleClass = curry(function toggleClass(source, className, conditi
     classList[!!bool ? 'add' : 'remove'](className)
   }
 
-  // Apply the className once when all parameters have been set 
+  // Apply the className once when all parameters have been set
   toggle(condition)
 
   // Return toggle fuction to keep toggling the className afterwards based on new conditions passed
@@ -484,9 +484,9 @@ export const toggleClass = curry(function toggleClass(source, className, conditi
 
 
 /**
- * 
+ *
  * Add event listener, run only once, then detach the listener
- * 
+ *
  * @param {HTMLElement} el  Element to attach the event
  * @param {String}   event Name of the event ('scroll', 'click', etc)
  * @param {Function} cb    Callback to run
@@ -511,7 +511,7 @@ export function addEventOnce(el, event = '', cb = () => {}) {
 
 /**
  * Vanilla JS element offset function (ala jQuery flavor)
- * 
+ *
  * @param  {HTMLElement} el Element to get offset from
  * @return {Object}   Object containing the top & left offset values
  */
@@ -528,27 +528,27 @@ export function offset(el) {
 }
 
 /**
- * 
+ *
  * Remove HTML markup from string
- * 
+ *
  * @param  {String} str String to format
  * @return {String} Formatted string
- * 
+ *
  */
 export function stripTags(str = '') {
   return str.replace(/<(?:.|\n)*?>/gm, '');
 }
 
 /**
- * 
+ *
  * Truncate a string by X characters. If the truncation happens in the middle of a word, the whole word is ommitted.
- * 
+ *
  * @param  {String}  str   String to truncate
  * @param  {Number}  count    Number of characters to accept
  * @param  {Boolean} ellipsis Whether or not to add ellipsis at the end of the string
- * 
+ *
  * @return {String} Truncated/Formatted string. If the string is shorter than the count, return the original string.
- * 
+ *
  */
 export function truncateWords(str = '', characters = 10, ellipsis = true) {
 
@@ -571,13 +571,13 @@ export function truncateWords(str = '', characters = 10, ellipsis = true) {
 }
 
 
-/** 
+/**
 *
 * Convert array to object
 *
 * @param {array} array - Array to be converted
-* @param {function} fn - Function to apply to each item in array, whatever is 
-*  returned will become the key for object item 
+* @param {function} fn - Function to apply to each item in array, whatever is
+*  returned will become the key for object item
 *
 * @returns {object} The converted object
 *
@@ -597,10 +597,40 @@ export function arrayToObj(array, fn) {
   return obj
 }
 
+/* finds the intersection of
+ * two arrays in a simple fashion.
+ *
+ * PARAMS
+ *  a - first array, must already be sorted
+ *  b - second array, must already be sorted
+ *
+ * NOTES
+ *
+ *  Should have O(n) operations, where n is
+ *    n = MIN(a.length(), b.length())
+ */
+export function arrayIntersect(a, b) {
+
+  var ai=0, bi=0;
+  var result = [];
+
+  while( ai < a.length && bi < b.length ) {
+     if      (a[ai] < b[bi] ){ ai++ }
+     else if (a[ai] > b[bi] ){ bi++ }
+     else {
+       result.push(a[ai])
+       ai++
+       bi++
+     }
+  }
+
+  return result
+}
+
 
 /**
  * Get a WP Rest meta_query formatted object
- * 
+ *
  * @param  {String} key Key for the query
  * @param  {String} value Value for the query
  * @return {[type]} Formatted meta_query object
