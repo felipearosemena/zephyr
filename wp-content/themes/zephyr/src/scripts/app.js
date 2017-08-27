@@ -8,6 +8,7 @@ import Default from 'app/default.component'
 import Cart from 'app/cart.component'
 import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
+
 import 'app/shop-grid.component'
 import 'app/shop-item.component'
 import 'app/filters.component'
@@ -29,7 +30,7 @@ const methods = {
           const { slug } = to.params
           store.setProduct(slug)
             .then(next)
-        }
+        },
       },
       {
         path: '/shop',
