@@ -60,6 +60,10 @@ const methods = {
 
     next()
 
+    if(to.path == from.path) {
+      return
+    }
+
     store.setState({ transiting: true })
 
     if(store.isCached(to.path) && this.cacheExclude.indexOf(to.path) == -1) {
