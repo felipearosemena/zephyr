@@ -10,6 +10,7 @@ import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
 import 'app/shop-grid.component'
 import 'app/shop-item.component'
+import 'app/filters.component'
 import 'app/thumbnail.component'
 import 'app/single-product-form.component'
 
