@@ -151,34 +151,6 @@ class REST {
     $cart = wc()->cart;
     $cart->count = $cart->get_cart_contents_count();
 
-    foreach($cart->get_cart() as $item) {
-
-      $id = $item['product_id'];
-
-      if(!isset($products[$id])) {
-        $product_ids[] = $id;
-      }
-    }
-    $products = [];
-
-    if($cart->count > 0) {
-
-      $query = new WP_Query(array(
-        'post_type' => 'product',
-        'posts_per_page' => -1,
-        'post__in' => $product_ids
-      ));
-
-      $controller = new WC_REST_Products_Controller();
-
-      foreach ( $query->get_posts() as $post ) {
-         $data    = $controller->prepare_item_for_response( $post, $params );
-         $products[] = $controller->prepare_response_for_collection( $data );
-      }
-
-    }
-
-    $cart->products = $products;
     $cart->nonce = wp_create_nonce( $this->nonce_key );
     $response = new WP_REST_Response($cart, 200);
 

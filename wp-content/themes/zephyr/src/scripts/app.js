@@ -168,7 +168,10 @@ const options = {
     this.bindGlobalEvents()
 
     this.CartService.subscribe('cart-fetched', cart => {
-      this.ProductService.addProducts(cart.products)
+      const product_ids = mapObject(cart.cart_contents, (k, p) => p.product_id)
+      this.ProductService.loadProducts({
+        include: product_ids
+      })
     })
 
     this.CartService.subscribe('cart-added', cart => {
