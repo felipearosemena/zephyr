@@ -107,11 +107,6 @@ class REST {
       'callback' => array( &$this, 'get_cart' )
     ));
 
-    register_rest_route( $this->api_namespace(), '/cart', array(
-      'methods' => WP_REST_Server::READABLE,
-      'callback' => array( &$this, 'get_cart' )
-    ));
-
   }
 
   public function register_fields()
@@ -134,6 +129,14 @@ class REST {
 
     register_rest_field('product', 'price', [
       'get_callback' => array( &$this, 'get_product_price' )
+    ]);
+
+    register_rest_field('product', 'product_cat', [
+      'get_callback' => array( &$this, 'get_product_cat' )
+    ]);
+
+    register_rest_field('product', 'product_tag', [
+      'get_callback' => array( &$this, 'get_product_tag' )
     ]);
   }
 
@@ -198,6 +201,16 @@ class REST {
       'sizes' => $sizes
     );
 
+  }
+
+  public function get_product_cat($object)
+  {
+    return wp_get_post_terms($object['id'], 'product_cat');
+  }
+
+  public function get_product_tag($object)
+  {
+    return wp_get_post_terms($object['id'], 'product_tag');
   }
 
 }
