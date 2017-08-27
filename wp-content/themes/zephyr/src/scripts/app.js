@@ -164,6 +164,7 @@ const methods = {
 const options = {
 
   data:  {
+    store: store,
     state: store.state,
     routeComponents: {},
     currentView: 'default',
