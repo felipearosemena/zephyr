@@ -1,70 +1,79 @@
-<div class="filters-toggle-container">
-  <div class="grid grid--flex">
-    <div class="grid__item w-6-12 w-xl-12-12 order-2--xl">
-      <button class="btn btn--secondary btn--sm filters-toggle mr-1" v-on:click="toggleFilters">
-        filter
-      </button>
-    </div>
-    <div class="grid__item w-6-12 w-xl-12-12">
-      <button class="btn-text color-secondary mt-05 mb-05">
-        <b>All Products</b><i class="icon-caret-right"></i>
-      </button>
-    </div>
+<filters :store="store" :query="store.state.query">
+  <template scope="{ toggleVisibility, applyFilter, hasFilters, clearFilters, currentFilters, search }">
 
-    <!-- <div class="grid__item w-6-12 w-xl-12-12">
-      <button class="btn btn--secondary btn--sm">
-        All Products<i class="icon-close"></i>
-      </button>
-    </div> -->
-  </div>
-</div>
-
-<div class="filters" v-bind:class="{ 'is-active' : state.filtersActive }">
-  <div class="container">
-    <form action="">
-
-      <div class="grid">
-        <div class="grid__item w-5-12">
-          <label>Shape</label>
-          {% for shape in global_info.filter_shape %}
-          {% set term = TimberTerm(shape.term_id) %}
-
-          <div class="checkbox-shape">
-            <input id="filter-shape-{{ shape.slug }}" name="{{ shape.taxonomy }}" type="checkbox">
-            <label for="filter-shape-{{ shape.slug }}">
-                <span class="filter-shape" data-title="{{ term.name }}">
-                  {% if term.shape_image %}
-                    {{ term.shape_image.url|file_get_contents }}
-                  {% else %}
-                    B
-                  {% endif %}
-                </span>
-            </label>
-          </div>
-          {% endfor %}
+    <div class="filters-toggle-container">
+      <div class="grid grid--flex">
+        <div class="grid__item w-6-12 w-xl-12-12 order-2--xl">
+          <button class="btn btn--secondary btn--sm filters-toggle mr-1" v-on:click="toggleVisibility">
+            filter
+          </button>
         </div>
-
-        <div class="grid__item w-5-12">
-          <label>Type</label>
-          {% for type in global_info.filter_type %}
-          <div class="checkbox-plain">
-            <input id="filter-shape-{{ type.slug }}" name="{{ type.taxonomy }}" type="checkbox">
-            <label for="filter-shape-{{ type.slug }}">{{ type.name }}</label>
-          </div>
-          {% endfor %}
-        </div>
-
-        <div class="grid__item w-2-12">
-          <p class="mb-05">
-            <button class="btn-text btn--negative small-text">
-              Clear Filters
-              <i style="font-size:.6em" class="icon-close"></i>
-            </button>
-          </p>
-          <p class="mb-0"><button class="btn btn--sm">Apply</button></p>
+        <div class="grid__item w-6-12 w-xl-12-12">
+          <button class="btn-text color-secondary mt-05 mb-05" v-if="hasFilters" @click="clearFilters">
+            <b>All Products</b><i class="icon-caret-right"></i>
+          </button>
         </div>
       </div>
+    </div>
 
-    </form>
-  </div>
-</div>
+    <div class="filters" v-bind:class="{ 'is-active' : state.filtersActive }">
+      <div class="container">
+        <form action="" @submit.prevent="applyFilter">
+
+          <div class="grid">
+            <div class="grid__item w-5-12">
+              <label>Shape</label>
+              {% for shape in global_info.filter_shape %}
+              {% set term = TimberTerm(shape.term_id) %}
+
+              <div class="checkbox-shape">
+                <input id="filter-shape-{{ shape.slug }}"
+                  type="checkbox"
+                  name="{{ shape.taxonomy }}"
+                  v-model="currentFilters.{{ shape.taxonomy }}"
+                  value="{{ shape.slug }}">
+                <label for="filter-shape-{{ shape.slug }}">
+                    <span class="filter-shape" data-title="{{ term.name }}">
+                      {% if term.shape_image %}
+                        {{ term.shape_image.url|file_get_contents }}
+                      {% endif %}
+                    </span>
+                </label>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="grid__item w-5-12">
+              <label>Type</label>
+              {% for type in global_info.filter_type %}
+              <div class="checkbox-plain">
+                <input id="filter-shape-{{ type.slug }}"
+                  type="checkbox"
+                  name="{{ type.taxonomy }}"
+                  v-model="currentFilters.{{ type.taxonomy }}"
+                  value="{{ type.slug }}">
+                <label for="filter-shape-{{ type.slug }}">{{ type.name }}</label>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="grid__item w-2-12">
+              <p class="mb-05"><button class="btn btn--sm" type="submit">Apply</button></p>
+              <p class="mb-0">
+                <button
+                  class="btn-text btn--negative small-text"
+                  v-if="hasFilters"
+                  @click.prevent="clearFilters">
+                  Clear Filters
+                  <i style="font-size:.6em" class="icon-close"></i>
+                </button>
+              </p>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </template>
+</filters>
