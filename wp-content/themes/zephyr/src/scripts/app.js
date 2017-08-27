@@ -14,7 +14,7 @@ import 'app/filters.component'
 import 'app/thumbnail.component'
 import 'app/single-product-form.component'
 
-import { arrayToObj, delegate } from 'modules/utils'
+import { arrayToObj, mapObject, delegate, serializeObject } from 'modules/utils'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
