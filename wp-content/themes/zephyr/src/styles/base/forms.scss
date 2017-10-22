@@ -36,10 +36,12 @@ select,
 textarea {
   height: $base-input-height;
   width: 100%;
-  border: 1px solid $grey-light;
+  border: 2px solid white;
+  background-color: transparent;
   padding: $base-input-padding;
   border-radius: 0;
   transition: border-color $transition-default;
+  appearance: none;
 
   &:focus {
     border-color: $body-color;
@@ -123,7 +125,20 @@ select[multiple] {
 }
 
 .select-wrapper {
+  @include iconfont;
   position: relative;
+  width: 100%;
+
+  &:before {
+    @extend .icon-caret-down;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2rem;
+    text-align: center;
+    line-height: $base-input-height;
+  }
 }
 
 select {

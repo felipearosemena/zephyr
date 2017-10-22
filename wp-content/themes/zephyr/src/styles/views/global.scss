@@ -83,6 +83,10 @@
 
 .single-item__content {
   overflow: auto;
+
+  p {
+    margin-bottom: $bsu/2;
+  }
 }
 
 .single-item__content-inner {

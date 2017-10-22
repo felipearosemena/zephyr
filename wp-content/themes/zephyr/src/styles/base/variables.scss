@@ -112,7 +112,7 @@ $bsu : 20px/$base-fs * 1rem;
 $base-border-radius  : 5px;
 
 $base-input-height   : $bsu*2.5;
-$base-input-padding  : $bsu/2;
+$base-input-padding  : $bsu/2 $bsu $bsu/2 $bsu*.75;
 
 // Grid
 $grid-gutter         : $bsu;
@@ -142,7 +142,7 @@ $logo-ratio    : 0.6667;
 $logo-width    : 80px;
 $logo-width-lg : 120px;
 
-$base-button-height: $bsu*3;
+$base-button-height: $bsu*2.5;
 $btn-lh: $base-lh;
 
 $golden-ratio : 1.61803398875;

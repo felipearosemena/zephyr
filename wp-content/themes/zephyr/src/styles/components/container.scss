@@ -55,6 +55,11 @@
   width: auto;
 }
 
+.container--xs,
+.container--sm {
+  width: auto;
+}
+
 .container--xs {
   max-width: px-to-rem($container-xs);
 }

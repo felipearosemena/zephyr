@@ -131,6 +131,11 @@
   }
 }
 
+.btn--full {
+  min-width: 0;
+  width: 100%;
+}
+
 .btn--positive {
   background-color: $color-positive;
   &:hover {

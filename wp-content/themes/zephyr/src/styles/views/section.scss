@@ -20,6 +20,14 @@
   }
 }
 
+.section--tight {
+
+  @include mq-min($bp-md) {
+    margin-top: $bsu*2.5;
+    margin-bottom: $bsu*2.5;
+  }
+}
+
 .section:first-child {
   margin-bottom: $bsu*4;
 

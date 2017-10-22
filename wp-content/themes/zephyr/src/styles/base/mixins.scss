@@ -266,6 +266,6 @@
 }
 
 
-@mixin button-padding($height: $base-button-height, $lh: px-to-rem($btn-lh), $padding-x: $bsu*1.5) {
+@mixin button-padding($height: $base-button-height, $lh: px-to-rem($btn-lh), $padding-x: $bsu) {
   padding: ($height - $lh)/2 $padding-x;
 }
