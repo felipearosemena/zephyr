@@ -147,14 +147,14 @@
 
 .btn[disabled] {
   background-color: $grey-light;
+  border-color: $grey-light;
   color: $grey;
   cursor: default;
   box-shadow: none;
-  transition: all $transition-slow;
-  opacity: 0;
-  visibility: hidden;
-  transform: translate3d(-20%, 0, 0);
 
+  &:before, &:after {
+    display: none;
+  }
 }
 
 .btn--load {

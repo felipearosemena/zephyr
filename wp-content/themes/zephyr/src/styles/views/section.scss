@@ -2,8 +2,8 @@
  *
  * Section
  *
- * Common page section styling 
- * 
+ * Common page section styling
+ *
  */
 
 .section {
@@ -30,4 +30,8 @@
   @include mq-min($bp-md) {
     margin-bottom: $bsu*6;
   }
+}
+
+.section--flush {
+  margin: 0;
 }

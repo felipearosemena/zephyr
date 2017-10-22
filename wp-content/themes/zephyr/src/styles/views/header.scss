@@ -36,11 +36,10 @@
 
 // Main Logo
 .site-logo {
+  @include remove-underline;
   display: inline-block;
   vertical-align: middle;
-  padding: $bsu/2 0;
-
-  @include remove-underline;
+  padding: 10px 0;
 
   svg {
     display: block;
