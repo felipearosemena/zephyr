@@ -2,31 +2,50 @@
 
 {% block content %}
 
-  <section class="section">
-    <div class="container container--md">
+  {% set term = post.get_terms('product_cat')[0] %}
 
-      {% do action('woocommerce_before_single_product') %}
+  <article itemscope itemtype="http://schema.org/Product"
+  class="single-item grid grid--flex grid--wide {{ post.class }}"
+  data-product-id="{{ post.id }}">
 
-      <article itemscope itemtype="http://schema.org/Product" class="single-product-details {{ post.class }}" data-product-id="{{ post.id }}">
-        
-        <h3 class="label" v-html="state.product.name"></h3>
-
-        <div class="entry-images">
-          <img src="{{ post.thumbnail.src('shop_single') }}" />
-        </div>
-
-        <div class="summary entry-summary">
-          {% do action('woocommerce_single_product_summary') %}
-        </div>
-
-        {# {% do action('woocommerce_after_single_product_summary') %} #}
-
-        <meta itemprop="url" content="{{ post.link }}" />
-
-      </article>
-
-      {# {% do action('woocommerce_after_single_product') %} #}
+    <div class="single-item__figure grid__item w-12-12 w-md-6-12 flex">
+      <ul class="single-images flex w-12-12">
+        <li class="single-image w-12-12">
+          {% set image = post.thumbnail %}
+          {% set src = image.src('shop_main') %}
+          <div class="single-image__bg" style="background-image: url({{ src }})"></div>
+          <img src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
+        </li>
+      </ul>
     </div>
-  </section>
+
+    <div class="single-item__content grid__item w-12-12 w-md-6-12" style="background-color: {{ term.shape_color }}">
+      <div class="single-item__content-inner">
+        <div class="section container container--flush container--sm">
+          {% do action('woocommerce_before_single_product') %}
+
+          <div class="summary entry-summary">
+
+            <h1 class="single-title h3 weight-bold text-upper">
+            	{{ post.title }}
+              {{ term.get_field('shape_image').url|file_get_contents }}
+            </h1>
+
+            {{ product.get_description|wpautop }}
+
+            <div class="single-price">
+              {{ product.get_price_html }}
+            </div>
+
+            {{ function('woocommerce_template_single_add_to_cart') }}
+          </div>
+
+          <meta itemprop="url" content="{{ post.link }}" />
+
+          {% do action('woocommerce_after_single_product') %}
+        </div>
+      </div>
+    </div>
+  </article>
 
 {% endblock  %}
