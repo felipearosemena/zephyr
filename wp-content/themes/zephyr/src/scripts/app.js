@@ -95,6 +95,7 @@ const methods = {
   finalizeRouteTransition(to, html) {
 
     this.setCurrentView(html)
+    this.updateDocumentTitle(html)
     store.cacheResponse(to.path, html)
 
     setTimeout(() => {
@@ -104,7 +105,7 @@ const methods = {
   },
 
   setCurrentView(html) {
-    this.createSectionComponent('page-view', '.page-view-wrap', html)
+    const component = this.createSectionComponent('page-view', '.page-view-wrap', html)
     this.currentView = this.getRouteComponentId('page-view')
   },
 
@@ -116,10 +117,14 @@ const methods = {
     this.currenView = this.getRouteComponentId(namespace)
   },
 
+  getDocFromHTML(html) {
+    const parser = new DOMParser();
+    return parser.parseFromString(html, 'text/html')
+  },
+
   createSectionComponent(namespace, selector, html) {
 
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html')
+    const doc = this.getDocFromHTML(html)
     const id = this.getRouteComponentId(namespace)
 
     Vue.component(id, {
@@ -130,6 +135,11 @@ const methods = {
       template: doc.querySelector(selector).outerHTML
     })
 
+  },
+
+  updateDocumentTitle(html) {
+    const doc = this.getDocFromHTML(html)
+    document.title = doc.querySelector('title').innerHTML
   },
 
   closeOverlay() {
