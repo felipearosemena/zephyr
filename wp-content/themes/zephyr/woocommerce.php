@@ -11,9 +11,11 @@ $context = Timber::get_context();
 
 if (is_singular('product')) {
 
-  $context['post']    = Timber::get_post();
+  $post               = Timber::get_post();
+  $context['post']    = $post;
   $product            = wc_get_product( $context['post']->ID );
   $context['product'] = $product;
+  $context['term']    = $post->get_terms('product_cat')[0];
 
   Timber::render('single-product.twig', $context);
 
