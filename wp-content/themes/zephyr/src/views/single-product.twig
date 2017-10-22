@@ -5,10 +5,10 @@
   {% set term = post.get_terms('product_cat')[0] %}
 
   <article itemscope itemtype="http://schema.org/Product"
-  class="single-item grid grid--flex grid--wide {{ post.class }}"
+  class="single-item grid grid--flex grid--full {{ post.class }}"
   data-product-id="{{ post.id }}">
 
-    <div class="single-item__figure grid__item w-12-12 w-md-6-12 flex">
+    <div class="single-item__figure grid__item w-12-12 w-md-7-12 flex">
       <ul class="single-images flex w-12-12">
         <li class="single-image w-12-12">
           {% set image = post.thumbnail %}
@@ -19,21 +19,21 @@
       </ul>
     </div>
 
-    <div class="single-item__content grid__item w-12-12 w-md-6-12" style="background-color: {{ term.shape_color }}">
+    <div class="single-item__content grid__item w-12-12 w-md-5-12" style="background-color: {{ term.shape_color }}">
       <div class="single-item__content-inner">
-        <div class="section container container--flush container--sm">
+        <div class="section section--tight container container--sm">
           {% do action('woocommerce_before_single_product') %}
 
           <div class="summary entry-summary">
 
-            <h1 class="single-title h3 weight-bold text-upper">
+            <h1 class="single-title h3 weight-bold text-upper mb-0">
             	{{ post.title }}
               {{ term.get_field('shape_image').url|file_get_contents }}
             </h1>
 
             {{ product.get_description|wpautop }}
 
-            <div class="single-price">
+            <div class="single-price weight-bold mt-1 mb-2 lead">
               {{ product.get_price_html }}
             </div>
 
