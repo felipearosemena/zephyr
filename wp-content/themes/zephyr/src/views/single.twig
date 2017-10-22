@@ -8,7 +8,7 @@
 
   <article class="section">
     <div class="container container--md">
-    
+
       <header class="text-center">
         {% for term in terms %}
           <span class="label">
@@ -16,21 +16,21 @@
           </span>
 
         {% endfor %}
-        
+
         <h1>{{ post.title }}</h1>
-    
+
         <span>{{ author ? 'Article by ' ~ author.display_name ~ ' - ' : '' }}</span>
         <time>{{ post.date }}</time>
 
         {% include ('includes/share-bar.twig') %}
       </header>
-  
+
       {% if post.thumbnail %}
         <figure class="featured-image">
           {{ macros.img( post.thumbnail.ID, 'featured' ) }}
         </figure>
       {% endif %}
-                  
+
       <div class="post-content">
         {{ post.content }}
       </div><!-- .post-content -->
