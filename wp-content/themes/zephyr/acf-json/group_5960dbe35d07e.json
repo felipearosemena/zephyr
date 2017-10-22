@@ -27,6 +27,21 @@
             "mime_types": ""
         },
         {
+            "key": "field_59ebe88a5092d",
+            "label": "Shape Color",
+            "name": "shape_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
             "key": "field_59940cdb2de76",
             "label": "Shape Skip Home",
             "name": "shape_skip_home",
@@ -63,5 +78,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1502874869
+    "modified": 1508632731
 }
