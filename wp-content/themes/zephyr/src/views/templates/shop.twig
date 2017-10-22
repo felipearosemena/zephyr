@@ -8,7 +8,7 @@
 
     <div class="container">
 
-      <shop-grid :products="state.products" :query="state.query">
+      <shop-grid :products="state.productArray" :query="state.query">
       </shop-grid>
 
       {% do action('woocommerce_after_shop_loop') %}

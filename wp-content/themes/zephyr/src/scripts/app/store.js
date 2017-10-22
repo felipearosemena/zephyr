@@ -19,6 +19,7 @@ const store = {
     filtersActive: false,
     cart: CartService.cart,
     products: ProductService.products,
+    productArray: [],
     allProductsLoaded: false,
     product : {},
     filters: {},
@@ -55,7 +56,7 @@ const store = {
 
         if(products.length) {
           this.setState({
-            products: products,
+            productArray: products,
             allProductsLoaded: true
           })
         }
