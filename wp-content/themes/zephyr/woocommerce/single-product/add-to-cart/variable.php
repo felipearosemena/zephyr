@@ -25,14 +25,14 @@ $attribute_keys = array_keys( $attributes );
 
 do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-<single-product-form :product="state.product" :refs="$refs" :canSubmit="false">
+<single-product-form :product="state.product" :refs="$refs">
 
   <?php do_action( 'woocommerce_before_variations_form' ); ?>
 
   <?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
     <p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
   <?php else : ?>
-  
+
     <?php foreach ( $attributes as $attribute_name => $options ) : ?>
       <label for="<?php echo sanitize_title( $attribute_name ); ?>"><?php echo wc_attribute_label( $attribute_name ); ?></label>
       <?php
