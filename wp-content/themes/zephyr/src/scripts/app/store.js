@@ -44,6 +44,10 @@ const store = {
       })
   },
 
+  productCanAdd(bool) {
+    this.state.product.canAddToCart = bool
+  },
+
   getAllProducts() {
 
     if(this.state.allProductsLoaded) {

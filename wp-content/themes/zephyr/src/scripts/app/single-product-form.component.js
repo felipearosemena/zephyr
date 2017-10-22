@@ -1,17 +1,32 @@
 import Vue from 'vue'
 import store from 'app/store'
+import CartService from 'app/cart.service'
 
 const SingleProductForm = {
   template: `
-    <form enctype='multipart/form-data'  v-on:submit.prevent="handleFormSubmit">
+    <form enctype='multipart/form-data' method="POST"  v-on:submit.prevent="handleFormSubmit">
       <slot></slot>
     </form>
   `,
   mounted() {
-    console.log(this.refs)
-    // this.$refs.submit = this.$el.querySelector('[type=submit]')
-    // console.log(this.$refs)
-    // console.log(this.cartActive)
+
+    this.$refs.size     = this.$el.querySelector('[name=attribute_pa_size]')
+    this.$refs.quantity = this.$el.querySelector('[name=quantity]')
+
+    const { size } = this.$refs;
+
+    if(size) {
+      size.addEventListener('change', this.handleSizeChange)
+    }
+  },
+  beforeDestroy() {
+
+    const { size } = this.$refs;
+
+    if(size) {
+      size.removeEventListener('change', this.handleSizeChange)
+    }
+
   },
   props: ['product', 'refs'],
   data() {
@@ -21,7 +36,25 @@ const SingleProductForm = {
   },
   methods: {
     handleFormSubmit(e) {
-      store.setState({ canSubmit: true })
+
+      if(this.product.canAddToCart) {
+
+        const { size, quantity } = this.$refs
+        const variations = {}
+        variations[size.name] = size.value
+
+        const params = {
+          quantity: quantity.value,
+          variations: variations
+        }
+
+        CartService.addToCart(this.product.id, params)
+
+      }
+
+    },
+    handleSizeChange(e) {
+      store.productCanAdd(!!e.target.value)
     }
   }
 }
