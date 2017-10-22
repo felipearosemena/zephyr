@@ -27,11 +27,12 @@ const CartService = new Vue({
 
     },
 
-    addToCart(id) {
-      apiFetch(Global.api_namespace + '/cart/add/' + id)
+    addToCart(id, params = {}) {
+      return apiFetch(Global.api_namespace + '/cart/add/' + id, 'post', params)
         .then(res => {
           this.handleCartResponse(res)
           this.publish('cart-added')
+          return res
         })
     },
 
