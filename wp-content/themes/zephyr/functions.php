@@ -14,7 +14,7 @@ if ( !defined( 'WP_DEBUG' ) ) {
   define( 'WP_DEBUG', false );
 }
 
-   
+
 
 class App {
   public static $instance;
@@ -34,6 +34,7 @@ class App {
     new Z\Social();
     new Z\Twig();
     new Z\TinyMCE();
+    new Z\Woocommerce();
 
     $this->rest = new Z\REST();
 
