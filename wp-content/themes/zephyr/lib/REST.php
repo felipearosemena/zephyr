@@ -91,7 +91,7 @@ class REST {
   public function register_routes() {
 
     register_rest_route( $this->api_namespace(), '/cart/add/(?P<id>\d+)', array(
-      'methods' => WP_REST_Server::READABLE,
+      'methods' => WP_REST_Server::EDITABLE,
       'callback' => array( &$this, 'add_to_cart' ),
       'args' => array(
         'id' => array(
@@ -142,7 +142,9 @@ class REST {
 
   public function add_to_cart($params)
   {
-    wc()->cart->add_to_cart($params['id']);
+
+    wc()->cart->add_to_cart($params['id'], $params['quantity'], false, $params['variations']);
+
     return $this->get_cart($params);
   }
 
