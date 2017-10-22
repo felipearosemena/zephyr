@@ -184,9 +184,13 @@ const options = {
 
     this.CartService.subscribe('cart-fetched', cart => {
       const product_ids = mapObject(cart.cart_contents, (k, p) => p.product_id)
-      this.ProductService.loadProducts({
-        include: product_ids
-      })
+
+      if(product_ids.length) {
+        this.ProductService.loadProducts({
+          include: product_ids
+        })
+      }
+
     })
 
     this.CartService.subscribe('cart-added', cart => {
