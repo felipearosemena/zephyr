@@ -27,37 +27,51 @@ if ( ! $product->is_purchasable() ) {
 
 echo wc_get_stock_html( $product );
 
+
 if ( $product->is_in_stock() ) : ?>
 
   <?php do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
-  <h1>Simple</h1>
+  <single-product-form :product="state.product" :refs="$refs">
 
-  <form class="cart" method="post" enctype='multipart/form-data'>
-    <?php
-      /**
-       * @since 2.1.0.
-       */
-      do_action( 'woocommerce_before_add_to_cart_button' );
+    <template scope="form">
+      <div class="grid grid--flex justify-center">
+        <div class="grid__item w-3-12 w-xxl-2-12">
+          <?php
+          /**
+          * @since 2.1.0.
+          */
+          do_action( 'woocommerce_before_add_to_cart_button' );
 
-      /**
-       * @since 3.0.0.
-       */
-      do_action( 'woocommerce_before_add_to_cart_quantity' );
+          /**
+          * @since 3.0.0.
+          */
+          do_action( 'woocommerce_before_add_to_cart_quantity' );
 
-      woocommerce_quantity_input( array(
-        'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
-        'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-        'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( $_POST['quantity'] ) : $product->get_min_purchase_quantity(),
-      ) );
+          woocommerce_quantity_input( array(
+          'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
+          'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
+          'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( $_POST['quantity'] ) : $product->get_min_purchase_quantity(),
+          ) );
 
-      /**
-       * @since 3.0.0.
-       */
-      do_action( 'woocommerce_after_add_to_cart_quantity' );
-    ?>
+          /**
+          * @since 3.0.0.
+          */
+          do_action( 'woocommerce_after_add_to_cart_quantity' );
+          ?>
+        </div>
+        <div class="grid__item w-4-12 w-xxl-3-12">
+          <add-to-cart
+            :can-add="true"
+            :loading="form.isProcessing"
+            name="add-to-cart"
+            value="<?php echo esc_attr( $product->get_id() ); ?>">
+          <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
+        </add-to-cart>
+      </div>
+    </div>
+    </template>
 
-    <button type="submit" name="add-to-cart" value="<?php echo esc_attr( $product->get_id() ); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
 
     <?php
       /**
@@ -65,7 +79,7 @@ if ( $product->is_in_stock() ) : ?>
        */
       do_action( 'woocommerce_after_add_to_cart_button' );
     ?>
-  </form>
+  </single-product-form>
 
   <?php do_action( 'woocommerce_after_add_to_cart_form' ); ?>
 

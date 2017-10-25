@@ -5,7 +5,7 @@ import CartService from 'app/cart.service'
 const SingleProductForm = {
   template: `
     <form enctype='multipart/form-data' method="POST"  v-on:submit.prevent="handleFormSubmit">
-      <slot></slot>
+      <slot :isProcessing="isProcessing"></slot>
 
       <div class="mb-2 mt-1" v-if="product.variations && product.variations.pa_size">
         <button class="btn-text btn-text--sm" @click.prevent="showSizeModal = true">Size Chart</button>
@@ -42,7 +42,10 @@ const SingleProductForm = {
       if(submit) {
         submit.addEventListener('click', this.validateForm)
       }
+    } else {
+      store.productCanAdd(true)
     }
+
   },
   beforeDestroy() {
 
@@ -56,6 +59,7 @@ const SingleProductForm = {
   props: ['product', 'refs'],
   data() {
     return {
+      isProcessing: false,
       showSizeModal: false
     }
   },
@@ -69,16 +73,24 @@ const SingleProductForm = {
 
       if(this.product.canAddToCart) {
 
+        this.isProcessing = true
+
         const { size, quantity } = this.$refs
         const variations = {}
-        variations[size.name] = size.value
 
         const params = {
           quantity: quantity.value,
-          variations: variations
+        }
+
+        if(size) {
+          variations[size.name] = size.value
+          params[variations] = variations
         }
 
         CartService.addToCart(this.product.id, params)
+          .then(() => {
+            this.isProcessing = false
+          })
 
       }
 

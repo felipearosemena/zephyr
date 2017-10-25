@@ -9,9 +9,24 @@
 
 .spinner {
     border-radius: 50%;
-    width: $bsu;
-    height: $bsu;
-    border: .25rem solid rgba(255,255,255, 0.5);
-    border-top-color: white;
-    animation: spin 1s infinite linear;
+    width: 1em;
+    height: 1em;
+    border: 3px solid $body-color;
+    border-top-color: transparent !important;
+    animation: spin 1.5s infinite linear;
+    display: inline-block;
+    vertical-align: middle;
+
+    .btn & {
+      margin-right: $bsu/4;
+      margin-left: -$bsu/2;
+      top: -.1em;
+      position: relative;
+      z-index: 10;
+
+    }
+
+    .btn:hover &, .btn:focus & {
+      border-color: white;
+    }
 }

@@ -21,7 +21,7 @@ const store = {
     products: ProductService.products,
     productArray: [],
     allProductsLoaded: false,
-    product : {},
+    product: {},
     filters: {},
     query: {}
   },
@@ -36,8 +36,11 @@ const store = {
       .then(products => {
 
         if(products.length) {
-          this.setState({ product: Object.assign(products[0], {
-            canAddToCart: false
+
+          const product = products[0]
+
+          this.setState({ product: Object.assign(product, {
+            canAddToCart: !Object.keys(product.variations).length
           }) })
         }
 

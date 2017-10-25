@@ -128,6 +128,10 @@
   display: flex;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .order-2--xl {
   @include mq-min($bp-xl) {
     order: 2

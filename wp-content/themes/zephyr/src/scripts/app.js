@@ -15,6 +15,7 @@ import 'app/filters.component'
 import 'app/thumbnail.component'
 import 'app/single-product-form.component'
 import 'app/modal.component'
+import 'app/add-to-cart.component'
 
 import { arrayToObj, mapObject, delegate, serializeObject } from 'modules/utils'
 

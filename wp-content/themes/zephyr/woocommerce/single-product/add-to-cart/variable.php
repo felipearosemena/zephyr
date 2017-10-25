@@ -32,10 +32,10 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
   <?php if ( empty( $available_variations ) && false !== $available_variations ) : ?>
     <p class="stock out-of-stock"><?php _e( 'This product is currently out of stock and unavailable.', 'woocommerce' ); ?></p>
   <?php else : ?>
-
-    <div class="grid">
+    <template scope="form">
+      <div class="grid grid--flex justify-center">
       <?php foreach ( $attributes as $attribute_name => $options ) : ?>
-        <div class="grid__item w-4-12">
+        <div class="grid__item w-4-12 w-xxl-3-12">
           <label for="<?php echo sanitize_title( $attribute_name ); ?>" class="sr-only"><?php echo wc_attribute_label( $attribute_name ); ?></label>
 
           <div class="select-wrapper">
@@ -79,6 +79,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
       <?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
     </div>
+    </template>
   <?php endif; ?>
 
   <?php do_action( 'woocommerce_after_variations_form' ); ?>
