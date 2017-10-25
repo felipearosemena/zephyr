@@ -41,7 +41,14 @@ global $product;
 </div>
 
 <div class="grid__item w-5-12">
-  <button type="submit" class="btn btn--full" ref="submit" :disabled="!state.product.canAddToCart"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+  <button
+    type="submit"
+    class="btn btn--body btn--full"
+    v-bind:class="{
+      'is-disabled' : !state.product.canAddToCart,
+      'shake' : state.product.canAddToCart
+    }"
+    ref="submit"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
   <input type="hidden" name="add-to-cart" value="<?php echo absint( $product->get_id() ); ?>" />
   <input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>" />
   <input type="hidden" name="variation_id" class="variation_id" value="0" />

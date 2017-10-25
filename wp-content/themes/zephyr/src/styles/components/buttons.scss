@@ -6,6 +6,7 @@
  *
  */
 
+
 // Common button styles
 %btn-base {
   @include button-padding;
@@ -69,7 +70,7 @@
     &:before {}
   }
 
-  &:hover,
+  &:hover:not([disabled]):not(.is-disabled),
   &.is-active {
     color: white;
   }
@@ -150,15 +151,28 @@
   }
 }
 
-.btn[disabled] {
-  background-color: $grey-light;
-  border-color: $grey-light;
-  color: $grey;
-  cursor: default;
-  box-shadow: none;
+.btn[disabled],
+.btn.is-disabled {
 
-  &:before, &:after {
+  &:after {
     display: none;
+  }
+  // background-color: white;
+  // // border-color: $grey-light;
+  // // color: $grey;
+  // // cursor: default;
+  // // box-shadow: none;
+}
+
+.btn--body {
+  color: $body-color;
+
+  &:before {
+    box-shadow: inset 0 0 0 3px $body-color;
+  }
+
+  &:after {
+    background-color: $body-color;
   }
 }
 
@@ -214,6 +228,11 @@
 .btn-text {
   @include button-plain;
   @include link-default;
+}
+
+.btn-text--sm {
+  @include font-size($tiny-fs, $tiny-lh);
+  font-weight: bold;
 }
 
 /**

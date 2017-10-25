@@ -20,14 +20,6 @@
   }
 }
 
-.section--tight {
-
-  @include mq-min($bp-md) {
-    margin-top: $bsu*2.5;
-    margin-bottom: $bsu*2.5;
-  }
-}
-
 .section:first-child {
   margin-bottom: $bsu*4;
 
@@ -42,4 +34,12 @@
 
 .section--flush {
   margin: 0;
+}
+
+.section--tight {
+
+  @include mq-min($bp-md) {
+    margin-top: $bsu*2.5 !important;
+    margin-bottom: $bsu*2.5 !important;
+  }
 }

@@ -74,3 +74,30 @@
 .image-loaded {
   @include image-loaded;
 }
+
+
+@keyframes shake {
+  0% {
+   transform: scale(1) rotate(0deg)
+  }
+
+  25% {
+   transform: scale(1.05);
+  }
+
+  50% {
+   transform: scale(1);
+  }
+
+  75% {
+   transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1)
+  }
+}
+
+.shake {
+  animation: shake .6s linear;
+}

@@ -21,7 +21,7 @@
 
     <div class="single-item__content grid__item w-12-12 w-md-5-12" style="background-color: {{ term.shape_color }}">
       <div class="single-item__content-inner">
-        <div class="section section--tight container container--sm">
+        <div class="container container--sm">
           {% do action('woocommerce_before_single_product') %}
 
           <div class="summary entry-summary">
@@ -38,10 +38,13 @@
             </div>
 
             {{ function('woocommerce_template_single_add_to_cart') }}
+
+            <meta itemprop="url" content="{{ post.link }}" />
+
           </div>
+        </div>
 
-          <meta itemprop="url" content="{{ post.link }}" />
-
+        <div class="container container--sm">
           {% do action('woocommerce_after_single_product') %}
         </div>
       </div>

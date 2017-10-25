@@ -84,18 +84,23 @@
 .single-item__content {
   overflow: auto;
 
-  p {
+  .summary p {
     margin-bottom: $bsu/2;
   }
 }
 
 .single-item__content-inner {
+  padding: $bsu*2 0 $bsu;
 
   @include mq-min($bp-md) {
     min-height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+  }
+
+  @include mq-min($bp-xxl) {
+    padding-top: $bsu*4;
   }
 }
 

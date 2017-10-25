@@ -1,0 +1,16 @@
+<transition name="modal">
+  <div class="modal-container">
+    <div class="modal">
+      <div class="modal__inner">
+
+        <div class="modal__body w-12-12">
+          <button class="modal__close-button" @click.prevent="$emit('close')"></button>
+
+          <slot name="content">
+          </slot>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</transition>

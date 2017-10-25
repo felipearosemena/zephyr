@@ -16,10 +16,30 @@
  * </div>
  */
 
+
+ .modal-enter {
+   opacity: 0;
+ }
+
+ .modal-leave-active {
+   opacity: 0;
+ }
+
+.modal-container.modal-enter ,
+.modal-container.modal-leave-active  {
+   -webkit-transform: scale(1.1);
+   transform: scale(1.1);
+ }
+
 [data-toggle-modal] {
   cursor: pointer;
 }
 
+.modal-container {
+  transition: opacity $transition-slow, visibilty $transition-slow, transform $transition-slow;
+}
+
+.modal-container,
 .modal {
   position: fixed;
   z-index: 1000;
@@ -27,20 +47,25 @@
   right: 0;
   left: 0;
   bottom: 0;
-  height: 0;
-  overflow: hidden;
+  text-align: initial;
+}
+
+.modal {
   opacity: 0;
   visibility: hidden;
   background: rgba(black, 0.6);
-  transition: opacity $transition-slow, visibilty $transition-slow, transform $transition-slow;
+  height: 0;
+  overflow: hidden;
 
   &.is-transiting,
-  &.is-active {
+  &.is-active,
+  .modal-container & {
     height: auto;
     overflow: auto;
   }
 
-  &.is-active {
+  &.is-active,
+  .modal-container & {
     visibility: visible;
     opacity: 1;
     transform: none;

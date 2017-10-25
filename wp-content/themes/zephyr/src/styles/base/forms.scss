@@ -36,8 +36,8 @@ select,
 textarea {
   height: $base-input-height;
   width: 100%;
-  border: 2px solid white;
-  background-color: transparent;
+  border: 3px solid $body-color;
+  background-color: white;
   padding: $base-input-padding;
   border-radius: 0;
   transition: border-color $transition-default;
@@ -46,6 +46,10 @@ textarea {
   &:focus {
     border-color: $body-color;
     outline: none;
+  }
+
+  &.has-error {
+    border-color: $color-negative;
   }
 }
 
@@ -130,24 +134,21 @@ select[multiple] {
   width: 100%;
 
   &:before {
-    @extend .icon-caret-down;
+    @extend .icon-chevron-down;
+    font-size: .6em;
     pointer-events: none;
     position: absolute;
+    z-index: 10;
     right: 0;
-    top: 0;
-    width: 2rem;
+    top: .1em;
+    width: 2.5rem;
     text-align: center;
     line-height: $base-input-height;
   }
 }
 
 select {
-  background: transparent;
   cursor: pointer;
-
-  + label {
-    font-size: 0;
-  }
 }
 
 .checkbox-shape,
