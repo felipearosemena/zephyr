@@ -15,8 +15,7 @@ gulp.task('watch', () => {
     files: [
       themePath + '/dist/styles/public.css',
     ],
-    proxy: siteUrl,
-    notify: false
+    proxy: siteUrl
   })
 
   gulp.watch(watchThemePath + '/src/styles/**/*.scss', ['styles'])
