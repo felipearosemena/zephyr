@@ -8,7 +8,7 @@
   class="single-item grid grid--flex grid--full {{ post.class }}"
   data-product-id="{{ post.id }}">
 
-    <div class="single-item__figure grid__item w-12-12 w-md-7-12 flex">
+    <div class="single-item__figure grid__item w-12-12 w-md-7-12 w-xxl-6-12 flex">
       <ul class="single-images flex w-12-12">
         <li class="single-image w-12-12">
           {% set image = post.thumbnail %}
@@ -19,7 +19,7 @@
       </ul>
     </div>
 
-    <div class="single-item__content grid__item w-12-12 w-md-5-12" style="background-color: {{ term.shape_color }}">
+    <div class="single-item__content grid__item w-12-12 w-md-5-12 w-xxl-6-12" style="background-color: {{ term.shape_color }}">
       <div class="single-item__content-inner">
         <div class="container container--sm">
           {% do action('woocommerce_before_single_product') %}
