@@ -212,11 +212,11 @@ collection('.js-shape-term').map(el => {
     if(!bool) {
       setTransform(0, 0, 0)
     }
-    // if(bool) {
-    //   animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
-    // } else {
-    //   resetShrapnel(shrapnelEls)
-    // }
+    if(bool) {
+      animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
+    } else {
+      resetShrapnel(shrapnelEls)
+    }
   }
 
   const setTransform = (x, y, scale = 3) => {
@@ -245,9 +245,10 @@ collection('.js-shape-term').map(el => {
 
     // console.log(shape);
 
-    // while(shrapnelCount--) {
-    //   shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
-    // }
+    while(shrapnelCount--) {
+      shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
+    }
+
     shape.addEventListener('click', () => console.log('click'))
     shape.addEventListener('mouseover' , () => toggle(true))
     shape.addEventListener('mouseleave', () => toggle(false))
