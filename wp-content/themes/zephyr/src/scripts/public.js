@@ -193,43 +193,73 @@ function resetShrapnel(shrapnel) {
   })
 }
 
-// collection('.js-shape-term').map(el => {
-//
-//   let promise = new Promise(resolve => resolve())
-//   let direction = false
-//
-//   const { href }  = el
-//   const shapeSVG = el.querySelector('[data-shape-icon] svg')
-//   const shape = shapeSVG.querySelector('path, circle, polygon, ellipse, rect')
-//   const shrapnelContainer = el.querySelector('[data-shrapnel]')
-//   const shrapnelEls = []
-//
-//   const toggle = bool => {
-//     toggleClass(el, 'is-hovered', bool)
-//
-//     if(bool) {
-//       animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
-//     } else {
-//       resetShrapnel(shrapnelEls)
-//     }
-//   }
-//
-//   let shrapnelCount = 4
-//
-//   if(shape) {
-//
-//     // while(shrapnelCount--) {
-//     //   shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
-//     // }
-//
-//     shape.addEventListener('mouseover' , () => toggle(true))
-//     shape.addEventListener('mouseleave', () => toggle(false))
-//     shape.addEventListener('click', () => window.location = href)
-//     el.addEventListener('click', e => e.preventDefault())
-//
-//   }
-//
-// })
+collection('.js-shape-term').map(el => {
+
+  let promise = new Promise(resolve => resolve())
+  let direction = false
+
+  const { href }  = el
+  const shapeSVG = el.querySelector('[data-shape-icon] svg')
+  const shape = shapeSVG.querySelector('.shape-outline')
+  const image = el.querySelector('img')
+  const clipPathShape = shapeSVG.querySelector('clipPath > *')
+  const shrapnelContainer = el.querySelector('[data-shrapnel]')
+  const shrapnelEls = []
+
+  const toggle = bool => {
+    toggleClass(el, 'is-hovered', bool)
+
+    if(!bool) {
+      setTransform(0, 0, 0)
+    }
+    // if(bool) {
+    //   animateShrapnel(shrapnelEls, shrapnelContainer, shape, shapeSVG)
+    // } else {
+    //   resetShrapnel(shrapnelEls)
+    // }
+  }
+
+  const setTransform = (x, y, scale = 3) => {
+    const max = 2
+
+    // console.log(x,y, image);
+    // clipPathShape.setAttribute('style', `transform: scale(${(100 + scale)/100}) translate(${ x * max - scale/2 }%, ${ y * max - scale/2 }%)`)
+    image.setAttribute('style', `transform: translate(${ -x * max }%, ${ -y * max }%)`)
+  }
+
+  const handleMouseMove = ({ clientX, clientY }) => {
+
+    const rect = shapeSVG.getBoundingClientRect()
+    const { width, height } = rect
+
+    const x = (clientX - rect.left - width/2 ) / (width/2)
+    const y = (clientY - rect.top - height/2) / (height/2)
+
+    setTransform(x, y)
+
+  }
+
+  let shrapnelCount = 4
+
+  if(shape) {
+
+    // console.log(shape);
+
+    // while(shrapnelCount--) {
+    //   shrapnelEls.push(shrapnelContainer.appendChild(shapeSVG.cloneNode(true)))
+    // }
+    shape.addEventListener('click', () => console.log('click'))
+    shape.addEventListener('mouseover' , () => toggle(true))
+    shape.addEventListener('mouseleave', () => toggle(false))
+    shape.addEventListener('mousemove' , handleMouseMove)
+    shape.addEventListener('click', () => window.location = href)
+    el.addEventListener('focus', () => toggle(true))
+    el.addEventListener('blue', () => toggle(false))
+    el.addEventListener('click', e => e.preventDefault())
+
+  }
+
+})
 
 
 // Fire initial custom events

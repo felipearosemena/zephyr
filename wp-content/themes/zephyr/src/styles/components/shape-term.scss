@@ -1,11 +1,14 @@
 .shape-term {
   display: block;
-  max-width: px-to-rem(480px);
   margin: auto;
   position: relative;
+  z-index: 0;
+  max-width: 80%;
+  cursor: default;
 
-  &:not(:hover):not(:focus) {
-    cursor: default;
+  &.is-hovered {
+    cursor: pointer;
+    z-index: 1;
   }
 }
 
@@ -33,19 +36,45 @@
 }
 
 .shape-term__icon {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 0;
-  transition: transform $transition-bounce;
-
-  .shape-term:hover &,
-  .shapre-term:focus & {
-    transform: scale(1.05)
-  }
+  transition: transform $transition-default;
+  overflow: hidden;
 
   svg {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
+    transform: scale(1.01);
+    transition: all $transition-default;
+  }
+
+  g {
+    cursor: pointer;
+  }
+
+  .shape-outline {
+    opacity: 0;
+  }
+
+  .clip-outline {
+    pointer-events: none;
+  }
+
+  .shape-term:focus & {
+    overflow: visible;
+    z-index: 10;
+
+    svg {
+      transform: scale(7);
+    }
+
+    .shape-outline {
+      opacity: 1;
+    }
   }
 
 }
@@ -68,35 +97,72 @@
   transition: all $transition-default;
   line-height: px-to-rem($h2-lh);
 
-  .shape-term--odd:not(:hover):not(:focus) & {
-    transform: translate3d($bsu*6, -$bsu, 0);
+  .shape-term--odd & {
+    transform: translate3d(-$bsu*10, -$bsu*5, 0);
   }
 
-  .shape-term--even:not(:hover):not(:focus) & {
+  .shape-term--even & {
     transform: translate3d(-$bsu*6, -$bsu, 0);
   }
 }
 
 .shape-term__img {
-  max-width: px-to-rem(200px);
   margin-bottom: 0;
   transition: transform $transition-default;
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+  transform: scale(0.99);
 
-  .shape-term:hover &,
-  .shape-term:focus & {
-    transform: scale(0.9);
+  .shape-term.is-hovered &,
+  .shape-term.is-hovered & {
+    transform: scale(0.95);
   }
 
   img {
     display: block;
+    max-width: none;
+    width: 100%;
+    transition: transform $transition-default;
   }
 }
+
+.shape-term__img--round {
+  clip-path: url(#clip-round);
+  // max-width: 470px;
+  margin: auto;
+}
+
+.shape-term__img--cushion {
+  clip-path: url(#clip-cushion);
+}
+
+.shape-term__img--circle {
+  clip-path: url(#clip-circle);
+}
+
+.shape-term__img--pear {
+  clip-path: url(#clip-pear);
+}
+
+.shape-term__img--emerald {
+  clip-path: url(#clip-emerald);
+}
+
+.shape-term__img--oval {
+  clip-path: url(#clip-oval);
+}
+
+.shape-term__img--basics {
+  clip-path: url(#clip-basics);
+}
+
 
 .shape-term__label {
   transition: all $transition-default;
   line-height: px-to-rem($h2-lh);
 
-  .shape-term:not(:hover):not(:focus) & {
+  .shape-term:not(.is-hovered) & {
     opacity: 0;
     transform: translate3d(0, $bsu*2, 0);
   }

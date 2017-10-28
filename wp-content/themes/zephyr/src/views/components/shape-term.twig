@@ -3,19 +3,22 @@
   <span class="shape-term__shrapnel" data-shrapnel></span>
 
   <div class="shape-term__icon" data-shape-icon>
-    {% if term.shape_image.url and not term.shape_skip_home %}
-      {{ term.shape_image.url|file_get_contents }}
-    {% else %}
-      {% include 'components/default-shape.twig' %}
-    {% endif %}
+
+    {% set image = TimberImage(term.meta('thumbnail_id')) %}
+
+    {% include 'components/shapes/' ~ term.name ~ '.svg' with {
+      src: image.src
+    } %}
+
+  </div>
+
+  <div class="shape-term__img" data-img>
+    {{ macros.img( term.meta('thumbnail_id') ) }}
   </div>
 
   <div class="shape-term__content">
     <h2 class="shape-term__title">{{ term.name }}</h2>
 
-    <div class="shape-term__img" data-img>
-      {{ macros.img( term.meta('thumbnail_id') ) }}
-    </div>
 
     <div class="shape-term__label">
       <b>{{ label|default('view') }}</b>
