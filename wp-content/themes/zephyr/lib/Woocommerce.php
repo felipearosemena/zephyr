@@ -22,7 +22,7 @@ class Woocommerce
 
   public function woocommerce_after_single_product()
   {
-    echo '<p class="mb-0 small-text">' . get_field('single_product_bottom_message', 'option'). '</p>';
+    echo '<p class="mt-2 mb-0 small-text">' . get_field('single_product_bottom_message', 'option'). '</p>';
   }
 
 }
