@@ -37,5 +37,8 @@
     "vue-router": "^2.7.0",
     "watchify": "^3.8.0",
     "whatwg-fetch": "^2.0.2"
+  },
+  "dependencies": {
+    "vue-carousel": "^0.6.5"
   }
 }

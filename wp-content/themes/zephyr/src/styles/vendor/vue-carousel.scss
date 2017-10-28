@@ -1,0 +1,28 @@
+#app {
+  .VueCarousel-wrapper,
+  .VueCarousel-inner {
+    height: 100%;
+  }
+
+  .VueCarousel-navigation {}
+
+  .VueCarousel-navigation-button {
+    position: absolute;
+    top: 50%;
+    margin: 0 !important;
+    transform: none;
+  }
+
+  .VueCarousel-navigation-prev {
+    left: 0;
+  }
+
+  .VueCarousel-navigation-next {
+    right: 0;
+  }
+
+  .VueCarousel-pagination {
+    position: absolute;
+    bottom: 0;
+  }
+}

@@ -23,7 +23,8 @@ const store = {
     allProductsLoaded: false,
     product: {},
     filters: {},
-    query: {}
+    query: {},
+    productSliderActive: false
   },
 
   setState(newOpts) {
@@ -126,6 +127,11 @@ const store = {
     this.setState({
       query: query
     })
+  },
+
+  toggleProductSlider() {
+    const { productSliderActive } = this.state
+    this.setState({ productSliderActive: !productSliderActive })
   }
 
 }

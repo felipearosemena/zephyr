@@ -9,17 +9,23 @@
   data-product-id="{{ post.id }}">
 
     <div class="single-item__figure grid__item w-12-12 w-md-7-12 w-xxl-6-12 flex">
-      <ul class="single-images flex w-12-12">
-        <li class="single-image w-12-12">
-          {% set image = post.thumbnail %}
+      {% set images = [post.thumbnail.id]|merge(product.get_gallery_image_ids()) %}
+      <single-product-slider :active="state.productSliderActive">
+        {% for id in images %}
+        <slide>
+          {% set image = TimberImage(id) %}
           {% set src = image.src('shop_main') %}
           <div class="single-image__bg" style="background-image: url({{ src }})"></div>
           <img src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
-        </li>
-      </ul>
+        </slide>
+        {% endfor %}
+      </single-product-slider>
     </div>
 
-    <div class="single-item__content grid__item w-12-12 w-md-5-12 w-xxl-6-12" style="background-color: {{ term.shape_color }}">
+    <div
+      class="single-item__content grid__item w-12-12 w-md-5-12 w-xxl-6-12"
+      style="background-color: {{ term.shape_color }}"
+      v-bind:class="{ 'is-hidden': state.productSliderActive }">
       <div class="single-item__content-inner">
         <div class="container container--sm">
           {% do action('woocommerce_before_single_product') %}

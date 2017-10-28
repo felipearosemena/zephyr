@@ -84,6 +84,11 @@
   max-width: px-to-rem($container-xl);
 }
 
+.container--xxl {
+  max-width: px-to-rem($container-xxl);
+  width: 80%;
+}
+
 // Flush Container (no padding on sides)
 .container--flush {
   padding-left: 0;
