@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import VueCarousel from 'vue-carousel'
 
 import router from 'app/router'
 import store from 'app/store'
@@ -14,6 +15,7 @@ import 'app/shop-item.component'
 import 'app/filters.component'
 import 'app/thumbnail.component'
 import 'app/single-product-form.component'
+import 'app/single-product-slider.component'
 import 'app/modal.component'
 import 'app/add-to-cart.component'
 
@@ -21,6 +23,7 @@ import { arrayToObj, mapObject, delegate, serializeObject } from 'modules/utils'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
+Vue.use(VueCarousel)
 
 const methods = {
   setupRoutes() {
