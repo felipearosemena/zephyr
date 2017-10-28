@@ -1,22 +1,24 @@
 {% if post.hero_title %}
 <section id="hero" class="hero">
-  
+
   <div class="hero__body">
 
     <div class="container container--lg">
-      
       <h1 class="hero__title mb-2">{{ post.hero_title }}</h1>
-      
-      {% if post.hero_content %}
-        <div class="mb-2">{{ post.get_field('hero_content') }}</div>
-      {% endif %}
 
-      {% if post.hero_link %}
-        <a href="{{ post.get_field('hero_link') }}" class="btn">{{ post.hero_link_label|default('Learn More') }}</a>
-      {% endif %}
+      <div class="container container--xs container--flush">
 
+        {% if post.hero_content %}
+          <div class="mb-2">{{ post.get_field('hero_content') }}</div>
+        {% endif %}
+
+        {% if post.hero_link %}
+          <a href="{{ post.get_field('hero_link') }}" class="btn">{{ post.hero_link_label|default('Learn More') }}</a>
+        {% endif %}
+
+      </div>
     </div>
-      
+
   </div>
 
   {% if post.hero_add_video %}
@@ -25,9 +27,9 @@
       <source src="{{ post.get_field('hero_video_mp4').url }}" type="video/mp4">
     </video>
   {% endif %}
-  
-  {# 
-    The Background Image Element should stay after the video element, 
+
+  {#
+    The Background Image Element should stay after the video element,
     that way we can use CSS to hide the background image, preventing it being loaded, when the video is visible.
    #}
   {% if post.hero_background %}
