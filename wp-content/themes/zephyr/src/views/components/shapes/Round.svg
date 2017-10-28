@@ -1,0 +1,13 @@
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <g class="clip-outline" fill="white">
+    <path d="M-0.499999119,-0.499999119 L499.499999,-0.499999119 L499.499999,499.499999 L-0.499999119,499.499999 L-0.499999119,-0.499999119 Z M250.29462,460.58924 C366.437131,460.58924 460.58924,366.437131 460.58924,250.29462 C460.58924,134.152108 366.437131,40 250.29462,40 C134.152108,40 40,134.152108 40,250.29462 C40,366.437131 134.152108,460.58924 250.29462,460.58924 Z" id="Combined-Shape"></path>
+  </g>
+
+  <g class="shape-outline" stroke="none" stroke-width="1" fill="#DABED6" fill-rule="evenodd">
+    <g id="Round">
+      <circle cx="250.29462" cy="250.29462" r="210.29462"></circle>
+    </g>
+  </g>
+
+</svg>
