@@ -2,8 +2,9 @@
 
 [ ] Homepage updated layout
 [ ] Add title grid item to shop
-[ ] Single Product Layout
+[x] Single Product Layout
   [ ] Style form
+  [ ] Single Product Screenshots
 
 ------
 
