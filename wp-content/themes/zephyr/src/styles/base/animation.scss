@@ -36,7 +36,7 @@
  }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity $transition-time-fast linear;
+  transition: opacity $transition-slow;
 }
 
 .fade-enter, .fade-leave-to {
