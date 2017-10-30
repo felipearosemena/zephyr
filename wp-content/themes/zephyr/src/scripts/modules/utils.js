@@ -641,3 +641,11 @@ export function getMetaQuery(key = '', value = '') {
   query[`meta_query[0][value]`] = value
   return query
 }
+
+
+/**
+ * getRandomArrayItem
+ */
+export function randomFromArray(arr) {
+ return arr[Math.floor(Math.random()*arr.length)]
+}

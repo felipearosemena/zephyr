@@ -1,28 +1,16 @@
-<a href="{{ shop_path }}?{{ term.taxonomy }}={{ term.slug }}" class="shape-term shape-term--{{ loop.index % 2 == 0 ? 'even' : 'odd' }} remove-underline js-shape-term">
+{% set image = TimberImage(term.meta('thumbnail_id')) %}
 
-  <span class="shape-term__shrapnel" data-shrapnel></span>
+<shape-item
+  href="{{ shop_path }}?{{ term.taxonomy }}={{ term.slug }}"
+   :term='{{ term|json_encode }}'
+   label="{{ label }}">
 
-  <div class="shape-term__icon" data-shape-icon>
+  <template slot="svg">
+    {% include 'components/shapes/' ~ term.name ~ '.svg' %}
+  </template>
 
-    {% set image = TimberImage(term.meta('thumbnail_id')) %}
-
-    {% include 'components/shapes/' ~ term.name ~ '.svg' with {
-      src: image.src
-    } %}
-
-  </div>
-
-  <div class="shape-term__img" data-img>
+  <template slot="image">
     {{ macros.img( term.meta('thumbnail_id') ) }}
-  </div>
+  </template>
 
-  <div class="shape-term__content">
-    <h2 class="shape-term__title">{{ term.name }}</h2>
-
-
-    <div class="shape-term__label">
-      <b>{{ label|default('view') }}</b>
-    </div>
-  </div>
-
-</a>
+</shape-item>

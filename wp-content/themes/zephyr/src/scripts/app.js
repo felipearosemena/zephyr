@@ -18,6 +18,7 @@ import 'app/single-product-form.component'
 import 'app/single-product-slider.component'
 import 'app/modal.component'
 import 'app/add-to-cart.component'
+import 'app/shape-item.component'
 
 import { arrayToObj, mapObject, delegate, serializeObject } from 'modules/utils'
 
