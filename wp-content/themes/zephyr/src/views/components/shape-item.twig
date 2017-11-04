@@ -1,0 +1,16 @@
+{% set image = TimberImage(term.meta('thumbnail_id')) %}
+
+<shape-item
+  href="{{ shop_path }}?{{ term.taxonomy }}={{ term.slug }}"
+   :term='{{ term|json_encode }}'
+   label="{{ label }}">
+
+  <template slot="svg">
+    {% include 'components/shapes/' ~ term.name ~ '.svg' %}
+  </template>
+
+  <template slot="image">
+    {{ macros.img( term.meta('thumbnail_id') ) }}
+  </template>
+
+</shape-item>
