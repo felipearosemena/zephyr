@@ -1,4 +1,3 @@
-
 <header id="site-header" class="site-header">
 
   <div class="container container--full">
@@ -8,7 +7,7 @@
         {% include 'components/site-nav-toggle.twig' with { namespace: 'site-header' } %}
       </div>
 
-      <a href="/" class="site-logo">
+      <a href="/" class="site-logo remove-underline">
         {{ (src_uri ~ '/images/zephyr-logo-full.svg')|file_get_contents }}
       </a>
 
