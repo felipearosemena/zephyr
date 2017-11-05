@@ -1,10 +1,53 @@
 import Vue from 'vue'
-import { randomFromArray } from 'modules/utils'
+import { randomFromArray, mapObject, inArray } from 'modules/utils'
 import router from 'app/router'
+
+const getTransformObject = string => {
+
+  const obj = {}
+  const res = string
+    .split(')').filter(v => v)
+    .map(prop => {
+      const keyVal = prop.split('(')
+      if(keyVal[0].trim() == 'translate3d') {
+        const t = keyVal[1].split(',')
+        obj[keyVal[0].trim()] = {
+          x: t[0],
+          y: t[1],
+          z: 0,
+        }
+      } else {
+        obj[keyVal[0]] = keyVal[1]
+      }
+
+      return obj
+    })
+
+  return obj
+
+}
+
+const joinTransformObject = obj => {
+  let str = ''
+
+  for(let k in obj) {
+
+    let value = obj[k]
+
+    if(k.trim() == 'translate3d') {
+      value = mapObject(obj[k]).join(',')
+    }
+
+    str += `${k}(${value}) `
+
+  }
+
+  return str
+}
 
 const ShapeItem = {
   template: `
-  <a :href="href" class="shape-item remove-underline" v-bind:class="{ 'is-hovered' : isHovered }" ref="el" v-on:click.stop.prevent>
+  <a :href="href" :class="[ 'shape-item shape-item--' + term.slug + ' remove-underline' , { 'is-hovered' : isHovered}]" ref="el" v-on:click.stop.prevent>
 
     <span class="shape-item__shrapnel" ref="shrapnel"></span>
 
@@ -37,33 +80,80 @@ const ShapeItem = {
   `,
   props: [ 'href', 'term', 'label' ],
   data() {
-    return {
+    return Object.assign({}, {
       isHovered: false,
       shrapnelEls: [],
-      shrapnelCount: 3
-    }
+      shrapnelCount: inArray(this.term.slug, ['basics']) ? 0 : 3,
+    }, this.shrapnelConfig())
   },
   methods: {
+
+    shrapnelConfig() {
+
+      let w = 450, h = 450, direction = [-1, -1]
+
+      switch (this.term.slug) {
+        case 'round':
+          break;
+        case 'cushion':
+          direction = [1, -1]
+          break;
+        case 'oval':
+          direction = [1, 1]
+          w = 350
+          h = 400
+          break;
+        case 'emerald':
+          direction = [-1, 1]
+          w = 550
+          h = 450
+          break;
+        case 'pear':
+          direction = [-1, 1]
+          w = 300
+          h = 400
+          break;
+        case 'basics':
+          break;
+      }
+
+      return { box: { width: w, height: h },  direction: direction}
+
+    },
+
     animateShrapnel() {
 
       const { shape, svg, shrapnel, el } = this.$refs
-      const { shrapnelEls } = this
+      const { shrapnelEls, box, direction } = this
+      const { offsetWidth, offsetHeight } = shrapnel
+
       const rect = shape.getBoundingClientRect()
 
-      const directionOptions = {
-        x: [-1, 1],
-        y: [-1, 1]
+      const positions = []
+
+      const validatePosition = position => {
+        const { width, height } = shrapnelEls[0].getBoundingClientRect()
+
+        if(!positions.length) {
+          return true
+        }
+
+        const absolutePositions = positions
+          .map(p => p.map(Math.abs))
+          .filter(p => {
+            const currentValues = position.map(Math.abs)
+
+            return (currentValues[0] > p[0] + width/2 || currentValues[0] < p[0] - width/2) && (currentValues[1] > p[1] + height/2 || currentValues[1] < p[1] - height/2)
+
+          })
+
+        return absolutePositions.length == positions.length
+
       }
 
-      const direction = [ -1,-1 ]
+      const getPositionValue = () => {
 
-      const { offsetWidth, offsetHeight } = shrapnel
-      const box  = { width: 400, height: 300 }
-      const clearance = 30
-
-      const setPosition = (s, i) => {
-
-        const position  = [ 'width', 'height' ]
+        const position = [ 'width', 'height' ]
           .map((coord, i) =>
             box[coord] * rect[coord] / svg[coord].baseVal.value * 0.5 * direction[i]
           )
@@ -73,7 +163,21 @@ const ShapeItem = {
             return value
           })
 
-        s.style.transform = `scale(1.2) translate3d(${ position[0] }px, ${ position[1]}px, 0)`
+        if(validatePosition(position)) {
+          positions.push(position)
+          return position
+        } else {
+          console.log('running Recursive');
+          return getPositionValue()
+        }
+
+      }
+
+      const setPosition = (s, i) => {
+
+        const position  = getPositionValue()
+
+        s.style.transform  = s.dataset.transform = `translate3d(${ position[0] }px, ${ position[1]}px, 0)`
 
       }
 
@@ -83,7 +187,7 @@ const ShapeItem = {
 
     resetShrapnel() {
       this.shrapnelEls.map(s => {
-        s.style.transform = `translate3d(0px, 0px, 0)`
+        s.style = ''
       })
     },
 
@@ -91,14 +195,12 @@ const ShapeItem = {
 
       this.isHovered = bool
 
-      if(!bool) {
-        this.setTransform(0, 0)
-      }
       if(bool) {
         this.animateShrapnel()
       } else {
-        this.resetShrapnel()
+        this.setTransform(0, 0)
       }
+
     },
 
     setTransform(x, y) {
@@ -137,7 +239,7 @@ const ShapeItem = {
       image: this.$refs['img-wrap'].querySelector('img')
     })
 
-    let shrapnelCount = 3
+    let { shrapnelCount } = this
     const { shrapnel, svg } = this.$refs
 
     if(svg) {
