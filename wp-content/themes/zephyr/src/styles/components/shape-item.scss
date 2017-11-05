@@ -116,7 +116,7 @@
   }
 
   .grid__item:nth-child(odd) & {
-    left: -$bsu*3;
+    left: -$bsu*1.5;
   }
 
   .grid__item:nth-child(even) & {
@@ -124,11 +124,13 @@
   }
 
   .grid__item .shape-item--pear & {
-    left: $bsu*2;
+    left: 8%;
+    top: 60%;
   }
 
   .grid__item .shape-item--oval & {
-    right: $bsu*2;
+    top: 30%;
+    right: 8%;
   }
 
   .grid__item .shape-item--basics & {
@@ -137,7 +139,6 @@
   }
 
 }
-
 
 .shape-item__title {
   margin-bottom: 0;
@@ -174,40 +175,8 @@
   }
 }
 
-.shape-item__img--round {
-  clip-path: url(#clip-round);
-  // max-width: 470px;
-  margin: auto;
-}
-
-.shape-item__img--cushion {
-  clip-path: url(#clip-cushion);
-}
-
-.shape-item__img--circle {
-  clip-path: url(#clip-circle);
-}
-
-.shape-item__img--pear {
-  clip-path: url(#clip-pear);
-}
-
-.shape-item__img--emerald {
-  clip-path: url(#clip-emerald);
-}
-
-.shape-item__img--oval {
-  clip-path: url(#clip-oval);
-}
-
-.shape-item__img--basics {
-  clip-path: url(#clip-basics);
-}
-
-
 .shape-item__label {
   transition: all $transition-default;
-  line-height: px-to-rem($h2-lh);
   padding: 0 $bsu;
 
   .shape-item:not(.is-hovered) & {

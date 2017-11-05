@@ -99,7 +99,7 @@ const ShapeItem = {
           direction = [1, -1]
           break;
         case 'oval':
-          direction = [1, 1]
+          direction = [1, -1]
           w = 350
           h = 400
           break;
