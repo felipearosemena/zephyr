@@ -1,5 +1,5 @@
 <filters :store="store" :query="store.state.query">
-  <template scope="{ toggleVisibility, applyFilter, hasFilters, clearFilters, currentFilters, search }">
+  <div slot-scope="{ toggleVisibility, applyFilter, hasFilters, clearFilters, currentFilters, search }">
 
     <div class="filters-toggle-container">
       <div class="grid grid--flex">
@@ -75,5 +75,5 @@
       </div>
     </div>
 
-  </template>
+  </div>
 </filters>

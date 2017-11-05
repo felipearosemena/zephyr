@@ -34,7 +34,7 @@ if ( $product->is_in_stock() ) : ?>
 
   <single-product-form :product="state.product" :refs="$refs">
 
-    <template scope="form">
+    <div slot-scope="form">
       <div class="grid grid--flex justify-center">
         <div class="grid__item w-3-12 w-xxl-2-12">
           <?php
@@ -66,12 +66,11 @@ if ( $product->is_in_stock() ) : ?>
             :loading="form.isProcessing"
             name="add-to-cart"
             value="<?php echo esc_attr( $product->get_id() ); ?>">
-          <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
-        </add-to-cart>
+            <?php echo esc_html( $product->single_add_to_cart_text() ); ?>
+          </add-to-cart>
+        </div>
       </div>
     </div>
-    </template>
-
 
     <?php
       /**
