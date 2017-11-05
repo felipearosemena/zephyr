@@ -27,9 +27,9 @@ html {
     @include font-size($base-fs-lg, $base-lh-lg)
   }
 
-  @include mq-min($bp-xxl) {
-    @include font-size($base-fs-xxl, $base-lh-xxl)
-  }
+  // @include mq-min($bp-xxl) {
+    // @include font-size($base-fs-xxl, $base-lh-xxl)
+  // }
 }
 
 *::selection {
@@ -101,6 +101,7 @@ h1, .h1 {
 
 @mixin h2 {
   @include font-size($h2-fs, $h2-lh);
+  font-weight: bold;
 
   @include mq-min($bp-md) {
     @include font-size($h2-fs-lg, $h2-lh-lg)
@@ -113,6 +114,7 @@ h2, .h2 {
 
 @mixin h3 {
   @include font-size($h3-fs, $h3-lh);
+  font-weight: bold;
 
   @include mq-min($bp-md) {
     @include font-size($h3-fs-lg, $h3-lh-lg)
