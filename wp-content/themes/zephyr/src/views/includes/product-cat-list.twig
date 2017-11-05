@@ -6,7 +6,7 @@
         <div class="grid__item w-12-12 w-md-6-12 anim-trigger">
           {% include 'components/shape-item.twig' with {
             term: term,
-            label: 'view cut'
+            label: term.slug in ['basics'] ? 'view styles' : 'view cut'
           } %}
         </div>
       {% endfor %}
