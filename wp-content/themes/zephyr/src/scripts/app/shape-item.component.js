@@ -167,7 +167,6 @@ const ShapeItem = {
           positions.push(position)
           return position
         } else {
-          console.log('running Recursive');
           return getPositionValue()
         }
 
