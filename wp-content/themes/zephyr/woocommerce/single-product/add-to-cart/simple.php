@@ -36,7 +36,7 @@ if ( $product->is_in_stock() ) : ?>
 
     <div slot-scope="form">
       <div class="grid grid--flex justify-center">
-        <div class="grid__item w-3-12 w-xxl-2-12">
+        <div class="grid__item w-4-12 w-xxl-2-12">
           <?php
           /**
           * @since 2.1.0.
