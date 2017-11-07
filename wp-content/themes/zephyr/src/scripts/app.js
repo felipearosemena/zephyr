@@ -13,9 +13,10 @@ import ProductService from 'app/product.service'
 import 'app/shop-grid.component'
 import 'app/shop-item.component'
 import 'app/filters.component'
+import 'app/image-zoom.component'
 import 'app/thumbnail.component'
 import 'app/single-product-form.component'
-import 'app/single-product-slider.component'
+import SingleProductSlider from 'app/single-product-slider.component'
 import 'app/modal.component'
 import 'app/add-to-cart.component'
 import 'app/shape-item.component'
@@ -32,11 +33,12 @@ const methods = {
     router.addRoutes([
       {
         path: '/product/:slug',
+        components: { singleProductSlider: SingleProductSlider },
         beforeEnter(to, from, next) {
           const { slug } = to.params
           store.setProduct(slug)
             .then(next)
-        },
+        }
       },
       {
         path: '/shop',
@@ -44,19 +46,29 @@ const methods = {
           store.getAllProducts()
             .then(next)
         }
-      }
-      ,{
+      },
+      {
         path: '*',
         components: { default: Default }
       }
     ])
 
     router.beforeEach((to, from, next) => {
+
+      if(from.path.indexOf('/product/') == 0) {
+        store.toggleProductSlider(false)
+      }
+
       this.routerBeforeEach(to, from, next)
     })
 
     document.addEventListener('click', delegate('a[href]', function(e) {
       e.preventDefault()
+
+      if(this.getAttribute('href') == '#' || !this.getAttribute('href').length) {
+        return
+      }
+
       if(this.href.indexOf(window.location.host) > -1){
         router.push(this.getAttribute('href'))
       }
@@ -75,7 +87,11 @@ const methods = {
     store.setState({ transiting: true })
 
     if(store.isCached(to.path) && this.cacheExclude.indexOf(to.path) == -1) {
-      this.finalizeRouteTransition(to, store.state.cachedResponses[to.path])
+      console.log('start timeout');
+      setTimeout(() => {
+        console.log('complete timeout');
+        this.finalizeRouteTransition(to, store.state.cachedResponses[to.path])
+      }, 600)
     } else {
 
       this.$http.get(to.path, {

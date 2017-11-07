@@ -129,9 +129,9 @@ const store = {
     })
   },
 
-  toggleProductSlider() {
+  toggleProductSlider(bool) {
     const { productSliderActive } = this.state
-    this.setState({ productSliderActive: !productSliderActive })
+    this.setState({ productSliderActive: bool == undefined ? !productSliderActive : bool })
   }
 
 }

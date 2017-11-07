@@ -4,19 +4,24 @@ import store from 'app/store'
 const SingleProductSlider = {
   template: `
     <div class="single-product-slider" ref="rootEl" v-bind:class="{ 'is-active' : active }">
-      <carousel class="w-12-12" :per-page="1" :loop="true" :navigationEnabled="true">
+      <carousel class="w-12-12" :per-page="1" :loop="true" :navigationEnabled="navigationEnabled">
         <slot></slot>
       </carousel>
     </div>
   `,
-  props: [],
   mounted() {
+
     const { rootEl } = this.$refs
-    rootEl.addEventListener('click', () => {
-      store.toggleProductSlider()
+
+    rootEl.addEventListener('click', e => {
+      if(e.target.dataset.bg !== undefined) {
+        store.toggleProductSlider()
+      }
     })
   },
-  props: ['active']
+  props: ['active', 'navigation-enabled']
 }
 
 Vue.component('single-product-slider', SingleProductSlider)
+
+export default SingleProductSlider
