@@ -17,6 +17,20 @@
     display: block;
     transform: translate3d(-100%, 0, 0);
   }
+
+  .woocommerce-checkout & {
+
+    @include mq-min($bp-md) {
+      @include page-wrap-padding;
+      margin-top: $bsu*2;
+      width: 40%;
+      left: 0;
+      transform: none;
+      z-index: 1;
+      background-color: $grey-lightest;
+      border-right: 2px solid $grey-lighter;
+    }
+  }
 }
 
 .cart-view__close {

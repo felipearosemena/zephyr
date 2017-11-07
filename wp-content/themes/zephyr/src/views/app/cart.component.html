@@ -1,21 +1,32 @@
-<div id="cart-view" class="cart-view" v-bind:class="{ 'is-active' : isActive }">
+
+<div id="cart-view" class="cart-view" v-bind:class="{ 'is-active' : isActive, 'is-loading' : isLoading }">
 
   <div class="container">
-    <div class="text-right">
-      <div class="cart-view__count cart-link">
-        cart
-        <span v-html="cart.count"></span>
-      </div>
+    <div v-if="isLoading">
+      <div class="spinner"></div>
     </div>
-
-    <ul class="cart-items" v-if="cart.count">
-      <li v-for="item in cart.contents" v-if="products[item.product_id]" class="cart-item">
-        <b>{{ products[item.product_id].title.rendered }}</b>
-        <span v-if="item.variation && item.variation.attribute_pa_size">Size: {{ item.variation.attribute_pa_size }}</span>
-        qty: {{ item.quantity }}
-      </li>
-    </ul>
     <div v-else>
+      <div class="text-right">
+        <div class="cart-view__count cart-link">
+          cart
+          <span v-html="cart.count"></span>
+        </div>
+      </div>
+
+      <div v-if="cart.count">
+        <ul class="cart-items">
+          <li v-for="item in cart.contents" v-if="products[item.product_id]" class="cart-item">
+
+            <b>{{ products[item.product_id].title.rendered }}</b>
+            <span v-if="item.variation && item.variation.attribute_pa_size">Size: {{ item.variation.attribute_pa_size }}</span>
+            qty: {{ item.quantity }}
+          </li>
+        </ul>
+
+        <a href="/checkout" v-if="!isCheckout" v-on:click.stop>Go To Checkout</a>
+
+      </div>
+      <div v-else>
       <p class="lead mb-05">You cart is empty</p>
 
       <a href="/shop">
@@ -24,8 +35,10 @@
         </span>
       </a>
     </div>
+    </div>
 
     <div class="cart-view__close" v-on:click="toggleCart"></div>
   </div>
+
 
 </div>

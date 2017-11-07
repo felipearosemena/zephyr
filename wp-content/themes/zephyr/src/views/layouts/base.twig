@@ -21,10 +21,11 @@
       {% verbatim %}
       {% endverbatim %}
 
-      <cart :cart="state.cart" :products="state.products" :is-active="state.cartActive"></cart>
+      <cart :cart="state.cart" :products="state.products" :is-active="state.cartActive" :is-loading="state.cartLoading" :is-checkout="state.isCheckout"></cart>
 
       <div class="page-wrap__inner">
         <transition-group name="fade">
+
 
           <div v-bind:key="sections.content" v-if="!state.transiting">
             <component v-bind:is='currentView'>

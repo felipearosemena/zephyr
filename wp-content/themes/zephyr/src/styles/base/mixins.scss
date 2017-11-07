@@ -269,3 +269,11 @@
 @mixin button-padding($height: $base-button-height, $lh: px-to-rem($btn-lh), $padding-x: $bsu) {
   padding: ($height - $lh)/2 $padding-x;
 }
+
+@mixin page-wrap-padding {
+  padding-top: 4.5rem;
+
+  @include mq-min($bp-md) {
+    padding-top: 5.5rem;
+  }
+}
