@@ -21,7 +21,7 @@ import 'app/modal.component'
 import 'app/add-to-cart.component'
 import 'app/shape-item.component'
 
-import { arrayToObj, mapObject, delegate, serializeObject } from 'modules/utils'
+import { arrayToObj, mapObject, delegate, serializeObject, isCheckout } from 'modules/utils'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -63,13 +63,18 @@ const methods = {
     })
 
     document.addEventListener('click', delegate('a[href]', function(e) {
-      e.preventDefault()
+
+      if(this.getAttribute('href').indexOf(window.location.host) > -1 || isCheckout()) {
+        return
+      }
 
       if(this.getAttribute('href') == '#' || !this.getAttribute('href').length) {
+        e.preventDefault()
         return
       }
 
       if(this.href.indexOf(window.location.host) > -1){
+        e.preventDefault()
         router.push(this.getAttribute('href'))
       }
     }))
@@ -218,9 +223,13 @@ const options = {
       const product_ids = mapObject(cart.cart_contents, (k, p) => p.product_id)
 
       if(product_ids.length) {
-        this.ProductService.loadProducts({
-          include: product_ids
-        })
+        this.ProductService
+          .loadProducts({
+            include: product_ids
+          })
+          .then(() => {
+            store.setState({ cartLoading: false })
+          })
       }
 
     })
@@ -230,6 +239,8 @@ const options = {
     })
 
     this.CartService.getCart()
+
+
   },
 
   watch: {
