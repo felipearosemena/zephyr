@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+    <title>Plus Button</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="20" cy="20" r="20"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Plus-Button">
+            <g id="Oval">
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <circle stroke="#363636" stroke-width="2" cx="20" cy="20" r="19"></circle>
+            </g>
+            <polygon id="+" fill="#363636" points="21.1764706 18.8235294 30 18.8235294 30 21.1764706 21.1764706 21.1764706 21.1764706 30 18.8235294 30 18.8235294 21.1764706 10 21.1764706 10 18.8235294 18.8235294 18.8235294 18.8235294 10 21.1764706 10"></polygon>
+        </g>
+    </g>
+</svg>
