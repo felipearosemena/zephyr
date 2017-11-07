@@ -10,14 +10,16 @@
 
     <div class="single-item__figure grid__item w-12-12 w-md-7-12 w-xxl-6-12 flex">
       {% set images = [post.thumbnail.id]|merge(product.get_gallery_image_ids()) %}
-      <single-product-slider :active="state.productSliderActive">
+      <single-product-slider :active="state.productSliderActive" :navigation-enabled="{{ images|length > 1 ? 'true' : 'false' }}">
         {% for id in images %}
-        <slide>
-          {% set image = TimberImage(id) %}
-          {% set src = image.src('shop_main') %}
-          <div class="single-image__bg" style="background-image: url({{ src }})"></div>
-          <img src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
-        </slide>
+          <slide>
+            <image-zoom :active="state.productSliderActive">
+              {% set image = TimberImage(id) %}
+              {% set src = image.src('shop_main') %}
+              <div class="single-image__bg" style="background-image: url({{ src }})" data-bg></div>
+              <img src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
+            </image-zoom>
+          </slide>
         {% endfor %}
       </single-product-slider>
     </div>
