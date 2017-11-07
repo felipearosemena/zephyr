@@ -649,3 +649,7 @@ export function getMetaQuery(key = '', value = '') {
 export function randomFromArray(arr) {
  return arr[Math.floor(Math.random()*arr.length)]
 }
+
+export function isCheckout() {
+  return window.location.pathname.indexOf('checkout') > -1
+}
