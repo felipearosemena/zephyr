@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { apiFetch } from 'modules/load'
 import { eventBusFactory } from 'modules/eventBus'
 import { mapObject, arrayToObj, serializeObject } from 'modules/utils'
+import store from 'app/store'
 
 const ProductService = {
 
@@ -14,6 +15,8 @@ const ProductService = {
         this.products[product.id] = product
       })
     }
+
+    store.setState({ products: this.products })
 
   },
 

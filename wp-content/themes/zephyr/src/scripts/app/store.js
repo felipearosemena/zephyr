@@ -97,6 +97,7 @@ const store = {
     const active = (bool !== null && bool !== undefined) ? bool : !prop
     const newState = { overlayActive: active }
     newState[propK] = active
+
     this.setState(newState)
   },
 
