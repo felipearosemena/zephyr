@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
+import { isCheckout } from 'modules/utils'
 
 const merge = Vue.config.optionMergeStrategies.computed
 
@@ -13,11 +14,13 @@ const store = {
     cachedResponses: {},
     transiting: false,
     initialized: true,
-    cartActive: false,
     navOpen: false,
     overlayActive: false,
     filtersActive: false,
     cart: CartService.cart,
+    cartActive: false,
+    cartLoading: true,
+    isCheckout: isCheckout(),
     products: {},
     productArray: [],
     allProductsLoaded: false,
