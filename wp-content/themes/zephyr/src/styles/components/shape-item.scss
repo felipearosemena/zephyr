@@ -87,7 +87,7 @@
 
   .shape-item:focus & {
     overflow: visible;
-    z-index: 10;
+    z-index: 1;
   }
 
 }
@@ -107,7 +107,7 @@
   }
 
   .shape-item--emerald & {
-    bottom: 22.5%;
+    top: 45%;
   }
 
   .shape-item--pear &,
@@ -124,13 +124,12 @@
   }
 
   .grid__item .shape-item--pear & {
-    left: 8%;
-    top: 60%;
+    left: 14%;
+    bottom: 14%;
   }
 
   .grid__item .shape-item--oval & {
-    top: 30%;
-    right: 8%;
+    right: 10%;
   }
 
   .grid__item .shape-item--basics & {

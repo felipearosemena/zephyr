@@ -54,10 +54,14 @@
     height: 100%;
   }
 
+  .clip-outline {
+    display: none;
+  }
+
   input:not(:checked) + label & g {
     fill: none;
     stroke: $body-color;
-    stroke-width: 5;
+    stroke-width: 3%;
   }
 }
 
@@ -69,10 +73,4 @@
   padding: $bsu*2 $bsu;
   background: white;
   width: 100%;
-  transform: translate3d(0, 100%, 0);
-  transition: all $transition-default;
-
-  &.is-active {
-    transform: translate3d(0, 0, 0);
-  }
 }

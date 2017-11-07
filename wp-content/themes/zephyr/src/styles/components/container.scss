@@ -27,7 +27,7 @@
   margin-left: auto;
   margin-right: auto;
 
-  @include mq-min($bp-lg) {
+  @include mq-min($bp-md) {
     padding-left: $container-pad*2;
     padding-right: $container-pad*2;
   }
@@ -39,12 +39,12 @@
 }
 
 .container {
-  width: 90%;
+  width: 80%;
   max-width: px-to-rem($container-lg);
   box-sizing: content-box; // Prevents the container's padding
                            // to be substracted from it's width
 
-  @include mq-min($bp-lg) {
+  @include mq-min($bp-md) {
     width: 70%;
   }
 }

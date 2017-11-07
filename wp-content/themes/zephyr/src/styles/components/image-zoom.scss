@@ -1,0 +1,14 @@
+.image-zoom,
+.image-zoom__container {
+  height: 100%;
+}
+
+.image-zoom {}
+
+.image-zoom__container {
+  transition: transform $transition-slow;
+
+  .image-zoom.is-active & {
+    transform: scale(1.25);
+  }
+}

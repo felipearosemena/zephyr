@@ -5,10 +5,10 @@
  */
 
 .page-wrap {
-  padding-top: $bsu*4.5;
+  padding-top: 4.5rem;
 
-  @include mq-min($bp-main) {
-    padding-top: 100px;
+  @include mq-min($bp-md) {
+    padding-top: 5.5rem;
   }
 }
 
@@ -54,11 +54,7 @@
 }
 
 .single-item {
-  height: calc(100vh - #{$bsu*3.5});
-
-  @include mq-min($bp-md) {
-    height: calc(100vh - 100px);
-  }
+  min-height: calc(100vh - 100px);
 }
 
 .single-images {
@@ -72,9 +68,23 @@
 }
 
 .single-image__bg {
-  @include full-cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
+  cursor: url(../../src/images/plus-button.png) 20 20, auto;
+
+  .single-product-slider.is-active & {
+    cursor: url(../../src/images/close-button.png) 20 20, auto;
+  }
+
+  &:after {
+    content: '';
+    padding-bottom: 80%;
+    display: block;
+  }
 }
 
 .single-item {
@@ -85,7 +95,7 @@
 
 .single-item__content {
   overflow: auto;
-  transition: all $transition-slow;
+  transition: transform $transition-slow, opacity $transition-slow;
   transform-origin: 0% 50%;
 
   &.is-hidden {
@@ -127,8 +137,8 @@
     left: 50%;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
-    width: 140px;
-    height: 140px;
+    width: 6rem;
+    height: 6rem;
   }
 
   g {
@@ -139,9 +149,11 @@
 .single-product-slider {
   display: flex;
   width: 100%;
-  transition: all $transition-slow;
+  transition: transform $transition-slow;
 
   &.is-active {
-    transform: translate3d(50%, 0 , 0);
+    @include mq-min($bp-md) {
+      transform: translate3d(35.75%, 0 , 0);
+    }
   }
 }

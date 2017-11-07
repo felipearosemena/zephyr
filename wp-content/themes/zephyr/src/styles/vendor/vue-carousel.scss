@@ -1,16 +1,29 @@
 #app {
+
   .VueCarousel-wrapper,
   .VueCarousel-inner {
     height: 100%;
   }
 
-  .VueCarousel-navigation {}
 
   .VueCarousel-navigation-button {
     position: absolute;
     top: 50%;
     margin: 0 !important;
     transform: none;
+  }
+
+  .VueCarousel-wrapper {
+    z-index: 1;
+  }
+
+  .VueCarousel-navigation {
+  }
+
+  .VueCarousel-navigation-prev,
+  .VueCarousel-navigation-next,
+  .VueCarousel-pagination {
+    transition: transform $transition-bounce-slow;
   }
 
   .VueCarousel-navigation-prev {
@@ -23,6 +36,29 @@
 
   .VueCarousel-pagination {
     position: absolute;
+    z-index: 2;
+    width: auto;
     bottom: 0;
+    left: 50%;
+    transform: translate3d(-50%, 100%, 0);
+  }
+
+  .single-product-slider.is-active {
+
+    .VueCarousel-navigation-next,
+    .VueCarousel-navigation-prev,
+    .VueCarousel-pagination {
+      transition-delay: .4s;
+    }
+    .VueCarousel-navigation-next {
+      transform: translate3d(200%, 0, 0);
+    }
+    .VueCarousel-navigation-prev {
+      transform: translate3d(-200%, 0, 0);
+    }
+
+    .VueCarousel-pagination {
+      transform: translate3d(-50%, 0, 0);
+    }
   }
 }
