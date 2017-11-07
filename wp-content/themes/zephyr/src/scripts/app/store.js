@@ -18,7 +18,7 @@ const store = {
     overlayActive: false,
     filtersActive: false,
     cart: CartService.cart,
-    products: ProductService.products,
+    products: {},
     productArray: [],
     allProductsLoaded: false,
     product: {},
