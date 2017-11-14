@@ -9,11 +9,7 @@
 $context = Timber::get_context();
 $post = new TimberPost();
 $context['post'] = $post;
-$context['share_post'] = new BW\SharePost();
-
-$context['related'] = Timber::get_posts( BW\Utils::getRelatedPosts( $post->ID ) );
-$context['author'] = new TimberUser($post->post_author);
-$context['terms'] = get_the_terms( $post->ID, 'category' );
+$context['share_post'] = new Z\SharePost();
 
 $template = post_password_required() ? 'single-password.twig' : 'single.twig';
 
