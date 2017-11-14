@@ -184,10 +184,11 @@ const methods = {
   },
 
   bindGlobalEvents() {
+
     window.addEventListener('keydown', e => {
       switch(e.keyCode) {
         case 27: {
-          store.toggleCart(false)
+          store.closeFlyouts()
           break;
         }
       }
