@@ -84,7 +84,7 @@ const SingleProductForm = {
 
         if(size) {
           variations[size.name] = size.value
-          params[variations] = variations
+          params.variations = variations
         }
 
         CartService.addToCart(this.product.id, params)
