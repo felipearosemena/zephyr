@@ -231,6 +231,8 @@ const options = {
           })
       }
 
+      store.setState({ cartLoading: false })
+
     })
 
     this.CartService.subscribe('cart-added', cart => {
