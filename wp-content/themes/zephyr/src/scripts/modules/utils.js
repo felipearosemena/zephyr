@@ -653,3 +653,7 @@ export function randomFromArray(arr) {
 export function isCheckout() {
   return window.location.pathname.indexOf('checkout') > -1
 }
+
+export function formatCurrency(value) {
+  return '$' + value
+}
