@@ -223,6 +223,7 @@ const options = {
       const product_ids = mapObject(cart.cart_contents, (k, p) => p.product_id)
 
       if(product_ids.length) {
+
         this.ProductService
           .loadProducts({
             include: product_ids
@@ -231,11 +232,9 @@ const options = {
             store.setState({ cartLoading: false })
           })
 
-        return
-
+      } else {
+        store.setState({ cartLoading: false })
       }
-
-      store.setState({ cartLoading: false })
 
     })
 
