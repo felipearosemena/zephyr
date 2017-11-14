@@ -3,8 +3,6 @@ import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
 import { isCheckout } from 'modules/utils'
 
-const merge = Vue.config.optionMergeStrategies.computed
-
 const store = {
 
   initialized: false,
@@ -64,7 +62,6 @@ const store = {
     return ProductService
       .loadProducts({ per_page: 99 })
       .then(products => {
-
         if(products.length) {
           this.setState({
             productArray: products,
@@ -93,6 +90,7 @@ const store = {
   },
 
   toggleFlyout(propK, bool) {
+
     const prop = this.state[propK]
     const active = (bool !== null && bool !== undefined) ? bool : !prop
     const newState = { overlayActive: active }
