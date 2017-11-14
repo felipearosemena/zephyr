@@ -14,22 +14,48 @@
       </div>
 
       <div v-if="cart.count">
-        <ul class="cart-items">
+        <ul class="cart-items mt-2 list-plain">
           <li v-for="item in cart.contents" v-if="products[item.product_id]" class="cart-item">
+            <div class="grid mb-1">
+              <div class="grid__item w-3-12">
+                <thumbnail :image="products[item.product_id].thumbnail" size="card" />
+              </div>
+              <div class="grid__item w-9-12">
+                <h4 class="label mb-25">{{ products[item.product_id].title.rendered }}</h4>
+                <div class="flex justify-between small-text">
+                  <span>
+                    <span v-if="item.variation && item.variation.attribute_pa_size">
+                      Size: {{ item.variation.attribute_pa_size }} <br/>
+                    </span>
 
-            <b>{{ products[item.product_id].title.rendered }}</b>
-            <span v-if="item.variation && item.variation.attribute_pa_size">Size: {{ item.variation.attribute_pa_size }}</span>
-            qty: {{ item.quantity }}
+                    <span>
+                      Qty: {{ item.quantity }}
+                    </span>
+                  </span>
+                  <span class="align-bottom">
+                    ${{ item.line_subtotal }}
+                  </span>
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
 
-        <a href="/checkout" v-if="!isCheckout" v-on:click.stop>Go To Checkout</a>
+        <hr>
+
+        <p class="lead weight-bold flex justify-between">
+          <span>Subtotal:</span> <span>${{ subtotal }}</span>
+        </p>
+
+        <div class="mt-2">
+          <a href="/checkout" v-if="!isCheckout" v-on:click.stop class="btn btn--body">Go To Checkout</a>
+        </div>
 
       </div>
       <div v-else>
       <p class="lead mb-05">You cart is empty</p>
 
-      <a href="/shop">
+      <a href="/shop" class="btn">
         <span v-on:click="toggleCart">
           Go to shop
         </span>
@@ -37,7 +63,7 @@
     </div>
     </div>
 
-    <div class="cart-view__close" v-on:click="toggleCart"></div>
+    <div class="cart-view__close" v-on:click="frankieBark"></div>
   </div>
 
 
