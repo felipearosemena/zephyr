@@ -132,6 +132,18 @@
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
+.align-center {
+  align-self: center;
+}
+
+.align-bottom {
+  align-self: flex-end;
+}
+
 .order-2--xl {
   @include mq-min($bp-xl) {
     order: 2

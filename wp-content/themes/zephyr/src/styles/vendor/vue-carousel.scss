@@ -26,19 +26,43 @@
     transition: transform $transition-bounce-slow;
   }
 
+  .VueCarousel-navigation-next,
+  .VueCarousel-navigation-prev {
+    @include remove-underline;
+    width: $bsu*2;
+    height: $bsu*2;
+    line-height: $bsu*2;
+    font-size: 0;
+
+    &:before {
+      font-family: 'icons' !important;
+      display: block;
+      font-size: 1.2rem;
+      line-height: 1;
+    }
+  }
+
   .VueCarousel-navigation-prev {
     left: 0;
+
+    &:before {
+      content: $icon-chevron-left;
+    }
   }
 
   .VueCarousel-navigation-next {
     right: 0;
+
+    &:before {
+      content: $icon-chevron-right;
+    }
   }
 
   .VueCarousel-pagination {
     position: absolute;
     z-index: 2;
     width: auto;
-    bottom: 0;
+    bottom: $bsu;
     left: 50%;
     transform: translate3d(-50%, 100%, 0);
   }
@@ -50,11 +74,12 @@
     .VueCarousel-pagination {
       transition-delay: .4s;
     }
+
     .VueCarousel-navigation-next {
-      transform: translate3d(200%, 0, 0);
+      transform: translate3d(200%, 0%, 0);
     }
     .VueCarousel-navigation-prev {
-      transform: translate3d(-200%, 0, 0);
+      transform: translate3d(-200%, 0%, 0);
     }
 
     .VueCarousel-pagination {

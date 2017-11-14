@@ -179,8 +179,10 @@ q {
 }
 
 .label {
-  color: $color-primary;
-  display: inline-block;
+  @include font-size($small-fs, $small-lh);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: bold;
   margin-bottom: $bsu/4;
 }
 
