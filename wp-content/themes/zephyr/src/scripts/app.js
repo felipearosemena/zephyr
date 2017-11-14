@@ -92,11 +92,9 @@ const methods = {
     store.setState({ transiting: true })
 
     if(store.isCached(to.path) && this.cacheExclude.indexOf(to.path) == -1) {
-      console.log('start timeout');
       setTimeout(() => {
-        console.log('complete timeout');
         this.finalizeRouteTransition(to, store.state.cachedResponses[to.path])
-      }, 600)
+      }, 0)
     } else {
 
       this.$http.get(to.path, {
