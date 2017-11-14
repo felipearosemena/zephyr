@@ -8,8 +8,7 @@ const CartService = new Vue({
   data: {
     cart: {
       count: 0,
-      contents: [],
-      products: {}
+      contents: []
     }
   },
 
