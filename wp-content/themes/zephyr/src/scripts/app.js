@@ -214,6 +214,7 @@ const options = {
   methods: methods,
 
   beforeMount() {
+
     this.setupRoutes()
     this.setCurrentView(this.$el.innerHTML)
     this.bindGlobalEvents()
@@ -229,6 +230,9 @@ const options = {
           .then(() => {
             store.setState({ cartLoading: false })
           })
+
+        return
+
       }
 
       store.setState({ cartLoading: false })
