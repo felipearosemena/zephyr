@@ -9,7 +9,35 @@ class CustomPostTypes
 {
 
   // Place post types here. Singular and plural will be used to auto generate labels. Labels and args will overwrite defaults.
-  protected $posttypes = [];
+  protected $posttypes = [
+    'lookbook' => array(
+      'args'     => [
+        'menu_icon' => 'dashicons-images-alt',
+        'has_archive' => false,
+        'publicly_queryable' => true,
+        'supports' => [
+          'title',
+          'editor',
+          'excerpt',
+          'thumbnail'
+        ]
+      ],
+    ),
+    'press' => array(
+      'plural' => 'Press',
+      'args'     => [
+        'menu_icon' => 'dashicons-format-quote',
+        'has_archive' => true,
+        'publicly_queryable' => true,
+        'supports' => [
+          'title',
+          'editor',
+          'excerpt',
+          'thumbnail'
+        ]
+      ],
+    )
+  ];
 
   // Default arguments to use for register_post_type
   protected $default_args = [
@@ -95,4 +123,3 @@ class CustomPostTypes
   } /* dynamicRegisterPostType() */
 
 }
-
