@@ -1,10 +1,18 @@
 #TODAY
 
-[ ] Homepage updated layout
-[ ] Add title grid item to shop
+[ ] Add loader screen
+[x] Homepage updated layout
+[ ] Shop
+  [ ] Add title grid item to shop
+  [ ] Update filter shapes
 [x] Single Product Layout
-  [ ] Style form
-  [ ] Single Product Screenshots
+  [x] Style form
+  [ ] Toggling menu on/off creates a gap
+  [ ] Single Product Slider
+    [ ] Add zooming
+    [ ] Style navigation
+  [ ] Add close button
+[ ] Handle removing localStorage when pushing new version
 
 ------
 
