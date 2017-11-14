@@ -117,7 +117,8 @@ const store = {
     this.setState({
       navOpen: false,
       overlayActive: false,
-      filtersActive: false
+      filtersActive: false,
+      cartActive: false
     })
   },
 
