@@ -22,12 +22,14 @@ const CartService = new Vue({
         this.publish('cart-fetched', cart)
         this.cart.contents = cart.cart_contents
         this.cart.count    = cart.count
+        this.cart.subtotal    = cart.subtotal
 
       })
 
     },
 
     addToCart(id, params = {}) {
+
       return apiFetch(Global.api_namespace + '/cart/add/' + id, 'post', params)
         .then(res => {
           this.handleCartResponse(res)
