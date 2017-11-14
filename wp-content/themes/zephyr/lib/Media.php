@@ -18,8 +18,16 @@ class Media
     // Add Image Sizes
     add_action( 'init', array( &$this, 'init__addImagesSizes' ) );
 
+    // Display custom image sizes in the backend
+    add_filter('image_size_names_choose', array(&$this, 'image_size_names_choose__displayAdditionalSizes') );
+
   } /* __construct() */
 
+  // Expose Custom Image Sizes for the insert Media
+  public function image_size_names_choose__displayAdditionalSizes($sizes) {
+    $sizes['lookbook'] = 'Lookbook';
+    return $sizes;
+  }
 
   /**
    * Add Image Sizes
@@ -52,6 +60,7 @@ class Media
     add_image_size('card_md', 460, 420, true);
     add_image_size('featured', 960, 540, true);
     add_image_size('shop_main', 960, 960, true);
+    add_image_size('lookbook', 1280 );
 
   } /* init__addImagesSizes() */
 
