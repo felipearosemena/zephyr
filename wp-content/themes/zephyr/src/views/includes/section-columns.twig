@@ -1,13 +1,11 @@
 {% if section.columns %}
   <section class="section section--card-columns">
 
-    {% if section.title %}
-      <div class="container">
-        <h2 class="mb-2">{{ section.title }}</h2>
-      </div>
-    {% endif %}
+    <div class="container container--md">
 
-    <div class="container">
+      {% if section.title %}
+        <h2 class="h3 mb-2">{{ section.title }}</h2>
+      {% endif %}
 
       <div class="grid grid--flex grid--rows grid--wide">
 
