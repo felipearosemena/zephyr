@@ -13,6 +13,7 @@
 
 .accordion {
   margin-bottom: $bsu/2;
+  border: 2px solid;
 
   &:last-child {
     margin-bottom: 0;
@@ -26,16 +27,15 @@
   text-align: left;
   width: 100%;
   position: relative;
-
-  @include hover-underline(0px, true);
-  padding: $bsu/2 0;
+  padding: $bsu;
 
   i {
     @include iconfont;
     @extend  .icon-plus;
+    pointer-events: none;
     position: absolute;
     top: 50%;
-    right: 0;
+    right: $bsu;
     transform: translateY(-50%);
   }
 
@@ -43,20 +43,12 @@
     transform: translateY(-50%) rotate(45deg);
   }
 
-  &:not(.is-active) {
-    @include hover-underline-active;
-  }
-
-  &:hover {
-    color: $color-primary;
-  }
-
 }
 
 .accordion__body {
   transform: none;
-  transition: opacity $transition-slow, visibility $transition-slow;
   overflow: hidden;
+  padding: 0 $bsu;
 
   &:not(.is-active) {
     opacity: 0;
