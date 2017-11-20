@@ -33,7 +33,7 @@
                     </span>
                   </span>
                   <span class="align-bottom">
-                    ${{ item.line_subtotal }}
+                    {{ item.line_subtotal | format-currency }}
                   </span>
                 </div>
               </div>
@@ -43,8 +43,8 @@
 
         <hr>
 
-        <p class="lead weight-bold flex justify-between">
-          <span>Subtotal:</span> <span>${{ subtotal }}</span>
+        <p class="lead weight-bold flex justify-between" v-if="cart">
+          <span>Subtotal:</span> <span>{{ cart.subtotal | format-currency }}</span>
         </p>
 
         <div class="mt-2">
