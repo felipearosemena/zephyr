@@ -120,7 +120,9 @@ const methods = {
       .then(res => {
         this.finalizeRouteTransition(to, res.body)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        window.location = err.url
+      })
 
     }
   },
