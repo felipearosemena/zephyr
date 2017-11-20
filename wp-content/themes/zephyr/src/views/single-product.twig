@@ -40,7 +40,7 @@
 
             <h1 class="single-title h3 weight-bold text-upper mb-0">
             	{{ post.title }}
-              {{ term.get_field('shape_image').url|file_get_contents }}
+              {% include 'components/shapes/' ~ term.name ~ '.svg' %}
             </h1>
 
             {{ product.get_description|wpautop }}
