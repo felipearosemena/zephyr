@@ -8,12 +8,19 @@
 [x] Single Product Layout
   [x] Style form
   [ ] Toggling menu on/off creates a gap
+  [ ] Toggling cart or menu doesn't show dark overlay
   [ ] Single Product Slider
     [ ] Add zooming
     [ ] Style navigation
   [ ] Add close button
 [ ] Handle removing localStorage when pushing new version
+[ ] Cart
+  [ ] Fix subtotal not updating on single product page
+[ ] Press
+  [ ] https://journal.kotn.com/?_ga=2.148268350.820273179.1510629902-1687590045.1510629902
 
+[ ] Add chaser to main nav
+[ ] Fix route transitions previous scrollHeight
 ------
 
 [ ] SEO Review
