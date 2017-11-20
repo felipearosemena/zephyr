@@ -10,7 +10,9 @@
 /*----------  Colours  ----------*/
 
 $pink         : lighten(#ED9FA8, 2.5%);
-$blue         : darken(#B4E0E9, 10%);
+$pink-light   : lighten(#ED9FA8, 10%);
+$blue-light   : #B4E0E9;
+$blue         : darken($blue-light, 10%);
 $green        : #5cb85c;
 $red          : #d9534f;
 $yellow       : #ec971f;

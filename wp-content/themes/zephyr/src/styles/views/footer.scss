@@ -10,8 +10,12 @@
 }
 
 .site-footer {
-  background-color: #ED9FA8;
+  background-color: $pink-light;
   padding: $bsu*2 0;
+
+  .woocommerce-checkout & {
+    display: none;
+  }
 }
 
 .site-footer__menu,
@@ -24,10 +28,6 @@
 
   li {
     @include clearfix;
-  }
-
-  li:not(:last-child) {
-    // border-bottom: 1px solid rgba(white, 0.1);
   }
 
   .menu-item-has-children > a {

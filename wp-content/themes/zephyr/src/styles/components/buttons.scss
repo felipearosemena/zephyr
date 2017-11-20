@@ -151,6 +151,20 @@
   }
 }
 
+.btn-close {
+  @include button-plain;
+  position: absolute;
+  z-index: 2;
+  top: $bsu;
+  right: $container-pad*2;
+  transition: all $transition-bounce;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+}
+
 .btn[disabled],
 .btn.is-disabled {
 

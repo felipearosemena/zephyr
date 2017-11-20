@@ -56,6 +56,23 @@
   transform: translate3d(0, 100%, 0);
 }
 
+.slide-out-enter, .slide-out-enter-active, .slide-out-leave-active {
+  transition: all $transition-default;
+}
+
+.slide-out-enter, .slide-out-leave-active, .slide-out-leave-active {
+  transform: translate3d(0, 200%, 0);
+}
+
+
+.opacity-enter, .opacity-enter-active, .opacity-leave-active {
+  transition: opacity $transition-default;
+}
+
+.opacity-enter, .opacity-leave-active, .opacity-leave-active {
+  opacity: 0;
+}
+
 // Animation delay
 
 @for $i from 0 through 12 {

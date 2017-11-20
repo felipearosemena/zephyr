@@ -28,6 +28,47 @@ figure {
   display: block;
 }
 
+.lookbook-image {
+  position: relative;
+  max-width: $container-md;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: $bsu*2;
+  margin-bottom: $bsu*2;
+
+  br { display: none }
+
+  @include mq-min($bp-md) {
+    margin-top: $bsu*4;
+    margin-bottom: $bsu*4;
+  }
+
+  &:first-child {
+    margin-top: $bsu*2;
+  }
+
+}
+
+.lookbook-image:nth-last-child(1),
+.lookbook-image:nth-last-child(2),
+.lookbook-image:nth-last-child(3) {
+  width: 33.33%;
+  float: left;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.lookbook-image__caption {
+  position: absolute;
+  left: 100%;
+  margin-left: $bsu;
+  margin-top: $bsu;
+  top: 0;
+  width: 10vw;
+}
+
 /**
  *
  * Suggested video wrapper markup

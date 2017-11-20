@@ -168,6 +168,11 @@ small, .small-text {
   letter-spacing: 0.01em;
 }
 
+.tiny-text {
+  @include font-size($tiny-fs, $tiny-lh);
+  letter-spacing: 0.01em;
+}
+
 q {
   font-style: italic;
 }
@@ -178,12 +183,16 @@ q {
   @include font-size($lead-fs, $lead-lh);
 }
 
-.label {
+.label, .label-sm  {
   @include font-size($small-fs, $small-lh);
   text-transform: uppercase;
   letter-spacing: .05em;
   font-weight: bold;
   margin-bottom: $bsu/4;
+}
+
+.label-sm {
+  @include font-size($tiny-fs, $tiny-lh);
 }
 
 time {
