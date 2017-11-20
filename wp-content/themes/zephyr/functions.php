@@ -32,6 +32,7 @@ class App {
     new Z\Search();
     new Z\Setup();
     new Z\Social();
+    new Z\Shortcodes();
     new Z\Twig();
     new Z\TinyMCE();
     new Z\Woocommerce();
