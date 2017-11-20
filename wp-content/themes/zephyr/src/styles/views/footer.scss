@@ -4,16 +4,12 @@
  *
  */
 
-.site-footer,
-.site-sub-footer {
-  display: none;
-}
-
 .site-footer {
-  background-color: $pink-light;
+  background-color: $color-primary;
   padding: $bsu*2 0;
 
-  .woocommerce-checkout & {
+  .woocommerce-checkout &,
+  .about & {
     display: none;
   }
 }

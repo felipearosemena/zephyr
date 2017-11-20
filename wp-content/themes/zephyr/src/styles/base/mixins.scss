@@ -99,6 +99,7 @@
 
 @mixin button-plain($padding: 0) {
   border: none;
+  border-radius: 0;
   background-color: transparent;
   padding: $padding;
 
@@ -275,5 +276,30 @@
 
   @include mq-min($bp-md) {
     padding-top: 5.5rem;
+  }
+}
+
+@mixin section-spacing {
+  margin-top: $bsu*2;
+  margin-bottom: $bsu*2;
+
+  @include mq-min($bp-md) {
+    margin-top: $bsu*4;
+    margin-bottom: $bsu*4;
+  }
+
+  @include mq-min($bp-lg) {
+    // margin-top: $bsu*6;
+    // margin-bottom: $bsu*6;
+  }
+}
+
+@mixin hero-spacing {
+  padding-top: $bsu*4;
+  padding-bottom: $bsu*4;
+
+  @include mq-min($bp-lg) {
+    padding-top: $bsu*6;
+    padding-bottom: $bsu*6;
   }
 }

@@ -12,8 +12,7 @@
 }
 
 .accordion {
-  background-color: $grey-lighter;
-  margin-bottom: $bsu;
+  margin-bottom: $bsu/2;
 
   &:last-child {
     margin-bottom: 0;
@@ -22,23 +21,30 @@
 
 .accordion__toggle {
   @include button-plain;
-  padding: $bsu $bsu*2 $bsu $bsu;
+  @include font-size($lead-fs, $lead-lh);
+  font-weight: bold;
   text-align: left;
   width: 100%;
   position: relative;
 
-  @include iconfont;
-  @extend  .icon-arrow-down;
+  @include hover-underline(0px, true);
+  padding: $bsu/2 0;
 
-  &.is-active {
-    @extend  .icon-arrow-up;
-  }
-
-  &:before {
+  i {
+    @include iconfont;
+    @extend  .icon-plus;
     position: absolute;
     top: 50%;
-    right: $bsu;
+    right: 0;
     transform: translateY(-50%);
+  }
+
+  &.is-active i {
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  &:not(.is-active) {
+    @include hover-underline-active;
   }
 
   &:hover {
@@ -49,7 +55,7 @@
 
 .accordion__body {
   transform: none;
-  transition: max-height $transition-slow, opacity $transition-slow, visibility $transition-slow;
+  transition: opacity $transition-slow, visibility $transition-slow;
   overflow: hidden;
 
   &:not(.is-active) {
@@ -61,5 +67,4 @@
 }
 
 .accordion__body-inner {
-  @include island(0 $bsu $bsu);
 }
