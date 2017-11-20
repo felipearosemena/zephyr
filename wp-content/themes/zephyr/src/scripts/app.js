@@ -83,11 +83,15 @@ const methods = {
 
   routerBeforeEach(to, from, next) {
 
-    next()
+    if(!store.state.hasNavigated) {
+      store.setState({ hasNavigated: true })
+    }
 
     if(to.path == from.path) {
       return
     }
+
+    next()
 
     store.setState({ transiting: true })
 

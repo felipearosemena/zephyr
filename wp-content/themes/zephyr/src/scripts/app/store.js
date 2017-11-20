@@ -25,7 +25,9 @@ const store = {
     product: {},
     filters: {},
     query: {},
-    productSliderActive: false
+    scrollY: {},
+    productSliderActive: false,
+    hasNavigated: false
   },
 
   setState(newOpts) {
