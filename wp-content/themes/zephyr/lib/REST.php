@@ -50,8 +50,13 @@ class REST {
     wp_localize_script( 'public-script', 'Global', array(
       'api' => $this->root(),
       'api_namespace' => $this->api_namespace(),
-      'nonce' => wp_create_nonce( $this->nonce_key ),
+      'nonce' => $this->getNonce(),
     ));
+  }
+
+  public function getNonce()
+  {
+    return wp_create_nonce( $this->nonce_key );
   }
 
   public function api_namespace()
@@ -158,6 +163,7 @@ class REST {
 
     $cart->nonce = wp_create_nonce( $this->nonce_key );
     $response = new WP_REST_Response($cart, 200);
+    $response->header('nonce', $this->getNonce());
 
     return $response;
 
