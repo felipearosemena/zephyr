@@ -20,6 +20,10 @@ import SingleProductSlider from 'app/single-product-slider.component'
 import 'app/modal.component'
 import 'app/add-to-cart.component'
 import 'app/shape-item.component'
+import 'app/product-tooltip.component'
+import 'app/back-button.component'
+
+import 'app/format-currency.filter'
 
 import { arrayToObj, mapObject, delegate, serializeObject, isCheckout } from 'modules/utils'
 
