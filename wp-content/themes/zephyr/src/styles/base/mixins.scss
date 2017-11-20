@@ -288,10 +288,6 @@
     margin-bottom: $bsu*4;
   }
 
-  @include mq-min($bp-lg) {
-    // margin-top: $bsu*6;
-    // margin-bottom: $bsu*6;
-  }
 }
 
 @mixin hero-spacing {
