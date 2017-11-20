@@ -3,9 +3,7 @@
 {% block content %}
 
   {% include 'includes/single-content.twig' %}
-  {% include 'includes/section-post-feed.twig' with {
-    title: 'Related Posts',
-    posts: related
-  } %}
+  {% include 'includes/lookbook.twig' %}
+  {% include 'includes/hero-color.twig' %}
 
 {% endblock %}

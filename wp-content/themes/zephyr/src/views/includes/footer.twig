@@ -5,20 +5,20 @@
     <div class="grid">
       <div class="grid__item w-12-12 w-md-4-12">
         {% if footer_menu %}
-          
+
           <h5>{{ footer_menu.title }}</h5>
           <ul id="site-footer-menu" class="site-footer__menu">
             {% for item in footer_menu.get_items %}
               <li class="{{ item.classes|join(' ') }}">
 
                 <a href="{{ item.get_link }}" target="{{ item.is_external ? '_blank' }}">
-                  {{ item.title }} 
+                  {{ item.title }}
                 </a>
 
                 {% if item.children %}
-                <span class="site-footer__toggle js-toggle" 
-                  data-target="#site-footer-sub-menu-{{ loop.index }}" 
-                  data-group="#site-footer-menu" 
+                <span class="site-footer__toggle js-toggle"
+                  data-target="#site-footer-sub-menu-{{ loop.index }}"
+                  data-group="#site-footer-menu"
                   data-toggle="true">
                 </span>
 
@@ -45,14 +45,14 @@
         {{ global_info.global_phone_number|wpautop }}
 
         <p><a href="mailto:{{ global_info.global_email }}">{{ global_info.global_email }}</a></p>
-        
+
         <ul>
           {% include 'components/social-nav.twig' %}
         </ul>
 
       </div>
     </div>
-    
+
 
   </div>
 

@@ -30,7 +30,7 @@
         <transition-group name="fade">
 
 
-          <div v-bind:key="sections.content" v-if="!state.transiting">
+          <div class="page-view__transition" v-bind:key="sections.content" v-if="!state.transiting">
             <component v-bind:is='currentView'>
               <div class="page-view-wrap">
                 {% block hero %}{% endblock %}
@@ -52,6 +52,7 @@
           {% include 'includes/footer.twig' %}
 
         </transition-group>
+
       </div>
 
     </div>

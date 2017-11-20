@@ -1,0 +1,23 @@
+{% spaceless %}
+
+{% set image = TimberImage(image) %}
+
+<p class="lookbook-image">
+  <span class="lookbook-image__content">
+    {{ macros.img(image, 'lookbook') }}
+  </span>
+  <span class="lookbook-image__caption">
+
+    {% set related = image.get_field('featured_products') %}
+
+    {% for product in related %}
+      {% set product = TimberPost(product) %}
+
+      <product-tooltip id="{{ product.id }}">
+        <a href="{{ product.path }}" class="small-text mb-05">{{ product.title }}</a>
+      </product-tooltip>
+
+    {% endfor %}
+  </span>
+</p>
+{% endspaceless %}

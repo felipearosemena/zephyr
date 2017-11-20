@@ -1,0 +1,9 @@
+<section class="section">
+  <div class="container container--full clearfix">
+    {% for image in post.get_field('lookbook_images') %}
+      {% include 'components/lookbook-image.twig' with {
+        image: image
+      } %}
+    {% endfor %}
+  </div>
+</section>
