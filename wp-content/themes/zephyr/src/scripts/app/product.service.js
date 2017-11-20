@@ -7,6 +7,7 @@ import store from 'app/store'
 const ProductService = {
 
   products: {},
+  requests: {},
 
   addProducts(products) {
 
@@ -20,17 +21,41 @@ const ProductService = {
 
   },
 
+  cacheRequest(url, req) {
+    this.requests[url] = req
+  },
+
+  getFromCache(url) {
+    return this.requests[url]
+  },
+
+  inCache(url) {
+    return this.requests[url] !== undefined
+  },
+
   loadProducts(params = {}) {
 
     params.orderby = 'menu_order'
     params.order = 'asc'
 
-    return apiFetch(`wp/v2/product?${ serializeObject(params) }`)
+    const requestURL = `wp/v2/product?${ serializeObject(params) }`
+
+    return apiFetch(requestURL)
       .then(res => res.json())
       .then(products => {
         this.addProducts(products)
         return products
       })
+
+    if(this.inCache(requestURL)) {
+      return this.getFromCache(requestURL)
+    } else {
+      const def =
+
+      this.cacheRequest(requestURL, def)
+
+      return def
+    }
   }
 
 }
