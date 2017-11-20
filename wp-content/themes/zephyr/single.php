@@ -11,6 +11,8 @@ $post = new TimberPost();
 $context['post'] = $post;
 $context['share_post'] = new Z\SharePost();
 
-$template = post_password_required() ? 'single-password.twig' : 'single.twig';
+$template = post_password_required() ?
+  'single-password.twig' :
+  [ 'single-' . $post->post_type . '.twig', 'single.twig' ];
 
 Timber::render( $template, $context );
