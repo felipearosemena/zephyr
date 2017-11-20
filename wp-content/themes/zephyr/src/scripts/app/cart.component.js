@@ -11,12 +11,7 @@ const Cart = {
     }
   },
   watch: {
-    isLoading() {
-      this.subtotal = mapObject(
-        this.cart.contents,
-        (k, { line_subtotal }) => line_subtotal
-      ).reduce((curr, next) => curr + next, 0)
-    }
+    isLoading() {}
   },
   methods: {
     toggleCart: () => store.toggleCart()
