@@ -1,0 +1,27 @@
+.fs-panes {
+
+  @include mq-min($bp-md) {
+    display: flex;
+    height: calc(100vh - 5.5rem;)
+  }
+}
+
+.fs-panes__color,
+.fs-panes__content {
+  padding: $bsu*2 $bsu;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fs-panes__color {
+  background-color: $color-primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fs-panes__content {
+  overflow: auto;
+}

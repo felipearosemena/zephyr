@@ -1,0 +1,26 @@
+{% if section.columns %}
+  <section class="section section--card-columns">
+
+    {% if section.title %}
+      <div class="container">
+        <h2 class="mb-2">{{ section.title }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="container">
+
+      <div class="grid grid--flex grid--rows grid--wide">
+
+        {% for col in section.columns %}
+          <div class="grid__item flex w-12-12 w-md-4-12">
+
+            {{ col.content }}
+
+          </div>
+        {% endfor %}
+      </div>
+
+    </div>
+
+  </section>
+{% endif %}

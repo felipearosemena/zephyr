@@ -1,0 +1,15 @@
+<section class="fs-panes">
+  <div class="fs-panes__color w-12-12 w-md-6-12">
+
+    {{ (src_uri ~ 'images/zephyr-icon.svg')|file_get_contents }}
+
+  </div>
+
+  <div class="fs-panes__content w-12-12 w-md-6-12">
+      <div class="container container--sm">
+        <h1 class="h3 mb-2">{{ post.title }}</h1>
+
+        {{ post.content }}
+      </div>
+  </div>
+</section>

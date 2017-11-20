@@ -1,24 +1,8 @@
 {% extends 'layouts/base.twig' %}
 
-{% block hero %}
-  {% include 'includes/hero-slider.twig' %}
-{% endblock %}
-
 {% block content %}
-  
-  <article class="section">
-    <div class="container container--md">
-    
-      <header class="text-center">
-        <h1>{{ post.title }}</h1>
-      </header>
-                  
-      <div class="post-content">
-        {{ post.content }}
-      </div><!-- .post-content -->
-    </div>
-  </article>
 
+  {% include 'includes/single-content.twig' %}
   {% include 'includes/flexible-blocks.twig' %}
 
 {% endblock %}
