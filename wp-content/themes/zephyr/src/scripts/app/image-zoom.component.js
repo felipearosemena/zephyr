@@ -45,7 +45,9 @@ const ImageZoom = {
   methods: {
 
     onResize() {
-      this.rect = this.$refs.rootEl.getBoundingClientRect()
+      if(this.$refs.rootEl) {
+        this.rect = this.$refs.rootEl.getBoundingClientRect()
+      }
     },
 
     onMouseEnter() {
@@ -62,6 +64,10 @@ const ImageZoom = {
     },
 
     onMouseMove(e) {
+
+      if(!this.$refs.rootEl) {
+        return
+      }
 
       if(this.active && !this.activeHover) {
         this.activeHover = true
