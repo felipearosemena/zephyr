@@ -108,6 +108,13 @@ h1, .h1 {
   }
 }
 
+.h1-sm {
+  @include mq-min($bp-md) {
+    @include font-size($h1-fs, $h1-lh);
+    font-weight: bold;
+  }
+}
+
 h2, .h2 {
   @include h2;
 }
@@ -267,12 +274,26 @@ ol.list-editor {
   }
 }
 
+dl {
+  display: flex;
+  flex-wrap: wrap;
+  margin: $bsu*2 auto;
+}
+
+dt, dd {
+  display: block;
+  width: 50%;
+  padding: 0 $bsu/2;
+}
+
 dt {
   font-weight: bold;
+  text-align: right;
 }
 
 dd {
   margin-left: 0;
+  text-align: left;
 }
 
 
