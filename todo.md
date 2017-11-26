@@ -1,5 +1,6 @@
 #TODAY
 
+[ ] Add menu item active state
 [ ] Add loader screen
 [x] Homepage updated layout
 [ ] Shop
