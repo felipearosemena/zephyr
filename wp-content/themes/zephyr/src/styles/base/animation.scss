@@ -35,17 +35,22 @@
    }
  }
 
+ .perspective {
+   display: block;
+   perspective: 3000px;
+ }
+
 .fade-enter, .fade-enter-active, .fade-leave-active {
-  transition: all .6s $transition-timing-slow;
+  transition: all .6s $transition-timing-default;
 }
 
 .fade-enter, .fade-leave-active {
   opacity: 0;
-  transform: translate3d(0, -2rem, 0);
+  transform: translate3d(0, -2rem, 2rem);
 }
 
 .fade-leave-active {
-  transform: translate3d(0, 2rem, 0);
+  transform: translate3d(0, 2rem, -2rem);
 }
 
 .slide-down-enter, .slide-down-enter-active, .slide-down-leave-active {
