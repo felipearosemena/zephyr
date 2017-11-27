@@ -24,6 +24,28 @@ if (file_exists(dirname(__FILE__) . '/wp-config-local.php') && !isset($_ENV['PAN
  */
 else:
   if (isset($_ENV['PANTHEON_ENVIRONMENT'])):
+
+    if (!in_array($_ENV['PANTHEON_ENVIRONMENT'], array('test', 'live'))) {
+
+      // Debugging enabled.
+      if (!defined( 'WP_DEBUG' )) {
+        define( 'WP_DEBUG', true );
+      }
+
+      define( 'WP_DEBUG_LOG', true ); // Stored in wp-content/debug.log
+      define( 'WP_DEBUG_DISPLAY', true );
+    }
+    // Wordpress debug settings in test and live environments.
+    else {
+      // Debugging disabled.
+      ini_set('log_errors','On');
+      ini_set('display_errors','Off');
+      ini_set('error_reporting', E_ALL );
+      define('WP_DEBUG', false);
+      define('WP_DEBUG_LOG', true);
+      define('WP_DEBUG_DISPLAY', false);
+    }
+
     // ** MySQL settings - included in the Pantheon Environment ** //
     /** The name of the database for WordPress */
     define('DB_NAME', $_ENV['DB_NAME']);
@@ -51,7 +73,7 @@ else:
      * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
      *
      * Pantheon sets these values for you also. If you want to shuffle them you
-     * must contact support: https://pantheon.io/docs/getting-support 
+     * must contact support: https://pantheon.io/docs/getting-support
      *
      * @since 2.6.0
      */
@@ -67,7 +89,7 @@ else:
 
     /** A couple extra tweaks to help things run well on Pantheon. **/
     if (isset($_SERVER['HTTP_HOST'])) {
-        // HTTP is still the default scheme for now. 
+        // HTTP is still the default scheme for now.
         $scheme = 'http';
         // If we have detected that the end use is HTTPS, make sure we pass that
         // through here, so <img> tags and the like don't generate mixed-mode
