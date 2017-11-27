@@ -33,7 +33,7 @@
           {% do action('woocommerce_before_single_product') %}
 
           <back-button class="btn-close" default="/shop">
-            {{ (src_uri ~ 'images/close-button.svg')|file_get_contents }}
+            {{ (src_dir ~ 'images/close-button.svg')|file_get_contents }}
           </back-button>
 
           <div class="summary entry-summary">

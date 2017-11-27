@@ -42,6 +42,7 @@ class Twig extends TimberSite
 
     $context['site']           = $this;
     $context['src_uri']        = get_stylesheet_directory_uri() . '/src/';
+    $context['src_dir']        = get_stylesheet_directory() . '/src/';
     $context['wp_title_right'] = wp_title( '|', false, 'right' );
 
     $context['main_menu']     = new TimberMenu( 'main-nav' );
