@@ -129,8 +129,6 @@ function handleError(response) {
 
 export function apiFetch(endpoint, method = 'get', body = {}) {
 
-  console.log(store.state.nonce);
-
   const headers = {
     'X-WP-Nonce': store.state.nonce
   }
