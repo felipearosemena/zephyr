@@ -27,7 +27,8 @@ const store = {
     query: {},
     scrollY: {},
     productSliderActive: false,
-    hasNavigated: false
+    hasNavigated: false,
+    nonce: Global.nonce
   },
 
   setState(newOpts) {
@@ -137,6 +138,12 @@ const store = {
   toggleProductSlider(bool) {
     const { productSliderActive } = this.state
     this.setState({ productSliderActive: bool == undefined ? !productSliderActive : bool })
+  },
+
+  updateNonce(nonce) {
+    if(nonce) {
+      this.setState({ nonce: nonce })
+    }
   }
 
 }

@@ -3,13 +3,15 @@
  * Load
  *
  * Requires the fetch API to be available
- * 
+ *
  */
+
+import store from 'app/store'
 
 /**
  *
  * Cache of promises of requested objects
- * 
+ *
  */
 
 const requestedURLs = {};
@@ -21,7 +23,7 @@ const requestedURLs = {};
  * @param {string} src - Source URL
  *
  * @returns {object} promise object for that specific source
- *  
+ *
  */
 
 export function loadScriptOnce(src, fromCache = true) {
@@ -38,11 +40,10 @@ export function loadScriptOnce(src, fromCache = true) {
   s.type = 'text/javascript';
   s.async = false;
   s.src = src;
-  
+
   let promise = new Promise((resolve, reject) => {
     // Resolve the promise when the script has loaded.
     s.addEventListener('load', function (e) {
-      console.log('loaded', src)
       resolve(e);
     }, false);
   })
@@ -65,7 +66,7 @@ export function loadScriptOnce(src, fromCache = true) {
  * @param {string} url - Source URL
  *
  * @returns {object} promise object for that specific source
- *  
+ *
  */
 
 export function loadOnce(url, type) {
@@ -95,7 +96,7 @@ export function loadOnce(url, type) {
 /**
  * Check for the api response to see if errors were found.
  * If so, throws an error otherwise returns the original response
- * 
+ *
  * @param  {Object} response WP Rest API response
  * @return {Promise/Object} A catcheable promise error or the original response
  */
@@ -114,22 +115,24 @@ function handleError(response) {
 }
 
 /**
- * 
- * Perform a fetch request to the WP Rest API. Set's the correct headers 
+ *
+ * Perform a fetch request to the WP Rest API. Set's the correct headers
  * in order to validate the request.
- * 
- * 
+ *
+ *
  * @param  {String} endpoint The url to be requested
  * @param  {String} method   Request method to use ('get' or 'post')
  * @param  {Object} body     Request body, to be used in 'post' request when sending FormData
  * @return {Promise}         Promise containing the request response
- *  
+ *
  */
 
 export function apiFetch(endpoint, method = 'get', body = {}) {
 
+  console.log(store.state.nonce);
+
   const headers = {
-    'X-WP-Nonce': Global.nonce
+    'X-WP-Nonce': store.state.nonce
   }
 
   if(!(body instanceof FormData)) {
@@ -141,10 +144,10 @@ export function apiFetch(endpoint, method = 'get', body = {}) {
   return fetch(Global.api + endpoint, {
     credentials: 'same-origin',
     method: method,
-    body: body instanceof FormData ? 
-      body : 
-      (method == 'post') ? 
-        JSON.stringify(body) : 
+    body: body instanceof FormData ?
+      body :
+      (method == 'post') ?
+        JSON.stringify(body) :
         null,
     headers: new Headers(headers)
   })
