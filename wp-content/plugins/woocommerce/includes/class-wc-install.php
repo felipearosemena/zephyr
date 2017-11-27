@@ -17,7 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_Install {
 
-	/** @var array DB updates and callbacks that need to be run per version */
+	/**
+	 * DB updates and callbacks that need to be run per version.
+	 *
+	 * @var array
+	 */
 	private static $db_updates = array(
 		'2.0.0' => array(
 			'wc_update_200_file_paths',
@@ -79,9 +83,26 @@ class WC_Install {
 			'wc_update_300_product_visibility',
 			'wc_update_300_db_version',
 		),
+		'3.1.0' => array(
+			'wc_update_310_downloadable_products',
+			'wc_update_310_old_comments',
+			'wc_update_310_db_version',
+		),
+		'3.1.2' => array(
+			'wc_update_312_shop_manager_capabilities',
+			'wc_update_312_db_version',
+		),
+		'3.2.0' => array(
+			'wc_update_320_mexican_states',
+			'wc_update_320_db_version',
+		),
 	);
 
-	/** @var object Background update class */
+	/**
+	 * Background update class.
+	 *
+	 * @var object
+	 */
 	private static $background_updater;
 
 	/**
@@ -91,12 +112,12 @@ class WC_Install {
 		add_action( 'init', array( __CLASS__, 'check_version' ), 5 );
 		add_action( 'init', array( __CLASS__, 'init_background_updater' ), 5 );
 		add_action( 'admin_init', array( __CLASS__, 'install_actions' ) );
-		add_action( 'in_plugin_update_message-woocommerce/woocommerce.php', array( __CLASS__, 'in_plugin_update_message' ) );
 		add_filter( 'plugin_action_links_' . WC_PLUGIN_BASENAME, array( __CLASS__, 'plugin_action_links' ) );
 		add_filter( 'plugin_row_meta', array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
 		add_filter( 'wpmu_drop_tables', array( __CLASS__, 'wpmu_drop_tables' ) );
 		add_filter( 'cron_schedules', array( __CLASS__, 'cron_schedules' ) );
 		add_action( 'woocommerce_plugin_background_installer', array( __CLASS__, 'background_installer' ), 10, 2 );
+		add_action( 'woocommerce_theme_background_installer', array( __CLASS__, 'theme_background_installer' ), 10, 1 );
 	}
 
 	/**
@@ -110,7 +131,7 @@ class WC_Install {
 	/**
 	 * Check WooCommerce version and run the updater is required.
 	 *
-	 * This check is done on all requests and runs if he versions do not match.
+	 * This check is done on all requests and runs if the versions do not match.
 	 */
 	public static function check_version() {
 		if ( ! defined( 'IFRAME_REQUEST' ) && get_option( 'woocommerce_version' ) !== WC()->version ) {
@@ -140,81 +161,112 @@ class WC_Install {
 	 * Install WC.
 	 */
 	public static function install() {
-		global $wpdb;
-
 		if ( ! is_blog_installed() ) {
 			return;
 		}
 
-		if ( ! defined( 'WC_INSTALLING' ) ) {
-			define( 'WC_INSTALLING', true );
+		// Check if we are not already running this routine.
+		if ( 'yes' === get_transient( 'wc_installing' ) ) {
+			return;
 		}
 
-		// Ensure needed classes are loaded
-		include_once( dirname( __FILE__ ) . '/admin/class-wc-admin-notices.php' );
+		// If we made it till here nothing is running yet, lets set the transient now.
+		set_transient( 'wc_installing', 'yes', MINUTE_IN_SECONDS * 10 );
+		wc_maybe_define_constant( 'WC_INSTALLING', true );
 
+		self::remove_admin_notices();
 		self::create_options();
 		self::create_tables();
 		self::create_roles();
+		self::setup_environment();
+		self::create_terms();
+		self::create_cron_jobs();
+		self::create_files();
+		self::maybe_enable_setup_wizard();
+		self::update_wc_version();
+		self::maybe_update_db_version();
 
-		// Register post types
+		delete_transient( 'wc_installing' );
+
+		do_action( 'woocommerce_flush_rewrite_rules' );
+		do_action( 'woocommerce_installed' );
+	}
+
+	/**
+	 * Reset any notices added to admin.
+	 *
+	 * @since 3.2.0
+	 */
+	private static function remove_admin_notices() {
+		include_once( dirname( __FILE__ ) . '/admin/class-wc-admin-notices.php' );
+		WC_Admin_Notices::remove_all_notices();
+	}
+
+	/**
+	 * Setup WC environment - post types, taxonomies, endpoints.
+	 *
+	 * @since 3.2.0
+	 */
+	private static function setup_environment() {
 		WC_Post_types::register_post_types();
 		WC_Post_types::register_taxonomies();
-
-		// Also register endpoints - this needs to be done prior to rewrite rule flush
 		WC()->query->init_query_vars();
 		WC()->query->add_endpoints();
 		WC_API::add_endpoint();
 		WC_Auth::add_endpoint();
+	}
 
-		self::create_terms();
-		self::create_cron_jobs();
-		self::create_files();
+	/**
+	 * Is this a brand new WC install?
+	 *
+	 * @since 3.2.0
+	 * @return boolean
+	 */
+	private static function is_new_install() {
+		return is_null( get_option( 'woocommerce_version', null ) ) && is_null( get_option( 'woocommerce_db_version', null ) );
+	}
 
-		// Queue upgrades/setup wizard
-		$current_wc_version    = get_option( 'woocommerce_version', null );
-		$current_db_version    = get_option( 'woocommerce_db_version', null );
+	/**
+	 * Is a DB update needed?
+	 *
+	 * @since 3.2.0
+	 * @return boolean
+	 */
+	private static function needs_db_update() {
+		$current_db_version = get_option( 'woocommerce_db_version', null );
+		$updates            = self::get_db_update_callbacks();
 
-		WC_Admin_Notices::remove_all_notices();
+		return ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( $updates ) ), '<' );
+	}
 
-		// No versions? This is a new install :)
-		if ( is_null( $current_wc_version ) && is_null( $current_db_version ) && apply_filters( 'woocommerce_enable_setup_wizard', true ) ) {
+	/**
+	 * See if we need the wizard or not.
+	 *
+	 * @since 3.2.0
+	 */
+	private static function maybe_enable_setup_wizard() {
+		if ( apply_filters( 'woocommerce_enable_setup_wizard', self::is_new_install() ) ) {
 			WC_Admin_Notices::add_notice( 'install' );
 			set_transient( '_wc_activation_redirect', 1, 30 );
-
-		// No page? Let user run wizard again..
-		} elseif ( ! get_option( 'woocommerce_cart_page_id' ) ) {
-			WC_Admin_Notices::add_notice( 'install' );
 		}
+	}
 
-		if ( ! is_null( $current_db_version ) && version_compare( $current_db_version, max( array_keys( self::$db_updates ) ), '<' ) ) {
-			WC_Admin_Notices::add_notice( 'update' );
+	/**
+	 * See if we need to show or run database updates during install.
+	 *
+	 * @since 3.2.0
+	 */
+	private static function maybe_update_db_version() {
+		if ( self::needs_db_update() ) {
+			if ( apply_filters( 'woocommerce_enable_auto_update_db', false ) ) {
+				self::init_background_updater();
+				self::update();
+			} else {
+				WC_Admin_Notices::add_notice( 'update' );
+			}
 		} else {
 			self::update_db_version();
 		}
-
-		self::update_wc_version();
-
-		// Flush rules after install
-		do_action( 'woocommerce_flush_rewrite_rules' );
-		delete_transient( 'wc_attribute_taxonomies' );
-
-		/*
-		 * Deletes all expired transients. The multi-table delete syntax is used
-		 * to delete the transient record from table a, and the corresponding
-		 * transient_timeout record from table b.
-		 *
-		 * Based on code inside core's upgrade_network() function.
-		 */
-		$sql = "DELETE a, b FROM $wpdb->options a, $wpdb->options b
-			WHERE a.option_name LIKE %s
-			AND a.option_name NOT LIKE %s
-			AND b.option_name = CONCAT( '_transient_timeout_', SUBSTRING( a.option_name, 12 ) )
-			AND b.option_value < %d";
-		$wpdb->query( $wpdb->prepare( $sql, $wpdb->esc_like( '_transient_' ) . '%', $wpdb->esc_like( '_transient_timeout_' ) . '%', time() ) );
-
-		// Trigger action
-		do_action( 'woocommerce_installed' );
 	}
 
 	/**
@@ -295,7 +347,7 @@ class WC_Install {
 
 		$ve = get_option( 'gmt_offset' ) > 0 ? '-' : '+';
 
-		wp_schedule_event( strtotime( '00:00 tomorrow ' . $ve . get_option( 'gmt_offset' ) . ' HOURS' ), 'daily', 'woocommerce_scheduled_sales' );
+		wp_schedule_event( strtotime( '00:00 tomorrow ' . $ve . absint( get_option( 'gmt_offset' ) ) . ' HOURS' ), 'daily', 'woocommerce_scheduled_sales' );
 
 		$held_duration = get_option( 'woocommerce_hold_stock_minutes', '60' );
 
@@ -516,7 +568,8 @@ CREATE TABLE {$wpdb->prefix}woocommerce_downloadable_product_permissions (
   download_count BIGINT UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY  (permission_id),
   KEY download_order_key_product (product_id,order_id,order_key(16),download_id),
-  KEY download_order_product (download_id,order_id,product_id)
+  KEY download_order_product (download_id,order_id,product_id),
+  KEY order_id (order_id)
 ) $collate;
 CREATE TABLE {$wpdb->prefix}woocommerce_order_items (
   order_item_id BIGINT UNSIGNED NOT NULL auto_increment,
@@ -691,7 +744,6 @@ CREATE TABLE {$wpdb->prefix}woocommerce_termmeta (
 			'manage_categories'      => true,
 			'manage_links'           => true,
 			'moderate_comments'      => true,
-			'unfiltered_html'        => true,
 			'upload_files'           => true,
 			'export'                 => true,
 			'import'                 => true,
@@ -783,6 +835,11 @@ CREATE TABLE {$wpdb->prefix}woocommerce_termmeta (
 	 * Create files/directories.
 	 */
 	private static function create_files() {
+		// Bypass if filesystem is read-only and/or non-standard upload system is used
+		if ( apply_filters( 'woocommerce_install_skip_create_files', false ) ) {
+			return;
+		}
+
 		// Install files and folders for uploading files and prevent hotlinking
 		$upload_dir      = wp_upload_dir();
 		$download_method = get_option( 'woocommerce_file_download_method', 'force' );
@@ -821,65 +878,6 @@ CREATE TABLE {$wpdb->prefix}woocommerce_termmeta (
 				}
 			}
 		}
-	}
-
-	/**
-	 * Show plugin changes. Code adapted from W3 Total Cache.
-	 */
-	public static function in_plugin_update_message( $args ) {
-		$transient_name = 'wc_upgrade_notice_' . $args['Version'];
-
-		if ( false === ( $upgrade_notice = get_transient( $transient_name ) ) ) {
-			$response = wp_safe_remote_get( 'https://plugins.svn.wordpress.org/woocommerce/trunk/readme.txt' );
-
-			if ( ! is_wp_error( $response ) && ! empty( $response['body'] ) ) {
-				$upgrade_notice = self::parse_update_notice( $response['body'], $args['new_version'] );
-				set_transient( $transient_name, $upgrade_notice, DAY_IN_SECONDS );
-			}
-		}
-
-		echo wp_kses_post( $upgrade_notice );
-	}
-
-	/**
-	 * Parse update notice from readme file.
-	 *
-	 * @param  string $content
-	 * @param  string $new_version
-	 * @return string
-	 */
-	private static function parse_update_notice( $content, $new_version ) {
-		// Output Upgrade Notice.
-		$matches        = null;
-		$regexp         = '~==\s*Upgrade Notice\s*==\s*=\s*(.*)\s*=(.*)(=\s*' . preg_quote( WC_VERSION ) . '\s*=|$)~Uis';
-		$upgrade_notice = '';
-
-		if ( preg_match( $regexp, $content, $matches ) ) {
-			$notices = (array) preg_split( '~[\r\n]+~', trim( $matches[2] ) );
-
-			// Convert the full version strings to minor versions.
-			$notice_version_parts  = explode( '.', trim( $matches[1] ) );
-			$current_version_parts = explode( '.', WC_VERSION );
-
-			if ( 3 !== sizeof( $notice_version_parts ) ) {
-				return;
-			}
-
-			$notice_version  = $notice_version_parts[0] . '.' . $notice_version_parts[1];
-			$current_version = $current_version_parts[0] . '.' . $current_version_parts[1];
-
-			// Check the latest stable version and ignore trunk.
-			if ( version_compare( $current_version, $notice_version, '<' ) ) {
-
-				$upgrade_notice .= '</p><p class="wc_plugin_upgrade_notice">';
-
-				foreach ( $notices as $index => $line ) {
-					$upgrade_notice .= preg_replace( '~\[([^\]]*)\]\(([^\)]*)\)~', '<a href="${2}">${1}</a>', $line );
-				}
-			}
-		}
-
-		return wp_kses_post( $upgrade_notice );
 	}
 
 	/**
@@ -1083,6 +1081,65 @@ CREATE TABLE {$wpdb->prefix}woocommerce_termmeta (
 					);
 				}
 			}
+		}
+	}
+
+	/**
+	 * Install a theme from .org in the background via a cron job (used by installer - opt in).
+	 *
+	 * @param string $theme_slug
+	 * @since 3.1.0
+	 */
+	public static function theme_background_installer( $theme_slug ) {
+		// Explicitly clear the event.
+		wp_clear_scheduled_hook( 'woocommerce_theme_background_installer', func_get_args() );
+
+		if ( ! empty( $theme_slug ) ) {
+			// Suppress feedback
+			ob_start();
+
+			try {
+				$theme = wp_get_theme( $theme_slug );
+
+				if ( ! $theme->exists() ) {
+					require_once( ABSPATH . 'wp-admin/includes/file.php' );
+					include_once( ABSPATH . 'wp-admin/includes/class-wp-upgrader.php' );
+					include_once( ABSPATH . 'wp-admin/includes/theme.php' );
+
+					WP_Filesystem();
+
+					$skin     = new Automatic_Upgrader_Skin;
+					$upgrader = new Theme_Upgrader( $skin );
+					$api      = themes_api( 'theme_information', array(
+						'slug'   => $theme_slug,
+						'fields' => array( 'sections' => false ),
+					) );
+					$result   = $upgrader->install( $api->download_link );
+
+					if ( is_wp_error( $result ) ) {
+						throw new Exception( $result->get_error_message() );
+					} elseif ( is_wp_error( $skin->result ) ) {
+						throw new Exception( $skin->result->get_error_message() );
+					} elseif ( is_null( $result ) ) {
+						throw new Exception( 'Unable to connect to the filesystem. Please confirm your credentials.' );
+					}
+				}
+
+				switch_theme( $theme_slug );
+			} catch ( Exception $e ) {
+				WC_Admin_Notices::add_custom_notice(
+					$theme_slug . '_install_error',
+					sprintf(
+						__( '%1$s could not be installed (%2$s). <a href="%3$s">Please install it manually by clicking here.</a>', 'woocommerce' ),
+						$theme_slug,
+						$e->getMessage(),
+						esc_url( admin_url( 'update.php?action=install-theme&theme=' . $theme_slug . '&_wpnonce=' . wp_create_nonce( 'install-theme_' . $theme_slug ) ) )
+					)
+				);
+			}
+
+			// Discard feedback
+			ob_end_clean();
 		}
 	}
 }

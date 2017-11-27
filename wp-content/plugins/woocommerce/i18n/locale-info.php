@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 return array(
 	'AU' => array(
 		'currency_code'  => 'AUD',
@@ -520,7 +524,7 @@ return array(
 		'thousand_sep'	=> ',',
 		'decimal_sep'	 => '.',
 		'num_decimals'	=> 2,
-		'weight_unit'	 => 'lbs',
+		'weight_unit'	 => 'oz',
 		'dimension_unit' => 'in',
 		'tax_rates'		=> array(
 			'AL' => array(
@@ -770,7 +774,7 @@ return array(
 				array(
 					'country'  => 'US',
 					'state'    => 'NJ',
-					'rate'     => '7.0000',
+					'rate'     => '6.8750',
 					'name'     => 'State Tax',
 					'shipping' => true,
 				),

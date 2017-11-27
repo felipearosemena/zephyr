@@ -73,7 +73,7 @@ class WC_Geolocation {
 	 * @param  string $ip_address IP address.
 	 * @return string|bool The valid IP address, otherwise false.
 	 */
-	private function is_ip_address( $ip_address ) {
+	private static function is_ip_address( $ip_address ) {
 		// WP 4.7+ only.
 		if ( function_exists( 'rest_is_ip_address' ) ) {
 			return rest_is_ip_address( $ip_address );
@@ -86,11 +86,11 @@ class WC_Geolocation {
 
 		$ipv4_pattern = '/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/';
 
-		if ( ! preg_match( $ipv4_pattern, $ip ) && ! Requests_IPv6::check_ipv6( $ip ) ) {
+		if ( ! preg_match( $ipv4_pattern, $ip_address ) && ! Requests_IPv6::check_ipv6( $ip_address ) ) {
 			return false;
 		}
 
-		return $ip;
+		return $ip_address;
 	}
 
 	/**
@@ -98,8 +98,8 @@ class WC_Geolocation {
 	 * @return string
 	 */
 	public static function get_ip_address() {
-		if ( isset( $_SERVER['X-Real-IP'] ) ) {
-			return $_SERVER['X-Real-IP'];
+		if ( isset( $_SERVER['HTTP_X_REAL_IP'] ) ) {
+			return $_SERVER['HTTP_X_REAL_IP'];
 		} elseif ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 			// Proxy servers can send through this header like this: X-Forwarded-For: client1, proxy1, proxy2
 			// Make sure we always only send through the first IP in the list which should always be the client IP.

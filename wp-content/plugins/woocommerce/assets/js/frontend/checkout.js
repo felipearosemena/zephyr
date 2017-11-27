@@ -32,7 +32,7 @@ jQuery( function( $ ) {
 			this.$checkout_form.on( 'submit', this.submit );
 
 			// Inline validation
-			this.$checkout_form.on( 'input blur change', '.input-text, select, input:checkbox', this.validate_field );
+			this.$checkout_form.on( 'input validate change', '.input-text, select, input:checkbox', this.validate_field );
 
 			// Manual trigger
 			this.$checkout_form.on( 'update', this.trigger_update_checkout );
@@ -41,7 +41,7 @@ jQuery( function( $ ) {
 			this.$checkout_form.on( 'change', 'select.shipping_method, input[name^="shipping_method"], #ship-to-different-address input, .update_totals_on_change select, .update_totals_on_change input[type="radio"], .update_totals_on_change input[type="checkbox"]', this.trigger_update_checkout );
 			this.$checkout_form.on( 'change', '.address-field select', this.input_changed );
 			this.$checkout_form.on( 'change', '.address-field input.input-text, .update_totals_on_change input.input-text', this.maybe_input_changed );
-			this.$checkout_form.on( 'change keydown', '.address-field input.input-text, .update_totals_on_change input.input-text', this.queue_update_checkout );
+			this.$checkout_form.on( 'keydown', '.address-field input.input-text, .update_totals_on_change input.input-text', this.queue_update_checkout );
 
 			// Address fields
 			this.$checkout_form.on( 'change', '#ship-to-different-address input', this.ship_to_different_address );
@@ -168,6 +168,15 @@ jQuery( function( $ ) {
 		reset_update_checkout_timer: function() {
 			clearTimeout( wc_checkout_form.updateTimer );
 		},
+		is_valid_json: function( raw_json ) {
+			try {
+				var json = $.parseJSON( raw_json );
+
+				return ( json && 'object' === typeof json );
+			} catch ( e ) {
+				return false;
+			}
+		},
 		validate_field: function( e ) {
 			var $this             = $( this ),
 				$parent           = $this.closest( '.form-row' ),
@@ -180,7 +189,7 @@ jQuery( function( $ ) {
 				$parent.removeClass( 'woocommerce-invalid woocommerce-invalid-required-field woocommerce-invalid-email woocommerce-validated' );
 			}
 
-			if ( 'focusout' === event_type || 'change' === event_type ) {
+			if ( 'validate' === event_type || 'change' === event_type ) {
 
 				if ( validate_required ) {
 					if ( 'checkbox' === $this.attr( 'type' ) && ! $this.is( ':checked' ) ) {
@@ -238,7 +247,17 @@ jQuery( function( $ ) {
 				s_postcode		 = postcode,
 				s_city			 = city,
 				s_address		 = address,
-				s_address_2		 = address_2;
+				s_address_2		 = address_2,
+				$required_inputs = $( wc_checkout_form.$checkout_form ).find( '.address-field.validate-required:visible' ),
+				has_full_address = true;
+
+			if ( $required_inputs.length ) {
+				$required_inputs.each( function() {
+					if ( $( this ).find( ':input' ).val() === '' ) {
+						has_full_address = false;
+					}
+				});
+			}
 
 			if ( $( '#ship-to-different-address' ).find( 'input' ).is( ':checked' ) ) {
 				s_country		 = $( '#shipping_country' ).val();
@@ -250,21 +269,22 @@ jQuery( function( $ ) {
 			}
 
 			var data = {
-				security:					wc_checkout_params.update_order_review_nonce,
-				payment_method:				wc_checkout_form.get_payment_method(),
-				country:					country,
-				state:						state,
-				postcode:					postcode,
-				city:						city,
-				address:					address,
-				address_2:					address_2,
-				s_country:					s_country,
-				s_state:					s_state,
-				s_postcode:					s_postcode,
-				s_city:						s_city,
-				s_address:					s_address,
-				s_address_2:				s_address_2,
-				post_data:					$( 'form.checkout' ).serialize()
+				security        : wc_checkout_params.update_order_review_nonce,
+				payment_method  : wc_checkout_form.get_payment_method(),
+				country         : country,
+				state           : state,
+				postcode        : postcode,
+				city            : city,
+				address         : address,
+				address_2       : address_2,
+				s_country       : s_country,
+				s_state         : s_state,
+				s_postcode      : s_postcode,
+				s_city          : s_city,
+				s_address       : s_address,
+				s_address_2     : s_address_2,
+				has_full_address: has_full_address,
+				post_data       : $( 'form.checkout' ).serialize()
 			};
 
 			if ( false !== args.update_shipping_method ) {
@@ -331,7 +351,7 @@ jQuery( function( $ ) {
 						$( '#terms' ).prop( 'checked', true );
 					}
 
-					// Fill in the payment details if possible
+					// Fill in the payment details if possible without overwriting data if set.
 					if ( ! $.isEmptyObject( paymentDetails ) ) {
 						$( '.payment_box input' ).each( function() {
 							var ID = $( this ).attr( 'id' );
@@ -339,7 +359,7 @@ jQuery( function( $ ) {
 							if ( ID ) {
 								if ( $.inArray( $( this ).attr( 'type' ), [ 'checkbox', 'radio' ] ) !== -1 ) {
 									$( this ).prop( 'checked', paymentDetails[ ID ] ).change();
-								} else {
+								} else if ( 0 === $( this ).val().length ) {
 									$( this ).val( paymentDetails[ ID ] ).change();
 								}
 							}
@@ -362,7 +382,7 @@ jQuery( function( $ ) {
 						}
 
 						// Lose focus for all fields
-						$form.find( '.input-text, select, input:checkbox' ).blur();
+						$form.find( '.input-text, select, input:checkbox' ).trigger( 'validate' ).blur();
 
 						// Scroll to top
 						$( 'html, body' ).animate( {
@@ -413,27 +433,20 @@ jQuery( function( $ ) {
 							return raw_response;
 						}
 
-						try {
-							// Check for valid JSON
-							var data = $.parseJSON( raw_response );
-
-							if ( data && 'object' === typeof data ) {
-
-								// Valid - return it so it can be parsed by Ajax handler
-								return raw_response;
-							}
-
-						} catch ( e ) {
-
+						if ( wc_checkout_form.is_valid_json( raw_response ) ) {
+							return raw_response;
+						} else {
 							// Attempt to fix the malformed JSON
-							var valid_json = raw_response.match( /{"result.*"}/ );
+							var maybe_valid_json = raw_response.match( /{"result.*}/ );
 
-							if ( null === valid_json ) {
+							if ( null === maybe_valid_json ) {
 								console.log( 'Unable to fix malformed JSON' );
-							} else {
+							} else if ( wc_checkout_form.is_valid_json( maybe_valid_json[0] ) ) {
 								console.log( 'Fixed malformed JSON. Original:' );
 								console.log( raw_response );
-								raw_response = valid_json[0];
+								raw_response = maybe_valid_json[0];
+							} else {
+								console.log( 'Unable to fix malformed JSON' );
 							}
 						}
 
@@ -491,7 +504,7 @@ jQuery( function( $ ) {
 			$( '.woocommerce-NoticeGroup-checkout, .woocommerce-error, .woocommerce-message' ).remove();
 			wc_checkout_form.$checkout_form.prepend( '<div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-checkout">' + error_message + '</div>' );
 			wc_checkout_form.$checkout_form.removeClass( 'processing' ).unblock();
-			wc_checkout_form.$checkout_form.find( '.input-text, select, input:checkbox' ).blur();
+			wc_checkout_form.$checkout_form.find( '.input-text, select, input:checkbox' ).trigger( 'validate' ).blur();
 			$( 'html, body' ).animate({
 				scrollTop: ( $( 'form.checkout' ).offset().top - 100 )
 			}, 1000 );
@@ -608,7 +621,21 @@ jQuery( function( $ ) {
 		}
 	};
 
+	var wc_terms_toggle = {
+		init: function() {
+			$( document.body ).on( 'click', 'a.woocommerce-terms-and-conditions-link', this.toggle_terms );
+		},
+
+		toggle_terms: function() {
+			if ( $( '.woocommerce-terms-and-conditions' ).length ) {
+				$( '.woocommerce-terms-and-conditions' ).slideToggle();
+				return false;
+			}
+		}
+	};
+
 	wc_checkout_form.init();
 	wc_checkout_coupons.init();
 	wc_checkout_login_form.init();
+	wc_terms_toggle.init();
 });

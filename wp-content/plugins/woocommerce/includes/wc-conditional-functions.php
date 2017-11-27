@@ -97,7 +97,7 @@ if ( ! function_exists( 'is_checkout' ) ) {
 	 * @return bool
 	 */
 	function is_checkout() {
-		return is_page( wc_get_page_id( 'checkout' ) ) || wc_post_content_has_shortcode( 'woocommerce_checkout' ) || apply_filters( 'woocommerce_is_checkout', false );
+		return is_page( wc_get_page_id( 'checkout' ) ) || wc_post_content_has_shortcode( 'woocommerce_checkout' ) || apply_filters( 'woocommerce_is_checkout', false ) || defined( 'WOOCOMMERCE_CHECKOUT' );
 	}
 }
 
@@ -208,7 +208,7 @@ if ( ! function_exists( 'is_add_payment_method_page' ) ) {
 	function is_add_payment_method_page() {
 		global $wp;
 
-		return ( is_page( wc_get_page_id( 'myaccount' ) ) && isset( $wp->query_vars['add-payment-method'] ) );
+		return ( is_page( wc_get_page_id( 'myaccount' ) ) && ( isset( $wp->query_vars['payment-methods'] ) || isset( $wp->query_vars['add-payment-method'] ) ) );
 	}
 }
 
@@ -351,7 +351,7 @@ function wc_is_webhook_valid_topic( $topic ) {
 	}
 
 	$valid_resources = apply_filters( 'woocommerce_valid_webhook_resources', array( 'coupon', 'customer', 'order', 'product' ) );
-	$valid_events    = apply_filters( 'woocommerce_valid_webhook_events', array( 'created', 'updated', 'deleted' ) );
+	$valid_events    = apply_filters( 'woocommerce_valid_webhook_events', array( 'created', 'updated', 'deleted', 'restored' ) );
 
 	if ( in_array( $resource, $valid_resources ) && in_array( $event, $valid_events ) ) {
 		return true;

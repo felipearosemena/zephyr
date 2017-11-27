@@ -86,22 +86,47 @@ class WC_Admin_Menus {
 	 * Loads gateways and shipping methods into memory for use within settings.
 	 */
 	public function settings_page_init() {
+		global $current_tab, $current_section;
+
 		WC()->payment_gateways();
 		WC()->shipping();
+
+		// Include settings pages
+		WC_Admin_Settings::get_settings_pages();
+
+		// Get current tab/section
+		$current_tab     = empty( $_GET['tab'] ) ? 'general' : sanitize_title( $_GET['tab'] );
+		$current_section = empty( $_REQUEST['section'] ) ? '' : sanitize_title( $_REQUEST['section'] );
+
+		// Save settings if data has been posted
+		if ( ! empty( $_POST ) ) {
+			WC_Admin_Settings::save();
+		}
+
+		// Add any posted messages
+		if ( ! empty( $_GET['wc_error'] ) ) {
+			WC_Admin_Settings::add_error( stripslashes( $_GET['wc_error'] ) );
+		}
+
+		if ( ! empty( $_GET['wc_message'] ) ) {
+			WC_Admin_Settings::add_message( stripslashes( $_GET['wc_message'] ) );
+		}
 	}
 
 	/**
 	 * Add menu item.
 	 */
 	public function status_menu() {
-		add_submenu_page( 'woocommerce', __( 'WooCommerce status', 'woocommerce' ),  __( 'System status', 'woocommerce' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
+		add_submenu_page( 'woocommerce', __( 'WooCommerce status', 'woocommerce' ),  __( 'Status', 'woocommerce' ) , 'manage_woocommerce', 'wc-status', array( $this, 'status_page' ) );
 	}
 
 	/**
 	 * Addons menu item.
 	 */
 	public function addons_menu() {
-		add_submenu_page( 'woocommerce', __( 'WooCommerce extensions', 'woocommerce' ),  __( 'Extensions', 'woocommerce' ) , 'manage_woocommerce', 'wc-addons', array( $this, 'addons_page' ) );
+		$count_html = WC_Helper_Updater::get_updates_count_html();
+		$menu_title = sprintf( __( 'Extensions %s', 'woocommerce' ), $count_html );
+		add_submenu_page( 'woocommerce', __( 'WooCommerce extensions', 'woocommerce' ), $menu_title, 'manage_woocommerce', 'wc-addons', array( $this, 'addons_page' ) );
 	}
 
 	/**

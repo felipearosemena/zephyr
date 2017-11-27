@@ -25,14 +25,16 @@ class WC_Settings_Shipping extends WC_Settings_Page {
 	public function __construct() {
 		$this->id    = 'shipping';
 		$this->label = __( 'Shipping', 'woocommerce' );
-		add_filter( 'woocommerce_settings_tabs_array', array( $this, 'add_settings_page' ), 20 );
-		add_action( 'woocommerce_sections_' . $this->id, array( $this, 'output_sections' ) );
-		add_action( 'woocommerce_settings_' . $this->id, array( $this, 'output' ) );
-		add_action( 'woocommerce_settings_save_' . $this->id, array( $this, 'save' ) );
+
+		parent::__construct();
 	}
 
 	/**
 	 * Add this page to settings.
+	 *
+	 * @param array $pages
+	 *
+	 * @return array|mixed
 	 */
 	public function add_settings_page( $pages ) {
 		return wc_shipping_enabled() ? parent::add_settings_page( $pages ) : $pages;
@@ -68,6 +70,8 @@ class WC_Settings_Shipping extends WC_Settings_Page {
 
 	/**
 	 * Get settings array.
+	 *
+	 * @param string $current_section
 	 *
 	 * @return array
 	 */
@@ -259,8 +263,6 @@ class WC_Settings_Shipping extends WC_Settings_Page {
 	 * Show zones
 	 */
 	protected function zones_screen() {
-		global $wpdb;
-
 		$allowed_countries = WC()->countries->get_allowed_countries();
 		$continents        = WC()->countries->get_continents();
 		$method_count      = wc_get_shipping_method_count();

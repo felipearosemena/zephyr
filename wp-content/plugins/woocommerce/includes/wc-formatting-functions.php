@@ -216,24 +216,39 @@ function wc_trim_zeros( $price ) {
 /**
  * Round a tax amount.
  *
- * @param mixed $tax
+ * @param  double $value Amount to round.
+ * @param  int    $precision DP to round. Defaults to wc_get_price_decimals.
  * @return double
  */
-function wc_round_tax_total( $tax ) {
-	$dp = wc_get_price_decimals();
+function wc_round_tax_total( $value, $precision = null ) {
+	$precision = is_null( $precision ) ? wc_get_price_decimals() : absint( $precision );
 
-	// @codeCoverageIgnoreStart
-	if ( version_compare( phpversion(), '5.3', '<' ) ) {
-		$rounded_tax = round( $tax, $dp );
+	if ( version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
+		$rounded_tax = round( $value, $precision, wc_get_tax_rounding_mode() );
 	} else {
-		// @codeCoverageIgnoreEnd
-		$rounded_tax = round( $tax, $dp, WC_TAX_ROUNDING_MODE );
+		// Fake it in PHP 5.2.
+		if ( 2 === wc_get_tax_rounding_mode() && strstr( $value, '.' ) ) {
+			$value    = (string) $value;
+			$value    = explode( '.', $value );
+			$value[1] = substr( $value[1], 0, $precision + 1 );
+			$value    = implode( '.', $value );
+
+			if ( substr( $value, -1 ) === '5' ) {
+				$value = substr( $value, 0, -1 ) . '4';
+			}
+			$value = floatval( $value );
+		}
+		$rounded_tax = round( $value, $precision );
 	}
-	return apply_filters( 'wc_round_tax_total', $rounded_tax, $tax, $dp, WC_TAX_ROUNDING_MODE );
+
+	return apply_filters( 'wc_round_tax_total', $rounded_tax, $value, $precision, WC_TAX_ROUNDING_MODE );
 }
 
 /**
  * Make a refund total negative.
+ *
+ * @param float $amount
+ *
  * @return float
  */
 function wc_format_refund_total( $amount ) {
@@ -243,7 +258,9 @@ function wc_format_refund_total( $amount ) {
 /**
  * Format decimal numbers ready for DB storage.
  *
- * Sanitize, remove locale formatting, and optionally round + trim off zeros.
+ * Sanitize, remove decimals, and optionally round + trim off zeros.
+ *
+ * This function does not remove thousands - this should be done before passing a value to the function.
  *
  * @param  float|string $number Expects either a float or a string with a decimal separator only (no thousands)
  * @param  mixed $dp number of decimal points to use, blank to use woocommerce_price_num_decimals, or false to avoid all rounding.
@@ -256,8 +273,8 @@ function wc_format_decimal( $number, $dp = false, $trim_zeros = false ) {
 
 	// Remove locale from string.
 	if ( ! is_float( $number ) ) {
-		$number = wc_clean( str_replace( $decimals, '.', $number ) );
-		$number = preg_replace( '/[^0-9\.,-]/', '', $number );
+		$number = str_replace( $decimals, '.', $number );
+		$number = preg_replace( '/[^0-9\.,-]/', '', wc_clean( $number ) );
 	}
 
 	if ( false !== $dp ) {
@@ -266,7 +283,10 @@ function wc_format_decimal( $number, $dp = false, $trim_zeros = false ) {
 
 	// DP is false - don't use number format, just return a string in our format
 	} elseif ( is_float( $number ) ) {
-		$number = wc_clean( str_replace( $decimals, '.', strval( $number ) ) );
+		// DP is false - don't use number format, just return a string using whatever is given. Remove scientific notation using sprintf.
+		$number     = str_replace( $decimals, '.', sprintf( '%.' . wc_get_rounding_precision() . 'f', $number ) );
+		// We already had a float, so trailing zeros are not needed.
+		$trim_zeros = true;
 	}
 
 	if ( $trim_zeros && strstr( $number, '.' ) ) {
@@ -299,7 +319,7 @@ function wc_float_to_string( $float ) {
  * @return string
  */
 function wc_format_localized_price( $value ) {
-	return str_replace( '.', wc_get_price_decimal_separator(), strval( $value ) );
+	return apply_filters( 'woocommerce_format_localized_price', str_replace( '.', wc_get_price_decimal_separator(), strval( $value ) ), $value );
 }
 
 /**
@@ -309,7 +329,7 @@ function wc_format_localized_price( $value ) {
  */
 function wc_format_localized_decimal( $value ) {
 	$locale = localeconv();
-	return str_replace( '.', $locale['decimal_point'], strval( $value ) );
+	return apply_filters( 'woocommerce_format_localized_decimal', str_replace( '.', $locale['decimal_point'], strval( $value ) ), $value );
 }
 
 /**
@@ -472,9 +492,10 @@ function wc_price( $price, $args = array() ) {
 		'price_format'       => get_woocommerce_price_format(),
 	) ) ) );
 
-	$negative        = $price < 0;
-	$price           = apply_filters( 'raw_woocommerce_price', floatval( $negative ? $price * -1 : $price ) );
-	$price           = apply_filters( 'formatted_woocommerce_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
+	$unformatted_price = $price;
+	$negative          = $price < 0;
+	$price             = apply_filters( 'raw_woocommerce_price', floatval( $negative ? $price * -1 : $price ) );
+	$price             = apply_filters( 'formatted_woocommerce_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
 
 	if ( apply_filters( 'woocommerce_price_trim_zeros', false ) && $decimals > 0 ) {
 		$price = wc_trim_zeros( $price );
@@ -487,7 +508,15 @@ function wc_price( $price, $args = array() ) {
 		$return .= ' <small class="woocommerce-Price-taxLabel tax_label">' . WC()->countries->ex_tax_or_vat() . '</small>';
 	}
 
-	return apply_filters( 'wc_price', $return, $price, $args );
+	/**
+	 * Filters the string of price markup.
+	 *
+	 * @param string $return 			Price HTML markup.
+	 * @param string $price	            Formatted price.
+	 * @param array  $args     			Pass on the args.
+	 * @param float  $unformatted_price	Price as float to allow plugins custom formatting. Since 3.2.0.
+	 */
+	return apply_filters( 'wc_price', $return, $price, $args, $unformatted_price );
 }
 
 /**
@@ -540,6 +569,10 @@ function wc_time_format() {
  * Based on wcs_strtotime_dark_knight() from WC Subscriptions by Prospress.
  *
  * @since  3.0.0
+ *
+ * @param string $time_string
+ * @param int|null $from_timestamp
+ *
  * @return int
  */
 function wc_string_to_timestamp( $time_string, $from_timestamp = null ) {
@@ -558,6 +591,33 @@ function wc_string_to_timestamp( $time_string, $from_timestamp = null ) {
 	// @codingStandardsIgnoreEnd
 
 	return $next_timestamp;
+}
+
+/**
+ * Convert a date string to a WC_DateTime.
+ *
+ * @since  3.1.0
+ * @param string $time_string
+ * @return WC_DateTime
+ */
+function wc_string_to_datetime( $time_string ) {
+	// Strings are defined in local WP timezone. Convert to UTC.
+	if ( 1 === preg_match( '/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(Z|((-|\+)\d{2}:\d{2}))$/', $time_string, $date_bits ) ) {
+		$offset    = ! empty( $date_bits[7] ) ? iso8601_timezone_to_offset( $date_bits[7] ) : wc_timezone_offset();
+		$timestamp = gmmktime( $date_bits[4], $date_bits[5], $date_bits[6], $date_bits[2], $date_bits[3], $date_bits[1] ) - $offset;
+	} else {
+		$timestamp = wc_string_to_timestamp( get_gmt_from_date( gmdate( 'Y-m-d H:i:s', wc_string_to_timestamp( $time_string ) ) ) );
+	}
+	$datetime  = new WC_DateTime( "@{$timestamp}", new DateTimeZone( 'UTC' ) );
+
+	// Set local timezone or offset.
+	if ( get_option( 'timezone_string' ) ) {
+		$datetime->setTimezone( new DateTimeZone( wc_timezone_string() ) );
+	} else {
+		$datetime->set_utc_offset( wc_timezone_offset() );
+	}
+
+	return $datetime;
 }
 
 /**
@@ -634,7 +694,8 @@ if ( ! function_exists( 'wc_rgb_from_hex' ) ) {
 	 * Hex darker/lighter/contrast functions for colors.
 	 *
 	 * @param mixed $color
-	 * @return string
+	 *
+	 * @return array
 	 */
 	function wc_rgb_from_hex( $color ) {
 		$color = str_replace( '#', '', $color );
@@ -796,8 +857,18 @@ function wc_format_postcode( $postcode, $country ) {
  * @return string Sanitized postcode.
  */
 function wc_normalize_postcode( $postcode ) {
-	$postcode = function_exists( 'mb_strtoupper' ) ? mb_strtoupper( $postcode ) : strtoupper( $postcode );
-	return preg_replace( '/[\s\-]/', '', trim( $postcode ) );
+	return preg_replace( '/[\s\-]/', '', trim( wc_strtoupper( $postcode ) ) );
+}
+
+/**
+ * Wrapper for mb_strtoupper which see's if supported first.
+ *
+ * @since  3.1.0
+ * @param  string $string
+ * @return string
+ */
+function wc_strtoupper( $string ) {
+	return function_exists( 'mb_strtoupper' ) ? mb_strtoupper( $string ) : strtoupper( $string );
 }
 
 /**
@@ -1076,4 +1147,92 @@ function wc_format_datetime( $date, $format = '' ) {
 		return '';
 	}
 	return $date->date_i18n( $format );
+}
+
+/**
+ * Process oEmbeds.
+ *
+ * @since  3.1.0
+ * @param string $content
+ * @return string
+ */
+function wc_do_oembeds( $content ) {
+	global $wp_embed;
+
+	$content = $wp_embed->autoembed( $content );
+
+	return $content;
+}
+
+/**
+ * Get part of a string before :.
+ *
+ * Used for example in shipping methods ids where they take the format
+ * method_id:instance_id
+ *
+ * @since  3.2.0
+ * @param  string $string
+ * @return string
+ */
+function wc_get_string_before_colon( $string ) {
+	return trim( current( explode( ':', (string) $string ) ) );
+}
+
+/**
+ * Array merge and sum function.
+ *
+ * Source:  https://gist.github.com/Nickology/f700e319cbafab5eaedc
+ *
+ * @since 3.2.0
+ * @return array
+ */
+function wc_array_merge_recursive_numeric() {
+	$arrays = func_get_args();
+
+	// If there's only one array, it's already merged.
+	if ( 1 === count( $arrays ) ) {
+		return $arrays[0];
+	}
+
+	// Remove any items in $arrays that are NOT arrays.
+	foreach ( $arrays as $key => $array ) {
+		if ( ! is_array( $array ) ) {
+			unset( $arrays[ $key ] );
+		}
+	}
+
+	// We start by setting the first array as our final array.
+	// We will merge all other arrays with this one.
+	$final = array_shift( $arrays );
+
+	foreach ( $arrays as $b ) {
+		foreach ( $final as $key => $value ) {
+			// If $key does not exist in $b, then it is unique and can be safely merged.
+			if ( ! isset( $b[ $key ] ) ) {
+				$final[ $key ] = $value;
+			} else {
+				// If $key is present in $b, then we need to merge and sum numeric values in both.
+				if ( is_numeric( $value ) && is_numeric( $b[ $key ] ) ) {
+					// If both values for these keys are numeric, we sum them.
+					$final[ $key ] = $value + $b[ $key ];
+				} elseif ( is_array( $value ) && is_array( $b[ $key ] ) ) {
+					// If both values are arrays, we recursively call ourself.
+					$final[ $key ] = wc_array_merge_recursive_numeric( $value, $b[ $key ] );
+				} else {
+					// If both keys exist but differ in type, then we cannot merge them.
+					// In this scenario, we will $b's value for $key is used.
+					$final[ $key ] = $b[ $key ];
+				}
+			}
+		}
+
+		// Finally, we need to merge any keys that exist only in $b.
+		foreach ( $b as $key => $value ) {
+			if ( ! isset( $final[ $key ] ) ) {
+				$final[ $key ] = $value;
+			}
+		}
+	}
+
+	return $final;
 }
