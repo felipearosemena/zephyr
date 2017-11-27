@@ -21,7 +21,7 @@ const CartService = new Vue({
         this.publish('cart-fetched', cart)
         this.cart.contents = cart.cart_contents
         this.cart.count    = cart.count
-        this.cart.subtotal    = cart.subtotal
+        this.cart.subtotal = cart.cart_subtotal
 
       })
 

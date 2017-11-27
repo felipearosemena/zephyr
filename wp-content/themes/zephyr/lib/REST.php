@@ -160,6 +160,7 @@ class REST {
 
     $cart = wc()->cart;
     $cart->count = $cart->get_cart_contents_count();
+    $cart->cart_subtotal = $cart->get_subtotal();
 
     $cart->nonce = wp_create_nonce( $this->nonce_key );
     $response = new WP_REST_Response($cart, 200);
