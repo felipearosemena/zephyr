@@ -48,7 +48,7 @@ class Twig extends TimberSite
     $context['main_menu']     = new TimberMenu( 'main-nav' );
     $context['util_menu']     = new TimberMenu( 'util-nav' );
     $context['footer_menu']   = new TimberMenu( 'footer-nav' );
-    $context['cart_url']      = wc()->cart->get_cart_url();
+    $context['cart_url']      = wc_get_cart_url();
     $context['cart_path']     = '/' . get_page_uri( wc_get_page_id( 'cart' ) );;
     $context['shop_url']      = get_permalink( wc_get_page_id( 'shop' ) );
     $context['shop_path']     = '/' . get_page_uri( wc_get_page_id( 'shop' ) );
