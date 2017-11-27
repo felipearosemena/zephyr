@@ -18,7 +18,7 @@ const CartService = new Vue({
 
       res.json().then(cart => {
 
-        this.publish('cart-fetched', cart)
+        this.publish('cart-fetched', cart, res)
         this.cart.contents = cart.cart_contents
         this.cart.count    = cart.count
         this.cart.subtotal = cart.cart_subtotal
