@@ -1,0 +1,14 @@
+.cart-item {
+
+  select {
+    padding: 0 $bsu/2;
+    height: 2rem;
+    min-width: 3.5rem;
+  }
+}
+
+.cart-item__remove {
+  position: absolute;
+  right: calc(100% + #{$bsu});
+  font-size: 1rem;
+}
