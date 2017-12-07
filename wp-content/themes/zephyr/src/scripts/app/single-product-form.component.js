@@ -7,7 +7,7 @@ const SingleProductForm = {
     <form enctype='multipart/form-data' method="POST"  v-on:submit.prevent="handleFormSubmit">
       <slot :isProcessing="isProcessing"></slot>
 
-      <div class="mb-2 mt-1" v-if="product.variations && product.variations.pa_size">
+      <div class="mb-2 mt-1 text-center" v-if="product.variations && product.variations.pa_size">
         <button class="btn-text btn-text--sm" @click.prevent="showSizeModal = true">Size Chart</button>
 
         <modal v-if="showSizeModal" @close="showSizeModal = false">
