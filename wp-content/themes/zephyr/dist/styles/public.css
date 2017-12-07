@@ -1349,10 +1349,12 @@ select[multiple] {
     position: absolute;
     z-index: 10;
     right: 0;
-    top: .1em;
+    top: 50%;
     width: 2.5rem;
     text-align: center;
-    line-height: 3.125rem; }
+    line-height: 3.125rem;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%); }
 
 select {
   cursor: pointer; }
@@ -1765,6 +1767,20 @@ figure {
     -webkit-transform: scale(1.1);
             transform: scale(1.1); }
 
+.btn-icon {
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0;
+  width: 1em;
+  height: 1em;
+  font-size: 1.2em;
+  line-height: 1em; }
+  .btn-icon:hover, .btn-icon:focus, .btn-icon:active {
+    background: transparent; }
+  .btn-icon i {
+    display: block; }
+
 .btn[disabled]:after,
 .btn.is-disabled:after {
   display: none; }
@@ -2014,6 +2030,17 @@ figure {
   background: #ED9FA8;
   color: white;
   padding: 0.625rem 1.25rem; }
+
+.cart-item select {
+  padding: 0 0.625rem;
+  height: 2rem;
+  min-width: 3.5rem; }
+
+.cart-item__remove {
+  position: absolute;
+  right: -webkit-calc(100% + 1.25rem);
+  right: calc(100% + 1.25rem);
+  font-size: 1rem; }
 
 /**
  *
@@ -5061,3 +5088,6 @@ input[type="radio"], .newsletter-bar label {
     -webkit-order: 2;
         -ms-flex-order: 2;
             order: 2; } }
+
+.relative {
+  position: relative; }
