@@ -140,10 +140,11 @@ select[multiple] {
     position: absolute;
     z-index: 10;
     right: 0;
-    top: .1em;
+    top: 50%;
     width: 2.5rem;
     text-align: center;
     line-height: $base-input-height;
+    transform: translateY(-50%);
   }
 }
 
