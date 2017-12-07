@@ -5,11 +5,12 @@ import VueCarousel from 'vue-carousel'
 
 import router from 'app/router'
 import store from 'app/store'
-import Default from 'app/default.component'
-import Cart from 'app/cart.component'
 import CartService from 'app/cart.service'
 import ProductService from 'app/product.service'
 
+import 'app/default.component'
+import 'app/cart.component'
+import 'app/cart-item.component'
 import 'app/shop-grid.component'
 import 'app/shop-item.component'
 import 'app/filters.component'
@@ -52,8 +53,7 @@ const methods = {
         }
       },
       {
-        path: '*',
-        components: { default: Default }
+        path: '*'
       }
     ])
 
@@ -269,10 +269,7 @@ const options = {
     }
   },
 
-  components: {
-    default: Default,
-    cart: Cart
-  }
+  components: {}
 }
 
 export default function AppFactory(el) {
