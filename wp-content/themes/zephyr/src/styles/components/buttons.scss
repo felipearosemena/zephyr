@@ -165,6 +165,18 @@
   }
 }
 
+.btn-icon {
+  @include button-plain;
+  width: 1em;
+  height: 1em;
+  font-size: 1.2em;
+  line-height: 1em;
+
+  i {
+    display: block;
+  }
+}
+
 .btn[disabled],
 .btn.is-disabled {
 
