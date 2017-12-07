@@ -14,7 +14,7 @@ if ( !defined( 'WP_DEBUG' ) ) {
   define( 'WP_DEBUG', false );
 }
 
-define('VER', '1.0.0');
+define('VER', '1.0.1');
 
 class App {
   public static $instance;
