@@ -127,11 +127,7 @@ function handleError(response) {
  *
  */
 
-export function apiFetch(endpoint, method = 'get', body = {}) {
-
-  const headers = {
-    'X-WP-Nonce': store.state.nonce
-  }
+export function apiFetch(endpoint, method = 'get', body = {}, headers = {}) {
 
   if(!(body instanceof FormData)) {
     headers['Content-Type'] = 'application/json'
@@ -147,7 +143,9 @@ export function apiFetch(endpoint, method = 'get', body = {}) {
       (method == 'post') ?
         JSON.stringify(body) :
         null,
-    headers: new Headers(headers)
+    headers: new Headers(Object.assign(headers, {
+      'X-WP-Nonce': store.state.nonce
+    }))
   })
   .then(handleError)
 
