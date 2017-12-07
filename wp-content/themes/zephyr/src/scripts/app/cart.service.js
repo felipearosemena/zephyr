@@ -39,7 +39,10 @@ const CartService = new Vue({
     },
 
     getCart() {
-      return apiFetch(Global.api_namespace + '/cart')
+      return apiFetch(Global.api_namespace + '/cart', 'get', {}, {
+        'pragma': 'no-cache',
+        'cache-control' : 'no-cache'
+      })
         .then(res => this.hydrate(res))
     },
 
