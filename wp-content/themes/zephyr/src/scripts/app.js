@@ -250,7 +250,7 @@ const options = {
     })
 
     this.CartService.subscribe('cart-added', cart => {
-      store.setState({ cartActive: true })
+      store.toggleCart()
     })
 
     this.CartService.getCart()
