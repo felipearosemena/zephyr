@@ -17,6 +17,9 @@ const CartItem = {
     onTitleClick: {
       type: Function,
       default: () => {}
+    },
+    isCheckout: {
+      type: Boolean
     }
   },
   mounted() {},
