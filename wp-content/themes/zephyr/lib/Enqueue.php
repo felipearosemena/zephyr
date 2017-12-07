@@ -87,7 +87,7 @@ class Enqueue
 
     $script_name = $this->dev ? 'public.js' : 'public.min.js';
 
-    wp_enqueue_script( 'public-script', $this->themeSrc('/dist/scripts/' . $script_name) , null, null, true );
+    wp_enqueue_script( 'public-script', $this->themeSrc('/dist/scripts/' . $script_name) , null, VER, true );
     wp_enqueue_script( 'modernizr', $this->themeSrc('/dist/scripts/vendor/modernizr-custom.js'), null, null, false);
 
   } /* wp_enqueue_scripts__enqueueScripts() */
@@ -106,7 +106,7 @@ class Enqueue
 
     $stylesheet_name = $this->dev ? 'public.css' : 'public.min.css';
 
-    wp_enqueue_style( 'mainstyles', $this->themeSrc('/dist/styles/' . $stylesheet_name));
+    wp_enqueue_style( 'mainstyles', $this->themeSrc('/dist/styles/' . $stylesheet_name), null, VER);
 
   } /* wp_enqueue_styles__enqueueStyles() */
 
