@@ -14,6 +14,9 @@ const SelectQuantity = {
       default: () => {},
       type: Function
     },
+    value: {
+      default: '0',
+    },
     name: {
       type: String
     },
