@@ -107,6 +107,16 @@ class REST {
       )
     ));
 
+    register_rest_route( $this->api_namespace(), '/cart/set_quantity/(?P<key>\S+)/(?P<qty>\d+)', array(
+      'methods' => WP_REST_Server::EDITABLE,
+      'callback' => array( &$this, 'set_quantity' )
+    ));
+
+    register_rest_route( $this->api_namespace(), '/cart/remove/(?P<key>\S+)', array(
+      'methods' => WP_REST_Server::EDITABLE,
+      'callback' => array( &$this, 'remove_from_cart' ),
+    ));
+
     register_rest_route( $this->api_namespace(), '/cart', array(
       'methods' => WP_REST_Server::READABLE,
       'callback' => array( &$this, 'get_cart' )
@@ -148,9 +158,29 @@ class REST {
   public function add_to_cart($params)
   {
 
-    wc()->cart->add_to_cart($params['id'], $params['quantity'], false, $params['variations']);
+    return $this->cartPostResponse(wc()->cart->add_to_cart($params['id'], $params['quantity'], false, $params['variations']));
 
-    return $this->get_cart($params);
+  }
+
+  public function remove_from_cart($params)
+  {
+
+    return $this->cartPostResponse(wc()->cart->remove_cart_item($params['key']));
+
+  }
+
+  public function set_quantity($params)
+  {
+
+    return $this->cartPostResponse(wc()->cart->set_quantity($params['key'], $params['qty']));
+
+  }
+
+  public function cartPostResponse($content)
+  {
+    $response = new WP_REST_Response($content, 200);
+    $response->header('nonce', $this->getNonce());
+    return $response;
   }
 
   public function get_cart($params)
@@ -162,11 +192,7 @@ class REST {
     $cart->count = $cart->get_cart_contents_count();
     $cart->cart_subtotal = $cart->get_subtotal();
 
-    $cart->nonce = wp_create_nonce( $this->nonce_key );
-    $response = new WP_REST_Response($cart, 200);
-    $response->header('nonce', $this->getNonce());
-
-    return $response;
+    return $this->cartPostResponse($cart);
 
   }
 
