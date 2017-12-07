@@ -34,8 +34,8 @@ const CartService = new Vue({
       return this.post(Global.api_namespace + '/cart/remove/' + key)
     },
 
-    setQuantity(key, e) {      
-      return this.post(`${ Global.api_namespace }/cart/set_quantity/${ key }/${ e.target.value }`)
+    setQuantity(key, qty) {
+      return this.post(`${ Global.api_namespace }/cart/set_quantity/${ key }/${ qty }`)
     },
 
     getCart() {
