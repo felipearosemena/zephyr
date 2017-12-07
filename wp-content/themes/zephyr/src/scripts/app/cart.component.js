@@ -1,6 +1,6 @@
+import Vue from 'vue'
 import store from 'app/store'
 import CartService from 'app/cart.service'
-import { mapObject } from 'modules/utils'
 
 const Cart = {
   template: require('templates/cart.component.html'),
@@ -8,7 +8,7 @@ const Cart = {
   mounted() {},
   data() {
     return {
-      subtotal: ''
+      subtotal: '',
     }
   },
   watch: {
@@ -17,14 +17,10 @@ const Cart = {
   methods: {
     toggleCart() {
       store.toggleCart()
-    },
-    remove(key) {
-      CartService.remove(key)
-    },
-    setQuantity(key, qty) {
-      CartService.setQuantity(key, qty)
     }
   }
 }
+
+Vue.component('cart', Cart)
 
 export default Cart
