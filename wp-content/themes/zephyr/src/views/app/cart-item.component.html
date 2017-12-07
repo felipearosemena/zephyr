@@ -22,15 +22,11 @@
           <span>
             Qty
           </span>
-          <select v-on:change="setQuantity($event)" :value="item.quantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
+
+          <select-quantity :onChange="setQuantity" :value="item.quantity">
+          </select-quantity>
         </span>
+
         <span class="align-bottom">
           {{ item.line_subtotal | format-currency }}
         </span>

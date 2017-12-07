@@ -52,13 +52,8 @@ if ( $product->is_in_stock() ) : ?>
 
           <label class="tiny-text">Qty</label>
           <div for="quantity" class="select-wrapper">
-            <select id="quantity" name="quantity">
-              <?php
-              for ($i=1; $i < 7; $i++) {
-                echo '<option value=' . $i . '>' . $i . '</option>';
-              }
-              ?>
-            </select>
+            <select-quantity name="quantity">
+            </select-quantity>
           </div>
 
           <?php
