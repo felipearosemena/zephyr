@@ -10,7 +10,9 @@
     <div class="grid__item w-9-12">
       <h4 class="label mb-25">
         <router-link :to="product.path">
-          {{ product.title.rendered }}
+          <span v-on:click="onTitleClick">
+            {{ product.title.rendered }}
+          </span>
         </router-link>
       </h4>
       <div class="flex justify-between small-text">

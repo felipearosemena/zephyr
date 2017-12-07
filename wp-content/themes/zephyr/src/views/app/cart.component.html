@@ -16,7 +16,7 @@
       <div v-if="cart.count">
         <ul class="cart-items mt-2 list-plain">
           <li v-for="(item, key) in cart.contents" v-if="products[item.product_id]" class="cart-item">
-            <cart-item :itemKey="key" :item="item" :product="products[item.product_id]">
+            <cart-item :itemKey="key" :item="item" :product="products[item.product_id]" :onTitleClick="toggleCart">
             </cart-item>
           </li>
         </ul>

@@ -4,7 +4,21 @@ import CartService from 'app/cart.service'
 
 const CartItem = {
   template: require('templates/cart-item.component.html'),
-  props: [ 'itemKey', 'item', 'product' ],
+  props: {
+    itemKey: {
+      type: String,
+    },
+    item: {
+      type: Object,
+    },
+    product: {
+      type: Object,
+    },
+    onTitleClick: {
+      type: Function,
+      default: () => {}
+    }
+  },
   mounted() {},
   data() {
     return {}
