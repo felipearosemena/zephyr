@@ -63,6 +63,8 @@ const methods = {
         store.toggleProductSlider(false)
       }
 
+      store.closeFlyouts()
+
       this.routerBeforeEach(to, from, next)
     })
 
