@@ -231,8 +231,6 @@ const options = {
 
     this.CartService.subscribe('cart-fetched', (cart, res) => {
 
-      store.updateNonce(res.headers.get('nonce'))
-
       const product_ids = mapObject(cart.cart_contents, (k, p) => p.product_id)
 
       if(product_ids.length) {
