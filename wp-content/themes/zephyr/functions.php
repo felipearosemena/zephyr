@@ -14,7 +14,9 @@ if ( !defined( 'WP_DEBUG' ) ) {
   define( 'WP_DEBUG', false );
 }
 
-define('VER', '1.0.1');
+define( 'STYLES_VER', filemtime( get_stylesheet_directory() . '/dist/styles/public.min.css' ) );
+
+define( 'SCRIPTS_VER', filemtime( get_stylesheet_directory() . '/dist/scripts/public.min.js' ) );
 
 class App {
   public static $instance;
