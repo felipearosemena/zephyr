@@ -15,13 +15,20 @@
 
       <div v-if="cart.count">
         <ul class="cart-items mt-2 list-plain">
-          <li v-for="item in cart.contents" v-if="products[item.product_id]" class="cart-item">
+          <li v-for="(item, key) in cart.contents" v-if="products[item.product_id]" class="cart-item">
             <div class="grid mb-1">
+              <button v-on:click="remove(key)" class="btn-icon">
+                <i class="icon-close"></i>
+              </button>
               <div class="grid__item w-3-12">
                 <thumbnail :image="products[item.product_id].thumbnail" size="card" />
               </div>
               <div class="grid__item w-9-12">
-                <h4 class="label mb-25">{{ products[item.product_id].title.rendered }}</h4>
+                <h4 class="label mb-25">
+                  <router-link :to="products[item.product_id].path">
+                    {{ products[item.product_id].title.rendered }}
+                  </router-link>
+                </h4>
                 <div class="flex justify-between small-text">
                   <span>
                     <span v-if="item.variation && item.variation.attribute_pa_size">
@@ -29,8 +36,16 @@
                     </span>
 
                     <span>
-                      Qty: {{ item.quantity }}
+                      Qty
                     </span>
+                    <select v-on:change="setQuantity(key, $event)" :value=" item.quantity">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                    </select>
                   </span>
                   <span class="align-bottom">
                     {{ item.line_subtotal | format-currency }}
