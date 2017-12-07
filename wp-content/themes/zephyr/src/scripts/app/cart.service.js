@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { eventBusFactory } from 'modules/eventBus'
 
+import store from 'app/store'
 import { apiFetch } from 'modules/load'
 import { mapObject, arrayToObj } from 'modules/utils'
 
@@ -14,33 +15,48 @@ const CartService = new Vue({
 
   methods: Object.assign({
 
-    handleCartResponse(res) {
-
-      res.json().then(cart => {
-
-        this.publish('cart-fetched', cart, res)
-        this.cart.contents = cart.cart_contents
-        this.cart.count    = cart.count
-        this.cart.subtotal = cart.cart_subtotal
-
-      })
-
+    post(endpoint, params = {}) {
+      return apiFetch(endpoint,  'post', params)
+        .then(res => store.updateNonce(res.headers.get('nonce')))
+        .then(res => this.getCart())
     },
 
     addToCart(id, params = {}) {
-
-      return apiFetch(Global.api_namespace + '/cart/add/' + id, 'post', params)
+      return this
+        .post(Global.api_namespace + '/cart/add/' + id, params)
         .then(res => {
-          this.handleCartResponse(res)
           this.publish('cart-added')
           return res
         })
     },
 
+    remove(key) {
+      return this.post(Global.api_namespace + '/cart/remove/' + key)
+    },
+
+    setQuantity(key, e) {      
+      return this.post(`${ Global.api_namespace }/cart/set_quantity/${ key }/${ e.target.value }`)
+    },
+
     getCart() {
-      apiFetch(Global.api_namespace + '/cart')
-        .then(res => this.handleCartResponse(res))
+      return apiFetch(Global.api_namespace + '/cart')
+        .then(res => this.hydrate(res))
+    },
+
+    hydrate(res) {
+
+      return res.json().then(cart => {
+        this.publish('cart-fetched', cart, res)
+        this.cart.contents = cart.cart_contents
+        this.cart.count    = cart.count
+        this.cart.subtotal = cart.cart_subtotal
+
+        return cart
+
+      })
+
     }
+
   }, eventBusFactory())
 
 })
