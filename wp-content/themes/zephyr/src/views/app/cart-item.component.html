@@ -1,30 +1,25 @@
-<div v-if="product && item && itemKey" class="cart-item">
+<div v-if="product && item && itemKey" class="cart-item relative">
 
   <div class="grid mb-1">
-    <button v-on:click="remove" class="btn-icon">
+    <button v-if="!isCheckout" v-on:click="remove" class="cart-item__remove btn-icon">
       <i class="icon-close"></i>
     </button>
     <div class="grid__item w-3-12">
       <thumbnail :image="product.thumbnail" size="card" />
     </div>
     <div class="grid__item w-9-12">
-      <h4 class="label mb-25">
+      <h4 class="label mb-0">
         <router-link :to="product.path">
           <span v-on:click="onTitleClick">
             {{ product.title.rendered }}
           </span>
         </router-link>
       </h4>
-      <div class="flex justify-between small-text">
-        <span>
-          <span v-if="item.variation && item.variation.attribute_pa_size">
-            Size: {{ item.variation.attribute_pa_size }} <br/>
-          </span>
-
-          <span>
-            Qty
-          </span>
-
+      <div class="tiny-text mb-25" v-if="item.variation && item.variation.attribute_pa_size">
+        Size: {{ item.variation.attribute_pa_size }} <br/>
+      </div>
+      <div class="flex justify-between small-text mt-05">
+        <span v-if="!isCheckout">
           <select-quantity :onChange="setQuantity" :value="item.quantity">
           </select-quantity>
         </span>
