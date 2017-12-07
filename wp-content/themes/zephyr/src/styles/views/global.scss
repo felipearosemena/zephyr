@@ -65,8 +65,17 @@
   margin: $bsu auto;
 }
 
+
+
 .single-item {
   min-height: calc(100vh - 100px);
+  overflow: hidden;
+  perspective: 3000px;
+}
+
+.single-item p,
+.single-price {
+  text-align: center;
 }
 
 .single-images {
@@ -102,12 +111,6 @@
     padding-bottom: 80%;
     display: block;
   }
-}
-
-.single-item {
-  text-align: center;
-  overflow: hidden;
-  perspective: 3000px;
 }
 
 .single-item__content {
