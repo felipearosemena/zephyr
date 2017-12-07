@@ -3417,7 +3417,14 @@ figure {
 
 .single-item {
   min-height: -webkit-calc(100vh - 100px);
-  min-height: calc(100vh - 100px); }
+  min-height: calc(100vh - 100px);
+  overflow: hidden;
+  -webkit-perspective: 3000px;
+          perspective: 3000px; }
+
+.single-item p,
+.single-price {
+  text-align: center; }
 
 .single-images {
   list-style: none;
@@ -3437,19 +3444,23 @@ figure {
   -webkit-background-size: cover;
           background-size: cover;
   background-position: center;
-  cursor: url(../../src/images/plus-button.png) 20 20, auto; }
+  cursor: url("../../src/images/plus-button.png") 0 0, pointer;
+  /* Legacy */
+  cursor: url("../../src/images/plus-button.svg") 0 0, pointer;
+  /* FF */
+  cursor: -webkit-image-set(url("../../src/images/plus-button.png") 1x, url("../../src/images/plus-button@2x.png") 2x) 0 0, pointer;
+  /* Webkit */ }
   .single-product-slider.is-active .single-image__bg {
-    cursor: url(../../src/images/close-button.png) 20 20, auto; }
+    cursor: url("../../src/images/close-button.png") 0 0, pointer;
+    /* Legacy */
+    cursor: url("../../src/images/close-button.svg") 0 0, pointer;
+    /* FF */
+    cursor: -webkit-image-set(url("../../src/images/close-button.png") 1x, url("../../src/images/close-button@2x.png") 2x) 0 0, pointer;
+    /* Webkit */ }
   .single-image__bg:after {
     content: '';
     padding-bottom: 80%;
     display: block; }
-
-.single-item {
-  text-align: center;
-  overflow: hidden;
-  -webkit-perspective: 3000px;
-          perspective: 3000px; }
 
 .single-item__content {
   overflow: auto;
