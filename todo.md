@@ -1,5 +1,7 @@
 #TODAY
 
+[ ] Add h1 to store
+[ ] Handle Single Cart Page
 [ ] Add menu item active state
 [ ] Add loader screen
 [x] Homepage updated layout
