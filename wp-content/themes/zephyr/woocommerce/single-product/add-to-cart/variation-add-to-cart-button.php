@@ -21,9 +21,9 @@ global $product;
      */
     do_action( 'woocommerce_before_add_to_cart_quantity' );
   ?>
-
-    <div class="select-wrapper">
-      <select name="quantity">
+    <label class="tiny-text">Qty</label>
+    <div for="quantity" class="select-wrapper">
+      <select id="quantity" name="quantity">
         <?php
         for ($i=1; $i < 7; $i++) {
           echo '<option value=' . $i . '>' . $i . '</option>';
@@ -40,7 +40,7 @@ global $product;
   ?>
 </div>
 
-<div class="grid__item w-4-12 w-xxl-3-12">
+<div class="grid__item w-4-12 w-xxl-3-12 align-bottom">
   <add-to-cart
     :can-add="state.product.canAddToCart"
     :loading="form.isProcessing">

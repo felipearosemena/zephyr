@@ -48,19 +48,27 @@ if ( $product->is_in_stock() ) : ?>
           */
           do_action( 'woocommerce_before_add_to_cart_quantity' );
 
-          woocommerce_quantity_input( array(
-          'min_value'   => apply_filters( 'woocommerce_quantity_input_min', $product->get_min_purchase_quantity(), $product ),
-          'max_value'   => apply_filters( 'woocommerce_quantity_input_max', $product->get_max_purchase_quantity(), $product ),
-          'input_value' => isset( $_POST['quantity'] ) ? wc_stock_amount( $_POST['quantity'] ) : $product->get_min_purchase_quantity(),
-          ) );
+          ?>
 
+          <label class="tiny-text">Qty</label>
+          <div for="quantity" class="select-wrapper">
+            <select id="quantity" name="quantity">
+              <?php
+              for ($i=1; $i < 7; $i++) {
+                echo '<option value=' . $i . '>' . $i . '</option>';
+              }
+              ?>
+            </select>
+          </div>
+
+          <?php
           /**
           * @since 3.0.0.
           */
           do_action( 'woocommerce_after_add_to_cart_quantity' );
           ?>
         </div>
-        <div class="grid__item w-4-12 w-xxl-3-12">
+        <div class="grid__item w-4-12 w-xxl-3-12 align-bottom">
           <add-to-cart
             :can-add="true"
             :loading="form.isProcessing"

@@ -36,7 +36,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
       <div class="grid grid--flex justify-center">
         <?php foreach ( $attributes as $attribute_name => $options ) : ?>
           <div class="grid__item w-4-12 w-xxl-3-12">
-            <label for="<?php echo sanitize_title( $attribute_name ); ?>" class="sr-only"><?php echo wc_attribute_label( $attribute_name ); ?></label>
+            <label for="<?php echo sanitize_title( $attribute_name ); ?>" class="tiny-text"><?php echo wc_attribute_label( $attribute_name ); ?></label>
 
             <div class="select-wrapper">
               <?php
