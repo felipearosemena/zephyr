@@ -86,10 +86,15 @@
   height: 100%;
   background-size: cover;
   background-position: center;
-  cursor: url(../../src/images/plus-button.png) 20 20, auto;
+
+  cursor: url("../../src/images/plus-button.png") 0 0, pointer; /* Legacy */
+  cursor: url("../../src/images/plus-button.svg") 0 0, pointer; /* FF */
+  cursor: -webkit-image-set(url("../../src/images/plus-button.png") 1x, url("../../src/images/plus-button@2x.png") 2x) 0 0, pointer; /* Webkit */
 
   .single-product-slider.is-active & {
-    cursor: url(../../src/images/close-button.png) 20 20, auto;
+    cursor: url("../../src/images/close-button.png") 0 0, pointer; /* Legacy */
+    cursor: url("../../src/images/close-button.svg") 0 0, pointer; /* FF */
+    cursor: -webkit-image-set(url("../../src/images/close-button.png") 1x, url("../../src/images/close-button@2x.png") 2x) 0 0, pointer; /* Webkit */
   }
 
   &:after {
