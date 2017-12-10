@@ -20,7 +20,7 @@
               <div class="form-control select-wrapper">
 
                 <select class="js-listing-filter" name="{{ tax.query_key }}">
-                  <option value="">{{ __('All ' ~ tax.taxonomy.labels.name, 'base-theme') }}</option>
+                  <option value="">{{ __('All ' ~ tax.taxonomy.labels.name, 'zephyr-theme') }}</option>
                   {% for term in tax.terms %}
                     <option value="{{ term.slug }}" {{ query_vars[tax.query_key] == term.slug ? 'selected' }}>{{ term.name }}</option>
                   {% endfor %}
@@ -45,7 +45,7 @@
       
         {% set no_results %}
           <p class="mt-1 mb-1 js-no-results">
-            {{ __('Sorry, but your search returned no results. Try searching with different keywords.', 'base-theme') }}
+            {{ __('Sorry, but your search returned no results. Try searching with different keywords.', 'zephyr-theme') }}
           </p>
         {% endset %}
 
