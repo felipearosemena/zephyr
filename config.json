@@ -1,5 +1,5 @@
 {
-  "siteUrl" : "zephyr.dev",
+  "siteUrl" : "https://zephyr.dev",
   "themePath": "./wp-content/themes/zephyr",
   "paths" : {
     "src" : {
