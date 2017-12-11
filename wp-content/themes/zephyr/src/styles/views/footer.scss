@@ -6,7 +6,7 @@
 
 .site-footer {
   background-color: $color-primary;
-  padding: $bsu*2 0;
+  padding: $bsu*4 0 $bsu*2;
 
   .woocommerce-checkout &,
   .about & {
@@ -35,13 +35,7 @@
     line-height: 1;
     position: relative;
     z-index: 1;
-    padding: $bsu/2 0;
-  }
-
-  .current_page_item > a,
-  .current_page_ancestor > a,
-  a:hover {
-    color: $color-primary;
+    margin-bottom: $bsu/2;
   }
 }
 

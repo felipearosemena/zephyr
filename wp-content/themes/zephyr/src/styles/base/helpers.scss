@@ -150,6 +150,22 @@
   }
 }
 
+.order-2--md {
+  @include mq-min($bp-md) {
+    order: 2
+  }
+}
+
+.order-2--lg {
+  @include mq-min($bp-lg) {
+    order: 2
+  }
+}
+
+.order-3 {
+  order: 3;
+}
+
 .relative {
   position: relative;
 }

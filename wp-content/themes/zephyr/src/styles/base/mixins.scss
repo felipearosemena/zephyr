@@ -80,6 +80,11 @@
   vertical-align: middle;
   transition: color $transition-default;
 
+  button &,
+  a & {
+    transition: none;
+  }
+
   &:before, &:after {
 
     display: block;
@@ -123,9 +128,10 @@
     color: $color-primary;
   }
 
-  &:before {
+  i {
     font-size: px-to-rem($base-fs);
     height: px-to-rem($base-fs);
+    line-height: px-to-rem($base-fs);
   }
 }
 
@@ -221,7 +227,7 @@
 
 @mixin remove-underline {
   &:after {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -297,5 +303,34 @@
   @include mq-min($bp-lg) {
     padding-top: $bsu*6;
     padding-bottom: $bsu*6;
+  }
+}
+
+@mixin social-button {
+  @include remove-underline;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: white;
+  border: 3px solid $body-color;
+  border-radius: 50%;
+
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    line-height: 1em;
+    transform: translate(-50%, -50%);
+    transition: none;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: $body-color;
+    color: white;
   }
 }

@@ -1,7 +1,7 @@
 /**
  *
  * Nav
- * 
+ *
  * Horizontal list with padded items
  *
  * Usage:
@@ -18,16 +18,17 @@
   padding-left:0;
   margin-bottom: 0;
   list-style: none;
-  
+
   > li {
     display: inline-block;
   }
 }
 
 .nav--social {
-  margin-left: -$bsu/4;
+  display: flex;
+  justify-content: space-around;
 
   a {
-    padding: $bsu/4;
+    @include social-button;
   }
 }

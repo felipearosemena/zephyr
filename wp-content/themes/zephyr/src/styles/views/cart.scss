@@ -36,19 +36,6 @@
 
 .cart-view__close {
   position: absolute;
-  height: 100%;
-  width: 100vw;
-  top: 0;
-  right: 100%;
-  z-index: 290;
-  background-color: $overlay-bg;
-  cursor: pointer;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity $transition-default, visibility $transition-default;
-
-  .is-cart-active & {
-    opacity: 1;
-    visibility: visible;
-  }
+  top: $bsu/2;
+  right: $bsu/2;
 }

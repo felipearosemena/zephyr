@@ -13,9 +13,13 @@ form {
 label {
   @include font-size($form-label-fs, $form-label-lh);
   display: block;
-  font-weight: bold;
   margin-bottom: $bsu/2;
   cursor: pointer;
+}
+
+label.tiny-text {
+  @include font-size($tiny-fs, $tiny-lh);
+  font-weight: bold;
 }
 
 input, button {

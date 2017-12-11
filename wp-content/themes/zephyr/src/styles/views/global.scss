@@ -29,8 +29,7 @@
   pointer-events: none;
   cursor: pointer;
 
-  .no-csstransforms &,
-  .woocommerce-checkout & {
+  .no-csstransforms & {
     display: none;
   }
 
@@ -52,11 +51,10 @@
   .page-wrap.is-cart-active & {
     transform: translate3d(px-to-rem(-$container-xs), 0, 0);
 
-    .woocommerce-checkout & {
-      @include mq-min($bp-md) {
-        transform: none;
-      }
-    }
+  }
+
+  .woocommerce-checkout & {
+    transform: none !important;
   }
 
 }

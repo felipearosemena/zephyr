@@ -32,6 +32,10 @@ button[class*="icon-"] {
   @include button-plain;
 }
 
+.icon-trash:before {
+  content: "\e902";
+}
+
 .icon-search.is-active {
   @extend .icon-close;
 }
@@ -44,6 +48,7 @@ button[class*="icon-"] {
 }
 .icon-instagram:before {
   content: "\62";
+  font-size: 1.2em;
 }
 .icon-twitter:before {
   content: "\63";
@@ -121,6 +126,7 @@ $icon-plus: "\77";
 .icon-arrow-left:before {
   content: "\41";
 }
+
 .icon-arrow-right:before {
   content: "\42";
 }

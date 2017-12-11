@@ -117,4 +117,5 @@
 
 .site-search__button {
   @include button-icon;
+  @extend .icon-search;
 }
