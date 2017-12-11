@@ -11,7 +11,7 @@ class Setup
     add_action( 'after_setup_theme', array( &$this, 'after_setup_theme__addThemeSupports' ) );
 
     add_filter( 'body_class', array( &$this, 'body_class__filterBodyClass' ) );
-    // Register Menus 
+    // Register Menus
     add_action('init', array(&$this, 'init__registerMenus') );
     // Add Options page
     add_action( 'init', array( &$this, 'init__setupOptions' ) );
@@ -51,7 +51,6 @@ class Setup
     register_nav_menus( array(
       'main-nav'    => 'Main Navigation' ,
       'util-nav'    => 'Utility Navigation' ,
-      'footer-nav'  => 'Footer Navigation'
     ) );
   }
 
