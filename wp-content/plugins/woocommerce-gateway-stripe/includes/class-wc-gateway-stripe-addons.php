@@ -149,6 +149,8 @@ class WC_Gateway_Stripe_Addons extends WC_Gateway_Stripe {
 					'site_url'       => esc_url( get_site_url() ),
 				);
 				$response          = WC_Stripe_API::request( $request );
+			} else {
+				return $response; // Default catch all errors.
 			}
 		}
 
@@ -307,8 +309,13 @@ class WC_Gateway_Stripe_Addons extends WC_Gateway_Stripe {
 	 * @return void
 	 */
 	public function update_failing_payment_method( $subscription, $renewal_order ) {
-		update_post_meta( ( $this->wc_pre_30 ? $subscription->id : $subscription->get_id() ), '_stripe_customer_id', $renewal_order->stripe_customer_id );
-		update_post_meta( ( $this->wc_pre_30 ? $subscription->id : $subscription->get_id() ), '_stripe_card_id', $renewal_order->stripe_card_id );
+		if ( $this->wc_pre_30 ) {
+			update_post_meta( $subscription->id, '_stripe_customer_id', $renewal_order->stripe_customer_id );
+			update_post_meta( $subscription->id, '_stripe_card_id', $renewal_order->stripe_card_id );
+		} else {
+			$subscription->update_meta_data( '_stripe_customer_id', $renewal_order->get_meta( '_stripe_customer_id', true ) );
+			$subscription->update_meta_data( '_stripe_card_id', $renewal_order->get_meta( '_stripe_card_id', true ) );
+		}
 	}
 
 	/**

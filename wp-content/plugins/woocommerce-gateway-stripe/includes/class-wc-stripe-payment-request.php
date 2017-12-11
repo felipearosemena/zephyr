@@ -137,16 +137,29 @@ class WC_Stripe_Payment_Request {
 	 * Calculate and set shipping method.
 	 *
 	 * @since 3.1.0
-	 * @version 3.1.0
+	 * @version 3.2.0
 	 * @param array $address
 	 */
 	public function calculate_shipping( $address = array() ) {
+		global $states;
+
 		$country   = $address['country'];
 		$state     = $address['state'];
 		$postcode  = $address['postcode'];
 		$city      = $address['city'];
 		$address_1 = $address['address'];
 		$address_2 = $address['address_2'];
+
+		$country_class = new WC_Countries();
+		$country_class->load_country_states();
+
+		/**
+		 * In some versions of Chrome, state can be a full name. So we need
+		 * to convert that to abbreviation as WC is expecting that.
+		 */
+		if ( 2 < strlen( $state ) ) {
+			$state = array_search( ucfirst( strtolower( $state ) ), $states[ $country ] );
+		}
 
 		WC()->shipping->reset_shipping();
 
@@ -162,9 +175,12 @@ class WC_Stripe_Payment_Request {
 			WC()->customer->set_shipping_to_base();
 		}
 
-		version_compare( WC_VERSION, '3.0', '<' ) ? WC()->customer->calculated_shipping( true ) : WC()->customer->set_calculated_shipping( true );
-
-		WC()->customer->save();
+		if ( version_compare( WC_VERSION, '3.0', '<' ) ) {
+			WC()->customer->calculated_shipping( true );
+		} else {
+			WC()->customer->set_calculated_shipping( true );
+			WC()->customer->save();
+		}
 
 		$packages = array();
 
@@ -291,6 +307,9 @@ class WC_Stripe_Payment_Request {
 		if ( ! defined( 'WOOCOMMERCE_CHECKOUT' ) ) {
 			define( 'WOOCOMMERCE_CHECKOUT', true );
 		}
+		
+		$_POST['terms'] = 1;
+		$_POST['ship_to_different_address'] = 1;
 
 		WC()->checkout()->process_checkout();
 
