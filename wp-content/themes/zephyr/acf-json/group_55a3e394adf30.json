@@ -43,6 +43,25 @@
             "mime_types": ""
         },
         {
+            "key": "field_5a2d8f29b070e",
+            "label": "Footer Social Nav title",
+            "name": "footer_social_nav_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_55a3e3fa381ef",
             "label": "Social Accounts",
             "name": "",
@@ -177,5 +196,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1499498730
+    "modified": 1512935225
 }
