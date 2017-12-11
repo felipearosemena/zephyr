@@ -1,0 +1,13 @@
+{% if menu %}
+<ul class="site-footer__menu">
+  {% for item in menu.get_items %}
+    <li class="{{ item.classes|join(' ') }}">
+
+      <a href="{{ item.path }}" target="{{ item.is_external ? '_blank' }}">
+        {{ item.title }}
+      </a>
+
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}

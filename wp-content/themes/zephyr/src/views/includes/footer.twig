@@ -1,66 +1,44 @@
 <footer class="site-footer" v-if="!state.transiting" v-bind:key="sections.footer">
 
-  <div class="container">
+  <div class="container container--xxl">
 
-    <div class="grid">
-      <div class="grid__item w-12-12 w-md-4-12">
-        {% if footer_menu %}
+    <div class="grid grid--flex">
 
-          <h5>{{ footer_menu.title }}</h5>
-          <ul id="site-footer-menu" class="site-footer__menu">
-            {% for item in footer_menu.get_items %}
-              <li class="{{ item.classes|join(' ') }}">
-
-                <a href="{{ item.get_link }}" target="{{ item.is_external ? '_blank' }}">
-                  {{ item.title }}
-                </a>
-
-                {% if item.children %}
-                <span class="site-footer__toggle js-toggle"
-                  data-target="#site-footer-sub-menu-{{ loop.index }}"
-                  data-group="#site-footer-menu"
-                  data-toggle="true">
-                </span>
-
-                <ul id="site-footer-sub-menu-{{ loop.index }}" class="site-footer__sub-menu">
-                  {% for child in item.get_children %}
-                  <li>
-                    <a href="{{ child.get_link }}" target="{{ child.is_external ? '_blank' }}">
-                      {{ child.title }}
-                    </a>
-                  </li>
-                  {% endfor %}
-                </ul>
-                {% endif %}
-
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
+      <div class="grid__item w-12-12 w-lg-4-12 order-2--lg text-center mb-2">
+        <h4 class="mb-2">{{ global_info.footer_social_nav_title }}</h4>
+        {% include 'components/social-nav.twig' %}
       </div>
 
-      <div class="grid__item pull-right w-12-12 w-md-4-12 w-xl-2-12">
-        <h5>{{ site.title }}</h5>
-        {{ global_info.global_address|wpautop }}
-        {{ global_info.global_phone_number|wpautop }}
+      <div class="grid__item w-12-12 w-lg-4-12 mb-2">
 
-        <p><a href="mailto:{{ global_info.global_email }}">{{ global_info.global_email }}</a></p>
+        <div class="grid">
+          <div class="grid__item w-6-12">
+            {% include 'components/footer-menu.twig' with { menu: main_menu } %}
+          </div>
+          <div class="grid__item w-6-12">
+            {% include 'components/footer-menu.twig' with { menu: util_menu } %}
+          </div>
+        </div>
+      </div>
 
-        <ul>
-          {% include 'components/social-nav.twig' %}
-        </ul>
+      <div class="grid__item w-12-12 w-lg-3-12 w-lg-push-1-12 order-3 mb-1">
+
+        {% include 'components/newsletter-form.twig' %}
 
       </div>
     </div>
 
-
   </div>
 
-  <div class="container">
-    <div class="grid">
-      <div class="grid__item w-12-12 w-md-8-12">
-        &copy; {{ site.title }}. All rights reserved.
-      </div>
+  <div class="container mt-2">
+    <div class="small-text text-center">
+      &copy; {{ 'now'|date('Y') }}  Zephyr Jewelry. All rights reserved.
+
+      {% set terms_id = function('wc_get_page_id', 'terms') %}
+      {% if terms_id %}
+        {% set terms_page = TimberPost(terms_id) %}
+        <a href="{{ terms_page.link }}">{{ terms_page.title }}</a>
+      {% endif %}
     </div>
   </div>
 

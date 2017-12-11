@@ -15,7 +15,7 @@
           {% set id = 'accordion-item-' ~ section_index ~ '-' ~ loop.index %}
 
           <li class="accordion">
-            <button class="accordion__toggle js-toggle-accordion" data-group="#accordions-{{ section_index }}" data-target="#{{ id }}" data-toggle="true">
+            <button class="accordion__toggle js-toggle-accordion" data-target="#{{ id }}" data-toggle="true">
               {{ item.title }}
 
               <i></i>

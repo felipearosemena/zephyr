@@ -2,10 +2,12 @@
 
   <div class="grid mb-1">
     <button v-if="!isCheckout" v-on:click="remove" class="cart-item__remove btn-icon">
-      <i class="icon-close"></i>
+      <i class="icon-trash"></i>
     </button>
     <div class="grid__item w-3-12">
-      <thumbnail :image="product.thumbnail" size="card" />
+      <router-link :to="product.path">
+        <thumbnail :image="product.thumbnail" size="card" />
+      </router-link>
     </div>
     <div class="grid__item w-9-12">
       <h4 class="label mb-0">
