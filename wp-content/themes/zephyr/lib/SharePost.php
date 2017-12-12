@@ -1,19 +1,19 @@
-<?php 
+<?php
 
 /**
  *
  * Social Sharing Class
- *  
+ *
  *  Generates the appropriate url to share a certain post.
  *
  *  For best results, make sure your posts have all the necessary Open Graph tags.
  *  That will help the service pick up the featured image, page content, etc.
  *  Yoast SEO plugin will add these for you when you enable the plugin.
  *
- *  Usage: 
- *  
+ *  Usage:
+ *
  *  $sharer = new SharePost();
- *  echo $sharer->get_url('tweet', $postID); 
+ *  echo $sharer->get_url('tweet', $postID);
  *
  *  Where 'tweet' corresponds to a key in the apis array inside the constructor function
  *  and $postID is the ID of the post to be shared.
@@ -22,10 +22,10 @@
 
 namespace Z;
 
-class SharePost 
+class SharePost
 {
-  
-  function __construct() 
+
+  function __construct()
   {
     $this->twitter_account = get_field('global_twitter_account', 'options');
   }
@@ -36,7 +36,7 @@ class SharePost
    * Get an item the set of sharing link options available
    *
    */
-  
+
   private function apis($key, $post_id, $page_url)
   {
 
@@ -50,7 +50,7 @@ class SharePost
         'url'      => 'http://www.facebook.com/plugins/like.php?',
         'params'   => 'width&layout=standard&action=like&show_faces=true&href='
       ),
- 
+
       'tweet'      => array(
         'url'      => 'https://twitter.com/intent/tweet?',
         'params'   => 'text='. rawurlencode(get_the_title($post_id)) . ($this->twitter_account ? rawurlencode(' via @' . $this->twitter_account) : '') . '&url='
@@ -64,7 +64,13 @@ class SharePost
       'linkedin_share' => array(
         'url'          => 'http://www.linkedin.com/shareArticle?',
         'params'       => 'title=' . rawurlencode(get_the_title($post_id)) . '&source=' . rawurlencode(get_site_url()) . '&url='
+      ),
+
+      'mail' => array(
+        'url'          => 'mailto:?',
+        'params'       => 'subject=' . rawurlencode(get_the_title($post_id)) . '&body=' . rawurlencode( get_the_excerpt($post_id) . '') . '%0D%0A%0D%0A'
       )
+
     );
 
     return isset($apis[$key]) ? $apis[$key] : null;
@@ -75,12 +81,12 @@ class SharePost
    * Get the sharing url for a certain type of sharing option.
    * See list of API's above for a reference on how to access each one.
    *
-   * @param string $key - The name of the type of URL you want. Must match an the key in 
+   * @param string $key - The name of the type of URL you want. Must match an the key in
    *                      the $apis array from the `api` method.
    * @param integet $post_id - ID of the post to be shared.
    *
    */
-  
+
   public function get_url($key='', $post_id = null)
   {
 
