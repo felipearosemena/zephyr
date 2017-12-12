@@ -23,7 +23,7 @@
 
             <div class="grid">
               <div class="grid__item w-5-12">
-                <label>Shape</label>
+                <label class="weight-bold">Shape</label>
                 {% for shape in global_info.filter_shape %}
                 {% set term = TimberTerm(shape.term_id) %}
 
@@ -44,7 +44,7 @@
               </div>
 
               <div class="grid__item w-5-12">
-                <label>Type</label>
+                <label class="weight-bold">Type</label>
                 {% for type in global_info.filter_type %}
                 <div class="checkbox-plain">
                   <input id="filter-shape-{{ type.slug }}"

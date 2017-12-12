@@ -8,7 +8,7 @@
   class="single-item grid grid--flex grid--full {{ post.class }}"
   data-product-id="{{ post.id }}">
 
-    <div class="single-item__figure grid__item w-12-12 w-md-7-12 w-xxl-6-12 flex">
+    <div class="single-item__figure grid__item w-12-12 w-md-7-12 w-lg-6-12 flex">
       {% set images = [post.thumbnail.id]|merge(product.get_gallery_image_ids()) %}
       <single-product-slider :active="state.productSliderActive" :navigation-enabled="{{ images|length > 1 ? 'true' : 'false' }}">
         {% for id in images %}
@@ -25,7 +25,7 @@
     </div>
 
     <div
-      class="single-item__content grid__item w-12-12 w-md-5-12 w-xxl-6-12"
+      class="single-item__content grid__item w-12-12 w-md-5-12 w-lg-6-12"
       style="background-color: {{ term.shape_color }}"
       v-bind:class="{ 'is-hidden': state.productSliderActive }">
       <div class="single-item__content-inner">
