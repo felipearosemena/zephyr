@@ -7,6 +7,8 @@
 .site-footer {
   background-color: $color-primary;
   padding: $bsu*4 0 $bsu*2;
+  position: relative;
+  z-index: 200;
 
   .woocommerce-checkout &,
   .about & {

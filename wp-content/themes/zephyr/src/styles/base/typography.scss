@@ -274,14 +274,19 @@ ol.list-editor {
   }
 }
 
-dl {
-  display: flex;
-  flex-wrap: wrap;
+.dl-group {
+  display: inline-block;
   margin: $bsu*2 auto;
 }
 
+dl {
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+
 dt, dd {
-  display: block;
+  display: inline-block;
+  float: left;
   width: 50%;
   padding: 0 $bsu/2;
 }
@@ -305,10 +310,18 @@ dd {
   overflow: auto;
 }
 
+.table-split {
+  border: none;
+}
+
 table {
   width: 100%;
   border: 1px solid $grey;
   border-collapse: initial;
+}
+
+th, td {
+  padding: $bsu/2;
 }
 
 th {
@@ -317,12 +330,22 @@ th {
   a.active {
     color: #fff;
   }
+
+  .table-split & {
+    text-align: right;
+  }
 }
 
 td {
   border-bottom: 1px solid $grey;
+
   tr:last-child & {
     border-bottom: none;
+  }
+
+  .table-split & {
+    border: none;
+    text-align: left;
   }
 }
 

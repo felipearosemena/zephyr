@@ -193,7 +193,7 @@ select {
 }
 
 .checkbox-plain {
-  margin-top: $bsu*.75;
+  margin-top: $bsu*.33;
 
   input + label {
     @include hover-underline;

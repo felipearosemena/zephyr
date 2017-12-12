@@ -6,12 +6,12 @@
   width: px-to-rem($container-xs);
   background-color: white;
   height: 100%;
-  padding: $bsu*2 0;
+  padding: $bsu 0;
   transition: transform $transition-default;
   overflow: auto;
 
   @include mq-min($bp-lg) {
-    padding: $bsu*2 0;
+    padding: $bsu*1.5 0;
   }
 
   .is-cart-active & {
@@ -36,6 +36,6 @@
 
 .cart-view__close {
   position: absolute;
-  top: $bsu/2;
-  right: $bsu/2;
+  top: 0;
+  right: 0;
 }

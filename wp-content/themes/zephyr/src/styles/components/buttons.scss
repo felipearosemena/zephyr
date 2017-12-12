@@ -158,6 +158,14 @@
   top: $bsu;
   right: $container-pad*2;
   transition: all $transition-bounce;
+  padding: $bsu/2;
+
+  i {
+    display: block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+  }
 
   &:hover,
   &:focus {

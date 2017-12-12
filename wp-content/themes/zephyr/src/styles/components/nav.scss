@@ -32,3 +32,19 @@
     @include social-button;
   }
 }
+
+.nav--share {
+  display: flex;
+  justify-content: space-around;
+  max-width: 320px;
+  margin: $bsu auto;
+
+  a {
+    @include social-button(2rem);
+    border-width: 2px;
+
+    i {
+      font-size: .8em;
+    }
+  }
+}
