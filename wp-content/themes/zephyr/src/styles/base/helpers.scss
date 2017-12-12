@@ -120,9 +120,14 @@
 
 // Display
 
-.inline-block {
+.inline-block,
+.inline-group {
   display: inline-block;
   vertical-align: middle;
+}
+
+.inline-group {
+  margin: $bsu*2 auto;
 }
 
 // Flex helpers
