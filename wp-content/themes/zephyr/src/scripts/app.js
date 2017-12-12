@@ -133,6 +133,7 @@ const methods = {
 
     this.setCurrentView(html)
     this.updateDocumentTitle(html)
+    this.updateBodyClass(html)
     store.cacheResponse(to.path, html)
 
     setTimeout(() => {
@@ -166,7 +167,9 @@ const methods = {
 
     Vue.component(id, {
       data() {
-        return options.data
+        return Object.assign({
+          title: doc.title
+        }, options.data)
       },
       methods: methods,
       template: doc.querySelector(selector).outerHTML
@@ -177,6 +180,11 @@ const methods = {
   updateDocumentTitle(html) {
     const doc = this.getDocFromHTML(html)
     document.title = doc.querySelector('title').innerHTML
+  },
+
+  updateBodyClass(html) {
+    const doc = this.getDocFromHTML(html)
+    document.body.className = doc.body.className
   },
 
   closeOverlay() {
