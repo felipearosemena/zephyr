@@ -1,16 +1,12 @@
 .product-card {
   position: relative;
   display: block;
+  width: 100%;
 }
 
 .product-card__image {
   position: relative;
   z-index: 0;
-
-  img {
-    display: block;
-    transition: transform $transition-default;
-  }
 }
 
 .product-card__content {
