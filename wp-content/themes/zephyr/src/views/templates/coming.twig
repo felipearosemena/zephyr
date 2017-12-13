@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Zephyr - Coming Soon</title>
+
+  {{ function('wp_head') }}
+</head>
+<body>
+
+  <style>
+    .logo {
+      max-width: 240px;
+      margin: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .logo svg {
+      width: 100%;
+    }
+  </style>
+
+  <div class="logo">
+    {{ (src_dir ~ 'images/zephyr-logo-full.svg')|file_get_contents }}
+
+    <div class="text-center">Coming soon, stay tuned!</div>
+  </div>
+
+  {{ function('wp_footer') }}
+</body>
+</html>
