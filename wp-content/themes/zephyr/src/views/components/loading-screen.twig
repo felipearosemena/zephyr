@@ -1,0 +1,10 @@
+<div class="loading-screen">
+  {% for term in terms %}
+    <div class="loading-screen__shape">
+      {% set shapeFile = term.name == 'Basics' ? 'BasicsB' : term.name %}
+      {% if term.name != 'Basics' %}
+        {% include 'components/shapes/' ~ shapeFile ~ '.svg' with { hide_clip: true } %}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

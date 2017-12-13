@@ -1,0 +1,91 @@
+$shapes_count : 5;
+$duration: 1;
+$duration_loaded: 1;
+
+.loading-screen {
+  @include full-cover;
+  position: fixed;
+  z-index: 1000;
+  background-color: $grey-lighter;
+  display: flex;
+  perspective: 2000px;
+  transition: all .45s $transition-timing-slow;
+  overflow: hidden;
+
+  .page-default & {
+    display: none;
+  }
+
+  body.is-loaded & {
+    transition-delay: 1.6s;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes loading-screen {
+  0% {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+
+  19.99% {
+    opacity: 1;
+    transform: scale(1.2) translate(-50%, -50%);
+  }
+
+  20% {
+    opacity: 0;
+    transform: scale(1) translate(-50%, -50%);
+  }
+
+  99.00% {
+    opacity: 0;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+@keyframes loading-screen-out {
+  0% {
+    opacity: 1;
+    transform: scale(0) translate(-50%, -50%)
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(20) translate(-50%, -50%);
+  }
+}
+
+.loading-screen__shape {
+  min-width: 8rem;
+  max-width: 10vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0% 0%;
+  opacity: 0;
+  transform: scale(0) translate(-50%, -50%);
+  animation: loading-screen #{$duration}s $transition-timing-bounce infinite;
+
+  @for $i from 1 through $shapes_count {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i / $shapes_count * $duration}s;
+    }
+  }
+
+  body.is-loading & {
+    opacity: 1;
+  }
+
+  body.is-loaded & {
+    animation: loading-screen-out #{$duration_loaded}s $transition-timing-slow;
+    opacity: 1;
+
+    @for $i from 0 through $shapes_count {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i / $shapes_count * $duration_loaded}s;
+      }
+    }
+  }
+
+}

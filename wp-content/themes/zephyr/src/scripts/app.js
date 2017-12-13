@@ -184,7 +184,17 @@ const methods = {
 
   updateBodyClass(html) {
     const doc = this.getDocFromHTML(html)
-    document.body.className = doc.body.className
+
+    if(doc.body.className) {
+      document.body.className = doc.body.className
+    }
+
+    document.body.classList.add('is-loaded')
+
+    setTimeout(() => {
+      document.body.classList.remove('is-loading')
+    }, 1000)
+
   },
 
   closeOverlay() {
@@ -237,6 +247,7 @@ const options = {
 
     this.setupRoutes()
     this.setCurrentView(this.$el.innerHTML)
+    this.updateBodyClass(this.$el.innerHTML)
     this.bindGlobalEvents()
 
     this.CartService.subscribe('cart-fetched', (cart, res) => {

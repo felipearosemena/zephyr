@@ -2,12 +2,9 @@
 
 {% include 'includes/head.twig' %}
 
-  <body class="{{ body_class }}">
+  <body class="{{ body_class }} is-loading">
 
     {% include 'includes/header.twig' %}
-
-    <div class="loading-screen">
-    </div>
 
     <div id="app" class="page-wrap" v-bind:class="{
       'is-cart-active': state.cartActive,
