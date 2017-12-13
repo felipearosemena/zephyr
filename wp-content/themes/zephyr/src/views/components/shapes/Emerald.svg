@@ -1,13 +1,17 @@
 <svg width="500px" height="550px" viewBox="0 0 500 550" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
+  {% if not hide_clip %}
   <g class="clip-outline" fill="white">
     <path d="M0,0 L500,0 L500,550 L0,550 L0,0 Z M363.421919,33 L137.06343,33 L83,94.889293 L83,455.412365 L137.06343,517.156196 L363.421919,517.156196 L417.485349,455.412365 L417.485349,94.889293 L363.421919,33 Z"></path>
   </g>
+  {% endif %}
 
+  {% if not hide_outline %}
   <g class="shape-outline" stroke="none" stroke-width="1" fill="#B1DCBF" fill-rule="evenodd">
     <g id="Emerald">
       <polygon points="363.421919 33 417.485349 94.889293 417.485349 455.412365 363.421919 517.156196 137.06343 517.156196 83 455.412365 83 94.889293 137.06343 33"></polygon>
     </g>
   </g>
+  {% endif %}
 
 </svg>

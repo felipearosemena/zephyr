@@ -1,12 +1,17 @@
 <svg width="500px" height="550px" viewBox="0 0 500 550" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
+  {% if not hide_clip %}
   <g class="clip-outline" fill="white">
     <path d="M0,0 L500,0 L500,550 L0,550 L0,0 Z M249.977154,519.869169 C341.643804,519.869169 415.954307,410.432078 415.954307,275.434585 C415.954307,140.437091 341.643804,31 249.977154,31 C158.310503,31 84,140.437091 84,275.434585 C84,410.432078 158.310503,519.869169 249.977154,519.869169 Z"></path>
   </g>
+  {% endif %}
 
+  {% if not hide_outline %}
   <g class="shape-outline" stroke="none" stroke-width="1" fill="#B4E0E9" fill-rule="evenodd">
     <g id="Oval">
       <ellipse cx="249.977154" cy="275.434585" rx="165.977154" ry="244.434585"></ellipse>
     </g>
   </g>
+  {% endif %}
+
 </svg>

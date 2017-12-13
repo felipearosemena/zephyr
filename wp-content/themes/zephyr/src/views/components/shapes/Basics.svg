@@ -1,13 +1,17 @@
 <svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
+  {% if not hide_clip %}
   <g class="clip-outline" fill="white">
     <path d="M1,1 L501,1 L501,501 L1,501 L1,1 Z M43,43 L43,458 L458,458 L458,43 L43,43 Z"></path>
   </g>
+  {% endif %}
 
+  {% if not hide_outline %}
   <g class="shape-outline" stroke="none" fill="#f5f5f5" fill-rule="evenodd">
     <g id="Basics">
       <rect x="43" y="43" width="415" height="415"></rect>
     </g>
   </g>
+  {% endif %}
 
 </svg>
