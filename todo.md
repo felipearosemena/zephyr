@@ -1,3 +1,11 @@
+#Footer
+
+[ ] Main + Util Menu
+[ ] Zephyr Jewelry
+[ ] shop@zephyrjewely.com
+[ ] Social
+[ ] Newsletter signup
+
 #TODAY
 
 [ ] Add h1 to store
