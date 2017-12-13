@@ -9,6 +9,5 @@
 $context = Timber::get_context();
 $post = new TimberPost();
 $context['post'] = $post;
-$context['terms'] = Timber::get_terms('product_cat');
 
 Timber::render('templates/home.twig', $context);

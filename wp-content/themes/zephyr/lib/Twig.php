@@ -54,6 +54,7 @@ class Twig extends TimberSite
     $context['shop_path']     = '/' . get_page_uri( wc_get_page_id( 'shop' ) );
     $context['cart_totals']   = wc()->cart->get_cart_contents_count();
     $context['is_checkout']   = is_checkout();
+    $context['terms'] = Timber::get_terms('product_cat');
 
     if ( function_exists( 'get_fields' ) ) {
       $context['global_info']    = get_fields( 'options' );
