@@ -98,13 +98,17 @@ class Setup
       $directory        = 'templates/';
       $directory_strlen = strlen($directory);
 
+      if($current_theme == 'default') {
+        $classes[] = 'page-default';
+      }
+
       // cleanup the class for the page templates inside page-templates directory
       if(substr($current_theme, 0 , $directory_strlen ) === $directory ) {
           $class = substr (substr($current_theme, $directory_strlen), 0, -4); // cleanup the class returned to match the page template's name
       }
 
       if($class != 'home') {
-          $classes[] = $class;
+        $classes[] = $class;
       }
     }
 
