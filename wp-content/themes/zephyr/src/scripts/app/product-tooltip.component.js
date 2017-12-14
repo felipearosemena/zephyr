@@ -10,7 +10,7 @@ const ProductTooltip = {
 
         <div class="product-tooltip__content">
 
-          <a :href="product.path">
+          <a :href="product.path" class="w-12-12">
             <transition-group name="opacity" class="product-tooltip__image">
               <thumbnail key="product-thumbnail" :image="product.thumbnail" size="sq_large" v-if="product.thumbnail" />
             </transition-group>
