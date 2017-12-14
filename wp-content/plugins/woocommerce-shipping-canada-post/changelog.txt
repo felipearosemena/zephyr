@@ -1,0 +1,130 @@
+*** Canada Post ***
+
+2017-06-05 - version 2.5.3
+* Tweak - Added links (currency and base country/region) in warning notices to general settings page.
+* Fix - Notice of undefined variable `$request` when pack items individually with some options enabled.
+* Fix - Issue where coverage value is not rounded to cents.
+* Fix - Don't display connection notice if shipping is disabled.
+
+2017-04-27 - version 2.5.2
+* Fix - Non object error on API request.
+* Fix - Remove double settings title.
+
+2017-04-03 - version 2.5.1
+* Tweak - Updated all deprecated WooCommerce API calls.
+* Tweak - Allow third-party code to alter lettermail box dimensions and rates.
+* Fix - Update for WooCommerce 3.0 compatibility.
+
+2016-10-07 - version 2.5.0
+* Add - Support for WooCommerce 2.6+ shipping zones.
+* Update - Change plugin main file name to woocommerce-shipping-canada-post.
+* Update - Text domain name to woocommerce-shipping-canada-post.
+* Update - Weight to be passed via 3 decimal places to make rate more accurate.
+
+2016-08-01 - version 2.4.4
+* Fix - Ensure we check if plugin is enabled before processing logic.
+
+2016-05-29 - version 2.4.3
+* Fix - Issue where Canada Post API returns an error if there are more than 2
+digits after the comma.
+* Fix - Round up to minimum weight needed, 0.01, for shipping per item and box
+packing method.
+* Fix - Incorrect setting link when WooCommerce 2.6 is used
+
+2015-11-27 - version 2.4.2
+ * New - Adds "Library Books" rate to the list of available rates.
+
+2015-09-29 - version 2.4.1
+* Fixed variable package being overwritten in packages loop.
+* Added tooltips.
+
+2015-05-23 - version 2.4.0
+* Move prices to top of file
+* Update prices based on https://www.canadapost.ca/tools/pg/supportdocuments/lp_pricesheet-e.pdf and https://www.canadapost.ca/tools/pg/supportdocuments/lm_pricesheet-e.pdf
+* Add US and International Letter-post prices
+* Enable proof of age and signature options.
+
+2014-10-13 - version 2.3.6
+* Update box packer
+
+2014-10-08 - version 2.3.5
+* Updated box packer.
+
+2014-06-03 - version 2.3.4
+* Prevent autoloading of transients by setting expirey.
+
+2014-04-08 - version 2.3.3
+ * Lettermail price update
+
+2014-02-10 - version 2.3.2
+ * Leave out contract ID for counter rates
+
+2014-02-10 - version 2.3.1
+ * Added a weight based packing option
+
+2014-01-01 - version 2.3.0
+ * Fixed rate names
+ * New registration system - integrates with Canada Post Reg API. You need to re-connect your account after upgrading to this version using the button in admin.
+ * Changed the method in which results are cached to improve performance
+ * 2.1 compatibility
+ * Include adjustments when using base pricing
+ * Under guidance from Canada Post, removed DOM.XP.CERT, DOM.LIB, DOM.RP.INTERLINE, DOM.PC.INTERLINE, DOM.XP.INTERLINE, DOM.EP.INTERLINE rates
+ * Under guidance from Canada Post, removed proof of age options (that don't affect costs)
+ * Under guidance from Canada Post, removed delivery options (that don't affect costs)
+
+2013-11-01 - version 2.2.3
+ * Added box name field to track your boxes easily
+
+2013-10-31 - version 2.2.2
+ * USA.TP.LVM
+
+2013-10-30 - version 2.2.1
+ * Added missing LVM USA rates
+
+2013-09-30 - version 2.2.0
+ * Added non-API lettermail rates
+ * Split up additonal options to avoid conflicts
+
+2013-07-22 - version 2.1.3
+ * Hook for origin
+
+2013-04-29 - version 2.1.2
+ * Fix negative % adjustment
+
+2013-04-04 - version 2.1.1
+ * Fix virtual check when box packing
+
+2013-04-02 - version 2.1.0
+ * Debug mode is now a separate option for convenience.
+ * Mark down prices using the price adjustment fields
+
+2013-03-12 - version 2.0.9
+ * Due vs base option
+
+2013-01-23 - version 2.0.8
+ * Add contract-id option.
+ * Add interliner rates
+
+2013-01-23 - version 2.0.6
+ * Fix outer dimensions in box packer
+ * Ensure rates are available for all packages
+
+2013-01-21 - version 2.0.5
+ * Localised rate names
+
+2013-01-18 - version 2.0.4
+ * International tracked packet
+
+2013-01-18 - version 2.0.3
+ * Allow negative adjustment to prices
+ * Fix decimal places on dimensions
+
+2013-01-17 - version 2.0.2
+ * Added Canada Post Tracked Packet
+
+2013-01-15 - version 2.0.1
+ * Fixed a notice
+ * Fix weight conversion decimal places
+
+2013-01-04 - version 2.0.0
+ * Complete rewrite using Canada Posts new Rating API
