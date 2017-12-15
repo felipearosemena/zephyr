@@ -1,18 +1,11 @@
 <article class="section">
   <div class="container container--md">
 
-    <header class="text-center">
+    <header class="section-header">
 
       <h1 class="h1-sm">{{ post.title }}</h1>
 
-      {% include ('includes/share-bar.twig') %}
     </header>
-
-    {% if post.thumbnail %}
-      <figure class="featured-image">
-        {{ macros.img( post.thumbnail.ID, 'featured' ) }}
-      </figure>
-    {% endif %}
 
     <div class="post-content">
       {{ post.content }}

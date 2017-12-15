@@ -1,0 +1,15 @@
+<article class="section">
+    <div class="container container--md">
+
+      <header class="section-header text-center">
+
+        <h1 class="h1-sm">{{ post.title }}</h1>
+
+        {% include ('includes/share-bar.twig') %}
+      </header>
+
+      <div class="post-content">
+        {{ post.content }}
+      </div><!-- .post-content -->
+    </div>
+  </article>
