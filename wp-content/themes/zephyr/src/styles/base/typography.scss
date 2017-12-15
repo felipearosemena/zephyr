@@ -287,6 +287,7 @@ ol.list-editor {
 }
 
 dl {
+  @include clearfix;
   white-space: nowrap;
   flex-wrap: wrap;
 }

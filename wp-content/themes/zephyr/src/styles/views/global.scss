@@ -18,6 +18,7 @@
 
 .page-wrap__overlay {
   @include full-cover;
+  @include page-wrap-offset();
   border: none;
   padding: 0;
   position: fixed;
@@ -37,6 +38,7 @@
     opacity: 1;
     visibility: visible;
     pointer-events: all;
+
   }
 
 }
@@ -45,11 +47,11 @@
   transition: transform $transition-default;
 
   .page-wrap.is-nav-active & {
-    transform: translate3d($site-nav-width, 0, 0);
+    transform: translate3d($site-nav-width/2, 0, 0);
   }
 
   .page-wrap.is-cart-active & {
-    transform: translate3d(px-to-rem(-$container-xs), 0, 0);
+    transform: translate3d(-$container-xs/2, 0, 0);
 
   }
 
@@ -132,6 +134,10 @@
 
 .single-item__content-inner {
   padding: $bsu*2 0 $bsu;
+
+  .stock {
+    display: none;
+  }
 
   @include mq-min($bp-md) {
     min-height: calc(100vh - 100px);

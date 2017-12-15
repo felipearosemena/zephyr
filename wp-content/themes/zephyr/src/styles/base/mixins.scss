@@ -367,10 +367,18 @@
 }
 
 @mixin page-wrap-padding {
-  padding-top: 4.5rem;
+  padding-top: $logo-width * $logo-ratio;
 
   @include mq-min($bp-md) {
-    padding-top: 5.5rem;
+    padding-top: $logo-width-lg * $logo-ratio;
+  }
+}
+
+@mixin page-wrap-offset {
+  top: $logo-width * $logo-ratio + 20px;
+
+  @include mq-min($bp-md) {
+    top: $logo-width-lg * $logo-ratio +  20px;
   }
 }
 
@@ -405,7 +413,7 @@
   line-height: $w;
   text-align: center;
   background-color: white;
-  border: 3px solid $body-color;
+  border: $base-border-width solid $body-color;
   border-radius: 50%;
 
   i {

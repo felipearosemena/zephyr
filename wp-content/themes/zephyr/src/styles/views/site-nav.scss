@@ -14,6 +14,8 @@
   overflow: visible;
   transition: transform $transition-default;
 
+  @include page-wrap-offset();
+
   @include mq-min($bp-lg) {
     max-width: $site-nav-width;
   }

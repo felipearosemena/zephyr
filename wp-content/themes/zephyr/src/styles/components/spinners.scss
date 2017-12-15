@@ -11,7 +11,7 @@
     border-radius: 50%;
     width: 1em;
     height: 1em;
-    border: 3px solid $body-color;
+    border: $base-border-width solid $body-color;
     border-top-color: transparent !important;
     animation: spin 1.5s infinite linear;
     display: inline-block;

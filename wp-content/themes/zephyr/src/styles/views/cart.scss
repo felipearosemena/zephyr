@@ -3,12 +3,15 @@
   z-index: 300;
   top: 0;
   left: 100%;
-  width: px-to-rem($container-xs);
-  background-color: white;
   height: 100%;
+  width: 100%;
+  max-width: px-to-rem($container-xs);
+  background-color: white;
   padding: $bsu 0;
   transition: transform $transition-default;
   overflow: auto;
+
+  @include page-wrap-offset();
 
   @include mq-min($bp-lg) {
     padding: $bsu*1.5 0;
@@ -23,7 +26,6 @@
 
     @include mq-min($bp-lg) {
       @include page-wrap-padding;
-      margin-top: $bsu*2;
       width: 33%;
       max-width: $container-xs;
       left: 0;

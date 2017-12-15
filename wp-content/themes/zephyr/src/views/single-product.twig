@@ -15,7 +15,7 @@
           <slide>
             <image-zoom :active="state.productSliderActive">
               {% set image = TimberImage(id) %}
-              {% set src = image.src('shop_main') %}
+              {% set src = image.src %}
               <div class="single-image__bg" style="background-image: url({{ src }})" data-bg></div>
               <img src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
             </image-zoom>

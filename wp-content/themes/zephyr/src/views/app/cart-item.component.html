@@ -19,13 +19,19 @@
               </span>
             </router-link>
           </h4>
-          <div class="tiny-text mb-25" v-if="item.variation && item.variation.attribute_pa_size">
-            Size: {{ item.variation.attribute_pa_size }} <br/>
-          </div>
+          <p class="tiny-text mb-0">
+            <span v-if="item.variation && item.variation.attribute_pa_size">
+              Size: {{ item.variation.attribute_pa_size }}
+            </span> <br/>
+            <span v-if="isCheckout">
+              Qty: {{ item.quantity}}
+            </span>
+          </p>
+
         </span>
-        <span class="align-center small-text">
+        <strong class="align-bottom small-text">
           {{ item.line_subtotal | format-currency }}
-        </span>
+        </strong>
       </div>
       <span class="inline-block mt-05" v-if="!isCheckout" >
         <select-quantity :onChange="setQuantity" :value="item.quantity">

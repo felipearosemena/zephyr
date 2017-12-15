@@ -27,7 +27,7 @@
   margin-left: auto;
   margin-right: auto;
 
-  @include mq-min($bp-md) {
+  @include mq-min($bp-sm) {
     padding-left: $container-pad*2;
     padding-right: $container-pad*2;
   }
@@ -55,7 +55,8 @@
 // Full width container
 .container--full {
   max-width: none;
-  width: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .container--xs,
