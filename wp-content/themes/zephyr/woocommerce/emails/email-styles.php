@@ -131,7 +131,7 @@ $text_lighter_20 = wc_hex_lighter( $text, 20 );
 }
 
 #body_content_inner {
-	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
+	color: <?php echo esc_attr( $base_text ); ?>;
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 	font-size: 14px;
 	line-height: 150%;
@@ -139,13 +139,13 @@ $text_lighter_20 = wc_hex_lighter( $text, 20 );
 }
 
 .td {
-	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
+	color: <?php echo esc_attr( $base_tex ); ?>;
 	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
 }
 
 .address {
 	padding:12px 12px 0;
-	color: <?php echo esc_attr( $text_lighter_20 ); ?>;
+	color: <?php echo esc_attr( $base_text ); ?>;
 	border: 1px solid <?php echo esc_attr( $body_darker_10 ); ?>;
 }
 
