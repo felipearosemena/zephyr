@@ -15,7 +15,7 @@ const ImageZoom = {
   props: ['active'],
   data() {
     return {
-      scale: 20,
+      scale: 40,
       activeHover: false
     }
   },
