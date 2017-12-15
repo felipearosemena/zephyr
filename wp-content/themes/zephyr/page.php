@@ -8,6 +8,12 @@
 
 $context = Timber::get_context();
 $post = new TimberPost();
-$context['post'] = $post; 
+$context['post'] = $post;
 
-Timber::render( 'page.twig', $context );
+$template = 'page.twig';
+
+if(is_checkout() && !is_wc_endpoint_url( 'order-received' )) {
+  $template = 'page-checkout.twig';
+}
+
+Timber::render( $template, $context );
