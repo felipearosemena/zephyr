@@ -8,9 +8,9 @@
   @include page-wrap-padding;
   background-color: white;
 
-  .woocommerce-checkout & {
-    @include mq-min($bp-md) {
-      margin-left: 40%;
+  .woocommerce-checkout:not(.woocommerce-order-received) & {
+    @include mq-min($bp-lg) {
+      margin-left: 33%;
     }
   }
 }
@@ -57,6 +57,10 @@
     transform: none !important;
   }
 
+}
+
+.page-content {
+  min-height: calc(100vh - #{$bsu*5});
 }
 
 .featured-image {

@@ -13,9 +13,9 @@ $pink         : #ED9FA8;
 $pink-light   : lighten($pink, 10%);
 $blue-light   : #B4E0E9;
 $blue         : darken($blue-light, 10%);
-$green        : #5cb85c;
-$red          : #d9534f;
-$yellow       : #ec971f;
+$green        : rgb(129, 216, 155);
+$red          : rgb(245, 140, 152);
+$yellow       : #F9D9A8;
 
 $grey-lightest: #f9f9f9;
 $grey-lighter : #f0f0f0;
@@ -112,6 +112,7 @@ $form-label-lh : $base-lh;
 $bsu : 20px/$base-fs * 1rem;
 
 $base-border-radius  : 5px;
+$base-border-width   : 2px;
 
 $base-input-height   : $bsu*2.5;
 $base-input-padding  : $bsu/2 $bsu $bsu/2 $bsu*.75;

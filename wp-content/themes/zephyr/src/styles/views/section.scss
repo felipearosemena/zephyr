@@ -29,3 +29,9 @@
     margin-bottom: $bsu*2.5 !important;
   }
 }
+
+.section-header {
+  @include mq-min($bp-sm) {
+    margin-bottom: $bsu*2;
+  }
+}

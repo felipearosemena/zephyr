@@ -8,7 +8,8 @@
 
 .message {
   @include island($bsu);
-  border: 1px solid;
+  border: $base-border-width solid;
+  margin: $bsu 0;
 }
 
 // Style for message boxes

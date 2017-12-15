@@ -39,10 +39,13 @@
 }
 
 .container {
-  width: 80%;
   max-width: px-to-rem($container-lg);
   box-sizing: content-box; // Prevents the container's padding
-                           // to be substracted from it's width
+  // to be substracted from it's width
+
+  @include mq-min($bp-xs) {
+    width: 80%;
+  }
 
   @include mq-min($bp-md) {
     width: 70%;
@@ -86,7 +89,10 @@
 
 .container--xxl {
   max-width: px-to-rem($container-xxl);
-  width: 80%;
+
+  @include mq-min($bp-xs) {
+    width: 80%;
+  }
 }
 
 // Flush Container (no padding on sides)

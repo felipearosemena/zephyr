@@ -19,12 +19,13 @@
     transform: translate3d(-100%, 0, 0);
   }
 
-  .woocommerce-checkout & {
+  .woocommerce-checkout:not(.woocommerce-order-received) & {
 
-    @include mq-min($bp-md) {
+    @include mq-min($bp-lg) {
       @include page-wrap-padding;
       margin-top: $bsu*2;
-      width: 40%;
+      width: 33%;
+      max-width: $container-xs;
       left: 0;
       transform: none;
       z-index: 1;

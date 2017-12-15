@@ -7,14 +7,18 @@
  */
 
 form {
+  @include clearfix;
   position: relative;
 }
 
 label {
   @include font-size($form-label-fs, $form-label-lh);
-  display: block;
-  margin-bottom: $bsu/2;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: $bsu*.5;
   cursor: pointer;
+  padding-left: 0;
+
 }
 
 label.tiny-text {
@@ -40,7 +44,7 @@ select,
 textarea {
   height: $base-input-height;
   width: 100%;
-  border: 3px solid $body-color;
+  border: $base-border-width solid $body-color;
   background-color: white;
   padding: $base-input-padding;
   border-radius: 0;
@@ -61,60 +65,58 @@ textarea {
 
 input[type="checkbox"],
 input[type="radio"] {
-  @extend .sr-only;
+  width: 20px;
+  height: 20px;
+  position: relative;
 
-  + label {
-    position: relative;
-    padding-left: $bsu*1.5;
-    line-height: $bsu;
-    display: inline-block;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+  }
 
-    &:before,
-    &:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      box-sizing: border-box;
-      width: $bsu;
-      height: $bsu;
-    }
+  &:before {
+    z-index: 1;
+  }
 
-    &:after {
-      border: 1px solid $body-color;
-    }
+  &:after {
+    border: 2px solid $body-color;
+    background-color: white;
+    z-index: 0;
   }
 }
 
 input[type="checkbox"] {
 
-  + label {
-    @include font-size($base-fs, $base-lh);
-
-    &:before {
-      color: $color-primary;
-      font-family: 'icons';
-      text-align: center;
-    }
+  &:before {
+    color: $color-primary;
+    font-family: 'icons';
+    text-align: center;
+    top: .25em;
+    font-size: .8rem;
   }
 
-  &:checked + label:before {
+  &:checked:before {
     @extend .icon-check;
   }
 }
 
 input[type="radio"] {
-  + label {
-    &:after,
-    &:before {
-      border-radius: 50%;
-    }
 
-    &:before {
-      transform: scale(0.5)
-    }
+  &:after,
+  &:before {
+    border-radius: 50%;
   }
 
-  &:checked ~ label:before {
+  &:before {
+    transform: scale(0.5)
+  }
+
+  &:checked:before {
     background: $color-primary;
   }
 }
@@ -138,17 +140,7 @@ select[multiple] {
   width: 100%;
 
   &:before {
-    @extend .icon-chevron-down;
-    font-size: .6em;
-    pointer-events: none;
-    position: absolute;
-    z-index: 10;
-    right: 0;
-    top: 50%;
-    width: 2.5rem;
-    text-align: center;
-    line-height: $base-input-height;
-    transform: translateY(-50%);
+    @include select-arrow;
   }
 }
 
@@ -215,4 +207,18 @@ select {
   button {
     @include button-icon;
   }
+}
+
+input[type=submit] {
+  @include button-base;
+  color: $body-color;
+  border: $base-border-width solid currentColor;
+
+  &:hover {
+    background-color: $body-color;
+    color: white;
+  }
+}
+
+.button[type=submit] {
 }

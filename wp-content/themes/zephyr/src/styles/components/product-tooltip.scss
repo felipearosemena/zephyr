@@ -47,18 +47,6 @@
 .product-tooltip__image {
   position: relative;
   display: block;
-
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
-  &:before {
-    content: '';
-    padding-bottom: 100%;
-    display: block;
-  }
 }
 
 .product-tooltip__labels {

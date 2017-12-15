@@ -185,6 +185,7 @@
 
 @mixin hover-underline-active($color: false) {
   &:after {
+    content: '';
     transform: scaleX(1);
     transform-origin: 0 50%;
 
@@ -241,6 +242,17 @@
   }
 }
 
+@mixin link-inverse {
+  @include hover-underline;
+  @include hover-underline-active;
+  transition: color $transition-default, background $transition-default;
+
+  &:hover,
+  &:focus {
+    @include hover-underline;
+  }
+}
+
 @mixin path-animation($transition: $transition-default, $active-class: '.section.is-in', $delay-offset: 0) {
 
   path {
@@ -272,6 +284,83 @@
   }
 }
 
+@mixin button-base {
+  @include button-padding;
+  @include font-size($small-fs, $base-lh);
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center;
+  font-family: $body-font-family;
+  min-width: px-to-rem(200px);
+  font-weight: bold; // Important for <button> element
+  cursor: pointer;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  transition: color $transition-fast, background $transition-fast;
+  color: $color-primary;
+  background-color: white;
+  -webkit-tap-highlight-color: transparent;
+  letter-spacing: .025em;
+  position: relative;
+  z-index: 0;
+  text-transform: uppercase;
+  white-space: nowrap; // Important for loading buttons
+
+  i {
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+  @include mq-min($bp-sm) {
+    @include font-size($base-fs, $base-lh);
+  }
+
+  @include mq-max($bp-xs) {
+    width: 100%;
+  }
+
+  &:after,
+  &:before {
+    @include full-cover;
+    content: '';
+    position: absolute;
+    z-index: -1;
+    transition: opacity $transition-default, transform $transition-default;
+  }
+
+  &:before {
+    box-shadow: inset 0 0 0 $base-border-width $color-primary;
+  }
+
+  &:after {
+    @include full-cover;
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    background-color: $color-primary;
+  }
+
+  &:hover {
+
+    &:after {
+      transform: scaleX(1);
+      transform-origin: 0 50%;
+    }
+
+    &:before {}
+  }
+
+  &:hover:not([disabled]):not(.is-disabled),
+  &.is-active {
+    color: white;
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
 
 @mixin button-padding($height: $base-button-height, $lh: px-to-rem($btn-lh), $padding-x: $bsu) {
   padding: ($height - $lh)/2 $padding-x;
@@ -333,4 +422,18 @@
     background-color: $body-color;
     color: white;
   }
+}
+
+@mixin select-arrow {
+  @extend .icon-chevron-down;
+  font-size: .6em;
+  pointer-events: none;
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  top: 50%;
+  width: 2.5rem;
+  text-align: center;
+  line-height: $base-input-height;
+  transform: translateY(-50%);
 }

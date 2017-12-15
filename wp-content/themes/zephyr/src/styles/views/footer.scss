@@ -10,8 +10,9 @@
   position: relative;
   z-index: 200;
 
-  .woocommerce-checkout &,
-  .about & {
+  .woocommerce-checkout:not(.woocommerce-order-received) &,
+  .about &,
+  .single-product & {
     display: none;
   }
 }
