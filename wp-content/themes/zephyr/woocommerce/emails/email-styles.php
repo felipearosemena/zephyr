@@ -181,7 +181,7 @@ h2 {
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 130%;
-	margin: 0 0 18px;
+	margin: 24px 0 18px;
 	text-align: <?php echo is_rtl() ? 'right' : 'left'; ?>;
 }
 
