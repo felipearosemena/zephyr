@@ -10,9 +10,6 @@
 .fs-panes__content {
   padding: $bsu*2 $bsu;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .fs-panes__color {
@@ -24,4 +21,23 @@
 
 .fs-panes__content {
   overflow: auto;
+
+  @include mq-min($bp-sm) {
+    min-width: $container-sm;
+  }
+
+  @include mq-min($bp-lg) {
+    min-width: $container-md;
+  }
+}
+
+.fs-panes__content-table {
+  height: 100%;
+  min-width: 100%;
+  display: table;
+}
+
+.fs-panes__content-cell {
+  display: table-cell;
+  vertical-align: middle;
 }
