@@ -13,6 +13,7 @@ class Woocommerce
     add_action( 'woocommerce_after_single_product', array( &$this, 'woocommerce_after_single_product' ) );
     add_filter( 'woocommerce_thankyou_order_received_text', array( &$this, 'woocommerce_thankyou_order_received_text' ) , 10, 2 );
     add_filter( 'the_title', array( &$this, 'woocommerce_update_title' ), 10, 2 );
+    add_action( 'wp_head', array( &$this, 'redirect_cart'));
 
   } /* __construct() */
 
@@ -64,8 +65,16 @@ class Woocommerce
 
   }
 
-  public function woocommerce_thankyou_order_received_text( $text, $order ) {
+  public function woocommerce_thankyou_order_received_text( $text, $order )
+  {
     return 'Your transaction has been completed and a receipt for your purchase has been emailed to you.';
+  }
+
+  public function redirect_cart()
+  {
+    if(is_cart()) {
+      wp_redirect('/');
+    }
   }
 
 }
