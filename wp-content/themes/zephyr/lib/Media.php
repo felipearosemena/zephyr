@@ -59,7 +59,7 @@ class Media
     add_image_size('card', 320, 320, true);
     add_image_size('card_md', 460, 420, true);
     add_image_size('featured', 960, 540, true);
-    add_image_size('shop_main', 960, 960, true);
+    add_image_size('shop_main', 1280, 1280, true);
     add_image_size('lookbook', 1280 );
 
   } /* init__addImagesSizes() */
