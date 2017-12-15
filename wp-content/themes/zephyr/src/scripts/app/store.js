@@ -99,6 +99,15 @@ const store = {
     const newState = { overlayActive: active }
     newState[propK] = active
 
+    switch(propK) {
+      case 'cartActive' :
+        newState.navOpen = false
+        break
+      case 'navOpen' :
+        newState.cartActive = false
+        break
+    }
+
     this.setState(newState)
   },
 
