@@ -187,13 +187,6 @@
                 "operator": "==",
                 "value": "templates\/home.php"
             }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "lookbook"
-            }
         ]
     ],
     "menu_order": -1,
@@ -204,5 +197,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1510721354
+    "modified": 1513361782
 }
