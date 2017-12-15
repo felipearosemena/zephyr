@@ -10,26 +10,27 @@
       </router-link>
     </div>
     <div class="grid__item w-9-12">
-      <h4 class="label mb-0">
-        <router-link :to="product.path">
-          <span v-on:click="onTitleClick">
-            {{ product.title.rendered }}
-          </span>
-        </router-link>
-      </h4>
-      <div class="tiny-text mb-25" v-if="item.variation && item.variation.attribute_pa_size">
-        Size: {{ item.variation.attribute_pa_size }} <br/>
-      </div>
-      <div class="flex justify-between small-text mt-05">
-        <span v-if="!isCheckout">
-          <select-quantity :onChange="setQuantity" :value="item.quantity">
-          </select-quantity>
+      <div class="flex justify-between">
+        <span>
+          <h4 class="label mb-0 mr-1">
+            <router-link :to="product.path">
+              <span v-on:click="onTitleClick">
+                {{ product.title.rendered }}
+              </span>
+            </router-link>
+          </h4>
+          <div class="tiny-text mb-25" v-if="item.variation && item.variation.attribute_pa_size">
+            Size: {{ item.variation.attribute_pa_size }} <br/>
+          </div>
         </span>
-
-        <span class="align-bottom">
+        <span class="align-center small-text">
           {{ item.line_subtotal | format-currency }}
         </span>
       </div>
+      <span class="inline-block mt-05" v-if="!isCheckout" >
+        <select-quantity :onChange="setQuantity" :value="item.quantity">
+        </select-quantity>
+      </span>
     </div>
   </div>
 </div>
