@@ -24,7 +24,6 @@
   .woocommerce-checkout:not(.woocommerce-order-received) & {
 
     @include mq-min($bp-lg) {
-      @include page-wrap-padding;
       width: 33%;
       max-width: $container-xs;
       left: 0;
