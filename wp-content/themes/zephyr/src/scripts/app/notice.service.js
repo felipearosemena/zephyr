@@ -9,7 +9,7 @@ const NoticeService = new Vue({
 
   methods: {
     getNotices() {
-      apiFetch(Global.api_namespace + '/notices')
+      apiFetch(Global.api_namespace + '/notices?time=' + Date.now())
         .then(res => this.hydrate(res))
     },
 
