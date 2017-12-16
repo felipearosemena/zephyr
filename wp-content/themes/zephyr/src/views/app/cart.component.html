@@ -20,6 +20,11 @@
         </div>
       </div>
 
+      <message v-if="notices.error && notices.error.length" type="error" :closed="false" :onClose="onErrorsClose">
+        <div v-for="notice in notices.error" v-html="notice">
+        </div>
+      </message>
+
       <div v-if="cart.count">
         <ul class="cart-items mt-2 list-plain">
           <li v-for="(item, key) in cart.contents" v-if="products[item.product_id]" class="cart-item">
@@ -40,14 +45,14 @@
 
       </div>
       <div v-else>
-      <p class="lead mt-2 mb-2">You cart is empty</p>
+        <p class="lead mt-2 mb-2">You cart is empty</p>
 
-      <a href="/shop" class="btn">
-        <span v-on:click="toggleCart">
-          Go to shop
-        </span>
-      </a>
-    </div>
+        <a href="/shop" class="btn">
+          <span v-on:click="toggleCart">
+            Go to shop
+          </span>
+        </a>
+      </div>
     </div>
 
   </div>
