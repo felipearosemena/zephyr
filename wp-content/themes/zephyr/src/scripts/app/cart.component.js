@@ -4,19 +4,23 @@ import CartService from 'app/cart.service'
 
 const Cart = {
   template: require('templates/cart.component.html'),
-  props: [ 'cart', 'is-active', 'is-loading', 'is-checkout', 'products' ],
+  props: [ 'cart', 'is-active', 'is-loading', 'is-checkout', 'products', 'notices' ],
   mounted() {},
   data() {
     return {
       subtotal: '',
     }
   },
-  watch: {
-    isLoading() {}
-  },
   methods: {
     toggleCart() {
       store.toggleCart()
+    },
+    onErrorsClose() {
+      store.setState({
+        notices: Object.assign({}, store.notices, {
+          error: []
+        })
+      })
     }
   }
 }
