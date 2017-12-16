@@ -1622,12 +1622,12 @@ input[type=submit] {
     -webkit-transform-origin: 100% 50%;
             transform-origin: 100% 50%;
     background-color: #ED9FA8; }
-  input[type=submit]:hover:after {
+  input[type=submit]:hover:after, input[type=submit]:focus:after {
     -webkit-transform: scaleX(1);
             transform: scaleX(1);
     -webkit-transform-origin: 0 50%;
             transform-origin: 0 50%; }
-  input[type=submit]:hover:not([disabled]):not(.is-disabled), input[type=submit].is-active {
+  input[type=submit]:hover:not([disabled]):not(.is-disabled), input[type=submit]:focus:not([disabled]):not(.is-disabled), input[type=submit].is-active {
     color: white; }
   input[type=submit]:active, input[type=submit]:focus {
     outline: none; }
@@ -1901,12 +1901,12 @@ figure {
     -webkit-transform-origin: 100% 50%;
             transform-origin: 100% 50%;
     background-color: #ED9FA8; }
-  .btn:hover:after, .btn-circle:hover:after, .btn-toggle:hover:after, .tab-toggle:hover:after {
+  .btn:hover:after, .btn-circle:hover:after, .btn-toggle:hover:after, .tab-toggle:hover:after, .btn:focus:after, .btn-circle:focus:after, .btn-toggle:focus:after, .tab-toggle:focus:after {
     -webkit-transform: scaleX(1);
             transform: scaleX(1);
     -webkit-transform-origin: 0 50%;
             transform-origin: 0 50%; }
-  .btn:hover:not([disabled]):not(.is-disabled), .btn-circle:hover:not([disabled]):not(.is-disabled), .btn-toggle:hover:not([disabled]):not(.is-disabled), .tab-toggle:hover:not([disabled]):not(.is-disabled), .is-active.btn, .is-active.btn-circle, .is-active.btn-toggle, .is-active.tab-toggle {
+  .btn:hover:not([disabled]):not(.is-disabled), .btn-circle:hover:not([disabled]):not(.is-disabled), .btn-toggle:hover:not([disabled]):not(.is-disabled), .tab-toggle:hover:not([disabled]):not(.is-disabled), .btn:focus:not([disabled]):not(.is-disabled), .btn-circle:focus:not([disabled]):not(.is-disabled), .btn-toggle:focus:not([disabled]):not(.is-disabled), .tab-toggle:focus:not([disabled]):not(.is-disabled), .is-active.btn, .is-active.btn-circle, .is-active.btn-toggle, .is-active.tab-toggle {
     color: white; }
   .btn:active, .btn-circle:active, .btn-toggle:active, .tab-toggle:active, .btn:focus, .btn-circle:focus, .btn-toggle:focus, .tab-toggle:focus {
     outline: none; }
@@ -1973,6 +1973,13 @@ figure {
   padding: 0.625rem; }
   .btn-close:hover, .btn-close:focus, .btn-close:active {
     background: transparent; }
+  .message .btn-close, .woocommerce-error .btn-close,
+  .woocommerce-Error .btn-close,
+  .woocommerce-message .btn-close,
+  .woocommerce-Message .btn-close, .woocommerce-thankyou-order-received .btn-close {
+    top: 0;
+    right: 0;
+    font-size: 14px; }
   .btn-close i {
     display: block;
     width: 1em;
@@ -2712,7 +2719,10 @@ figure {
 .woocommerce-message,
 .woocommerce-Message, .woocommerce-thankyou-order-received {
   zoom: 1;
-  padding: 1.25rem;
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.42857;
+  position: relative;
   border: 2px solid;
   margin: 1.25rem 0; }
   .message:before, .woocommerce-error:before,
@@ -2734,6 +2744,19 @@ figure {
   .woocommerce-message > :last-child,
   .woocommerce-Message > :last-child, .woocommerce-thankyou-order-received > :last-child {
     margin-bottom: 0; }
+  .message a[href*="/cart"], .woocommerce-error a[href*="/cart"],
+  .woocommerce-Error a[href*="/cart"],
+  .woocommerce-message a[href*="/cart"],
+  .woocommerce-Message a[href*="/cart"], .woocommerce-thankyou-order-received a[href*="/cart"] {
+    display: none; }
+
+.message--close {
+  padding-right: 1.875rem; }
+
+.message__close {
+  position: absolute;
+  top: 0.3125rem;
+  right: 0.625rem; }
 
 .message--status, .woocommerce-message,
 .woocommerce-Message {
@@ -3669,11 +3692,11 @@ figure {
  *
  */
 .page-wrap {
-  padding-top: 40px;
+  padding-top: 60px;
   background-color: white; }
   @media only screen and (min-width: 800px) {
     .page-wrap {
-      padding-top: 60px; } }
+      padding-top: 80px; } }
   @media only screen and (min-width: 1020px) {
     .woocommerce-checkout:not(.woocommerce-order-received) .page-wrap {
       margin-left: 33%; } }
@@ -3728,11 +3751,15 @@ figure {
   margin: 1.25rem auto; }
 
 .single-item {
-  min-height: -webkit-calc(100vh - 100px);
-  min-height: calc(100vh - 100px);
+  min-height: -webkit-calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   overflow: hidden;
   -webkit-perspective: 3000px;
           perspective: 3000px; }
+  @media only screen and (min-width: 800px) {
+    .single-item {
+      min-height: -webkit-calc(100vh - 80px);
+      min-height: calc(100vh - 80px); } }
 
 .single-item p,
 .single-price {
@@ -4209,7 +4236,7 @@ figure {
             transform: translate3d(-100%, 0, 0); }
   @media only screen and (min-width: 1020px) {
     .woocommerce-checkout:not(.woocommerce-order-received) .cart-view {
-      padding-top: 40px;
+      padding-top: 60px;
       width: 33%;
       max-width: 480px;
       left: 0;
@@ -4220,7 +4247,7 @@ figure {
       border-right: 2px solid #f0f0f0; } }
   @media only screen and (min-width: 1020px) and (min-width: 800px) {
     .woocommerce-checkout:not(.woocommerce-order-received) .cart-view {
-      padding-top: 60px; } }
+      padding-top: 80px; } }
 
 .cart-view__close {
   position: absolute;
