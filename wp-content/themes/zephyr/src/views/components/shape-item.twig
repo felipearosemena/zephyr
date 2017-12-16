@@ -1,7 +1,7 @@
 {% set image = TimberImage(term.meta('thumbnail_id')) %}
 
 <shape-item
-  href="{{ shop_path }}?{{ term.taxonomy }}={{ term.slug }}"
+  href="{{ term.path }}"
    :term='{{ term|json_encode }}'
    label="{{ label }}">
 

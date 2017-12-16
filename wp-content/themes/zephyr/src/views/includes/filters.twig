@@ -1,4 +1,4 @@
-<filters :store="store" :query="store.state.query">
+<filters v-bind:key="'filters'" :store="store" :query="store.state.query">
   <div slot-scope="{ toggleVisibility, applyFilter, hasFilters, clearFilters, currentFilters, search }">
 
     <div class="filters-toggle-container">
@@ -19,57 +19,56 @@
     <transition-group name="slide-down">
       <div key="filters" class="filters" v-if="state.filtersActive">
         <div class="container">
-          <form action="" @submit.prevent="applyFilter">
-
-            <div class="grid">
-              <div class="grid__item w-5-12">
-                <label class="weight-bold">Shape</label>
-                {% for shape in global_info.filter_shape %}
+          <div class="grid">
+            <div class="grid__item w-12-12 w-md-6-12 w-lg-5-12">
+              {# <label class="weight-bold">Shape</label> #}
+              {% for shape in global_info.filter_shape %}
                 {% set term = TimberTerm(shape.term_id) %}
-
-                <div class="checkbox-shape">
+                <a href="{{ term.path }}" class="checkbox-shape">
                   <input id="filter-shape-{{ shape.slug }}"
-                    type="checkbox"
+                    type="radio"
                     name="{{ shape.taxonomy }}"
                     v-model="currentFilters.{{ shape.taxonomy }}"
                     value="{{ shape.slug }}">
                   <label for="filter-shape-{{ shape.slug }}">
-                      <span class="filter-shape" data-title="{{ term.name }}">
-                        {% set shapeFile = shape.name == 'Basics' ? 'BasicsB' : shape.name %}
-                        {% include 'components/shapes/' ~ shapeFile ~ '.svg' %}
-                      </span>
+                    <span class="filter-shape" data-title="{{ term.name }}">
+                      {% set shapeFile = shape.name == 'Basics' ? 'BasicsB' : shape.name %}
+                      {% include 'components/shapes/' ~ shapeFile ~ '.svg' %}
+                    </span>
                   </label>
-                </div>
-                {% endfor %}
-              </div>
-
-              <div class="grid__item w-5-12">
-                <label class="weight-bold">Type</label>
-                {% for type in global_info.filter_type %}
-                <div class="checkbox-plain">
-                  <input id="filter-shape-{{ type.slug }}"
-                    type="checkbox"
-                    name="{{ type.taxonomy }}"
-                    v-model="currentFilters.{{ type.taxonomy }}"
-                    value="{{ type.slug }}">
-                  <label for="filter-shape-{{ type.slug }}">{{ type.name }}</label>
-                </div>
-                {% endfor %}
-              </div>
-
-              <div class="grid__item w-2-12">
-                <p class="mb-05"><button class="btn btn--sm" type="submit">Apply</button></p>
-                <p class="mb-0">
-                  <button
-                    class="btn-text btn--negative small-text"
-                    v-if="hasFilters"
-                    @click.prevent="clearFilters">
-                    Clear Filters
-                    <i style="font-size:.6em" class="icon-close"></i>
-                  </button>
-                </p>
-              </div>
+                </a>
+              {% endfor %}
             </div>
+
+            {# <div class="grid__item w-12-12 w-md-6-12 w-lg-5-12">
+              <label class="weight-bold">Type</label>
+              {% for type in global_info.filter_type %}
+              <div class="checkbox-plain">
+                <input id="filter-shape-{{ type.slug }}"
+                  type="checkbox"
+                  name="{{ type.taxonomy }}"
+                  v-model="currentFilters.{{ type.taxonomy }}"
+                  value="{{ type.slug }}">
+                <label for="filter-shape-{{ type.slug }}">{{ type.name }}</label>
+              </div>
+              {% endfor %}
+            </div> #}
+
+            {# <div class="grid__item w-2-12">
+              <p class="mb-05"><button class="btn btn--sm" type="submit">Apply</button></p>
+              <p class="mb-0">
+                <button
+                  class="btn-text btn--negative small-text"
+                  v-if="hasFilters"
+                  @click.prevent="clearFilters">
+                  Clear Filters
+                  <i style="font-size:.6em" class="icon-close"></i>
+                </button>
+              </p>
+            </div> #}
+          </div>
+          <form action="" @submit.prevent="applyFilter">
+
 
           </form>
         </div>

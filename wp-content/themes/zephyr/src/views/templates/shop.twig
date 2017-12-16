@@ -4,18 +4,24 @@
 
   <section class="section">
 
-    {% include 'includes/filters.twig' %}
-
     <div class="container">
+
+      {% include 'includes/filters.twig' %}
 
       <shop-grid :products="state.productArray" :query="state.query">
       </shop-grid>
 
-      {% do action('woocommerce_after_shop_loop') %}
-      {% do action('woocommerce_after_main_content') %}
+      <div v-bind:key="'woocommerce_content'">
+        {% do action('woocommerce_after_shop_loop') %}
+        {% do action('woocommerce_after_main_content') %}
+      </div>
 
     </div>
 
   </section>
 
 {% endblock  %}
+
+{% block bottom %}
+  {% include 'includes/hero-color.twig' %}
+{% endblock %}
