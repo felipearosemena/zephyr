@@ -24,7 +24,9 @@ const CartItem = {
   },
   mounted() {},
   data() {
-    return {}
+    return {
+      quantity: this.item.quantity
+    }
   },
   methods: {
     remove() {
@@ -35,9 +37,13 @@ const CartItem = {
         })
     },
     setQuantity(e) {
-      this.isRemoving = true
+
+      this.isSettingQuantity = true
+      this.quantity = e.target.value
+
       CartService.setQuantity(this.itemKey, e.target.value)
         .then(() => {
+          this.quantity = this.item.quantity
           this.isSettingQuantity = false
         })
     }

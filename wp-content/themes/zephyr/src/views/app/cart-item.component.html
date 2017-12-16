@@ -24,7 +24,7 @@
               Size: {{ item.variation.attribute_pa_size }}
             </span> <br/>
             <span v-if="isCheckout">
-              Qty: {{ item.quantity}}
+              Qty: {{ quantity }}
             </span>
           </p>
 
@@ -34,7 +34,7 @@
         </strong>
       </div>
       <span class="inline-block mt-05" v-if="!isCheckout" >
-        <select-quantity :onChange="setQuantity" :value="item.quantity">
+        <select-quantity :onChange="setQuantity" :value="quantity">
         </select-quantity>
       </span>
     </div>
