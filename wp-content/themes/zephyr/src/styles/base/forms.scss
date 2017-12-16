@@ -154,6 +154,10 @@ select {
   vertical-align: middle;
   margin-right: $bsu/2;
 
+  input {
+    @extend .sr-only;
+  }
+
   input + label {
     padding-left: 0;
     font-weight: normal;
@@ -176,6 +180,7 @@ select {
 }
 
 .checkbox-shape {
+
   label {
     &:before,
     &:after {

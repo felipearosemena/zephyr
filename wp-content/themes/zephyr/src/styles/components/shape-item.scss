@@ -116,16 +116,21 @@
   }
 
   .grid__item:nth-child(odd) & {
-    left: -$bsu*1.5;
+    left: -5%;
   }
 
   .grid__item:nth-child(even) & {
-    right: -$bsu*3
+    right: 5%;
   }
 
   .grid__item .shape-item--pear & {
-    left: 14%;
-    bottom: 14%;
+    left: 12%;
+    bottom: 5%;
+
+    @include mq-min($bp-md) {
+      left: 14%;
+      bottom: 14%;
+    }
   }
 
   .grid__item .shape-item--oval & {
@@ -134,7 +139,7 @@
 
   .grid__item .shape-item--basics & {
     top: 12.5%;
-    right: -$bsu*4;
+    right: -5%;
   }
 
 }
