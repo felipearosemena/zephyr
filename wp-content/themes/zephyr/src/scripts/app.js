@@ -71,10 +71,6 @@ const methods = {
         store.toggleProductSlider(false)
       }
 
-      if(from.path.indexOf('/product-category/') == 0) {
-        store.setQuery({ product_cat: [ to.params.slug]  })
-      }
-
       store.closeFlyouts()
 
       this.routerBeforeEach(to, from, next)
@@ -296,6 +292,10 @@ const options = {
     '$route': function(newRoute, oldRoute) {
 
       const isShop = newRoute.path.indexOf('shop') > -1
+
+      if(newRoute.path.indexOf('/product-category/') == 0) {
+        store.setQuery({ product_cat: [ newRoute.params.slug]  })
+      }
 
       if(isShop) {
         this.setQuery()
