@@ -9,9 +9,9 @@
           </button>
         </div>
         <div class="grid__item w-6-12 w-xl-12-12">
-          <button class="btn-text color-secondary mt-05 mb-05" v-if="hasFilters" @click="clearFilters">
+          <router-link to="/shop" class="btn-text color-secondary mt-05 mb-05" v-if="store.state.query.product_cat">
             <b>All Products</b><i class="icon-caret-right"></i>
-          </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -20,11 +20,11 @@
       <div key="filters" class="filters" v-if="state.filtersActive">
         <div class="container">
           <div class="grid">
-            <div class="grid__item w-12-12 w-md-6-12 w-lg-5-12">
-              {# <label class="weight-bold">Shape</label> #}
+            <div class="grid__item w-12-12 text-center">
+              <p class="mb-05"><label class="weight-bold">Choose your shape</label></p>
               {% for shape in global_info.filter_shape %}
                 {% set term = TimberTerm(shape.term_id) %}
-                <a href="{{ term.path }}" class="checkbox-shape">
+                <a href="{{ term.path }}" class="checkbox-shape remove-underline">
                   <input id="filter-shape-{{ shape.slug }}"
                     type="radio"
                     name="{{ shape.taxonomy }}"
