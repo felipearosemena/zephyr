@@ -2697,8 +2697,8 @@ figure {
   transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
   .image-zoom.is-active .image-zoom__container {
-    -webkit-transform: scale(1.25);
-            transform: scale(1.25); }
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5); }
 
 /**
  *

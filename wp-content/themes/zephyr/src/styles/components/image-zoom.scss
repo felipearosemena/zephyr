@@ -9,6 +9,6 @@
   transition: transform $transition-slow;
 
   .image-zoom.is-active & {
-    transform: scale(1.25);
+    transform: scale(1.5);
   }
 }
