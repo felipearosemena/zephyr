@@ -24,6 +24,7 @@ import 'app/shape-item.component'
 import 'app/product-tooltip.component'
 import 'app/back-button.component'
 import 'app/select-quantity.component'
+import 'app/message.component'
 import 'app/format-currency.filter'
 
 import { arrayToObj, mapObject, delegate, serializeObject, isCheckout } from 'modules/utils'
