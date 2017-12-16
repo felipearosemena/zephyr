@@ -7,9 +7,25 @@
  */
 
 .message {
-  @include island($bsu);
+  @include island($bsu/2);
+  @include font-size($small-fs, $small-lh);
+  position: relative;
   border: $base-border-width solid;
   margin: $bsu 0;
+
+  a[href*="/cart"] {
+    display: none;
+  }
+}
+
+.message--close {
+  padding-right: $bsu*1.5;
+}
+
+.message__close {
+  position: absolute;
+  top: $bsu/4;
+  right: $bsu/2;
 }
 
 // Style for message boxes

@@ -341,7 +341,8 @@
     background-color: $color-primary;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
 
     &:after {
       transform: scaleX(1);
@@ -352,6 +353,7 @@
   }
 
   &:hover:not([disabled]):not(.is-disabled),
+  &:focus:not([disabled]):not(.is-disabled),
   &.is-active {
     color: white;
   }
@@ -367,10 +369,10 @@
 }
 
 @mixin page-wrap-padding {
-  padding-top: $logo-width * $logo-ratio;
+  padding-top: $logo-width * $logo-ratio + 20px;
 
   @include mq-min($bp-md) {
-    padding-top: $logo-width-lg * $logo-ratio;
+    padding-top: $logo-width-lg * $logo-ratio + 20px;
   }
 }
 
@@ -379,6 +381,14 @@
 
   @include mq-min($bp-md) {
     top: $logo-width-lg * $logo-ratio +  20px;
+  }
+}
+
+@mixin full-screen-height {
+  min-height: calc(100vh - #{$logo-width * $logo-ratio + 20px});
+
+  @include mq-min($bp-md) {
+    min-height: calc(100vh - #{$logo-width-lg * $logo-ratio +  20px});
   }
 }
 

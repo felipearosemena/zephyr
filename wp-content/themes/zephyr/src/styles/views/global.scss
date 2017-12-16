@@ -69,10 +69,8 @@
   margin: $bsu auto;
 }
 
-
-
 .single-item {
-  min-height: calc(100vh - 100px);
+  @include full-screen-height;
   overflow: hidden;
   perspective: 3000px;
 }

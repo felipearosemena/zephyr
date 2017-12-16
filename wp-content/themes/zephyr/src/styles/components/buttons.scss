@@ -90,6 +90,12 @@
   transition: all $transition-bounce;
   padding: $bsu/2;
 
+  .message & {
+    top: 0;
+    right: 0;
+    font-size: 14px;
+  }
+
   i {
     display: block;
     width: 1em;
