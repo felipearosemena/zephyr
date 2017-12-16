@@ -22,6 +22,11 @@ const CartItem = {
       type: Boolean
     }
   },
+  watch: {
+    item() {
+      this.quantity = this.item.quantity
+    }
+  },
   mounted() {},
   data() {
     return {
