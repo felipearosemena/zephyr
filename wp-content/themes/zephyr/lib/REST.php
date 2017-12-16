@@ -11,6 +11,7 @@ use WP_REST_Posts_Controller;
 use WC_REST_Products_Controller;
 use WP_REST_Response;
 use WC_Product_Variable;
+use WC_Data_Store;
 
 
 class REST {
@@ -122,6 +123,11 @@ class REST {
       'callback' => array( &$this, 'get_cart' )
     ));
 
+    register_rest_route( $this->api_namespace(), '/notices', array(
+      'methods' => WP_REST_Server::READABLE,
+      'callback' => array( &$this, 'get_notices' )
+    ));
+
   }
 
   public function register_fields()
@@ -155,10 +161,49 @@ class REST {
     ]);
   }
 
+  /**
+    * Find matching product variation
+    *
+    * @param WC_Product $product
+    * @param array $attributes
+    * @return int Matching variation ID or 0.
+    */
+  public function find_matching_product_variation($product_id, $attributes) {
+
+    $product = wc_get_product($product_id);
+
+    foreach( $attributes as $key => $value ) {
+        if( strpos( $key, 'attribute_' ) === 0 ) {
+            continue;
+        }
+
+        unset( $attributes[ $key ] );
+        $attributes[ sprintf( 'attribute_%s', $key ) ] = $value;
+    }
+
+    if( class_exists('WC_Data_Store') ) {
+
+        $data_store = WC_Data_Store::load( 'product' );
+        return $data_store->find_matching_product_variation( $product, $attributes );
+
+    } else {
+
+        return $product->get_matching_variation( $attributes );
+
+    }
+
+  }
+
   public function add_to_cart($params)
   {
 
-    return $this->cartPostResponse(wc()->cart->add_to_cart($params['id'], $params['quantity'], false, $params['variations']));
+    if(isset($params['variations'])) {
+      $variation_id = $this->find_matching_product_variation($params['id'], $params['variations']);
+    } else {
+      $variation_id = false;
+    }
+
+    return $this->cartPostResponse(wc()->cart->add_to_cart($params['id'], $params['quantity'], $variation_id, $params['variations']));
 
   }
 
@@ -172,14 +217,24 @@ class REST {
   public function set_quantity($params)
   {
 
-    return $this->cartPostResponse(wc()->cart->set_quantity($params['key'], $params['qty']));
+    $original_quantity = wc()->cart->cart_contents[$params['key']]['quantity'];
+    wc()->cart->set_quantity($params['key'], $params['qty']);
+    $valid = wc()->cart->check_cart_items();
+
+    if(!$valid) {
+      wc()->cart->set_quantity($params['key'], $original_quantity);
+    }
+
+    return $this->cartPostResponse($valid);
 
   }
 
   public function cartPostResponse($content)
   {
+
     $response = new WP_REST_Response($content, 200);
     $response->header('nonce', $this->getNonce());
+
     return $response;
   }
 
@@ -194,6 +249,13 @@ class REST {
 
     return $this->cartPostResponse($cart);
 
+  }
+
+  public function get_notices()
+  {
+    $response = new WP_REST_Response(wc_get_notices(), 200);
+    wc_clear_notices();
+    return $response;
   }
 
   public function get_product_variations($object)
