@@ -3,23 +3,37 @@ import Vue from 'vue'
 const SelectQuantity = {
   template: `
     <div class="select-wrapper select-quantity">
-      <select v-on:change="onChange" :name="name">
-        <option v-for="n in 9" :selected="value == n">{{ n }}</option>
-        <option v-if="value > 9" selected>{{ value }}</option>
+      <select v-on:change="onChange" :name="name" v-model="selected">
+        <option v-for="n in count" :value="n">{{ n }}</option>
       </select>
     </div>
   `,
+  data() {
+    return {
+      count: 5,
+      selected: this.value
+    }
+  },
+  watch: {
+    value() {
+      this.selected = this.value
+    }
+  },
   props: {
     onChange: {
       default: () => {},
       type: Function
     },
-    value: {
-      default: '0',
-    },
     name: {
       type: String
     },
+    refresh: {
+      type: Boolean
+    },
+    value: {
+      type: String,
+      default: '1'
+    }
   }
 }
 
