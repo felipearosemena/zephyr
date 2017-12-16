@@ -3892,6 +3892,10 @@ figure {
     .single-product-slider.is-active {
       -webkit-transform: translate3d(35.75%, 0, 0);
               transform: translate3d(35.75%, 0, 0); } }
+  @media only screen and (min-width: 1020px) {
+    .single-product-slider.is-active {
+      -webkit-transform: translate3d(50%, 0, 0);
+              transform: translate3d(50%, 0, 0); } }
 
 /**
  *
