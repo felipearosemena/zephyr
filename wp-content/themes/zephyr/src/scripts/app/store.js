@@ -18,6 +18,7 @@ const store = {
     cart: CartService.cart,
     cartActive: false,
     cartLoading: true,
+    notices: {},
     isCheckout: isCheckout(),
     products: {},
     productArray: [],
