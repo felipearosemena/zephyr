@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { eventBusFactory } from 'modules/eventBus'
 
 import store from 'app/store'
+import NoticeService from 'app/notice.service'
 import { apiFetch } from 'modules/load'
 import { mapObject, arrayToObj } from 'modules/utils'
 
@@ -18,7 +19,10 @@ const CartService = new Vue({
     post(endpoint, params = {}) {
       return apiFetch(endpoint,  'post', params)
         .then(res => store.updateNonce(res.headers.get('nonce')))
-        .then(res => this.getCart())
+        .then(res => {
+          NoticeService.getNotices()
+          return this.getCart()
+        })
     },
 
     addToCart(id, params = {}) {
