@@ -10,13 +10,23 @@ const SelectQuantity = {
   `,
   data() {
     return {
-      count: 5,
-      selected: this.value
+      selected: this.value,
+      min: 5
     }
   },
   watch: {
     value() {
       this.selected = this.value
+    }
+  },
+  computed: {
+    count() {
+      return this.getCount()
+    }
+  },
+  methods: {
+    getCount() {
+      return (this.value && this.value > this.min) ? this.value : this.min
     }
   },
   props: {
@@ -31,7 +41,6 @@ const SelectQuantity = {
       type: Boolean
     },
     value: {
-      type: String,
       default: '1'
     }
   }
