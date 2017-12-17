@@ -95,7 +95,11 @@
 .grid--shapes {
 
   .grid__item {
-    margin-bottom: $bsu*4;
+    margin-bottom: $bsu*2;
+
+    @include mq-min($bp-md) {
+      margin-bottom: $bsu*4;
+    }
 
     &:last-child {
       margin-bottom: 0;

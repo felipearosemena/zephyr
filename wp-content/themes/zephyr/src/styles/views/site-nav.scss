@@ -60,6 +60,10 @@
 
   li {
     margin-bottom: 1rem;
+
+    .mobile & {
+      transition: none !important;
+    }
   }
 
   a:hover,

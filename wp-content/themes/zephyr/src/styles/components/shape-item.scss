@@ -57,7 +57,7 @@
 }
 
 .shape-item__icon {
-  position: absolute;
+  // position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -78,7 +78,7 @@
   }
 
   .shape-outline {
-    opacity: 0;
+    // opacity: 0;
   }
 
   .clip-outline {
@@ -103,7 +103,11 @@
   .shape-item--cushion &,
   .shape-item--basics &
    {
-    top: 22.5%;
+    top: 15%;
+
+    @include mq-min($bp-md) {
+      top: 22.5%;
+    }
   }
 
   .shape-item--emerald & {
@@ -116,11 +120,19 @@
   }
 
   .grid__item:nth-child(odd) & {
-    left: -5%;
+    left: -12%;
+
+    @include mq-min($bp-md) {
+      left: -5%;
+    }
   }
 
   .grid__item:nth-child(even) & {
-    right: 5%;
+    right: -12%;
+
+    @include mq-min($bp-md) {
+      right: -5%;
+    }
   }
 
   .grid__item .shape-item--pear & {
@@ -161,9 +173,10 @@
 .shape-item__img {
   margin-bottom: 0;
   transition: transform $transition-default;
-  position: relative;
+  position: absolute;
   z-index: -1;
   overflow: hidden;
+  display: none;
   transform: scale(0.99);
 
   .shape-item.is-hovered &,
