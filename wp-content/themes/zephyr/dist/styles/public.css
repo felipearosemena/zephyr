@@ -2481,8 +2481,9 @@ figure {
   .grid--shapes .grid__item:last-child {
     margin-bottom: 0; }
 
-.grid--shapes .grid__item:nth-child(2) {
-  margin-top: 15rem; }
+@media only screen and (min-width: 800px) {
+  .grid--shapes .grid__item:nth-child(2) {
+    margin-top: 15rem; } }
 
 .grid--shapes .grid__item:nth-child(2n) {
   float: right; }

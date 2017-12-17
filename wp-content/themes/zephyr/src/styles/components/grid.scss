@@ -102,8 +102,10 @@
     }
   }
 
-  .grid__item:nth-child(2) {
-    margin-top: $bsu*12;
+  @include mq-min($bp-md) {
+    .grid__item:nth-child(2) {
+      margin-top: $bsu*12;
+    }
   }
 
   .grid__item:nth-child(2n) {
