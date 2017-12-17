@@ -9,13 +9,11 @@
       <div class="container container--md container--flush">
 
         {% if post.hero_content %}
-          <p class="lead">{{ post.get_field('hero_content') }}</p>
+          <p class="lead mb-2">{{ post.get_field('hero_content') }}</p>
         {% endif %}
 
         {% if post.hero_link %}
-          <p>
-            <a href="{{ post.get_field('hero_link') }}" class="btn">{{ post.hero_link_label|default('Learn More') }}</a>
-          </p>
+          <a href="{{ post.get_field('hero_link') }}" class="btn">{{ post.hero_link_label|default('Learn More') }}</a>
         {% endif %}
 
       </div>
