@@ -1,4 +1,7 @@
+{% set hero_link = hero_link|default(post.get_field('hero_link')) %}
+{% set hero_link_label = hero_link_label|default(post.get_field('hero_link_label')) %}
 
+{% if hero_link or post.hero_title %}
 <div class="container container--full">
   <section id="hero" class="hero hero--secondary">
 
@@ -16,31 +19,13 @@
           <p class="lead mb-1">{{ post.hero_content|wpautop }}</p>
           {% endif %}
 
-          {% if hero_link|default(post.hero_link) %}
-            <a href="{{ hero_link|default(post.get_field('hero_link')) }}" class="btn btn--body">{{ post.hero_link_label|default(hero_label) }}</a>
-          {% endif %}
+          <a href="{{ hero_link }}" class="btn btn--body">{{ hero_link_label }}</a>
 
         </div>
       </div>
 
     </div>
 
-    {% if post.hero_add_video %}
-    <video class="hero__video" autoplay loop>
-      <source src="{{ post.get_field('hero_video_webm').url }}" type="video/webm">
-        <source src="{{ post.get_field('hero_video_mp4').url }}" type="video/mp4">
-        </video>
-        {% endif %}
-
-        {#
-        The Background Image Element should stay after the video element,
-        that way we can use CSS to hide the background image, preventing it being loaded, when the video is visible.
-        #}
-        {% if post.hero_background %}
-        <div id="hero-bg" class="hero__bg">
-          {{ macros.hero_bg('hero-bg', post.hero_background) }}
-        </div>
-        {% endif %}
-
-      </section>
+  </section>
 </div>
+{% endif %}
