@@ -1,17 +1,16 @@
 .cart-view {
+  @include full-screen-height;
+  @include page-wrap-offset;
   position: fixed;
   z-index: 300;
   top: 0;
   left: 100%;
-  height: 100%;
   width: 100%;
   max-width: px-to-rem($container-xs);
   background-color: white;
   padding: $bsu 0;
   transition: transform $transition-default;
   overflow: auto;
-
-  @include page-wrap-offset();
 
   @include mq-min($bp-lg) {
     padding: $bsu*1.5 0;
@@ -25,7 +24,6 @@
   .woocommerce-checkout:not(.woocommerce-order-received) & {
 
     @include mq-min($bp-lg) {
-      @include page-wrap-padding;
       width: 33%;
       max-width: $container-xs;
       left: 0;

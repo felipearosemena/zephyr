@@ -7,6 +7,7 @@
 .page-wrap {
   @include page-wrap-padding;
   background-color: white;
+  overflow: hidden;
 
   .woocommerce-checkout:not(.woocommerce-order-received) & {
     @include mq-min($bp-lg) {
@@ -45,6 +46,7 @@
 
 .page-wrap__inner {
   transition: transform $transition-default;
+  min-height: calc(100vh - #{$bsu*5});
 
   .page-wrap.is-nav-active & {
     transform: translate3d($site-nav-width/2, 0, 0);
@@ -184,6 +186,10 @@
   &.is-active {
     @include mq-min($bp-md) {
       transform: translate3d(35.75%, 0 , 0);
+    }
+
+    @include mq-min($bp-lg) {
+      transform: translate3d(50%, 0 , 0);
     }
   }
 }

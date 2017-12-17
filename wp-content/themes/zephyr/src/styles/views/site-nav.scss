@@ -25,6 +25,7 @@
 .site-nav__inner {
   display: block;
   padding-top: px-to-rem($base-lh-lg);
+  @include full-screen-height;
 }
 
 .site-nav__top {

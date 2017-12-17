@@ -1,20 +1,23 @@
-{% if post.hero_title %}
+
 <div class="container container--full">
   <section id="hero" class="hero hero--secondary">
 
     <div class="hero__body">
 
       <div class="container container--lg">
-        <h1 class="h2">{{ post.hero_title }}</h1>
+
+        {% if post.hero_title %}
+          <h1 class="h2">{{ post.hero_title }}</h1>
+        {% endif %}
 
         <div class="container container--xs container--flush">
 
           {% if post.hero_content %}
-          <p class="lead mb-1">{{ post.get_field('hero_content') }}</p>
+          <p class="lead mb-1">{{ post.hero_content|wpautop }}</p>
           {% endif %}
 
-          {% if post.hero_link %}
-          <a href="{{ post.get_field('hero_link') }}" class="btn btn--body">{{ post.hero_link_label|default('Learn More') }}</a>
+          {% if hero_link|default(post.hero_link) %}
+            <a href="{{ hero_link|default(post.get_field('hero_link')) }}" class="btn btn--body">{{ post.hero_link_label|default(hero_label) }}</a>
           {% endif %}
 
         </div>
@@ -41,4 +44,3 @@
 
       </section>
 </div>
-{% endif %}

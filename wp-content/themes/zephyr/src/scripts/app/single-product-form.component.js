@@ -16,7 +16,7 @@ const SingleProductForm = {
               <h3>Size Chart</h3>
             </div>
             <div class="grid__item w-12-12 w-sm-8-12">
-              <p class="mt-05">Use this chart to help you figure out what size is your finger (I'm looking at you sausage fingerz).</p>
+              <p class="mt-05">Use this chart to help determine your ring size.</p>
             </div>
 
             <div class="grid__item w-12-12">

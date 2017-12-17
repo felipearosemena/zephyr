@@ -54,6 +54,13 @@ const methods = {
         }
       },
       {
+        path: '/product-category/:slug',
+        beforeEnter(to, from, next) {
+          store.getAllProducts()
+            .then(next)
+        },
+      },
+      {
         path: '*'
       }
     ])
@@ -132,9 +139,10 @@ const methods = {
 
   finalizeRouteTransition(to, html) {
 
-    this.setCurrentView(html)
     this.updateDocumentTitle(html)
     this.updateBodyClass(html)
+    this.setCurrentView(html)
+
     store.cacheResponse(to.path, html)
 
     setTimeout(() => {
@@ -247,8 +255,8 @@ const options = {
   beforeMount() {
 
     this.setupRoutes()
-    this.setCurrentView(this.$el.innerHTML)
     this.updateBodyClass(this.$el.innerHTML)
+    this.setCurrentView(this.$el.innerHTML)
     this.bindGlobalEvents()
 
     this.CartService.subscribe('cart-fetched', (cart, res) => {
@@ -284,6 +292,10 @@ const options = {
     '$route': function(newRoute, oldRoute) {
 
       const isShop = newRoute.path.indexOf('shop') > -1
+
+      if(newRoute.path.indexOf('/product-category/') == 0) {
+        store.setQuery({ product_cat: [ newRoute.params.slug]  })
+      }
 
       if(isShop) {
         this.setQuery()

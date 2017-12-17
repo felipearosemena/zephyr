@@ -24,12 +24,17 @@ if (is_singular('product')) {
   $context['products'] = $posts;
   $context['query'] = $wp_query;
 
+  $context['post'] = Timber::get_post(get_option('woocommerce_shop_page_id'));
+
   if ( is_product_category() ) {
 
     $queried_object = get_queried_object();
     $term_id = $queried_object->term_id;
     $context['category'] = get_term( $term_id, 'product_cat' );
     $context['title'] = single_term_title('', false);
+
+    $context['hero_link_label'] = 'View the full collection';
+    $context['hero_link'] = "/shop";
 
   }
 

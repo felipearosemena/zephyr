@@ -57,12 +57,6 @@
   .clip-outline {
     display: none;
   }
-
-  input:not(:checked) + label & g {
-    fill: none;
-    stroke: $body-color;
-    stroke-width: 3%;
-  }
 }
 
 .filters {
