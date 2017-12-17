@@ -5,10 +5,10 @@
   {% set term = post.get_terms('product_cat')[0] %}
 
   <article itemscope itemtype="http://schema.org/Product"
-  class="single-item grid grid--flex grid--full {{ post.class }}"
+  class="single-item {{ post.class }}"
   data-product-id="{{ post.id }}">
 
-    <div class="single-item__figure grid__item w-12-12 w-md-7-12 w-lg-6-12 flex">
+    <div class="single-item__figure">
       {% set images = [post.thumbnail.id]|merge(product.get_gallery_image_ids()) %}
       <single-product-slider :active="state.productSliderActive" :navigation-enabled="{{ images|length > 1 ? 'true' : 'false' }}">
         {% for id in images %}
@@ -16,8 +16,10 @@
             <image-zoom :active="state.productSliderActive">
               {% set image = TimberImage(id) %}
               {% set src = image.src %}
-              <div class="single-image__bg" style="background-image: url({{ src }})" data-bg></div>
-              <img src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
+              <div class="single-image__bg-wrapper" slot-scope="{ onLoad }" >
+                <div class="single-image__bg" style="background-image: url({{ src }})" data-bg></div>
+                <img v-on:load="onLoad" src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
+              </div>
             </image-zoom>
           </slide>
         {% endfor %}
@@ -25,7 +27,7 @@
     </div>
 
     <div
-      class="single-item__content grid__item w-12-12 w-md-5-12 w-lg-6-12"
+      class="single-item__content"
       style="background-color: {{ term.shape_color }}"
       v-bind:class="{ 'is-hidden': state.productSliderActive }">
       <div class="single-item__content-inner">
@@ -38,7 +40,7 @@
 
           <div class="summary entry-summary">
 
-            <h1 class="single-title h3 weight-bold text-upper mb-0">
+            <h1 class="single-title h3 weight-bold text-upper text-center mb-0">
             	{{ post.title }}
               {% include 'components/shapes/' ~ term.name ~ '.svg' %}
             </h1>

@@ -2,11 +2,12 @@ import Vue from 'vue'
 
 const ImageZoom = {
   template: `
-    <div ref="rootEl" class="image-zoom" :class="{ 'is-active' : activeHover }" v-on:mousemove="onMouseMove"
+    <div ref="rootEl" class="image-zoom" :class="{ 'is-active' : activeHover, 'is-loaded': loaded }" v-on:mousemove="onMouseMove"
       v-on:mouseenter="onMouseEnter"
-      v-on:mouseleave="onMouseLeave">
+      v-on:mouseleave="onMouseLeave"
+      v-on:load="onLoad">
       <div ref="container" class="image-zoom__container">
-        <slot>
+        <slot :onLoad="onLoad">
         </slot>
       </div>
     </div>
@@ -16,7 +17,8 @@ const ImageZoom = {
   data() {
     return {
       scale: 40,
-      activeHover: false
+      activeHover: false,
+      loaded: false
     }
   },
   watch: {
@@ -43,6 +45,10 @@ const ImageZoom = {
   },
 
   methods: {
+
+    onLoad() {
+      this.loaded = true
+    },
 
     onResize() {
       if(this.$refs.rootEl) {

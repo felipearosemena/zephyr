@@ -75,11 +75,27 @@
   @include full-screen-height;
   overflow: hidden;
   perspective: 3000px;
+
+  @include mq-min($bp-md) {
+    display: flex;
+  }
 }
 
 .single-item p,
 .single-price {
   text-align: center;
+}
+
+.single-item__figure {
+  display: flex;
+
+  @include mq-min($bp-md) {
+    width: calc(100vh - 80px);
+  }
+
+  @include mq-min($bp-xl) {
+    flex-shrink: 0;
+  }
 }
 
 .single-images {
@@ -92,13 +108,22 @@
   position: relative;
 }
 
+.single-image__bg-wrapper,
 .single-image__bg {
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.single-image__bg {
   background-size: cover;
   background-position: center;
+  transition: all $transition-default;
+
+  .image-zoom:not(.is-loaded) & {
+    opacity: 0;
+  }
 
   cursor: url("../../src/images/plus-button.png") 0 0, pointer; /* Legacy */
   cursor: url("../../src/images/plus-button.svg") 0 0, pointer; /* FF */
@@ -118,6 +143,7 @@
 }
 
 .single-item__content {
+  flex-grow: 1;
   overflow: auto;
   transition: transform $transition-slow, opacity $transition-slow;
   transform-origin: 0% 50%;

@@ -3782,10 +3782,31 @@ figure {
     .single-item {
       min-height: -webkit-calc(100vh - 80px);
       min-height: calc(100vh - 80px); } }
+  @media only screen and (min-width: 800px) {
+    .single-item {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex; } }
 
 .single-item p,
 .single-price {
   text-align: center; }
+
+.single-item__figure {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  @media only screen and (min-width: 800px) {
+    .single-item__figure {
+      width: -webkit-calc(100vh - 80px);
+      width: calc(100vh - 80px); } }
+  @media only screen and (min-width: 1280px) {
+    .single-item__figure {
+      -webkit-flex-shrink: 0;
+          -ms-flex-negative: 0;
+              flex-shrink: 0; } }
 
 .single-images {
   list-style: none;
@@ -3797,20 +3818,27 @@ figure {
 .single-image {
   position: relative; }
 
+.single-image__bg-wrapper,
 .single-image__bg {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100%; }
+
+.single-image__bg {
   -webkit-background-size: cover;
           background-size: cover;
   background-position: center;
+  -webkit-transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
   cursor: url("../../src/images/plus-button.png") 0 0, pointer;
   /* Legacy */
   cursor: url("../../src/images/plus-button.svg") 0 0, pointer;
   /* FF */
   cursor: -webkit-image-set(url("../../src/images/plus-button.png") 1x, url("../../src/images/plus-button@2x.png") 2x) 0 0, pointer;
   /* Webkit */ }
+  .image-zoom:not(.is-loaded) .single-image__bg {
+    opacity: 0; }
   .single-product-slider.is-active .single-image__bg {
     cursor: url("../../src/images/close-button.png") 0 0, pointer;
     /* Legacy */
@@ -3824,6 +3852,10 @@ figure {
     display: block; }
 
 .single-item__content {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   overflow: auto;
   -webkit-transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -4830,7 +4862,8 @@ form.checkout_coupon {
           transform: none; }
 
 #app .VueCarousel-wrapper {
-  z-index: 1; }
+  z-index: 1;
+  background-color: #f0f0f0; }
 
 #app .VueCarousel-navigation-prev,
 #app .VueCarousel-navigation-next,
