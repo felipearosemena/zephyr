@@ -57,7 +57,7 @@
 }
 
 .shape-item__icon {
-  // position: absolute;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -78,7 +78,7 @@
   }
 
   .shape-outline {
-    // opacity: 0;
+    opacity: 0;
   }
 
   .clip-outline {
@@ -173,10 +173,9 @@
 .shape-item__img {
   margin-bottom: 0;
   transition: transform $transition-default;
-  position: absolute;
+  position: relative;
   z-index: -1;
   overflow: hidden;
-  display: none;
   transform: scale(0.99);
 
   .shape-item.is-hovered &,

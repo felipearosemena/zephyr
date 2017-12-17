@@ -3302,6 +3302,7 @@ figure {
     display: none; }
 
 .shape-item__icon {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -3321,6 +3322,8 @@ figure {
     transition: all 0.45s cubic-bezier(0.165, 0.84, 0.44, 1); }
   .shape-item__icon g {
     cursor: pointer; }
+  .shape-item__icon .shape-outline {
+    opacity: 0; }
   .shape-item__icon .clip-outline {
     pointer-events: none; }
   .shape-item:focus .shape-item__icon {
@@ -3391,10 +3394,9 @@ figure {
   transition: -webkit-transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1), -webkit-transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
-  position: absolute;
+  position: relative;
   z-index: -1;
   overflow: hidden;
-  display: none;
   -webkit-transform: scale(0.99);
           transform: scale(0.99); }
   .shape-item.is-hovered .shape-item__img,
