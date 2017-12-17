@@ -21,7 +21,7 @@
         <div class="container">
           <div class="grid">
             <div class="grid__item w-12-12 text-center">
-              <p class="mb-05"><label class="weight-bold">Choose your shape</label></p>
+              <p class="mb-05"><label class="weight-bold">Choose your cut</label></p>
               {% for shape in global_info.filter_shape %}
                 {% set term = TimberTerm(shape.term_id) %}
                 <a href="{{ term.path }}" class="checkbox-shape remove-underline">
