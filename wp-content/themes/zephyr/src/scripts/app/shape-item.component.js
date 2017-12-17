@@ -90,7 +90,7 @@ const ShapeItem = {
 
     shrapnelConfig() {
 
-      let w = 450, h = 450, direction = [-1, -1]
+      let w = 500, h = 500, direction = [-1, -1]
 
       switch (this.term.slug) {
         case 'round':
@@ -99,19 +99,17 @@ const ShapeItem = {
           direction = [1, -1]
           break;
         case 'oval':
-          direction = [1, 1]
+          direction = [1.5, 1]
           w = 350
           h = 400
           break;
         case 'emerald':
-          direction = [-1, 1]
-          w = 550
+          direction = [-1, 0.5]
+          w = 800
           h = 450
           break;
         case 'pear':
           direction = [-1, 1]
-          w = 300
-          h = 400
           break;
         case 'basics':
           break;
