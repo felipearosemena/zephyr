@@ -11,7 +11,7 @@
       <shop-grid :products="state.productArray" :query="state.query">
       </shop-grid>
 
-      <div v-bind:key="'woocommerce_content'">
+      <div v-bind:key="'woocommerce_content'" class="woocommerce-content">
         {% do action('woocommerce_after_shop_loop') %}
         {% do action('woocommerce_after_main_content') %}
       </div>
@@ -20,8 +20,5 @@
 
   </section>
 
-{% endblock  %}
 
-{% block bottom %}
-  {% include 'includes/hero-color.twig' %}
-{% endblock %}
+{% endblock  %}
