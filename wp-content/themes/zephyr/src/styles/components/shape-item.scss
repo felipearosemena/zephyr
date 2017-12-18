@@ -57,7 +57,7 @@
 }
 
 .shape-item__icon {
-  position: absolute;
+  position: static;
   top: 0;
   left: 0;
   width: 100%;
@@ -68,9 +68,13 @@
   svg {
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
     display: block;
     transform: scale(1.01);
     transition: all $transition-default;
+    position: relative;
+    z-index: 1;
   }
 
   g {
@@ -78,6 +82,10 @@
   }
 
   .shape-outline {
+    transition: opacity $transition-default;
+  }
+
+  .shape-item.is-loaded & .shape-outline {
     opacity: 0;
   }
 
@@ -171,12 +179,16 @@
 }
 
 .shape-item__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   margin-bottom: 0;
   transition: transform $transition-default;
-  position: relative;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
   transform: scale(0.99);
+  padding-bottom: 100%;
 
   .shape-item.is-hovered &,
   .shape-item.is-hovered & {
@@ -184,9 +196,11 @@
   }
 
   img {
-    display: block;
-    max-width: none;
+    position: absolute;
+    top: 0;
+    left:0;
     width: 100%;
+    max-width: none;
     transition: transform $transition-default;
   }
 }

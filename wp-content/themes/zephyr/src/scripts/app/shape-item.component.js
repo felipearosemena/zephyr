@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { randomFromArray, mapObject, inArray } from 'modules/utils'
 import router from 'app/router'
+import imagesLoaded from 'vue-images-loaded'
 
 const getTransformObject = string => {
 
@@ -47,7 +48,7 @@ const joinTransformObject = obj => {
 
 const ShapeItem = {
   template: `
-  <a :href="href" :class="[ 'shape-item shape-item--' + term.slug + ' remove-underline' , { 'is-hovered' : isHovered}]" ref="el" v-on:click.stop.prevent>
+  <a :href="href" :class="[ 'shape-item shape-item--' + term.slug + ' remove-underline' , { 'is-hovered' : isHovered, 'is-loaded': isLoaded }]" ref="el" v-on:click.stop.prevent>
 
     <span class="shape-item__shrapnel" ref="shrapnel"></span>
 
@@ -59,10 +60,9 @@ const ShapeItem = {
 
     </div>
 
-    <div class="shape-item__img" ref="img-wrap">
+    <div class="shape-item__img" ref="img-wrap" :style="{ paddingBottom: paddingBottom }" v-images-loaded="onLoad">
 
       <slot name="image">
-        <img/>
       </slot>
 
     </div>
@@ -78,9 +78,10 @@ const ShapeItem = {
   </a>
 
   `,
-  props: [ 'href', 'term', 'label' ],
+  props: [ 'href', 'term', 'label', 'padding-bottom' ],
   data() {
     return Object.assign({}, {
+      isLoaded: false,
       isHovered: false,
       shrapnelEls: [],
       shrapnelCount: inArray(this.term.slug, ['basics']) ? 0 : 3,
@@ -221,11 +222,15 @@ const ShapeItem = {
 
     },
 
-    onLinkClick() {
-
+    onLoad() {
+      this.isLoaded = true
     }
 
 
+  },
+
+  directives: {
+    imagesLoaded
   },
 
   mounted() {
@@ -245,7 +250,7 @@ const ShapeItem = {
       }
     }
 
-    const { shape, el } = this.$refs
+    const { shape, el, image } = this.$refs
 
     shape.addEventListener('mouseover' , () => this.toggle(true))
     shape.addEventListener('mouseleave', () => this.toggle(false))

@@ -2,6 +2,7 @@
 
 <shape-item
   href="{{ term.path }}"
+    padding-bottom="{{ image.height / image.width * 100 }}%"
    :term='{{ term|json_encode }}'
    label="{{ label }}">
 
@@ -10,7 +11,8 @@
   </template>
 
   <template slot="image">
-    {{ macros.img( term.meta('thumbnail_id') ) }}
+    <thumbnail :image="{ src: '{{ image.src }}', alt: '{{ image.alt }}', sizes: {} }" size="">
+    </thumbnail>
   </template>
 
 </shape-item>
