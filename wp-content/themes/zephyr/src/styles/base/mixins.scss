@@ -369,26 +369,39 @@
 }
 
 @mixin page-wrap-padding {
-  padding-top: $logo-width * $logo-ratio + 20px;
+  padding-top: $header-height;
 
   @include mq-min($bp-md) {
-    padding-top: $logo-width-lg * $logo-ratio + 20px;
+    padding-top: $header-height-lg;
   }
 }
 
 @mixin page-wrap-offset {
-  top: $logo-width * $logo-ratio + 20px;
+  top: $header-height;
 
   @include mq-min($bp-md) {
-    top: $logo-width-lg * $logo-ratio +  20px;
+    top: $header-height-lg;
   }
 }
 
-@mixin full-screen-height {
-  min-height: calc(100vh - #{$logo-width * $logo-ratio + 20px});
+@mixin full-screen-height($min: true) {
 
-  @include mq-min($bp-md) {
-    min-height: calc(100vh - #{$logo-width-lg * $logo-ratio +  20px});
+  $height: calc(100vh - #{$header-height});
+  $height-lg: calc(100vh - #{$header-height-lg});
+  $bp: $bp-md;
+
+  @if($min) {
+    min-height: $height;
+
+    @include mq-min($bp) {
+      min-height: $height-lg;
+    }
+  } @else {
+    height: $height;
+
+    @include mq-min($bp) {
+      height: $height-lg;
+    }
   }
 }
 

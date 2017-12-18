@@ -147,6 +147,9 @@ $logo-ratio    : 0.5;
 $logo-width    : 80px;
 $logo-width-lg : 120px;
 
+$header-height    :$logo-width * $logo-ratio + 20px;
+$header-height-lg :$logo-width-lg * $logo-ratio + 20px;
+
 $base-button-height: $bsu*2.5;
 $btn-lh: $base-lh;
 
