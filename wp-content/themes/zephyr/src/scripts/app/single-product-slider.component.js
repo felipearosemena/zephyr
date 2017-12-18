@@ -3,7 +3,7 @@ import store from 'app/store'
 
 const SingleProductSlider = {
   template: `
-  <div class="single-product-slider" ref="rootEl" v-bind:class="{ 'is-active' : active }">
+  <div class="single-product-slider" v-on:click="toggle" v-bind:class="{ 'is-active' : active }">
     <carousel class="w-12-12" :per-page="1" :loop="true" :navigationEnabled="navigationEnabled" :paginationEnabled="paginationEnabled">
       <slot>
       </slot>
@@ -12,19 +12,17 @@ const SingleProductSlider = {
   `,
   data() {
     return {
-      paginationEnabled: Modernizr.mobile
+      paginationEnabled: !!Modernizr.mobile
     }
   },
-  mounted() {
-
-    const { rootEl } = this.$refs
-
-    rootEl.addEventListener('click', e => {
+  methods: {
+    toggle(e) {
       if(e.target.dataset.bg !== undefined) {
         store.toggleProductSlider()
       }
-    })
+    }
   },
+  mounted() {},
   props: ['active', 'navigation-enabled']
 }
 
