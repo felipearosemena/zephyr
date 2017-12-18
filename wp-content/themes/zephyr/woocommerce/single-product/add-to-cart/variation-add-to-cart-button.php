@@ -35,7 +35,7 @@ global $product;
   ?>
 </div>
 
-<div class="grid__item w-4-12 w-xxl-3-12 align-bottom">
+<div class="grid__item w-5-12 w-xxl-3-12 align-bottom">
   <add-to-cart
     :can-add="state.product.canAddToCart"
     :loading="form.isProcessing">

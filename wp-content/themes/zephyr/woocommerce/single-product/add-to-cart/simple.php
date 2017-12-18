@@ -63,7 +63,7 @@ if ( $product->is_in_stock() ) : ?>
           do_action( 'woocommerce_after_add_to_cart_quantity' );
           ?>
         </div>
-        <div class="grid__item w-4-12 w-xxl-3-12 align-bottom">
+        <div class="grid__item w-5-12 w-xxl-3-12 align-bottom">
           <add-to-cart
             :can-add="true"
             :loading="form.isProcessing"
