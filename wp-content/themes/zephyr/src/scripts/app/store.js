@@ -147,7 +147,10 @@ const store = {
 
   toggleProductSlider(bool) {
     const { productSliderActive } = this.state
-    this.setState({ productSliderActive: bool == undefined ? !productSliderActive : bool })
+
+    if(!Modernizr.mobile) {
+      this.setState({ productSliderActive: bool == undefined ? !productSliderActive : bool })
+    }
   },
 
   updateNonce(nonce) {
