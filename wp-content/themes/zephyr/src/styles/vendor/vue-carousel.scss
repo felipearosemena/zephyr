@@ -73,6 +73,14 @@
     }
   }
 
+  .single-product-slider {
+    .VueCarousel-slide {
+      @include mq-min($bp-md) {
+        height: calc(100vh - #{$header-height-lg});
+      }
+    }
+  }
+
   .single-product-slider.is-active {
 
     .VueCarousel-navigation-next,

@@ -393,7 +393,7 @@
   @if($min) {
     min-height: $height;
 
-    @include mq-min($bp) {
+    @include mq-min($bp-md) {
       min-height: $height-lg;
     }
   } @else {

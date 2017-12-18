@@ -4945,6 +4945,11 @@ form.checkout_coupon {
       -webkit-transform: translate3d(-50%, 0, 0);
               transform: translate3d(-50%, 0, 0); } }
 
+@media only screen and (min-width: 800px) {
+  #app .single-product-slider .VueCarousel-slide {
+    height: -webkit-calc(100vh - 80px);
+    height: calc(100vh - 80px); } }
+
 #app .single-product-slider.is-active .VueCarousel-navigation-next,
 #app .single-product-slider.is-active .VueCarousel-navigation-prev,
 #app .single-product-slider.is-active .VueCarousel-pagination {
