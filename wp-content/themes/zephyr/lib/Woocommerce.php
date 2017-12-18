@@ -25,7 +25,7 @@ class Woocommerce
 
   public function woocommerce_after_single_product()
   {
-    echo '<p class="mt-2 mb-0 small-text">' . get_field('single_product_bottom_message', 'option'). '</p>';
+    echo '<p class="mt-15 mb-0 small-text">' . get_field('single_product_bottom_message', 'option'). '</p>';
   }
 
   public function woocommerce_default_address_fields($fields)
