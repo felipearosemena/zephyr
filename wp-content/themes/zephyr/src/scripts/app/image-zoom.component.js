@@ -82,13 +82,13 @@ const ImageZoom = {
       const { scale, activeHover } = this
       const rect = this.$refs.rootEl.getBoundingClientRect()
 
-      if(!rect || !activeHover || rect.x !== this.rect.x || rect.y !== this.rect.y) {
+      if(!rect || !activeHover || rect.left !== this.rect.left || rect.top !== this.rect.top) {
         this.rect = rect
         return
       }
 
-      const x = (e.clientX - rect.x) / rect.width
-      const y = (e.clientY - rect.y) / rect.height
+      const x = (e.clientX - rect.left) / rect.width
+      const y = (e.clientY - rect.top) / rect.height
 
       this.setTransform(x, y)
 
