@@ -12,11 +12,11 @@
       {% set images = [post.thumbnail.id]|merge(product.get_gallery_image_ids()) %}
       <single-product-slider :active="state.productSliderActive" :navigation-enabled="{{ images|length > 1 ? 'true' : 'false' }}">
         {% for id in images %}
+          {% set image = TimberImage(id) %}
+          {% set src = image.src %}
           <slide>
             <image-zoom :active="state.productSliderActive">
-              {% set image = TimberImage(id) %}
-              {% set src = image.src %}
-              <div class="single-image__bg-wrapper" slot-scope="{ onLoad }" >
+              <div class="single-image__bg-wrapper" slot-scope="{ onLoad }">
                 <div class="single-image__bg" style="background-image: url({{ src }})" data-bg></div>
                 <img v-on:load="onLoad" src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
               </div>
@@ -47,7 +47,7 @@
 
             {{ product.get_description|wpautop }}
 
-            <div class="single-price weight-bold mt-1 mb-2 lead">
+            <div class="single-price weight-bold mt-1 mb-15 lead">
               {{ product.get_price_html }}
             </div>
 

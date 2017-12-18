@@ -85,10 +85,18 @@
   @include button-plain;
   position: absolute;
   z-index: 2;
-  top: $bsu;
-  right: $container-pad*2;
+  top: $container-pad;
+  right: $container-pad;
   transition: all $transition-bounce;
-  padding: $bsu/2;
+
+  @include mq-min($bp-lg) {
+    top: $container-pad*2;
+    right: $container-pad*2;
+  }
+
+  @include mq-min($bp-xl) {
+    right: $container-pad*2.5;
+  }
 
   .message & {
     top: 0;

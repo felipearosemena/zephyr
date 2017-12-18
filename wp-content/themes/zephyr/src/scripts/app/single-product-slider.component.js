@@ -3,12 +3,18 @@ import store from 'app/store'
 
 const SingleProductSlider = {
   template: `
-    <div class="single-product-slider" ref="rootEl" v-bind:class="{ 'is-active' : active }">
-      <carousel class="w-12-12" :per-page="1" :loop="true" :navigationEnabled="navigationEnabled" :paginationEnabled="false">
-        <slot></slot>
-      </carousel>
+  <div class="single-product-slider" ref="rootEl" v-bind:class="{ 'is-active' : active }">
+    <carousel class="w-12-12" :per-page="1" :loop="true" :navigationEnabled="navigationEnabled" :paginationEnabled="paginationEnabled">
+      <slot>
+      </slot>
+    </carousel>
     </div>
   `,
+  data() {
+    return {
+      paginationEnabled: Modernizr.mobile
+    }
+  },
   mounted() {
 
     const { rootEl } = this.$refs

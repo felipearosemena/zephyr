@@ -144,9 +144,13 @@
 
 .single-item__content {
   flex-grow: 1;
-  overflow: auto;
   transition: transform $transition-slow, opacity $transition-slow;
   transform-origin: 0% 50%;
+
+  @include mq-min($bp-md) {
+    height: calc(100vh - #{$header-height-lg});
+    overflow: auto;
+  }
 
   &.is-hidden {
     transform: translate3d(100%, 0, 0) rotateY(70deg);
@@ -160,13 +164,13 @@
 
 .single-item__content-inner {
   padding: $bsu*2 0 $bsu;
+  min-height: 100%;
 
   .stock {
     display: none;
   }
 
   @include mq-min($bp-md) {
-    min-height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -210,12 +214,9 @@
   transition: transform $transition-slow;
 
   &.is-active {
-    @include mq-min($bp-md) {
-      transform: translate3d(35.75%, 0 , 0);
-    }
 
-    @include mq-min($bp-lg) {
-      transform: translate3d(50%, 0 , 0);
+    @include mq-min($bp-md) {
+      transform: translate3d(calc(50vw - 50%), 0 , 0);
     }
   }
 }

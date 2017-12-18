@@ -3,7 +3,10 @@
   height: 100%;
 }
 
-.image-zoom {}
+.image-zoom {
+  flex-grow: 1;
+  width: 100%;
+}
 
 .image-zoom__container {
   transition: transform $transition-slow;

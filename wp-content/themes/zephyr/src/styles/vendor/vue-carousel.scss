@@ -61,11 +61,16 @@
 
   .VueCarousel-pagination {
     position: absolute;
+    z-index: 1000;
     z-index: 2;
     width: auto;
-    bottom: $bsu;
+    bottom: $bsu/2;
     left: 50%;
     transform: translate3d(-50%, 100%, 0);
+
+    @include mq-min($bp-md) {
+      transform: translate3d(-50%, 0, 0);
+    }
   }
 
   .single-product-slider.is-active {
@@ -86,5 +91,19 @@
     .VueCarousel-pagination {
       transform: translate3d(-50%, 0, 0);
     }
+  }
+
+  .VueCarousel-dot {
+
+  }
+
+  .VueCarousel-dot-inner {
+    background: white !important;
+    border: $base-border-width solid $body-color;
+
+  }
+
+  .VueCarousel-dot--active .VueCarousel-dot-inner {
+    background-color: $body-color !important;
   }
 }
