@@ -87,12 +87,14 @@ $text_lighter_20 = wc_hex_lighter( $text, 20 );
 
 #template_footer #footer-logo-p {
   margin: auto;
+  text-align: center;
 }
 
 #template_footer #footer-logo-img {
   max-width: 100%;
   width: 14px;
   height: 24px;
+  margin: auto;
 }
 
 #body_content {
