@@ -3806,15 +3806,15 @@ figure {
   margin: 1.25rem auto; }
 
 .single-item {
-  min-height: -webkit-calc(100vh - 60px);
-  min-height: calc(100vh - 60px);
+  height: -webkit-calc(100vh - 60px);
+  height: calc(100vh - 60px);
   overflow: hidden;
   -webkit-perspective: 3000px;
           perspective: 3000px; }
   @media only screen and (min-width: 800px) {
     .single-item {
-      min-height: -webkit-calc(100vh - 80px);
-      min-height: calc(100vh - 80px); } }
+      height: -webkit-calc(100vh - 80px);
+      height: calc(100vh - 80px); } }
   @media only screen and (min-width: 800px) {
     .single-item {
       display: -webkit-box;
@@ -4233,12 +4233,12 @@ figure {
 .site-nav__inner {
   display: block;
   padding-top: 1.6875rem;
-  min-height: -webkit-calc(100vh - 60px);
-  min-height: calc(100vh - 60px); }
+  height: -webkit-calc(100vh - 60px);
+  height: calc(100vh - 60px); }
   @media only screen and (min-width: 800px) {
     .site-nav__inner {
-      min-height: -webkit-calc(100vh - 80px);
-      min-height: calc(100vh - 80px); } }
+      height: -webkit-calc(100vh - 80px);
+      height: calc(100vh - 80px); } }
 
 .site-nav__top {
   display: -webkit-box;
@@ -4309,8 +4309,8 @@ figure {
       color: #ED9FA8; }
 
 .cart-view {
-  min-height: -webkit-calc(100vh - 60px);
-  min-height: calc(100vh - 60px);
+  height: -webkit-calc(100vh - 60px);
+  height: calc(100vh - 60px);
   top: 60px;
   position: fixed;
   z-index: 300;
@@ -4326,8 +4326,8 @@ figure {
   overflow: auto; }
   @media only screen and (min-width: 800px) {
     .cart-view {
-      min-height: -webkit-calc(100vh - 80px);
-      min-height: calc(100vh - 80px); } }
+      height: -webkit-calc(100vh - 80px);
+      height: calc(100vh - 80px); } }
   @media only screen and (min-width: 800px) {
     .cart-view {
       top: 80px; } }

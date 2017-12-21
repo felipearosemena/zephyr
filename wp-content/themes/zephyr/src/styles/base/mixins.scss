@@ -384,7 +384,7 @@
   }
 }
 
-@mixin full-screen-height($min: true) {
+@mixin full-screen-height($min: false) {
 
   $height: calc(100vh - #{$header-height});
   $height-lg: calc(100vh - #{$header-height-lg});
