@@ -3,7 +3,6 @@
   @include page-wrap-offset;
   position: fixed;
   z-index: 300;
-  top: 0;
   left: 100%;
   width: 100%;
   max-width: px-to-rem($container-xs);

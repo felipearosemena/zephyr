@@ -4314,7 +4314,6 @@ figure {
   top: 60px;
   position: fixed;
   z-index: 300;
-  top: 0;
   left: 100%;
   width: 100%;
   max-width: 30rem;
