@@ -72,12 +72,12 @@
 }
 
 .single-item {
-  @include full-screen-height;
   overflow: hidden;
   perspective: 3000px;
 
   @include mq-min($bp-md) {
     display: flex;
+    height: calc(100vh - $header-height-lg);
   }
 }
 
@@ -163,7 +163,7 @@
 }
 
 .single-item__content-inner {
-  padding: $bsu*2 0 $bsu;
+  padding: $bsu*2 0 $bsu*2;
   min-height: 100%;
 
   .stock {
@@ -171,6 +171,7 @@
   }
 
   @include mq-min($bp-md) {
+    padding-bottom: $bsu;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
