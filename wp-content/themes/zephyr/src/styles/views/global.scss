@@ -92,6 +92,7 @@
 
   @include mq-min($bp-md) {
     width: calc(100vh - 80px);
+    min-width: 40%;
   }
 
   @include mq-min($bp-xl) {

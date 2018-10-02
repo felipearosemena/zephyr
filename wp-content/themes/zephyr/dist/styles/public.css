@@ -3872,7 +3872,8 @@ figure {
   @media only screen and (min-width: 800px) {
     .single-item__figure {
       width: -webkit-calc(100vh - 80px);
-      width: calc(100vh - 80px); } }
+      width: calc(100vh - 80px);
+      min-width: 40%; } }
   @media only screen and (min-width: 1280px) {
     .single-item__figure {
       -webkit-flex-shrink: 0;
