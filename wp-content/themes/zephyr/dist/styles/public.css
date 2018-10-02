@@ -3805,6 +3805,7 @@ figure {
   padding: 0;
   position: fixed;
   z-index: 300;
+  top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-transition: opacity 0.45s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: opacity 0.45s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);

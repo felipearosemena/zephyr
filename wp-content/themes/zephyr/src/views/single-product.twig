@@ -16,7 +16,7 @@
           {% set src = image.src %}
           <slide>
             <image-zoom :active="state.productSliderActive">
-              <div class="single-image__bg-wrapper" slot-scope="{ onLoad }">
+              <div class="single-image__bg-wrapper" scope="{ onLoad }">
                 <div class="single-image__bg" style="background-image: url({{ src }})" data-bg></div>
                 <img v-on:load="onLoad" src="{{ src }}" class="sr-only" alt="{{ image.alt }}" title="{{ image.title }}"/>
               </div>
