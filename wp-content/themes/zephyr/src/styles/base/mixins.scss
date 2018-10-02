@@ -417,8 +417,8 @@
 }
 
 @mixin hero-spacing {
-  padding-top: $bsu*4;
-  padding-bottom: $bsu*4;
+  padding-top: $bsu*2;
+  padding-bottom: $bsu*2;
 
   @include mq-min($bp-lg) {
     padding-top: $bsu*6;

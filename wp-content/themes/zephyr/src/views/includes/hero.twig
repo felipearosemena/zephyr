@@ -1,10 +1,14 @@
 {% if post.hero_title %}
-<section id="hero" class="hero">
+<section id="hero" class="hero" onclick="this.querySelector('a').click()">
 
   <div class="hero__body">
 
     <div class="container container--lg">
-      <h1 class="hero__title mb-2">{{ post.hero_title }}</h1>
+      <h1 class="hero__title mb-0">
+        {% for word in post.hero_title | split(' ') %}
+          <span class="hero__{{ word | lower }}">{{ word }}</span>
+        {% endfor %}
+      </h1>
 
       <div class="container container--md container--flush">
 
@@ -13,7 +17,7 @@
         {% endif %}
 
         {% if post.hero_link %}
-          <a href="{{ post.get_field('hero_link') }}" class="btn">{{ post.hero_link_label|default('Learn More') }}</a>
+          <a href="{{ post.get_field('hero_link') }}" class="hero__cta btn sr-only">{{ post.hero_link_label|default('Learn More') }}</a>
         {% endif %}
 
       </div>
@@ -32,9 +36,14 @@
     The Background Image Element should stay after the video element,
     that way we can use CSS to hide the background image, preventing it being loaded, when the video is visible.
    #}
-  {% if post.hero_background %}
+  {% if post.get_field('hero_background') %}
+    {% set hero_bg = post.get_field('hero_background') %}
+    {% set sizes = hero_bg.sizes %}
     <div id="hero-bg" class="hero__bg">
-      {{ macros.hero_bg('hero-bg', post.hero_background) }}
+      <figure>
+        <img src="{{ hero_bg.url }}" alt="{{ hero_bg.alt }}" title="{{ hero_bg.title }}">
+      </figure>
+      {{ macros.hero_bg('hero-bg', post.get_field('hero_background')) }}
     </div>
   {% endif %}
 

@@ -378,6 +378,10 @@ th {
   padding: 0; }
 
 @font-face {
+  font-family: 'gt-walsheim-condensed-ultra-bold-oblique';
+  src: url("../../src/fonts/GT-Walsheim-Pro-Condensed-Ultra-Bold-Oblique.woff") format("woff"); }
+
+@font-face {
   font-family: 'gt-walsheim';
   src: url("../../src/fonts/gt-walsheim-regular.woff2") format("woff2"), url("../../src/fonts/gt-walsheim-regular.woff") format("woff");
   font-weight: 400; }
@@ -848,10 +852,13 @@ h3, .h3,
 h4, .h4, caption,
 h5, .h5,
 h6, .h6 {
-  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-weight: 500;
+  font-family: "gt-walsheim-condensed-ultra-bold-oblique", "futura", "helvetica";
+  font-weight: 900;
+  font-style: oblique;
   margin-top: 0;
-  margin-bottom: 1.25rem; }
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: .03em; }
   h1 a, .h1 a,
   h2 a, .h2 a,
   h3 a, .h3 a,
@@ -2593,8 +2600,16 @@ figure {
           align-items: center;
   overflow: hidden;
   text-align: center;
-  padding-top: 5rem;
-  padding-bottom: 5rem; }
+  color: white;
+  cursor: pointer;
+  min-height: 70vw;
+  margin-bottom: 5vw;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem; }
+  @media only screen and (min-width: 800px) {
+    .hero {
+      min-height: -webkit-calc(100vh - 80px);
+      min-height: calc(100vh - 80px); } }
   @media only screen and (min-width: 1020px) {
     .hero {
       padding-top: 7.5rem;
@@ -2613,8 +2628,8 @@ figure {
   margin-bottom: 1.25rem; }
   @media only screen and (min-width: 800px) {
     .hero--secondary {
-      padding-top: 7.5rem;
-      padding-bottom: 7.5rem;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
       margin-bottom: 3.75rem; } }
   @media only screen and (min-width: 1280px) {
     .hero--secondary {
@@ -2642,6 +2657,24 @@ figure {
   .hero__body > *:last-child, .hero__body > * > *:last-child {
     margin-bottom: 0; }
 
+.hero__title {
+  line-height: 0.8;
+  font-size: 10vw; }
+  @media only screen and (min-width: 800px) {
+    .hero__title {
+      font-size: 98px; } }
+
+.hero__fresh,
+.hero__cuts {
+  display: block; }
+
+.hero__fresh {
+  margin-right: 18%;
+  margin-top: 3%; }
+
+.hero__cuts {
+  margin-left: 20%; }
+
 .hero__overlay {
   left: 0;
   top: 0;
@@ -2666,6 +2699,14 @@ figure {
   height: 100%;
   position: absolute;
   z-index: 100; }
+  .hero__bg img {
+    object-fit: cover;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; }
   .no-touchevents .hero__video ~ .hero__bg {
     background-image: none !important;
     display: none; }

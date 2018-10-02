@@ -52,7 +52,7 @@ class Media
      *
      */
 
-    add_image_size('hero_full', 1920);
+    add_image_size('hero_full', 1920, 960);
     add_image_size('hero_md', 1280);
     add_image_size('hero_sm', 640);
     add_image_size('sq_large', 960, 960, true);

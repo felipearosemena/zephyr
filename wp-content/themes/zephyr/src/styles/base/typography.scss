@@ -74,9 +74,12 @@ a, i {
 
 %heading-style {
   font-family: $heading-font-family;
-  font-weight: 500;
+  font-weight: 900;
+  font-style: oblique;
   margin-top: 0;
   margin-bottom: $bsu;
+  text-transform: uppercase;
+  letter-spacing: .03em;
 
   a, a:visited {
     text-decoration: none;

@@ -53,9 +53,10 @@ $overlay-bg : rgba(0, 0, 0, 0.5);
 $fonts-path : '../../src/fonts/';
 $helvetica: Helvetica Neue, Helvetica, Arial, sans-serif;
 $gt-walsheim: 'gt-walsheim', Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
+$gt-walsheim-heading: 'gt-walsheim-condensed-ultra-bold-oblique','futura', 'helvetica';
 
 $body-font-family    :  $gt-walsheim;
-$heading-font-family :  $gt-walsheim;
+$heading-font-family :  $gt-walsheim-heading;
 
 // Font Sizes & Corresponding line heights
 $base-fs : 16px;
