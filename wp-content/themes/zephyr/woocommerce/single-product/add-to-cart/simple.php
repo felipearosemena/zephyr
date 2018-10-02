@@ -34,7 +34,7 @@ if ( $product->is_in_stock() ) : ?>
 
   <single-product-form :product="state.product" :refs="$refs">
 
-    <div slot-scope="form">
+    <template scope="form">
       <div class="grid grid--flex justify-center">
         <div class="grid__item w-4-12 w-xxl-2-12">
           <?php
@@ -73,7 +73,7 @@ if ( $product->is_in_stock() ) : ?>
           </add-to-cart>
         </div>
       </div>
-    </div>
+    </template>
 
     <?php
       /**
