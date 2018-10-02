@@ -2,7 +2,7 @@
 
   @include mq-min($bp-md) {
     display: flex;
-    height: calc(100vh - 5.5rem;)
+    height: calc(100vh - 80px)
   }
 }
 
@@ -12,11 +12,22 @@
   flex-grow: 1;
 }
 
+.fs-panes__image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  object-fit: cover;
+}
+
 .fs-panes__color {
   background-color: $color-primary;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .fs-panes__content {
