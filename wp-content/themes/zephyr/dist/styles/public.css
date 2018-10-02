@@ -4459,8 +4459,8 @@ figure {
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    height: -webkit-calc(100vh - 5.5rem);
-    height: calc(100vh - 5.5rem); } }
+    height: -webkit-calc(100vh - 80px);
+    height: calc(100vh - 80px); } }
 
 .fs-panes__color,
 .fs-panes__content {
@@ -4469,6 +4469,15 @@ figure {
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1; }
+
+.fs-panes__image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  object-fit: cover; }
 
 .fs-panes__color {
   background-color: #ED9FA8;
@@ -4483,7 +4492,8 @@ figure {
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  position: relative; }
 
 .fs-panes__content {
   overflow: auto; }
