@@ -4494,7 +4494,11 @@ figure {
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  position: relative; }
+  position: relative;
+  min-height: 60vw; }
+  @media only screen and (min-width: 800px) {
+    .fs-panes__color {
+      min-height: 0; } }
 
 .fs-panes__content {
   overflow: auto; }

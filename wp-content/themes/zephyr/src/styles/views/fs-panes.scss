@@ -28,6 +28,11 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  min-height: 60vw;
+
+  @include mq-min($bp-md) {
+    min-height: 0;
+  }
 }
 
 .fs-panes__content {
