@@ -28,6 +28,7 @@ import 'app/message.component'
 import 'app/format-currency.filter'
 
 import { arrayToObj, mapObject, delegate, serializeObject, isCheckout } from 'modules/utils'
+import { logPageView } from 'modules/analytics'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
