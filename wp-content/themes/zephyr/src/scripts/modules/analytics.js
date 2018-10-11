@@ -16,10 +16,7 @@
  */
 
 if(window.__gaTracker) {
-
-  __gaTracker( function() {
-    window.ga = __gaTracker;
-  })
+  window.ga = window.__gaTracker
 
 } else {
   window.ga = window.ga || function() {}
