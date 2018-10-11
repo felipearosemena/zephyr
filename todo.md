@@ -1,3 +1,12 @@
+[ ] Review centering slider when active
+[ ] Press
+  [ ] https://journal.kotn.com/?_ga=2.148268350.820273179.1510629902-1687590045.1510629902
+[ ]
+
+#About
+[ ] Add Image bg
+[ ] Add scroll as you go sections, with image changing on the right
+
 #Footer
 
 [ ] Main + Util Menu
@@ -8,29 +17,26 @@
 
 #TODAY
 
-[ ] Add h1 to store
-[ ] Handle Single Cart Page
+[-] Add h1 to store
+[x] Handle Single Cart Page
 [ ] Add menu item active state
-[ ] Add loader screen
+[x] Add loader screen
 [x] Homepage updated layout
-[ ] Shop
+[-] Shop
   [ ] Add title grid item to shop
   [ ] Update filter shapes
 [x] Single Product Layout
   [x] Style form
-  [ ] Toggling menu on/off creates a gap
-  [ ] Toggling cart or menu doesn't show dark overlay
-  [ ] Single Product Slider
-    [ ] Add zooming
-    [ ] Style navigation
+  [x] Toggling menu on/off creates a gap
+  [x] Toggling cart or menu doesn't show dark overlay
+  [x] Single Product Slider
+    [x] Add zooming
+    [x] Style navigation
   [ ] Add close button
-[ ] Handle removing localStorage when pushing new version
-[ ] Cart
-  [ ] Fix subtotal not updating on single product page
-[ ] Press
-  [ ] https://journal.kotn.com/?_ga=2.148268350.820273179.1510629902-1687590045.1510629902
+[x] Cart
+  [x] Fix subtotal not updating on single product page
 
-[ ] Add chaser to main nav
+[-] Add chaser to main nav
 [ ] Fix route transitions previous scrollHeight
 ------
 
@@ -47,7 +53,7 @@
 
 #General
 [ ] Add smooth scroll
-[ ] Update page title on route transition
+[x] Update page title on route transition
 [ ] Make filters work on cat & tag pages
 
 #Pages
@@ -57,8 +63,8 @@
 
 #Products
 
-[ ] Filters
-  [ ] Hover tooltips for shapes
+[x] Filters
+  [x] Hover tooltips for shapes
 
 ## Single
 [ ] Related products
