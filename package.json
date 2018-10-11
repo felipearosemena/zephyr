@@ -3,7 +3,11 @@
   "version": "2.0.0",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scripts": "gulp scripts",
+    "styles": "gulp styles",
+    "start": "gulp watch",
+    "build": "gulp build"
   },
   "author": [
     "Felipe Arosemena <felipearosemena@gmail.com>"
