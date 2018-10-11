@@ -253,6 +253,7 @@ const options = {
   methods: methods,
 
   beforeMount() {
+    store.cacheResponse(location.pathname, document.documentElement.innerHTML)
 
     this.setupRoutes()
     this.updateBodyClass(this.$el.innerHTML)
