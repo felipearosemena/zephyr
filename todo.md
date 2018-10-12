@@ -1,10 +1,18 @@
-[ ] Review centering slider when active
+#ONDECK
+
+[ ] Analytics
+[ ] Fix route transitions previous scrollHeight
 [ ] Press
-  [ ] https://journal.kotn.com/?_ga=2.148268350.820273179.1510629902-1687590045.1510629902
-[ ]
+[ ] Review centering slider when active
+[ ] https://journal.kotn.com/?_ga=2.148268350.820273179.1510629902-1687590045.1510629902
+
+-----------------
+
+#BACKLOG
+
 
 #About
-[ ] Add Image bg
+[x] Add Image bg
 [ ] Add scroll as you go sections, with image changing on the right
 
 #Footer
@@ -37,7 +45,6 @@
   [x] Fix subtotal not updating on single product page
 
 [-] Add chaser to main nav
-[ ] Fix route transitions previous scrollHeight
 ------
 
 [ ] SEO Review
