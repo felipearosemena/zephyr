@@ -109,6 +109,9 @@ h1, .h1 {
 
 .h1-sm {
   font-weight: bold;
+  font-style: normal;
+  font-family: $body-font-family;
+  text-transform: none;
 
   @include mq-min($bp-md) {
     @include font-size($h1-fs, $h1-lh);
@@ -126,6 +129,10 @@ h1, .h1 {
 
 h2, .h2 {
   @include h2;
+  font-family: $body-font-family;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 @mixin h3 {
@@ -139,6 +146,9 @@ h2, .h2 {
 
 h3, .h3 {
   @include h3;
+  font-family: $body-font-family;
+  font-style: normal;
+  letter-spacing: 0;
 }
 
 @mixin h4 {
