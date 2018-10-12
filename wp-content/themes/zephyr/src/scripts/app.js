@@ -106,13 +106,11 @@ const methods = {
       return
     }
 
-    next()
-
     store.setState({ transiting: true })
 
     if(store.isCached(to.path) && this.cacheExclude.indexOf(to.path) == -1) {
       setTimeout(() => {
-        this.finalizeRouteTransition(to, store.state.cachedResponses[to.path])
+        this.finalizeRouteTransition(to, store.state.cachedResponses[to.path], next)
       }, 0)
     } else {
 
@@ -129,7 +127,7 @@ const methods = {
         }
       })
       .then(res => {
-        this.finalizeRouteTransition(to, res.body)
+        this.finalizeRouteTransition(to, res.body, next)
       })
       .catch(err => {
         window.location = err.url
@@ -138,7 +136,7 @@ const methods = {
     }
   },
 
-  finalizeRouteTransition(to, html) {
+  finalizeRouteTransition(to, html, next) {
 
     this.updateDocumentTitle(html)
     this.updateBodyClass(html)
@@ -148,6 +146,7 @@ const methods = {
 
     setTimeout(() => {
       store.setState({ transiting: false })
+      next()
     }, 0)
 
   },
