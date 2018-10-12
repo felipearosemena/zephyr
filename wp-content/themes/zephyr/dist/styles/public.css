@@ -881,7 +881,10 @@ h1, .h1 {
       line-height: 0.97222; } }
 
 .h1-sm {
-  font-weight: bold; }
+  font-weight: bold;
+  font-style: normal;
+  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
+  text-transform: none; }
   @media only screen and (min-width: 800px) {
     .h1-sm {
       font-size: 3rem;
@@ -890,7 +893,11 @@ h1, .h1 {
 h2, .h2 {
   font-size: 2rem;
   line-height: 1.125;
-  font-weight: bold; }
+  font-weight: bold;
+  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  text-transform: none;
+  letter-spacing: 0; }
   @media only screen and (min-width: 800px) {
     h2, .h2 {
       font-size: 2.8125rem;
@@ -899,11 +906,14 @@ h2, .h2 {
 h3, .h3 {
   font-weight: bold;
   font-size: 1.5rem;
-  line-height: 1.33333; }
+  line-height: 1.33333;
+  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-style: normal;
+  letter-spacing: 0; }
   @media only screen and (min-width: 800px) {
     h3, .h3 {
-      font-size: 2.25rem;
-      line-height: 1.38889; } }
+      font-size: 1.875rem;
+      line-height: 1.66667; } }
 
 h4, .h4, caption {
   font-size: 1.6875rem;
@@ -4326,8 +4336,8 @@ figure {
           transform-origin: 0 50%; }
 
 .site-nav__menu a {
-  font-size: 2.25rem;
-  line-height: 1.38889;
+  font-size: 1.875rem;
+  line-height: 1.66667;
   font-weight: bold; }
 
 .site-nav__util a {
