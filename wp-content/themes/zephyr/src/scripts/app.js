@@ -292,7 +292,7 @@ const options = {
   watch: {
     '$route': function(newRoute, oldRoute) {
       // Log it
-      logPageView(newRoute)
+      logPageView(newRoute.path)
 
       const isShop = newRoute.path.indexOf('shop') > -1
 
