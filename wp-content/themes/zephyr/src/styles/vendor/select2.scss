@@ -16,17 +16,18 @@
     .select2-selection__rendered,
     .select2-selection__arrow {
       line-height: px-to-rem($base-lh);
-      padding: ($base-input-height - px-to-rem($base-lh))/2;
     }
 
     .select2-selection__arrow {
       @include select-arrow;
       @include iconfont;
-      height: $base-input-height;
-      padding: 0 $bsu;
+      height: 100%;
+      padding: 0 $bsu*1.5 !important;
 
       &:before {
-        float: right;
+        line-height: 1.2rem;
+        top: calc(50% - .5rem);
+        position: absolute;
       }
 
       b {

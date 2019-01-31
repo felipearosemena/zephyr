@@ -100,6 +100,7 @@
 .hero__title {
   line-height: 0.8;
   font-size: 10vw;
+  font-family: $gt-walsheim-heading;
 
   @include mq-min($bp-md) {
     font-size: 98px;
@@ -109,6 +110,7 @@
 .hero__fresh,
 .hero__cuts {
   display: block;
+  text-transform: uppercase;
 }
 
 .hero__fresh {

@@ -2,6 +2,13 @@
 
 {% block content %}
 
-  {% include 'includes/single-content.twig' %}
+  <article class="section">
+    <div class="container container--md">
+      <div class="post-content">
+        {{ post.content }}
+      </div><!-- .post-content -->
+    </div>
+  </article>
+
 
 {% endblock %}

@@ -12,6 +12,7 @@ class Woocommerce
     add_filter( 'woocommerce_default_address_fields', array( &$this, 'woocommerce_default_address_fields' ) );
     add_action( 'woocommerce_after_single_product', array( &$this, 'woocommerce_after_single_product' ) );
     add_filter( 'woocommerce_thankyou_order_received_text', array( &$this, 'woocommerce_thankyou_order_received_text' ) , 10, 2 );
+    add_filter( 'woocommerce_checkout_fields', array( &$this, 'woocommerce_checkout_fields' ) , 10, 2 );
     add_filter( 'the_title', array( &$this, 'woocommerce_update_title' ), 10, 2 );
     add_action( 'wp_head', array( &$this, 'redirect_cart'));
 
@@ -26,6 +27,14 @@ class Woocommerce
   public function woocommerce_after_single_product()
   {
     echo '<p class="mt-15 mb-0 small-text">' . get_field('single_product_bottom_message', 'option'). '</p>';
+  }
+
+
+  public function woocommerce_checkout_fields( $fields ) {
+    unset($fields['billing']['billing_company']);
+    unset($fields['order']['order_comments']);
+
+    return $fields;
   }
 
   public function woocommerce_default_address_fields($fields)

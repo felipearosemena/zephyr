@@ -39,11 +39,56 @@
   margin: $bsu/2 auto;
 }
 
+.form-row label{
+  margin-bottom: 0.25rem;
+}
+
+.wc-credit-card-form label {
+  display: none;
+}
+
+#wc-stripe-payment-request-wrapper {
+  display: none;
+}
+
+.wc-stripe-elements-field.wc-stripe-elements-field  {
+  height: 2.5rem;
+  padding: .75rem .5rem;
+  cursor: pointer;
+  margin: 0;
+  border-color: currentColor;
+  border: none !important;
+  box-shadow: inset 0 0 0 1px $grey;
+
+  &.StripeElement--focus {
+    box-shadow: inset 0 0 0 1px $grey-dark;
+  }
+}
+
 .form-row {
   margin-bottom: $bsu*.75;
   width: 100%;
   position: relative;
-  float: left;
+
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="color"],
+  input[type="password"],
+  select,
+  .select2-selection.select2-selection {
+    height: 2.5rem;
+    padding: .5em;
+    display: flex;
+    align-items: center;
+    border: 1px solid $grey;
+
+    &:focus {
+      border-color: $grey-dark;
+    }
+  }
 
   input {
     margin-bottom: 0;
@@ -111,10 +156,13 @@ input, select, textarea {
 
 }
 
-.woocommerce-billing-fields,
+.woocommerce-billing-fields {
+  margin-top: $bsu*2;
+}
+
 .woocommerce-shipping-fields,
 .woocommerce-account-fields {
-  margin-top: $bsu*2;
+  margin-top: $bsu;
 }
 
 .woocommerce-billing-fields__field-wrapper,
@@ -266,12 +314,17 @@ input, select, textarea {
     vertical-align: bottom;
     padding-left: $bsu/4;
   }
+
+
+
+  .about_paypal {
+    display: none !important;
+  }
 }
 
 .wc_payment_methods {
   @include list-plain;
   width: 100%;
-  float: left;
 
   img {
     width: px-to-rem(50px);
@@ -279,8 +332,22 @@ input, select, textarea {
   }
 }
 
+.payment_method_paypal {
+  img {
+    display: none !important;
+  }
+
+  .payment_box {
+    display: none !important;
+  }
+}
+
 .payment_box {
-  display: none;
+  margin-top: 1rem;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li img.stripe-icon {
+  vertical-align: bottom;
 }
 
 .woocommerce-thankyou-order-received {
@@ -341,6 +408,25 @@ form.checkout_coupon {
   .product-total,
   tfoot td {
     text-align: right;
+  }
+
+  .shipping {
+    ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    label {
+      @extend .small-text;
+    }
+
+    .amount {
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 0;
+    }
   }
 }
 

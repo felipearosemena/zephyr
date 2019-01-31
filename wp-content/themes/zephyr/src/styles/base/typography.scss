@@ -74,11 +74,9 @@ a, i {
 
 %heading-style {
   font-family: $heading-font-family;
-  font-weight: 900;
-  font-style: oblique;
+  font-weight: 500;
   margin-top: 0;
   margin-bottom: $bsu;
-  text-transform: uppercase;
   letter-spacing: .03em;
 
   a, a:visited {
@@ -120,7 +118,6 @@ h1, .h1 {
 
 @mixin h2 {
   @include font-size($h2-fs, $h2-lh);
-  font-weight: bold;
 
   @include mq-min($bp-md) {
     @include font-size($h2-fs-lg, $h2-lh-lg)
@@ -131,12 +128,10 @@ h2, .h2 {
   @include h2;
   font-family: $body-font-family;
   font-style: normal;
-  text-transform: none;
   letter-spacing: 0;
 }
 
 @mixin h3 {
-  font-weight: bold;
   @include font-size($h3-fs, $h3-lh);
 
   @include mq-min($bp-md) {
