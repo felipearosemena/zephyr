@@ -1,8 +1,6 @@
 <?php
 
-
 namespace enshrined\svgSanitize;
-
 
 use DOMDocument;
 use enshrined\svgSanitize\data\AllowedAttributes;
@@ -22,11 +20,6 @@ class Sanitizer
      * Regex to catch script and data values in attributes
      */
     const SCRIPT_REGEX = '/(?:\w+script|data):/xi';
-
-    /**
-     * Regex to test for remote URLs in linked assets
-     */
-    const REMOTE_REFERENCE_REGEX = '/url\(([\'"]?(?:http|https):)[\'"]?([^\'"\)]*)[\'"]?\)/xi';
 
     /**
      * @var DOMDocument
@@ -59,15 +52,23 @@ class Sanitizer
     protected $removeRemoteReferences = false;
 
     /**
+     * @var bool
+     */
+    protected $removeXMLTag = false;
+
+    /**
+     * @var int
+     */
+    protected $xmlOptions = LIBXML_NOEMPTYTAG;
+
+    /**
      *
      */
     function __construct()
     {
-        $this->resetInternal();
-
         // Load default tags/attributes
-        $this->allowedAttrs = AllowedAttributes::getAttributes();
-        $this->allowedTags = AllowedTags::getTags();
+        $this->allowedAttrs = array_map('strtolower', AllowedAttributes::getAttributes());
+        $this->allowedTags = array_map('strtolower', AllowedTags::getTags());
     }
 
     /**
@@ -78,12 +79,29 @@ class Sanitizer
         $this->xmlDocument = new DOMDocument();
         $this->xmlDocument->preserveWhiteSpace = false;
         $this->xmlDocument->strictErrorChecking = false;
-        $this->xmlDocument->formatOutput = true;
+        $this->xmlDocument->formatOutput = !$this->minifyXML;
+    }
 
-        // Maybe don't format the output
-        if($this->minifyXML) {
-            $this->xmlDocument->formatOutput = false;
-        }
+    /**
+     * Set XML options to use when saving XML
+     * See: DOMDocument::saveXML
+     * 
+     * @param int  $xmlOptions
+     */
+    public function setXMLOptions($xmlOptions)
+    {
+        $this->xmlOptions = $xmlOptions;
+    }
+
+     /**
+     * Get XML options to use when saving XML
+     * See: DOMDocument::saveXML
+     * 
+     * @return int
+     */
+    public function getXMLOptions()
+    {
+       return $this->xmlOptions;
     }
 
     /**
@@ -103,7 +121,7 @@ class Sanitizer
      */
     public function setAllowedTags(TagInterface $allowedTags)
     {
-        $this->allowedTags = $allowedTags::getTags();
+        $this->allowedTags = array_map('strtolower', $allowedTags::getTags());
     }
 
     /**
@@ -123,7 +141,7 @@ class Sanitizer
      */
     public function setAllowedAttrs(AttributeInterface $allowedAttrs)
     {
-        $this->allowedAttrs = $allowedAttrs::getAttributes();
+        $this->allowedAttrs = array_map('strtolower', $allowedAttrs::getAttributes());
     }
 
     /**
@@ -149,6 +167,10 @@ class Sanitizer
             return '';
         }
 
+        // Strip php tags
+        $dirty = preg_replace('/<\?(=|php)(.+?)\?>/i', '', $dirty);
+
+        $this->resetInternal();
         $this->setUpBefore();
 
         $loaded = $this->xmlDocument->loadXML($dirty);
@@ -168,12 +190,16 @@ class Sanitizer
         $this->startClean($allElements);
 
         // Save cleaned XML to a variable
-        $clean = $this->xmlDocument->saveXML($this->xmlDocument->documentElement, LIBXML_NOEMPTYTAG);
+        if ($this->removeXMLTag) {
+            $clean = $this->xmlDocument->saveXML($this->xmlDocument->documentElement, $this->xmlOptions);
+        } else {
+            $clean = $this->xmlDocument->saveXML($this->xmlDocument, $this->xmlOptions);
+        }
 
         $this->resetAfter();
 
         // Remove any extra whitespaces when minifying
-        if($this->minifyXML) {
+        if ($this->minifyXML) {
             $clean = preg_replace('/\s+/', ' ', $clean);
         }
 
@@ -198,10 +224,7 @@ class Sanitizer
      */
     protected function resetAfter()
     {
-        // Reset DOMDocument to a clean state in case we use it again
-        $this->resetInternal();
-
-        // Reset the entity loader3
+        // Reset the entity loader
         libxml_disable_entity_loader($this->xmlLoaderValue);
     }
 
@@ -242,6 +265,13 @@ class Sanitizer
             $this->cleanXlinkHrefs($currentElement);
 
             $this->cleanHrefs($currentElement);
+
+            if (strtolower($currentElement->tagName) === 'use') {
+                if ($this->isUseTagDirty($currentElement)) {
+                    $currentElement->parentNode->removeChild($currentElement);
+                    continue;
+                }
+            }
         }
     }
 
@@ -257,7 +287,7 @@ class Sanitizer
             $attrName = $element->attributes->item($x)->name;
 
             // Remove attribute if not in whitelist
-            if (!in_array(strtolower($attrName), $this->allowedAttrs)) {
+            if (!in_array(strtolower($attrName), $this->allowedAttrs) && !$this->isAriaAttribute(strtolower($attrName)) && !$this->isDataAttribute(strtolower($attrName))) {
                 $element->removeAttribute($attrName);
             }
 
@@ -276,11 +306,19 @@ class Sanitizer
      *
      * @param \DOMElement $element
      */
-    protected function cleanXlinkHrefs(\DOMElement &$element)
+    protected function cleanXlinkHrefs(\DOMElement $element)
     {
         $xlinks = $element->getAttributeNS('http://www.w3.org/1999/xlink', 'href');
         if (preg_match(self::SCRIPT_REGEX, $xlinks) === 1) {
-            $element->removeAttributeNS('http://www.w3.org/1999/xlink', 'href');
+            if (!in_array(substr($xlinks, 0, 14), array(
+                'data:image/png', // PNG
+                'data:image/gif', // GIF
+                'data:image/jpg', // JPG
+                'data:image/jpe', // JPEG
+                'data:image/pjp', // PJPEG
+            ))) {
+                $element->removeAttributeNS( 'http://www.w3.org/1999/xlink', 'href' );
+            }
         }
     }
 
@@ -289,12 +327,23 @@ class Sanitizer
      *
      * @param \DOMElement $element
      */
-    protected function cleanHrefs(\DOMElement &$element)
+    protected function cleanHrefs(\DOMElement $element)
     {
         $href = $element->getAttribute('href');
         if (preg_match(self::SCRIPT_REGEX, $href) === 1) {
             $element->removeAttribute('href');
         }
+    }
+
+    /**
+     * Removes non-printable ASCII characters from string & trims it
+     *
+     * @param string $value
+     * @return bool
+     */
+    protected function removeNonPrintableCharacters($value)
+    {
+        return trim(preg_replace('/[^ -~]/xu','',$value));
     }
 
     /**
@@ -305,11 +354,16 @@ class Sanitizer
      */
     protected function hasRemoteReference($value)
     {
-        if (preg_match(self::REMOTE_REFERENCE_REGEX, $value) === 1) {
-            return true;
+        $value = $this->removeNonPrintableCharacters($value);
+
+        $wrapped_in_url = preg_match('~^url\(\s*[\'"]\s*(.*)\s*[\'"]\s*\)$~xi', $value, $match);
+        if (!$wrapped_in_url){
+            return false;
         }
 
-        return false;
+        $value = trim($match[1], '\'"');
+
+        return preg_match('~^((https?|ftp|file):)?//~xi', $value);
     }
 
     /**
@@ -320,5 +374,55 @@ class Sanitizer
     public function minify($shouldMinify = false)
     {
         $this->minifyXML = (bool) $shouldMinify;
+    }
+
+    /**
+     * Should we remove the XML tag in the header?
+     *
+     * @param bool $removeXMLTag
+     */
+    public function removeXMLTag($removeXMLTag = false)
+    {
+        $this->removeXMLTag = (bool) $removeXMLTag;
+    }
+
+    /**
+     * Check to see if an attribute is an aria attribute or not
+     *
+     * @param $attributeName
+     *
+     * @return bool
+     */
+    protected function isAriaAttribute($attributeName)
+    {
+        return strpos($attributeName, 'aria-') === 0;
+    }
+
+    /**
+     * Check to see if an attribute is an data attribute or not
+     *
+     * @param $attributeName
+     *
+     * @return bool
+     */
+    protected function isDataAttribute($attributeName)
+    {
+        return strpos($attributeName, 'data-') === 0;
+    }
+
+    /**
+     * Make sure our use tag is only referencing internal resources
+     *
+     * @param \DOMElement $element
+     * @return bool
+     */
+    protected function isUseTagDirty(\DOMElement $element)
+    {
+        $xlinks = $element->getAttributeNS('http://www.w3.org/1999/xlink', 'href');
+        if ($xlinks && substr($xlinks, 0, 1) !== '#') {
+            return true;
+        }
+
+        return false;
     }
 }

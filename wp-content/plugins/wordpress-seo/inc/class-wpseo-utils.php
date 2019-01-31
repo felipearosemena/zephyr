@@ -1,22 +1,29 @@
 <?php
 /**
- * @package    WPSEO\Internals
- * @since      1.8.0
+ * WPSEO plugin file.
+ *
+ * @package WPSEO\Internals
+ * @since   1.8.0
  */
 
 /**
- * Group of utility methods for use by WPSEO
+ * Group of utility methods for use by WPSEO.
  * All methods are static, this is just a sort of namespacing class wrapper.
  */
 class WPSEO_Utils {
 
 	/**
-	 * @var bool $has_filters Whether the PHP filter extension is enabled
+	 * @var bool $has_filters Whether the PHP filter extension is enabled.
 	 * @static
+	 * @since 1.8.0
 	 */
 	public static $has_filters;
 
-	/** @var array notifications to be shown in the JavaScript console */
+	/**
+	 * @var array Notifications to be shown in the JavaScript console.
+	 * @static
+	 * @since 3.3.2
+	 */
 	protected static $console_notifications = array();
 
 	/**
@@ -24,9 +31,12 @@ class WPSEO_Utils {
 	 *
 	 * @static
 	 *
+	 * @since 1.8.0
+	 *
 	 * @return boolean
 	 */
 	public static function grant_access() {
+		// @todo Add deprecation warning.
 		if ( ! is_multisite() ) {
 			return true;
 		}
@@ -34,18 +44,20 @@ class WPSEO_Utils {
 		$options = get_site_option( 'wpseo_ms' );
 
 		if ( empty( $options['access'] ) || $options['access'] === 'admin' ) {
-			return current_user_can( 'manage_options' );
+			return current_user_can( 'wpseo_manage_options' );
 		}
 
 		return is_super_admin();
 	}
 
 	/**
-	 * Check whether file editing is allowed for the .htaccess and robots.txt files
+	 * Check whether file editing is allowed for the .htaccess and robots.txt files.
 	 *
-	 * @internal current_user_can() checks internally whether a user is on wp-ms and adjusts accordingly.
+	 * {@internal current_user_can() checks internally whether a user is on wp-ms and adjusts accordingly.}}
 	 *
 	 * @static
+	 *
+	 * @since    1.8.0
 	 *
 	 * @return bool
 	 */
@@ -58,18 +70,20 @@ class WPSEO_Utils {
 
 		/**
 		 * Filter: 'wpseo_allow_system_file_edit' - Allow developers to change whether the editing of
-		 * .htaccess and robots.txt is allowed
+		 * .htaccess and robots.txt is allowed.
 		 *
-		 * @api bool $allowed Whether file editing is allowed
+		 * @api bool $allowed Whether file editing is allowed.
 		 */
 
 		return apply_filters( 'wpseo_allow_system_file_edit', $allowed );
 	}
 
 	/**
-	 * Check if the web server is running on Apache
+	 * Check if the web server is running on Apache.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 *
 	 * @return bool
 	 */
@@ -82,9 +96,11 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Check if the web server is running on Nginx
+	 * Check if the web server is running on Nginx.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 *
 	 * @return bool
 	 */
@@ -97,7 +113,9 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Register a notification to be shown in the JavaScript console
+	 * Register a notification to be shown in the JavaScript console.
+	 *
+	 * @since 3.3.2
 	 *
 	 * @param string $identifier    Notification identifier.
 	 * @param string $message       Message to be shown.
@@ -125,7 +143,9 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Localize the console notifications to JavaScript
+	 * Localize the console notifications to JavaScript.
+	 *
+	 * @since 3.3.2
 	 */
 	public static function localize_console_notices() {
 		if ( empty( self::$console_notifications ) ) {
@@ -136,7 +156,9 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Check whether a url is relative
+	 * Check whether a url is relative.
+	 *
+	 * @since 1.8.0
 	 *
 	 * @param string $url URL string to check.
 	 *
@@ -147,7 +169,9 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * List all the available user roles
+	 * List all the available user roles.
+	 *
+	 * @since 1.8.0
 	 *
 	 * @static
 	 *
@@ -166,9 +190,11 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Standardize whitespace in a string
+	 * Standardize whitespace in a string.
 	 *
 	 * Replace line breaks, carriage returns, tabs with a space, then remove double spaces.
+	 *
+	 * @since 1.8.0
 	 *
 	 * @param string $string String input to standardize.
 	 *
@@ -184,23 +210,27 @@ class WPSEO_Utils {
 	 *
 	 * @static
 	 *
+	 * @since 1.8.0
+	 *
 	 * @param string $text Input string that might contain shortcodes.
 	 *
-	 * @return string $text string without shortcodes
+	 * @return string $text String without shortcodes.
 	 */
 	public static function strip_shortcode( $text ) {
 		return preg_replace( '`\[[^\]]+\]`s', '', strip_shortcodes( $text ) );
 	}
 
 	/**
-	 * Recursively trim whitespace round a string value or of string values within an array
-	 * Only trims strings to avoid typecasting a variable (to string)
+	 * Recursively trim whitespace round a string value or of string values within an array.
+	 * Only trims strings to avoid typecasting a variable (to string).
 	 *
 	 * @static
 	 *
+	 * @since 1.8.0
+	 *
 	 * @param mixed $value Value to trim or array of values to trim.
 	 *
-	 * @return mixed Trimmed value or array of trimmed values
+	 * @return mixed Trimmed value or array of trimmed values.
 	 */
 	public static function trim_recursive( $value ) {
 		if ( is_string( $value ) ) {
@@ -218,6 +248,8 @@ class WPSEO_Utils {
 	 *
 	 * @static
 	 *
+	 * @since 1.8.0
+	 *
 	 * @param int  $val       The decimal score to translate.
 	 * @param bool $css_value Whether to return the i18n translated score or the CSS class value.
 	 *
@@ -234,17 +266,21 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Emulate the WP native sanitize_text_field function in a %%variable%% safe way
+	 * Emulate the WP native sanitize_text_field function in a %%variable%% safe way.
 	 *
-	 * @see https://core.trac.wordpress.org/browser/trunk/src/wp-includes/formatting.php for the original
+	 * @see   https://core.trac.wordpress.org/browser/trunk/src/wp-includes/formatting.php for the original
 	 *
-	 * Sanitize a string from user input or from the db
+	 * Sanitize a string from user input or from the db.
 	 *
-	 * check for invalid UTF-8,
-	 * Convert single < characters to entity,
-	 * strip all tags,
-	 * remove line breaks, tabs and extra white space,
-	 * strip octets - BUT DO NOT REMOVE (part of) VARIABLES WHICH WILL BE REPLACED.
+	 * - Check for invalid UTF-8,
+	 * - Convert single < characters to entity,
+	 * - Strip all tags,
+	 * - Remove line breaks, tabs and extra white space,
+	 * - Strip octets - BUT DO NOT REMOVE (part of) VARIABLES WHICH WILL BE REPLACED.
+	 *
+	 * @static
+	 *
+	 * @since 1.8.0
 	 *
 	 * @param string $value String value to sanitize.
 	 *
@@ -287,10 +323,12 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Sanitize a url for saving to the database
-	 * Not to be confused with the old native WP function
+	 * Sanitize a url for saving to the database.
+	 * Not to be confused with the old native WP function.
 	 *
-	 * @todo [JRF => whomever] check/improve url verification
+	 * @todo  [JRF => whomever] Check/improve url verification.
+	 *
+	 * @since 1.8.0
 	 *
 	 * @param string $value             String URL value to sanitize.
 	 * @param array  $allowed_protocols Optional set of allowed protocols.
@@ -302,9 +340,11 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Validate a value as boolean
+	 * Validate a value as boolean.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 *
 	 * @param mixed $value Value to validate.
 	 *
@@ -324,9 +364,11 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Cast a value to bool
+	 * Cast a value to bool.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 *
 	 * @param mixed $value Value to cast.
 	 *
@@ -346,7 +388,6 @@ class WPSEO_Utils {
 			'on',
 			'On',
 			'ON',
-
 		);
 		$false = array(
 			'0',
@@ -366,18 +407,18 @@ class WPSEO_Utils {
 		if ( is_bool( $value ) ) {
 			return $value;
 		}
-		else if ( is_int( $value ) && ( $value === 0 || $value === 1 ) ) {
+		elseif ( is_int( $value ) && ( $value === 0 || $value === 1 ) ) {
 			return (bool) $value;
 		}
-		else if ( ( is_float( $value ) && ! is_nan( $value ) ) && ( $value === (float) 0 || $value === (float) 1 ) ) {
+		elseif ( ( is_float( $value ) && ! is_nan( $value ) ) && ( $value === (float) 0 || $value === (float) 1 ) ) {
 			return (bool) $value;
 		}
-		else if ( is_string( $value ) ) {
+		elseif ( is_string( $value ) ) {
 			$value = trim( $value );
 			if ( in_array( $value, $true, true ) ) {
 				return true;
 			}
-			else if ( in_array( $value, $false, true ) ) {
+			elseif ( in_array( $value, $false, true ) ) {
 				return false;
 			}
 			else {
@@ -389,13 +430,15 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Validate a value as integer
+	 * Validate a value as integer.
 	 *
 	 * @static
 	 *
+	 * @since 1.8.0
+	 *
 	 * @param mixed $value Value to validate.
 	 *
-	 * @return int|bool int or false in case of failure to convert to int
+	 * @return int|bool Int or false in case of failure to convert to int.
 	 */
 	public static function validate_int( $value ) {
 		if ( ! isset( self::$has_filters ) ) {
@@ -411,9 +454,11 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Cast a value to integer
+	 * Cast a value to integer.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 *
 	 * @param mixed $value Value to cast.
 	 *
@@ -423,7 +468,7 @@ class WPSEO_Utils {
 		if ( is_int( $value ) ) {
 			return $value;
 		}
-		else if ( is_float( $value ) ) {
+		elseif ( is_float( $value ) ) {
 			if ( (int) $value == $value && ! is_nan( $value ) ) {
 				return (int) $value;
 			}
@@ -431,15 +476,15 @@ class WPSEO_Utils {
 				return false;
 			}
 		}
-		else if ( is_string( $value ) ) {
+		elseif ( is_string( $value ) ) {
 			$value = trim( $value );
 			if ( $value === '' ) {
 				return false;
 			}
-			else if ( ctype_digit( $value ) ) {
+			elseif ( ctype_digit( $value ) ) {
 				return (int) $value;
 			}
-			else if ( strpos( $value, '-' ) === 0 && ctype_digit( substr( $value, 1 ) ) ) {
+			elseif ( strpos( $value, '-' ) === 0 && ctype_digit( substr( $value, 1 ) ) ) {
 				return (int) $value;
 			}
 			else {
@@ -451,9 +496,11 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Clears the WP or W3TC cache depending on which is used
+	 * Clears the WP or W3TC cache depending on which is used.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 */
 	public static function clear_cache() {
 		if ( function_exists( 'w3tc_pgcache_flush' ) ) {
@@ -465,9 +512,11 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Flush W3TC cache after succesfull update/add of taxonomy meta option
+	 * Flush W3TC cache after succesfull update/add of taxonomy meta option.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 */
 	public static function flush_w3tc_cache() {
 		if ( defined( 'W3TC_DIR' ) && function_exists( 'w3tc_objectcache_flush' ) ) {
@@ -476,25 +525,28 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Clear rewrite rules
+	 * Clear rewrite rules.
 	 *
 	 * @static
+	 *
+	 * @since 1.8.0
 	 */
 	public static function clear_rewrites() {
 		delete_option( 'rewrite_rules' );
 	}
 
 	/**
-	 * Do simple reliable math calculations without the risk of wrong results
+	 * Do simple reliable math calculations without the risk of wrong results.
 	 *
 	 * @see   http://floating-point-gui.de/
 	 * @see   the big red warning on http://php.net/language.types.float.php
 	 *
-	 * In the rare case that the bcmath extension would not be loaded, it will return the normal calculation results
+	 * In the rare case that the bcmath extension would not be loaded, it will return the normal calculation results.
 	 *
 	 * @static
 	 *
 	 * @since 1.5.0
+	 * @since 1.8.0 Moved from stand-alone function to this class.
 	 *
 	 * @param mixed  $number1     Scalar (string/int/float/bool).
 	 * @param string $action      Calculation action to execute. Valid input:
@@ -511,10 +563,10 @@ class WPSEO_Utils {
 	 * @param int    $precision   Calculation precision. Defaults to 10.
 	 *
 	 * @return mixed            Calculation Result or false if either or the numbers isn't scalar or
-	 *                          an invalid operation was passed
-	 *                          - for compare the result will always be an integer
+	 *                          an invalid operation was passed.
+	 *                          - for compare the result will always be an integer.
 	 *                          - for all other operations, the result will either be an integer (preferred)
-	 *                            or a float
+	 *                            or a float.
 	 */
 	public static function calc( $number1, $action, $number2, $round = false, $decimals = 0, $precision = 10 ) {
 		static $bc;
@@ -617,7 +669,9 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Trim whitespace and NBSP (Non-breaking space) from string
+	 * Trim whitespace and NBSP (Non-breaking space) from string.
+	 *
+	 * @since 2.0.0
 	 *
 	 * @param string $string String input to trim.
 	 *
@@ -632,7 +686,9 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Check if a string is a valid datetime
+	 * Check if a string is a valid datetime.
+	 *
+	 * @since 2.0.0
 	 *
 	 * @param string $datetime String input to check as valid input for DateTime class.
 	 *
@@ -656,6 +712,8 @@ class WPSEO_Utils {
 	 *
 	 * This method will parse the URL and combine them in one string.
 	 *
+	 * @since 2.3.0
+	 *
 	 * @param string $url URL string.
 	 *
 	 * @return mixed
@@ -674,16 +732,17 @@ class WPSEO_Utils {
 		}
 
 		// Append 'query' string if it exists.
-		if ( isset( $parsed_url['query'] ) && '' != $parsed_url['query'] ) {
+		if ( ! empty( $parsed_url['query'] ) ) {
 			$formatted_url .= '?' . $parsed_url['query'];
 		}
 
 		return apply_filters( 'wpseo_format_admin_url', $formatted_url );
 	}
 
-
 	/**
-	 * Get plugin name from file
+	 * Get plugin name from file.
+	 *
+	 * @since 2.3.3
 	 *
 	 * @param string $plugin Plugin path relative to plugins directory.
 	 *
@@ -692,7 +751,7 @@ class WPSEO_Utils {
 	public static function get_plugin_name( $plugin ) {
 		$plugin_details = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin );
 
-		if ( $plugin_details['Name'] != '' ) {
+		if ( $plugin_details['Name'] !== '' ) {
 			return $plugin_details['Name'];
 		}
 
@@ -702,14 +761,18 @@ class WPSEO_Utils {
 	/**
 	 * Retrieves the sitename.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @return string
 	 */
 	public static function get_site_name() {
-		return trim( strip_tags( get_bloginfo( 'name' ) ) );
+		return wp_strip_all_tags( get_bloginfo( 'name' ), true );
 	}
 
 	/**
 	 * Retrieves the title separator.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @return string
 	 */
@@ -717,25 +780,27 @@ class WPSEO_Utils {
 		$replacement = WPSEO_Options::get_default( 'wpseo_titles', 'separator' );
 
 		// Get the titles option and the separator options.
-		$titles_options    = WPSEO_Options::get_option( 'wpseo_titles' );
+		$separator         = WPSEO_Options::get( 'separator' );
 		$seperator_options = WPSEO_Option_Titles::get_instance()->get_separator_options();
 
 		// This should always be set, but just to be sure.
-		if ( isset( $seperator_options[ $titles_options['separator'] ] ) ) {
+		if ( isset( $seperator_options[ $separator ] ) ) {
 			// Set the new replacement.
-			$replacement = $seperator_options[ $titles_options['separator'] ];
+			$replacement = $seperator_options[ $separator ];
 		}
 
 		/**
-		 * Filter: 'wpseo_replacements_filter_sep' - Allow customization of the separator character(s)
+		 * Filter: 'wpseo_replacements_filter_sep' - Allow customization of the separator character(s).
 		 *
-		 * @api string $replacement The current separator
+		 * @api string $replacement The current separator.
 		 */
 		return apply_filters( 'wpseo_replacements_filter_sep', $replacement );
 	}
 
 	/**
 	 * Check if the current opened page is a Yoast SEO page.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @return bool
 	 */
@@ -753,7 +818,9 @@ class WPSEO_Utils {
 	/**
 	 * Check if the current opened page belongs to Yoast SEO Free.
 	 *
-	 * @param string $current_page the current page the user is on.
+	 * @since 3.3.0
+	 *
+	 * @param string $current_page The current page the user is on.
 	 *
 	 * @return bool
 	 */
@@ -762,20 +829,31 @@ class WPSEO_Utils {
 			'wpseo_dashboard',
 			'wpseo_titles',
 			'wpseo_social',
-			'wpseo_xml',
 			'wpseo_advanced',
 			'wpseo_tools',
 			'wpseo_search_console',
 			'wpseo_licenses',
+			'wpseo_courses',
 		);
 
-		return in_array( $current_page, $yoast_seo_free_pages );
+		return in_array( $current_page, $yoast_seo_free_pages, true );
+	}
+
+	/**
+	 * Checks if we are in the premium or free plugin.
+	 *
+	 * @return bool True when we are in the premium plugin.
+	 */
+	public static function is_yoast_seo_premium() {
+		return defined( 'WPSEO_PREMIUM_PLUGIN_FILE' );
 	}
 
 	/**
 	 * Determine if Yoast SEO is in development mode?
 	 *
 	 * Inspired by JetPack (https://github.com/Automattic/jetpack/blob/master/class.jetpack.php#L1383-L1406).
+	 *
+	 * @since 3.0.0
 	 *
 	 * @return bool
 	 */
@@ -803,6 +881,8 @@ class WPSEO_Utils {
 	/**
 	 * Retrieve home URL with proper trailing slash.
 	 *
+	 * @since 3.3.0
+	 *
 	 * @param string      $path   Path relative to home URL.
 	 * @param string|null $scheme Scheme to apply.
 	 *
@@ -816,7 +896,7 @@ class WPSEO_Utils {
 			return $home_url;
 		}
 
-		$home_path = parse_url( $home_url, PHP_URL_PATH );
+		$home_path = wp_parse_url( $home_url, PHP_URL_PATH );
 
 		if ( '/' === $home_path ) { // Home at site root, already slashed.
 			return $home_url;
@@ -834,14 +914,16 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Returns a base64 URL for the svg for use in the menu
+	 * Returns a base64 URL for the svg for use in the menu.
+	 *
+	 * @since 3.3.0
 	 *
 	 * @param bool $base64 Whether or not to return base64'd output.
 	 *
 	 * @return string
 	 */
 	public static function get_icon_svg( $base64 = true ) {
-		$svg = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" height="100%" style="fill:#82878c" viewBox="0 0 512 512"><g><g><g><g><path d="M203.6,395c6.8-17.4,6.8-36.6,0-54l-79.4-204h70.9l47.7,149.4l74.8-207.6H116.4c-41.8,0-76,34.2-76,76V357c0,41.8,34.2,76,76,76H173C189,424.1,197.6,410.3,203.6,395z"/></g><g><path d="M471.6,154.8c0-41.8-34.2-76-76-76h-3L285.7,365c-9.6,26.7-19.4,49.3-30.3,68h216.2V154.8z"/></g></g><path stroke-width="2.974" stroke-miterlimit="10" d="M338,1.3l-93.3,259.1l-42.1-131.9h-89.1l83.8,215.2c6,15.5,6,32.5,0,48c-7.4,19-19,37.3-53,41.9l-7.2,1v76h8.3c81.7,0,118.9-57.2,149.6-142.9L431.6,1.3H338z M279.4,362c-32.9,92-67.6,128.7-125.7,131.8v-45c37.5-7.5,51.3-31,59.1-51.1c7.5-19.3,7.5-40.7,0-60l-75-192.7h52.8l53.3,166.8l105.9-294h58.1L279.4,362z"/></g></g></svg>';
+		$svg = '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" height="100%" style="fill:#82878c" viewBox="0 0 512 512" role="img" aria-hidden="true" focusable="false"><g><g><g><g><path d="M203.6,395c6.8-17.4,6.8-36.6,0-54l-79.4-204h70.9l47.7,149.4l74.8-207.6H116.4c-41.8,0-76,34.2-76,76V357c0,41.8,34.2,76,76,76H173C189,424.1,197.6,410.3,203.6,395z"/></g><g><path d="M471.6,154.8c0-41.8-34.2-76-76-76h-3L285.7,365c-9.6,26.7-19.4,49.3-30.3,68h216.2V154.8z"/></g></g><path stroke-width="2.974" stroke-miterlimit="10" d="M338,1.3l-93.3,259.1l-42.1-131.9h-89.1l83.8,215.2c6,15.5,6,32.5,0,48c-7.4,19-19,37.3-53,41.9l-7.2,1v76h8.3c81.7,0,118.9-57.2,149.6-142.9L431.6,1.3H338z M279.4,362c-32.9,92-67.6,128.7-125.7,131.8v-45c37.5-7.5,51.3-31,59.1-51.1c7.5-19.3,7.5-40.7,0-60l-75-192.7h52.8l53.3,166.8l105.9-294h58.1L279.4,362z"/></g></g></svg>';
 
 		if ( $base64 ) {
 			return 'data:image/svg+xml;base64,' . base64_encode( $svg );
@@ -851,19 +933,216 @@ class WPSEO_Utils {
 	}
 
 	/**
-	 * Returns the language part of a given locale, defaults to english when the $locale is empty
+	 * Returns the SVG for the traffic light in the metabox.
 	 *
-	 * @param string $locale The locale to get the language of.
-	 * @returns string The language part of the locale.
+	 * @return string
 	 */
-	public static function get_language( $locale ) {
-		$language = 'en';
+	public static function traffic_light_svg() {
+		return <<<SVG
+<svg class="yst-traffic-light init" version="1.1" xmlns="http://www.w3.org/2000/svg"
+	 role="img" aria-hidden="true" focusable="false"
+	 x="0px" y="0px" viewBox="0 0 30 47" enable-background="new 0 0 30 47" xml:space="preserve">
+<g id="BG_1_">
+</g>
+<g id="traffic_light">
+	<g>
+		<g>
+			<g>
+				<path fill="#5B2942" d="M22,0H8C3.6,0,0,3.6,0,7.9v31.1C0,43.4,3.6,47,8,47h14c4.4,0,8-3.6,8-7.9V7.9C30,3.6,26.4,0,22,0z
+					 M27.5,38.8c0,3.1-2.6,5.7-5.8,5.7H8.3c-3.2,0-5.8-2.5-5.8-5.7V8.3c0-1.5,0.6-2.9,1.7-4c1.1-1,2.5-1.6,4.1-1.6h13.4
+					c1.5,0,3,0.6,4.1,1.6c1.1,1.1,1.7,2.5,1.7,4V38.8z"/>
+			</g>
+			<g class="traffic-light-color traffic-light-red">
+				<ellipse fill="#C8C8C8" cx="15" cy="23.5" rx="5.7" ry="5.6"/>
+				<ellipse fill="#DC3232" cx="15" cy="10.9" rx="5.7" ry="5.6"/>
+				<ellipse fill="#C8C8C8" cx="15" cy="36.1" rx="5.7" ry="5.6"/>
+			</g>
+			<g class="traffic-light-color traffic-light-orange">
+				<ellipse fill="#F49A00" cx="15" cy="23.5" rx="5.7" ry="5.6"/>
+				<ellipse fill="#C8C8C8" cx="15" cy="10.9" rx="5.7" ry="5.6"/>
+				<ellipse fill="#C8C8C8" cx="15" cy="36.1" rx="5.7" ry="5.6"/>
+			</g>
+			<g class="traffic-light-color traffic-light-green">
+				<ellipse fill="#C8C8C8" cx="15" cy="23.5" rx="5.7" ry="5.6"/>
+				<ellipse fill="#C8C8C8" cx="15" cy="10.9" rx="5.7" ry="5.6"/>
+				<ellipse fill="#63B22B" cx="15" cy="36.1" rx="5.7" ry="5.6"/>
+			</g>
+			<g class="traffic-light-color traffic-light-empty">
+				<ellipse fill="#C8C8C8" cx="15" cy="23.5" rx="5.7" ry="5.6"/>
+				<ellipse fill="#C8C8C8" cx="15" cy="10.9" rx="5.7" ry="5.6"/>
+				<ellipse fill="#C8C8C8" cx="15" cy="36.1" rx="5.7" ry="5.6"/>
+			</g>
+			<g class="traffic-light-color traffic-light-init">
+				<ellipse fill="#5B2942" cx="15" cy="23.5" rx="5.7" ry="5.6"/>
+				<ellipse fill="#5B2942" cx="15" cy="10.9" rx="5.7" ry="5.6"/>
+				<ellipse fill="#5B2942" cx="15" cy="36.1" rx="5.7" ry="5.6"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>
+SVG;
+	}
 
-		if ( ! empty( $locale ) && strlen( $locale ) >= 2 ) {
-			$language = substr( $locale, 0, 2 );
+	/**
+	 * Checks if the WP-REST-API is available.
+	 *
+	 * @since 3.6
+	 * @since 3.7 Introduced the $minimum_version parameter.
+	 *
+	 * @param string $minimum_version The minimum version the API should be.
+	 *
+	 * @return bool Returns true if the API is available.
+	 */
+	public static function is_api_available( $minimum_version = '2.0' ) {
+		return ( defined( 'REST_API_VERSION' )
+			&& version_compare( REST_API_VERSION, $minimum_version, '>=' ) );
+	}
+
+	/**
+	 * Determine whether or not the metabox should be displayed for a post type.
+	 *
+	 * @param string|null $post_type Optional. The post type to check the visibility of the metabox for.
+	 *
+	 * @return bool Whether or not the metabox should be displayed.
+	 */
+	protected static function display_post_type_metabox( $post_type = null ) {
+		if ( ! isset( $post_type ) ) {
+			$post_type = get_post_type();
 		}
 
-		return $language;
+		if ( ! isset( $post_type ) || ! WPSEO_Post_Type::is_post_type_accessible( $post_type ) ) {
+			return false;
+		}
+
+		if ( $post_type === 'attachment' && WPSEO_Options::get( 'disable-attachment' ) ) {
+			return false;
+		}
+
+		return WPSEO_Options::get( 'display-metabox-pt-' . $post_type );
+	}
+
+	/**
+	 * Determine whether or not the metabox should be displayed for a taxonomy.
+	 *
+	 * @param string|null $taxonomy Optional. The post type to check the visibility of the metabox for.
+	 *
+	 * @return bool Whether or not the metabox should be displayed.
+	 */
+	protected static function display_taxonomy_metabox( $taxonomy = null ) {
+		if ( ! isset( $taxonomy ) || ! in_array( $taxonomy, get_taxonomies( array( 'public' => true ), 'names' ), true ) ) {
+			return false;
+		}
+
+		return WPSEO_Options::get( 'display-metabox-tax-' . $taxonomy );
+	}
+
+	/**
+	 * Determines whether the metabox is active for the given identifier and type.
+	 *
+	 * @param string $identifier The identifier to check for.
+	 * @param string $type       The type to check for.
+	 *
+	 * @return bool Whether or not the metabox is active.
+	 */
+	public static function is_metabox_active( $identifier, $type ) {
+		if ( $type === 'post_type' ) {
+			return self::display_post_type_metabox( $identifier );
+		}
+
+		if ( $type === 'taxonomy' ) {
+			return self::display_taxonomy_metabox( $identifier );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Determines whether or not WooCommerce is active.
+	 *
+	 * @return bool Whether or not WooCommerce is active.
+	 */
+	public static function is_woocommerce_active() {
+		return class_exists( 'Woocommerce' );
+	}
+
+	/**
+	 * Determines whether the plugin is active for the entire network.
+	 *
+	 * @return bool Whether or not the plugin is network-active.
+	 */
+	public static function is_plugin_network_active() {
+		static $network_active = null;
+
+		if ( ! is_multisite() ) {
+			return false;
+		}
+
+		// If a cached result is available, bail early.
+		if ( $network_active !== null ) {
+			return $network_active;
+		}
+
+		$network_active_plugins = wp_get_active_network_plugins();
+
+		// Consider MU plugins and network-activated plugins as network-active.
+		$network_active = strpos( wp_normalize_path( WPSEO_FILE ), wp_normalize_path( WPMU_PLUGIN_DIR ) ) === 0
+			|| in_array( WP_PLUGIN_DIR . '/' . WPSEO_BASENAME, $network_active_plugins, true );
+
+		return $network_active;
+	}
+
+	/**
+	 * Getter for the Adminl10n array. Applies the wpseo_admin_l10n filter.
+	 *
+	 * @return array The Adminl10n array.
+	 */
+	public static function get_admin_l10n() {
+		$wpseo_admin_l10n = array();
+		$wpseo_admin_l10n = array_merge( $wpseo_admin_l10n, WPSEO_Help_Center::get_translated_texts() );
+
+		$additional_entries = apply_filters( 'wpseo_admin_l10n', array() );
+		if ( is_array( $additional_entries ) ) {
+			$wpseo_admin_l10n = array_merge( $wpseo_admin_l10n, $additional_entries );
+		}
+
+		return $wpseo_admin_l10n;
+	}
+
+	/**
+	 * Retrieves the analysis worker log level. Defaults to errors only.
+	 *
+	 * Uses bool YOAST_SEO_DEBUG as flag to enable logging. Off equals ERROR.
+	 * Uses string YOAST_SEO_DEBUG_ANALYSIS_WORKER as log level for the Analysis
+	 * Worker. Defaults to INFO.
+	 * Can be: TRACE, DEBUG, INFO, WARN or ERROR.
+	 *
+	 * @return string The log level to use.
+	 */
+	public static function get_analysis_worker_log_level() {
+		if ( defined( 'YOAST_SEO_DEBUG' ) && YOAST_SEO_DEBUG ) {
+			return defined( 'YOAST_SEO_DEBUG_ANALYSIS_WORKER' ) ? YOAST_SEO_DEBUG_ANALYSIS_WORKER : 'INFO';
+		}
+
+		return 'ERROR';
+	}
+
+	/* ********************* DEPRECATED METHODS ********************* */
+
+	/**
+	 * Returns the language part of a given locale, defaults to english when the $locale is empty.
+	 *
+	 * @see        WPSEO_Language_Utils::get_language()
+	 *
+	 * @since      9.5
+	 *
+	 * @param string $locale The locale to get the language of.
+	 *
+	 * @return string The language part of the locale.
+	 */
+	public static function get_language( $locale ) {
+		_deprecated_function( __METHOD__, 'WPSEO 9.5', 'WPSEO_Language_Utils::get_language' );
+		return WPSEO_Language_Utils::get_language( $locale );
 	}
 
 	/**
@@ -873,97 +1152,17 @@ class WPSEO_Utils {
 	 * different from the language used on the front end. This checks if the feature
 	 * is available and returns the user's language, with a fallback to the site's language.
 	 * Can be removed when support for WordPress 4.6 will be dropped, in favor
-	 * of WordPress get_user_locale() that already fallbacks to the site’s locale.
+	 * of WordPress get_user_locale() that already fallbacks to the site's locale.
 	 *
-	 * @returns string The locale.
+	 * @see        WPSEO_Language_Utils::get_user_locale()
+	 *
+	 * @since      9.5
+	 *
+	 * @return string The locale.
 	 */
 	public static function get_user_locale() {
-		if ( function_exists( 'get_user_locale' ) ) {
-			return get_user_locale();
-		}
-		return get_locale();
-	}
+		_deprecated_function( __METHOD__, 'WPSEO 9.5', 'WPSEO_Language_Utils::get_user_locale' );
 
-	/**
-	 * Checks if the WP-REST-API is available.
-	 *
-	 * @since 3.6
-	 *
-	 * @param string $minimum_version The minimum version the API should be.
-	 *
-	 * @return bool Returns true if the API is available.
-	 */
-	public static function is_api_available( $minimum_version = '2.0' ) {
-		return ( defined( 'REST_API_VERSION' )
-		         && version_compare( REST_API_VERSION, $minimum_version, '>=' ) );
-	}
-
-	/**
-	 * Wrapper for the PHP filter input function.
-	 *
-	 * This is used because stupidly enough, the `filter_input` function is not available on all hosts...
-	 *
-	 * @deprecated Passes through to PHP call, no longer used in code.
-	 *
-	 * @param int    $type          Input type constant.
-	 * @param string $variable_name Variable name to get.
-	 * @param int    $filter        Filter to apply.
-	 *
-	 * @return mixed
-	 */
-	public static function filter_input( $type, $variable_name, $filter = FILTER_DEFAULT ) {
-		return filter_input( $type, $variable_name, $filter );
-	}
-
-	/**
-	 * Adds a hook that when given option is updated, the XML sitemap transient cache is cleared
-	 *
-	 * @deprecated
-	 * @see WPSEO_Sitemaps_Cache::register_clear_on_option_update()
-	 *
-	 * @param string $option Option name.
-	 * @param string $type   Sitemap type.
-	 */
-	public static function register_cache_clear_option( $option, $type = '' ) {
-		WPSEO_Sitemaps_Cache::register_clear_on_option_update( $option, $type );
-	}
-
-	/**
-	 * Clears the transient cache when a given option is updated, if that option has been registered before
-	 *
-	 * @deprecated
-	 * @see WPSEO_Sitemaps_Cache::clear_on_option_update()
-	 *
-	 * @param string $option The option that's being updated.
-	 */
-	public static function clear_transient_cache( $option ) {
-		WPSEO_Sitemaps_Cache::clear_on_option_update( $option );
-	}
-
-	/**
-	 * Clear entire XML sitemap cache
-	 *
-	 * @deprecated
-	 * @see WPSEO_Sitemaps_Cache::clear()
-	 *
-	 * @param array $types Set of sitemap types to invalidate cache for.
-	 */
-	public static function clear_sitemap_cache( $types = array() ) {
-		WPSEO_Sitemaps_Cache::clear( $types );
-	}
-
-	/**
-	 * Wrapper for encoding the array as a json string. Includes a fallback if wp_json_encode doesn't exist.
-	 *
-	 * @deprecated 3.3 Core versions without wp_json_encode() no longer supported, fallback unnecessary.
-	 *
-	 * @param array $array_to_encode The array which will be encoded.
-	 * @param int   $options         Optional. Array with options which will be passed in to the encoding methods.
-	 * @param int   $depth           Optional. Maximum depth to walk through $data. Must be greater than 0. Default 512.
-	 *
-	 * @return false|string
-	 */
-	public static function json_encode( array $array_to_encode, $options = 0, $depth = 512 ) {
-		return wp_json_encode( $array_to_encode, $options, $depth );
+		return WPSEO_Language_Utils::get_user_locale();
 	}
 }
