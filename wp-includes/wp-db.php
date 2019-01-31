@@ -570,19 +570,12 @@ class wpdb {
 		if ( WP_DEBUG && WP_DEBUG_DISPLAY )
 			$this->show_errors();
 
-		/* Use ext/mysqli if it exists and:
-		 *  - WP_USE_EXT_MYSQL is defined as false, or
-		 *  - We are a development version of WordPress, or
-		 *  - We are running PHP 5.5 or greater, or
-		 *  - ext/mysql is not loaded.
-		 */
+		// Use ext/mysqli if it exists unless WP_USE_EXT_MYSQL is defined as true
 		if ( function_exists( 'mysqli_connect' ) ) {
+			$this->use_mysqli = true;
+
 			if ( defined( 'WP_USE_EXT_MYSQL' ) ) {
 				$this->use_mysqli = ! WP_USE_EXT_MYSQL;
-			} elseif ( version_compare( phpversion(), '5.5', '>=' ) || ! function_exists( 'mysql_connect' ) ) {
-				$this->use_mysqli = true;
-			} elseif ( false !== strpos( $GLOBALS['wp_version'], '-' ) ) {
-				$this->use_mysqli = true;
 			}
 		}
 
@@ -1643,14 +1636,21 @@ class wpdb {
 		$socket  = null;
 		$is_ipv6 = false;
 
+		// First peel off the socket parameter from the right, if it exists.
+		$socket_pos = strpos( $host, ':/' );
+		if ( $socket_pos !== false ) {
+			$socket = substr( $host, $socket_pos + 1 );
+			$host = substr( $host, 0, $socket_pos );
+		}
+
 		// We need to check for an IPv6 address first.
 		// An IPv6 address will always contain at least two colons.
 		if ( substr_count( $host, ':' ) > 1 ) {
-			$pattern = '#^(?:\[)?(?<host>[0-9a-fA-F:]+)(?:\]:(?<port>[\d]+))?(?:/(?<socket>.+))?#';
+			$pattern = '#^(?:\[)?(?P<host>[0-9a-fA-F:]+)(?:\]:(?P<port>[\d]+))?#';
 			$is_ipv6 = true;
 		} else {
 			// We seem to be dealing with an IPv4 address.
-			$pattern = '#^(?<host>[^:/]*)(?::(?<port>[\d]+))?(?::(?<socket>.+))?#';
+			$pattern = '#^(?P<host>[^:/]*)(?::(?P<port>[\d]+))?#';
 		}
 
 		$matches = array();
@@ -1662,7 +1662,7 @@ class wpdb {
 		}
 
 		$host = '';
-		foreach ( array( 'host', 'port', 'socket' ) as $component ) {
+		foreach ( array( 'host', 'port' ) as $component ) {
 			if ( ! empty( $matches[ $component ] ) ) {
 				$$component = $matches[ $component ];
 			}
@@ -2456,8 +2456,10 @@ class wpdb {
 
 		$new_array = array();
 		// Extract the column values
-		for ( $i = 0, $j = count( $this->last_result ); $i < $j; $i++ ) {
-			$new_array[$i] = $this->get_var( null, $x, $i );
+		if ( $this->last_result ) {
+			for ( $i = 0, $j = count( $this->last_result ); $i < $j; $i++ ) {
+				$new_array[ $i ] = $this->get_var( null, $x, $i );
+			}
 		}
 		return $new_array;
 	}
@@ -2497,11 +2499,14 @@ class wpdb {
 		} elseif ( $output == OBJECT_K ) {
 			// Return an array of row objects with keys from column 1
 			// (Duplicates are discarded)
-			foreach ( $this->last_result as $row ) {
-				$var_by_ref = get_object_vars( $row );
-				$key = array_shift( $var_by_ref );
-				if ( ! isset( $new_array[ $key ] ) )
-					$new_array[ $key ] = $row;
+			if ( $this->last_result ) {
+				foreach ( $this->last_result as $row ) {
+					$var_by_ref = get_object_vars( $row );
+					$key = array_shift( $var_by_ref );
+					if ( ! isset( $new_array[ $key ] ) ) {
+						$new_array[ $key ] = $row;
+					}
+				}
 			}
 			return $new_array;
 		} elseif ( $output == ARRAY_A || $output == ARRAY_N ) {

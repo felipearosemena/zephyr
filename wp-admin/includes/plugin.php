@@ -194,17 +194,6 @@ function get_plugin_files( $plugin ) {
 	$plugin_file = WP_PLUGIN_DIR . '/' . $plugin;
 	$dir = dirname( $plugin_file );
 
-	$data = get_plugin_data( $plugin_file );
-	$label = isset( $data['Version'] )
-		? sanitize_key( 'files_' . $plugin . '-' . $data['Version'] )
-		: sanitize_key( 'files_' . $plugin );
-	$transient_key = substr( $label, 0, 29 ) . md5( $label );
-
-	$plugin_files = get_transient( $transient_key );
-	if ( false !== $plugin_files ) {
-		return $plugin_files;
-	}
-
 	$plugin_files = array( plugin_basename( $plugin_file ) );
 
 	if ( is_dir( $dir ) && WP_PLUGIN_DIR !== $dir ) {
@@ -224,8 +213,6 @@ function get_plugin_files( $plugin ) {
 		$plugin_files = array_merge( $plugin_files, $list_files );
 		$plugin_files = array_values( array_unique( $plugin_files ) );
 	}
-
-	set_transient( $transient_key, $plugin_files, HOUR_IN_SECONDS );
 
 	return $plugin_files;
 }
@@ -443,13 +430,17 @@ function _get_dropins() {
 }
 
 /**
- * Check whether a plugin is active.
+ * Determines whether a plugin is active.
  *
  * Only plugins installed in the plugins/ folder can be active.
  *
  * Plugins in the mu-plugins/ folder can't be "activated," so this function will
  * return false for those plugins.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 2.5.0
  *
  * @param string $plugin Path to the main plugin file from plugins directory.
@@ -460,10 +451,14 @@ function is_plugin_active( $plugin ) {
 }
 
 /**
- * Check whether the plugin is inactive.
+ * Determines whether the plugin is inactive.
  *
  * Reverse of is_plugin_active(). Used as a callback.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.1.0
  * @see is_plugin_active()
  *
@@ -475,17 +470,21 @@ function is_plugin_inactive( $plugin ) {
 }
 
 /**
- * Check whether the plugin is active for the entire network.
+ * Determines whether the plugin is active for the entire network.
  *
  * Only plugins installed in the plugins/ folder can be active.
  *
  * Plugins in the mu-plugins/ folder can't be "activated," so this function will
  * return false for those plugins.
- *
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.0.0
  *
  * @param string $plugin Path to the main plugin file from plugins directory.
- * @return bool True, if active for the network, otherwise false.
+ * @return bool True if active for the network, otherwise false.
  */
 function is_plugin_active_for_network( $plugin ) {
 	if ( !is_multisite() )
@@ -1908,4 +1907,56 @@ function wp_clean_plugins_cache( $clear_update_cache = true ) {
 function plugin_sandbox_scrape( $plugin ) {
 	wp_register_plugin_realpath( WP_PLUGIN_DIR . '/' . $plugin );
 	include( WP_PLUGIN_DIR . '/' . $plugin );
+}
+
+/**
+ * Helper function for adding content to the Privacy Policy Guide.
+ *
+ * Plugins and themes should suggest text for inclusion in the site's privacy policy.
+ * The suggested text should contain information about any functionality that affects user privacy,
+ * and will be shown on the Privacy Policy Guide screen.
+ *
+ * A plugin or theme can use this function multiple times as long as it will help to better present
+ * the suggested policy content. For example modular plugins such as WooCommerse or Jetpack
+ * can add or remove suggested content depending on the modules/extensions that are enabled.
+ * For more information see the Plugin Handbook:
+ * https://developer.wordpress.org/plugins/privacy/suggesting-text-for-the-site-privacy-policy/.
+ *
+ * Intended for use with the `'admin_init'` action.
+ *
+ * @since 4.9.6
+ *
+ * @param string $plugin_name The name of the plugin or theme that is suggesting content for the site's privacy policy.
+ * @param string $policy_text The suggested content for inclusion in the policy.
+ */
+function wp_add_privacy_policy_content( $plugin_name, $policy_text ) {
+	if ( ! is_admin() ) {
+		_doing_it_wrong(
+			__FUNCTION__,
+			sprintf(
+				/* translators: %s: admin_init */
+				__( 'The suggested privacy policy content should be added only in wp-admin by using the %s (or later) action.' ),
+				'<code>admin_init</code>'
+			),
+			'4.9.7'
+		);
+		return;
+	} elseif ( ! doing_action( 'admin_init' ) && ! did_action( 'admin_init' ) ) {
+		_doing_it_wrong(
+			__FUNCTION__,
+			sprintf(
+				/* translators: %s: admin_init */
+				__( 'The suggested privacy policy content should be added by using the %s (or later) action. Please see the inline documentation.' ),
+				'<code>admin_init</code>'
+			),
+			'4.9.7'
+		);
+		return;
+	}
+
+	if ( ! class_exists( 'WP_Privacy_Policy_Content' ) ) {
+		require_once( ABSPATH . 'wp-admin/includes/misc.php' );
+	}
+
+	WP_Privacy_Policy_Content::add( $plugin_name, $policy_text );
 }
