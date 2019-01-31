@@ -15,7 +15,7 @@
           <div class="grid__item w-12-12 w-xs-6-12">
             <ul class="site-nav__menu mb-2">
               {% for item in main_menu.get_items %}
-              <li class="{{ item.classes|join(' ') }}" data-animate-transform-left={{ loop.index + 1 }}>
+              <li data-animate-transform-left={{ loop.index + 1 }}>
                 <a href="{{ item.get_path }}">{{ item.title }}</a>
               </li>
               {% endfor %}
@@ -25,7 +25,7 @@
             <ul class="site-nav__util mb-2">
 
               {% for item in util_menu.get_items %}
-                <li class="{{ item.classes|join(' ') }}" data-animate-transform-left={{ loop.index + 1 }}>
+                <li data-animate-transform-left={{ loop.index + 1 }}>
                   <a href="{{ item.get_path }}">{{ item.title }}</a>
                 </li>
               {% endfor %}
