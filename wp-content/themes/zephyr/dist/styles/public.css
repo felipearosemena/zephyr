@@ -852,12 +852,10 @@ h3, .h3,
 h4, .h4, caption,
 h5, .h5,
 h6, .h6 {
-  font-family: "gt-walsheim-condensed-ultra-bold-oblique", "futura", "helvetica";
-  font-weight: 900;
-  font-style: oblique;
+  font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 500;
   margin-top: 0;
   margin-bottom: 1.25rem;
-  text-transform: uppercase;
   letter-spacing: .03em; }
   h1 a, .h1 a,
   h2 a, .h2 a,
@@ -893,10 +891,8 @@ h1, .h1 {
 h2, .h2 {
   font-size: 2rem;
   line-height: 1.125;
-  font-weight: bold;
   font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-style: normal;
-  text-transform: none;
   letter-spacing: 0; }
   @media only screen and (min-width: 800px) {
     h2, .h2 {
@@ -904,7 +900,6 @@ h2, .h2 {
       line-height: 1.11111; } }
 
 h3, .h3 {
-  font-weight: bold;
   font-size: 1.5rem;
   line-height: 1.33333;
   font-family: "gt-walsheim", Futura, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -936,7 +931,7 @@ strong {
   display: inline-block;
   font-weight: bold; }
 
-small, .small-text {
+small, .small-text, .woocommerce-checkout-review-order-table .shipping label {
   font-size: 0.875rem;
   line-height: 1.42857;
   letter-spacing: 0.01em; }
@@ -2669,14 +2664,16 @@ figure {
 
 .hero__title {
   line-height: 0.8;
-  font-size: 10vw; }
+  font-size: 10vw;
+  font-family: "gt-walsheim-condensed-ultra-bold-oblique", "futura", "helvetica"; }
   @media only screen and (min-width: 800px) {
     .hero__title {
       font-size: 98px; } }
 
 .hero__fresh,
 .hero__cuts {
-  display: block; }
+  display: block;
+  text-transform: uppercase; }
 
 .hero__fresh {
   margin-right: 18%;
@@ -4570,11 +4567,62 @@ figure {
 .woocommerce-info {
   margin: 0.625rem auto; }
 
+.form-row label {
+  margin-bottom: 0.25rem; }
+
+.wc-credit-card-form label {
+  display: none; }
+
+#wc-stripe-payment-request-wrapper {
+  display: none; }
+
+.wc-stripe-elements-field.wc-stripe-elements-field {
+  height: 2.5rem;
+  padding: .75rem .5rem;
+  cursor: pointer;
+  margin: 0;
+  border-color: currentColor;
+  border: none !important;
+  -webkit-box-shadow: inset 0 0 0 1px #cccccc;
+          box-shadow: inset 0 0 0 1px #cccccc; }
+  .wc-stripe-elements-field.wc-stripe-elements-field.StripeElement--focus {
+    -webkit-box-shadow: inset 0 0 0 1px #555555;
+            box-shadow: inset 0 0 0 1px #555555; }
+
 .form-row {
   margin-bottom: 0.9375rem;
   width: 100%;
-  position: relative;
-  float: left; }
+  position: relative; }
+  .form-row input[type="text"],
+  .form-row input[type="email"],
+  .form-row input[type="number"],
+  .form-row input[type="tel"],
+  .form-row input[type="url"],
+  .form-row input[type="color"],
+  .form-row input[type="password"],
+  .form-row select,
+  .form-row .select2-selection.select2-selection {
+    height: 2.5rem;
+    padding: .5em;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border: 1px solid #cccccc; }
+    .form-row input[type="text"]:focus,
+    .form-row input[type="email"]:focus,
+    .form-row input[type="number"]:focus,
+    .form-row input[type="tel"]:focus,
+    .form-row input[type="url"]:focus,
+    .form-row input[type="color"]:focus,
+    .form-row input[type="password"]:focus,
+    .form-row select:focus,
+    .form-row .select2-selection.select2-selection:focus {
+      border-color: #555555; }
   .form-row input {
     margin-bottom: 0; }
   .form-row + .form-row .btn {
@@ -4622,10 +4670,12 @@ figure {
 .woocommerce-validated input, .woocommerce-validated select, .woocommerce-validated textarea {
   border-color: #81d89b; }
 
-.woocommerce-billing-fields,
+.woocommerce-billing-fields {
+  margin-top: 2.5rem; }
+
 .woocommerce-shipping-fields,
 .woocommerce-account-fields {
-  margin-top: 2.5rem; }
+  margin-top: 1.25rem; }
 
 .woocommerce-billing-fields__field-wrapper,
 .woocommerce-shipping-fields__field-wrapper {
@@ -4734,18 +4784,29 @@ figure {
   vertical-align: bottom;
   padding-left: 0.3125rem; }
 
+.wc_payment_method .about_paypal {
+  display: none !important; }
+
 .wc_payment_methods {
   list-style: none;
   padding: 0;
   margin-bottom: 0;
-  width: 100%;
-  float: left; }
+  width: 100%; }
   .wc_payment_methods img {
     width: 3.125rem;
     margin-right: 0.3125rem; }
 
+.payment_method_paypal img {
+  display: none !important; }
+
+.payment_method_paypal .payment_box {
+  display: none !important; }
+
 .payment_box {
-  display: none; }
+  margin-top: 1rem; }
+
+.woocommerce-checkout #payment ul.payment_methods li img.stripe-icon {
+  vertical-align: bottom; }
 
 .woocommerce-thankyou-order-details {
   margin-top: 2.5rem;
@@ -4790,6 +4851,16 @@ form.checkout_coupon {
 .woocommerce-checkout-review-order-table .product-total,
 .woocommerce-checkout-review-order-table tfoot td {
   text-align: right; }
+
+.woocommerce-checkout-review-order-table .shipping ul {
+  list-style: none;
+  margin: 0; }
+
+.woocommerce-checkout-review-order-table .shipping .amount {
+  font-size: 1rem; }
+
+.woocommerce-checkout-review-order-table .shipping p {
+  margin: 0; }
 
 .wc-credit-card-form {
   padding: 0;
@@ -5049,8 +5120,7 @@ form.checkout_coupon {
     outline: none; }
   .select2-container .select2-selection--single .select2-selection__rendered,
   .select2-container .select2-selection--single .select2-selection__arrow {
-    line-height: 1.5rem;
-    padding: 0.8125rem; }
+    line-height: 1.5rem; }
   .select2-container .select2-selection--single .select2-selection__arrow {
     font-size: .6em;
     pointer-events: none;
@@ -5067,8 +5137,8 @@ form.checkout_coupon {
     vertical-align: middle;
     -webkit-transition: color 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
     transition: color 0.45s cubic-bezier(0.165, 0.84, 0.44, 1);
-    height: 3.125rem;
-    padding: 0 1.25rem; }
+    height: 100%;
+    padding: 0 1.875rem !important; }
     button .select2-container .select2-selection--single .select2-selection__arrow,
     a .select2-container .select2-selection--single .select2-selection__arrow {
       -webkit-transition: none;
@@ -5085,7 +5155,10 @@ form.checkout_coupon {
       text-transform: none;
       text-align: center; }
     .select2-container .select2-selection--single .select2-selection__arrow:before {
-      float: right; }
+      line-height: 1.2rem;
+      top: -webkit-calc(50% - .5rem);
+      top: calc(50% - .5rem);
+      position: absolute; }
     .select2-container .select2-selection--single .select2-selection__arrow b {
       border: none; }
 
