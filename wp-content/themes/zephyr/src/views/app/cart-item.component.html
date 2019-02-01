@@ -5,19 +5,19 @@
       <i class="icon-trash"></i>
     </button>
     <div class="grid__item w-3-12">
-      <router-link :to="product.path" class="w-12-12">
+      <a :href="product.path" class="w-12-12">
         <thumbnail :image="product.thumbnail" size="card" />
-      </router-link>
+      </a>
     </div>
     <div class="grid__item w-9-12">
       <div class="flex justify-between">
         <span>
           <h4 class="label mb-0 mr-1">
-            <router-link :to="product.path">
-              <span v-on:click="onTitleClick">
+            <a :href="product.path">
+              <span>
                 {{ product.title.rendered }}
               </span>
-            </router-link>
+            </a>
           </h4>
           <p class="tiny-text mb-0">
             <span v-if="item.variation && item.variation.attribute_pa_size">

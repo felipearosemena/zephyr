@@ -24,7 +24,7 @@
               <p class="mb-05"><label class="weight-bold">Choose your cut</label></p>
               {% for shape in global_info.filter_shape %}
                 {% set term = TimberTerm(shape.term_id) %}
-                <a href="{{ term.path }}" class="checkbox-shape remove-underline">
+                <router-link to="{{ term.path }}" class="checkbox-shape remove-underline">
                   <input id="filter-shape-{{ shape.slug }}"
                     type="radio"
                     name="{{ shape.taxonomy }}"
@@ -36,7 +36,7 @@
                       {% include 'components/shapes/' ~ shapeFile ~ '.svg' %}
                     </span>
                   </label>
-                </a>
+                </router-link>
               {% endfor %}
             </div>
 

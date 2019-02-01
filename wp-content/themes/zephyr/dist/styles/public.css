@@ -4971,6 +4971,9 @@ form.checkout_coupon {
 .woocommerce-MyAccount-navigation-link--downloads {
   display: none; }
 
+.woocommerce-pagination {
+  display: none; }
+
 .loading-screen {
   left: 0;
   top: 0;

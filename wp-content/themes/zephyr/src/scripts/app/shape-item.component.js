@@ -48,7 +48,7 @@ const joinTransformObject = obj => {
 
 const ShapeItem = {
   template: `
-  <a :href="href" :class="[ 'shape-item shape-item--' + term.slug + ' remove-underline' , { 'is-hovered' : isHovered, 'is-loaded': isLoaded }]" ref="el" v-on:click.stop.prevent>
+  <a :href="href" :class="[ 'shape-item shape-item--' + term.slug + ' remove-underline' , { 'is-hovered' : isHovered, 'is-loaded': isLoaded }]" ref="el">
 
     <span class="shape-item__shrapnel" ref="shrapnel"></span>
 
