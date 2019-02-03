@@ -101,7 +101,6 @@ export function loadOnce(url, type) {
  * @return {Promise/Object} A catcheable promise error or the original response
  */
 function handleError(response) {
-
   if (!response.ok) {
     return response
       .json()
@@ -112,6 +111,16 @@ function handleError(response) {
     return response
   }
 
+}
+
+function updateNonce(response) {
+  const nonce = response.headers.get('X-WP-Nonce');
+
+  if (nonce) {
+    store.updateNonce(nonce)
+  }
+
+  return response
 }
 
 /**
@@ -148,5 +157,6 @@ export function apiFetch(endpoint, method = 'get', body = {}, headers = {}) {
     }))
   })
   .then(handleError)
+  .then(updateNonce)
 
 }

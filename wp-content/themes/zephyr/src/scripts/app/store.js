@@ -155,6 +155,8 @@ const store = {
 
   updateNonce(nonce) {
     if(nonce) {
+      console.log('current nonce', store.state.nonce)
+      console.log('next nonce', nonce)
       this.setState({ nonce: nonce })
     }
   }

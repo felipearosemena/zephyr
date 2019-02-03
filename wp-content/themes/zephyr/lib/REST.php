@@ -28,6 +28,7 @@ class REST {
 
     add_filter( 'wp_enqueue_scripts', array( &$this, 'localizeScripts' ) );
     add_filter( 'rest_project_query', array( &$this, 'posts_allow_custom_request_params' ), 99, 2 );
+    add_filter( 'rest_post_dispatch', array( &$this, 'assign_response_nonce'), PHP_INT_MAX, 3);
 
     add_filter( 'rest_product_collection_params', array( &$this, 'add_rest_orderby_params' ), 10, 1 );
 
@@ -44,6 +45,11 @@ class REST {
   public function root()
   {
     return esc_url_raw( rest_url() );
+  }
+
+  public function assign_response_nonce(  $response, $rest, $request) {
+      $response->header('X-WP-Nonce', $this->getNonce());
+      return $response;
   }
 
   public function localizeScripts()
