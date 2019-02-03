@@ -48,10 +48,12 @@ class REST {
 
   public function localizeScripts()
   {
+    date_default_timezone_set('EST');
     wp_localize_script( 'public-script', 'Global', array(
       'api' => $this->root(),
       'api_namespace' => $this->api_namespace(),
       'nonce' => $this->getNonce(),
+      'nonce_date' => date('l jS \of F Y h:i:s A')
     ));
   }
 
@@ -67,9 +69,9 @@ class REST {
 
   public function validate_nonce()
   {
-    // if(!isset($_SERVER['HTTP_X_WP_NONCE']) || !wp_verify_nonce($_SERVER['HTTP_X_WP_NONCE'], $this->nonce_key)) {
-    //   return new WP_Error( 'Z_invalid_nonce', 'Invalid nonce', array( 'status' => 400 ));
-    // }
+    if(!isset($_SERVER['HTTP_X_WP_NONCE']) || !wp_verify_nonce($_SERVER['HTTP_X_WP_NONCE'], $this->nonce_key)) {
+      return new WP_Error( 'Z_invalid_nonce', 'Invalid nonce', array( 'status' => 400 ));
+    }
 
     return null;
   }

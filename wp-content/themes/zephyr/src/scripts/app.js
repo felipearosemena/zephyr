@@ -77,22 +77,22 @@ const methods = {
       this.routerBeforeEach(to, from, next)
     })
 
-    // document.addEventListener('click', delegate('a[href]', function(e) {
+    document.addEventListener('click', delegate('a[href]', function(e) {
 
-    //   if(this.getAttribute('href').indexOf(window.location.host) > -1 || isCheckout()) {
-    //     return
-    //   }
+      if(this.getAttribute('href').indexOf(window.location.host) > -1 || isCheckout()) {
+        return
+      }
 
-    //   if(this.getAttribute('href') == '#' || !this.getAttribute('href').length) {
-    //     e.preventDefault()
-    //     return
-    //   }
+      if(this.getAttribute('href') == '#' || !this.getAttribute('href').length) {
+        e.preventDefault()
+        return
+      }
 
-    //   if(this.href.indexOf(window.location.host) > -1){
-    //     e.preventDefault()
-    //     router.push(this.getAttribute('href'))
-    //   }
-    // }))
+      if(this.href.indexOf(window.location.host) > -1){
+        e.preventDefault()
+        router.push(this.getAttribute('href'))
+      }
+    }))
 
   },
 
@@ -285,8 +285,6 @@ const options = {
     })
 
     this.CartService.getCart()
-
-
   },
 
   watch: {
